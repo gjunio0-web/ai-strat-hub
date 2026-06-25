@@ -17,8 +17,8 @@ exports.handler = async function(event, context) {
             };
         }
 
-        // 3. Comunicação isolada e segura com o Google (Modelo de Fronteira Gemini 3.5 Flash)
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`, {
+        // 3. Comunicação com o Google (Modelo de Alta Disponibilidade: Gemini 3.1 Flash-Lite)
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
