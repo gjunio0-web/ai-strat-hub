@@ -271,14 +271,21 @@
                             <p class="text-base font-bold uppercase tracking-wider text-indigo-500">Por que esta IA lidera o ranking para o perfil escolhido</p>
                             <div id="leaderMedal" class="w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center text-white font-black shadow-lg text-sm flex-shrink-0"></div>
                         </div>
-                        <div class="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-3 md:gap-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-[30%_70%] items-stretch gap-3 md:gap-4">
                             <div id="leaderSlot" class="min-w-0"></div>
-                            <div class="rounded-xl p-4 md:p-5 flex flex-col">
-                                <div class="relative flex-1 min-h-[260px] w-full"><canvas id="userRadarChart"></canvas></div>
+                            <div class="rounded-xl p-2 md:p-3 flex flex-col">
+                                <div class="relative flex-1 min-h-[380px] w-full"><canvas id="userRadarChart"></canvas></div>
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4" id="rankingGrid"></div>
+                    <div id="rankingGrid" class="mt-4">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3 px-1">Ranking competitivo</p>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4">
+                            <div style="position:relative;width:100%;height:300px;">
+                                <canvas id="rankingBarChart" role="img" aria-label="Gráfico de barras horizontais com ranking competitivo das IAs."></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="ranking-toast" class="md:hidden fixed bottom-20 left-4 right-4 bg-slate-900 text-white p-3 rounded-lg shadow-2xl flex items-center justify-between z-[100] transform translate-y-32 transition-transform duration-300">
                      <div class="flex items-center gap-3"><div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div><div class="text-sm font-medium">Ranking atualizado!</div></div>
@@ -675,6 +682,8 @@
                 setTimeout(() => {
                     initCharts(); // Re-init charts to fix canvas reuse issue
                     updateRadarDatasets(); // FIX: Refresh data on tab switch
+                    if(window.__rankingBarChart) window.__rankingBarChart.resize();
+                    runEngine(); // repopular radar e barras com dados do perfil atual
                 }, 100);
             }
         }
@@ -1184,39 +1193,69 @@
         }
 
         function renderRankingCards(ranking){
-            const container = document.getElementById('rankingGrid'); container.innerHTML='';
+            // leaderSlot (#1): intocado em estrutura — apenas popula o card do líder
             const leaderSlot = document.getElementById('leaderSlot'); if(leaderSlot) leaderSlot.innerHTML='';
             const coLead = ranking.length >= 2 && Math.abs(ranking[0].scoreVal - ranking[1].scoreVal) <= 0.001;
-            ranking.forEach((t, i) => {
+            if(ranking.length > 0){
+                const t = ranking[0];
                 let badge="Insumo", color="text-slate-600 bg-slate-100";
                 if(t.type==='delivery'){ badge="Entrega"; color="text-indigo-600 bg-indigo-50"; }
                 if(t.type==='reasoning'){ badge="Raciocínio"; color="text-emerald-600 bg-emerald-50"; }
-                const isLeader = (i===0) || (coLead && i===1);
                 const card = document.createElement('div');
-                if(i===0){
-                    card.className = `rounded-xl p-5 shadow-none border-0 ring-0 flex flex-col relative cursor-help h-full`;
-                } else {
-                    card.className = `bg-white p-5 border shadow-sm rounded-xl flex flex-col hover:shadow-md transition-shadow relative overflow-visible cursor-help ${isLeader ? 'border-indigo-400 ring-2 ring-indigo-50' : 'border-slate-200'}`;
-                }
-                // Medalhão do #1 vai para o eyebrow (leaderMedal), fora do card
-                if(i===0){
-                    const lm=document.getElementById('leaderMedal');
-                    if(lm) lm.textContent='1';
-                }
-                const medal = isLeader
-                    ? (i===0 ? '' : `<div class="absolute -right-3 -top-3 w-12 h-12 bg-indigo-600 rounded-full flex items-end justify-start pl-2 pb-2 text-white font-black shadow-lg z-10">1</div>`)
-                    : `<span class="text-xs font-bold text-slate-300">#${i+1}</span>`;
-                const tieBadge = (coLead && isLeader)
-                    ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100">Empate Técnico</span>`
-                    : '';
+                card.className = `rounded-xl p-5 shadow-none border-0 ring-0 flex flex-col relative cursor-help h-full`;
+                const lm=document.getElementById('leaderMedal'); if(lm) lm.textContent='1';
+                const tieBadge = coLead ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100">Empate Técnico</span>` : '';
                 const rows = t.breakdown.map(b =>
                     `<div class="flex justify-between gap-3"><span>${b.label} <span class="text-slate-400">&sigma; ${b.sigma.toFixed(2)} · D ${b.D.toFixed(1)}</span></span><span>E ${b.E.toFixed(2)} · ${b.score.toFixed(2)}</span></div>`
                 ).join('');
-                card.innerHTML = `${medal}
-                    <div class="flex justify-between items-start mb-2 pr-4 gap-1 flex-wrap"><span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ${color}">${badge}</span>${tieBadge}</div>
-                    <div class="flex justify-between items-end"><div><h3 class="font-bold text-slate-900 leading-tight">${t.name}</h3><p class="text-[10px] text-slate-500 uppercase">${t.model}</p></div><div class="text-2xl font-black text-slate-800">${t.scoreStr}</div></div>
-                    <div class="tooltip-container tooltip-up mt-3"><div class="text-[10px] text-indigo-500 font-bold uppercase tracking-wide border-t border-slate-100 pt-2">Score Efetivo por domínio</div><div class="tooltip-text" role="tooltip"><strong class="block mb-1 border-b border-slate-700/50 pb-1">${t.name} — ${t.scoreStr}</strong>${rows}</div></div>`;
-                if(i===0 && leaderSlot){ leaderSlot.appendChild(card); } else { container.appendChild(card); }
+                card.innerHTML = `<div class="flex justify-between items-start mb-2 pr-4 gap-1 flex-wrap"><span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ${color}">${badge}</span>${tieBadge}</div>
+                    <h3 class="font-bold text-slate-900 leading-tight">${t.name}</h3>
+                    <p class="text-[10px] text-slate-500 uppercase mb-2">${t.model}</p>
+                    <div class="text-3xl font-black text-slate-800 mb-2">${t.scoreStr}</div>
+                    <div class="tooltip-container tooltip-up mt-auto"><div class="text-[10px] text-indigo-500 font-bold uppercase tracking-wide border-t border-slate-100 pt-2">Score Efetivo por domínio</div><div class="tooltip-text" role="tooltip"><strong class="block mb-1 border-b border-slate-700/50 pb-1">${t.name} — ${t.scoreStr}</strong>${rows}</div></div>`;
+                if(leaderSlot) leaderSlot.appendChild(card);
+            }
+            // Gráfico de barras: substitui cards #2–#7
+            const canvas = document.getElementById('rankingBarChart');
+            if(!canvas) return;
+            if(window.__rankingBarChart){ window.__rankingBarChart.destroy(); window.__rankingBarChart=null; }
+            window.__rankingBarChart = new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels: ranking.map(r => r.name),
+                    datasets: [{
+                        data: ranking.map(r => parseFloat(r.scoreStr)),
+                        backgroundColor: ranking.map(r => r.color),
+                        borderRadius: 4,
+                        borderSkipped: false,
+                        barThickness: 22,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: ctx => '  Score: ' + ctx.parsed.x.toFixed(2) } }
+                    },
+                    scales: {
+                        x: { min:0, max:5, grid:{ color:'#e2e8f0' }, ticks:{ color:'#94a3b8', font:{size:11}, callback: v => v.toFixed(1) }, border:{ color:'#e2e8f0' } },
+                        y: { grid:{ display:false }, ticks:{ color:'#334155', font: function(ctx){ const i=ctx.index; const data=ctx.chart.data.datasets[0].data; const isTie=data.length>1&&data[0]===data[1]; return {size:14, weight:(i===0||(isTie&&i===1))?'bold':'normal'}; } }, border:{ display:false } }
+                    },
+                    layout: { padding: { right: 44 } },
+                    animation: false
+                },
+                plugins: [{
+                    afterDatasetsDraw(chart){
+                        const ctx=chart.ctx;
+                        chart.data.datasets[0].data.forEach((val,i)=>{
+                            const bar=chart.getDatasetMeta(0).data[i];
+                            ctx.fillStyle='#475569'; ctx.font='500 11px sans-serif'; ctx.textAlign='left';
+                            ctx.fillText(val.toFixed(2), bar.x+6, bar.y+4);
+                        });
+                    }
+                }]
             });
         }
 
