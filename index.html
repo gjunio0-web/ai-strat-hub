@@ -1044,7 +1044,7 @@
             const S = readStreamlining();
             const ranked = tools.map(t => {
                 const r = scoreFinalFor(t.id, sigma, S);
-                return { ...t, scoreVal: r.final, scoreStr: r.final.toFixed(4), breakdown: r.breakdown };
+                return { ...t, scoreVal: r.final, scoreStr: r.final.toFixed(2), breakdown: r.breakdown };
             }).sort((a,b) => b.scoreVal - a.scoreVal);
             currentRanked = ranked;
             renderRankingCards(ranked);
@@ -1210,7 +1210,7 @@
                     ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100">Empate Técnico</span>`
                     : '';
                 const rows = t.breakdown.map(b =>
-                    `<div class="flex justify-between gap-3"><span>${b.label} <span class="text-slate-400">&sigma; ${b.sigma.toFixed(2)} · D ${b.D.toFixed(1)}</span></span><span>E ${b.E.toFixed(4)} · ${b.score.toFixed(4)}</span></div>`
+                    `<div class="flex justify-between gap-3"><span>${b.label} <span class="text-slate-400">&sigma; ${b.sigma.toFixed(2)} · D ${b.D.toFixed(1)}</span></span><span>E ${b.E.toFixed(2)} · ${b.score.toFixed(2)}</span></div>`
                 ).join('');
                 card.innerHTML = `${medal}
                     <div class="flex justify-between items-start mb-2 pr-4 gap-1 flex-wrap"><span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ${color}">${badge}</span>${tieBadge}</div>
