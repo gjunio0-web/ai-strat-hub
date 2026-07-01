@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Dashboard estratégico para análise e comparação de ferramentas de Inteligência Artificial">
-    <title>AI Strategy Hub v13.1 | Enterprise Edition</title>
+    <title>AI Strategy Hub v13.6 | Enterprise Edition</title>
     
     <!-- Bibliotecas Externas -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -54,22 +54,52 @@
         .accordion-icon { transition: transform 0.3s ease; }
         .accordion-open .accordion-icon { transform: rotate(180deg); }
         .filter-active { background-color: #1e293b !important; color: white !important; border-color: #1e293b !important; }
+        .arch-active { background-color: #4f46e5 !important; color: #fff !important; border-color: #4f46e5 !important; }
         .shimmer { background: #f6f7f8; background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%); background-repeat: no-repeat; background-size: 800px 104px; animation: placeholderShimmer 1s linear infinite forwards; }
         @keyframes placeholderShimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
         
         .section-title { font-size: 1.5rem; line-height: 2rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem; }
         .section-subtitle { font-size: 0.875rem; color: #64748b; }
         @media (min-width: 768px) { .section-title { font-size: 1.875rem; line-height: 2.25rem; } }
+
+        /* Mobile: perfil colapsável (no desktop lg+ fica sempre aberto e sticky) */
+        @media (max-width: 1023px) {
+            .profile-collapsible { max-height: 0; opacity: 0; overflow: hidden; padding-top: 0 !important; padding-bottom: 0 !important; transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease; }
+            .decision-pane.profile-open .profile-collapsible { max-height: 2000px; opacity: 1; padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+            .mobile-profile-chevron { transition: transform 0.3s ease; }
+            .decision-pane.profile-open .mobile-profile-chevron { transform: rotate(180deg); }
+        }
+        /* Accordion de arquétipo: desktop only (>=1024px) */
+        .arch-accordion { max-height:0; overflow:hidden; opacity:0; transition:max-height 0.35s ease, opacity 0.3s ease; }
+        @media(min-width:1024px){ .arch-accordion.open { max-height:320px; opacity:1; } }
+        /* Bottom sheet de preview de arquétipo (mobile) */
+        #archSheetOverlay { position:fixed; inset:0; background:rgba(15,23,42,0.45); z-index:200; opacity:0; pointer-events:none; transition:opacity 0.25s ease; }
+        #archSheetOverlay.open { opacity:1; pointer-events:all; }
+        #archSheet { position:fixed; left:0; right:0; bottom:0; z-index:201; background:#fff; border-radius:1.25rem 1.25rem 0 0; padding:1.5rem 1.25rem 2rem; transform:translateY(100%); transition:transform 0.32s cubic-bezier(0.32,0.72,0,1); max-height:85vh; overflow-y:auto; }
+        #archSheet.open { transform:translateY(0); }
+        /* === Superficie unica elevada (#1 + radar): glow radial indigo->violeta cobrindo TODO o bloco uniformemente. Fundo transparente nos cards internos. SEM borda. Robusta em qualquer largura. === */
+        .leader-surface {
+            background: linear-gradient(135deg, rgba(99,76,233,0.32) 0%, rgba(124,58,237,0.38) 50%, rgba(139,92,246,0.28) 100%);
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px -4px rgba(99,76,233,0.22), 0 2px 8px -2px rgba(99,76,233,0.12);
+        }
+        /* Faixa colorida unica no topo da SUPERFICIE INTEIRA (nao nos cards internos): unifica o bloco visualmente. */
+        .leader-surface { position: relative; }
+        .leader-surface::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 1;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            border-top-left-radius: 1rem; border-top-right-radius: 1rem;
+        }
     </style>
 </head>
 
 <body class="h-screen w-screen flex flex-col md:flex-row overflow-hidden bg-slate-50">
 
     <!-- === MOBILE TOP BAR === -->
-    <header class="md:hidden fixed top-0 left-0 right-0 h-14 bg-slate-900 border-b border-slate-800 z-50 flex items-center justify-between px-4 shadow-md">
+    <header class="md:hidden flex-shrink-0 h-14 bg-slate-900 border-b border-slate-800 z-50 flex items-center justify-between px-4 shadow-md">
         <div class="flex items-center gap-3 h-full">
             <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-black text-xs shadow-lg shadow-indigo-900/50 flex-shrink-0">AI</div>
-            <h1 class="font-black text-white text-xl tracking-tight leading-none">STRATEGY HUB <span class="text-indigo-500 text-xs align-top font-bold">v13.1</span></h1>
+            <h1 class="font-black text-white text-xl tracking-tight leading-none">STRATEGY HUB <span class="text-indigo-500 text-xs align-top font-bold">v13.6</span></h1>
         </div>
         <button onclick="toggleHelpModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold hover:bg-indigo-600 hover:text-white transition-all border border-slate-700">?</button>
     </header>
@@ -121,14 +151,14 @@
     </nav>
 
     <!-- === MAIN CONTENT AREA === -->
-    <main class="flex-1 relative h-full w-full overflow-hidden bg-slate-50 pt-14 md:pt-0" id="main-viewport">
+    <main class="flex-1 relative min-h-0 w-full overflow-hidden bg-slate-50" id="main-viewport">
         
         <!-- 1. CONHECIMENTO -->
         <section id="tab-knowledge" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll p-4 md:p-8 lg:p-12 pb-24 md:pb-8">
             <div class="max-w-6xl mx-auto space-y-12">
                 <header>
                     <h2 class="section-title">Capacidades Fundamentais de IAs</h2>
-                    <p class="section-subtitle">Entenda as 11 capacidades fundamentais, de cognição ("thinking"), produção ("doing") e estratégia ("integrating") que compõem uma IA.</p>
+                    <p class="section-subtitle">Entenda as capacidades fundamentais, organizadas em seis domínios — Thinking, Discovering, Designing, Building, Integrating e o habilitador transversal Streamlining.</p>
                 </header>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="useCaseGrid"></div>
@@ -153,6 +183,14 @@
                     </div>
                 </div>
 
+                <div class="pt-8 border-t border-slate-200">
+                    <header class="mb-6">
+                        <h3 class="section-title">Ecossistema de Inteligência</h3>
+                        <p class="section-subtitle">O retrato executivo de cada IA: seu ponto forte (Superpower), seu ponto fraco (Kryptonite) e seu papel.</p>
+                    </header>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ecosystemGrid"></div>
+                </div>
+
                 <div class="flex justify-center pt-8">
                     <button onclick="switchTab('tab-decision')" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold shadow-xl hover:bg-slate-800 hover:scale-105 transition-all flex items-center gap-2">
                         Ir para Diagnóstico & Decisão <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -163,39 +201,85 @@
 
         <!-- 2. DECISÃO -->
         <section id="tab-decision" class="tab-content tab-inactive w-full h-full overflow-hidden flex flex-col">
-            <div class="flex-1 overflow-hidden grid grid-cols-1 lg:grid-cols-12 h-full relative">
-                <div class="lg:col-span-4 h-full overflow-y-auto custom-scroll bg-white border-r border-slate-200 z-20 shadow-xl lg:shadow-none pb-24 lg:pb-0">
-                    <div class="p-6 space-y-6">
+            <div class="decision-pane flex-1 lg:overflow-hidden grid grid-cols-1 lg:grid-cols-12 h-full relative overflow-y-auto custom-scroll">
+                <div class="lg:col-span-4 lg:h-full lg:overflow-y-auto custom-scroll bg-white lg:border-r border-slate-200 z-20 lg:shadow-none">
+                    <div class="lg:hidden sticky top-0 z-30 bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex-shrink-0">Perfil</span>
+                            <span id="mobileProfileSummary" class="text-sm font-bold text-slate-800 truncate">Personalizado</span>
+                        </div>
+                        <button onclick="toggleMobileProfile()" class="flex items-center gap-1 text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg flex-shrink-0 active:bg-indigo-100 transition-colors">
+                            Configurar
+                            <svg class="mobile-profile-chevron w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+                    <div class="profile-collapsible p-6 space-y-6 lg:sticky lg:top-0">
                         <div>
-                            <h3 class="section-title">Seu Perfil</h3>
-                            <p class="section-subtitle">Ajuste os sliders para recalibrar.</p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <button onclick="setProfile('strategist')" class="px-3 py-1.5 bg-slate-100 hover:bg-indigo-100 text-slate-600 hover:text-indigo-700 text-xs font-bold uppercase rounded-lg border border-slate-200 transition-colors">Consultor</button>
-                                <button onclick="setProfile('engineer')" class="px-3 py-1.5 bg-slate-100 hover:bg-emerald-100 text-slate-600 hover:text-emerald-700 text-xs font-bold uppercase rounded-lg border border-slate-200 transition-colors">Engenheiro</button>
-                                <button onclick="setProfile('creative')" class="px-3 py-1.5 bg-slate-100 hover:bg-sky-100 text-slate-600 hover:text-sky-700 text-xs font-bold uppercase rounded-lg border border-slate-200 transition-colors">Criativo</button>
+                            <h3 class="section-title hidden lg:block">Perfil Profissional</h3>
+                            <p class="section-subtitle hidden lg:block">Escolha um arquétipo ou ajuste os domínios.</p>
+                            <div class="grid grid-cols-2 gap-2 my-5">
+                                <button data-arch="cirurgiao" onclick="previewArchetype('cirurgiao')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Cirurgião de Código</button>
+                                <button data-arch="showrunner" onclick="previewArchetype('showrunner')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Showrunner Corporativo</button>
+                                <button data-arch="oraculo" onclick="previewArchetype('oraculo')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Oráculo de Cenários</button>
+                                <button data-arch="burocrata" onclick="previewArchetype('burocrata')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Burocrata de Elite</button>
+                                <button data-arch="cacador" onclick="previewArchetype('cacador')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Caçador de Sinais</button>
+                                <button data-arch="prototipador" onclick="previewArchetype('prototipador')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Prototipador Ágil</button>
+                                <button data-arch="legado" onclick="previewArchetype('legado')" class="arch-chip col-span-2 px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Analista de Legado</button>
                             </div>
-                            <div class="space-y-6">
-                                <div class="group"><label for="slider-logic" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-indigo-600 transition-colors"><span>Raciocínio Lógico (Reasoning)</span><span id="val-logic" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label><input type="range" id="slider-logic" min="0" max="100" value="50"></div>
-                                <div class="group"><label for="slider-visual" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-sky-600 transition-colors"><span>Produção Visual (Doing)</span><span id="val-visual" class="text-sky-600 bg-sky-50 px-2 rounded">50%</span></label><input type="range" id="slider-visual" min="0" max="100" value="50"></div>
-                                <div class="group"><label for="slider-research" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-slate-900 transition-colors"><span>Estratégia & Síntese</span><span id="val-research" class="text-slate-600 bg-slate-100 px-2 rounded">50%</span></label><input type="range" id="slider-research" min="0" max="100" value="50"></div>
-                                <div class="group"><label for="slider-tech" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-emerald-600 transition-colors"><span>Tecnologia & Dev</span><span id="val-tech" class="text-emerald-600 bg-emerald-50 px-2 rounded">50%</span></label><input type="range" id="slider-tech" min="0" max="100" value="50"></div>
+                            <!-- Accordion: descrição do arquétipo ativo (desktop only) -->
+                            <div id="archAccordion" class="arch-accordion">
+                                <div class="mt-2 mb-4 bg-indigo-50/60 border border-indigo-100 rounded-xl p-4">
+                                    <p id="archTagline" class="text-[11px] font-semibold text-indigo-600 italic mb-2 leading-snug"></p>
+                                    <p id="archDesc" class="text-[11px] text-slate-600 leading-relaxed mb-2"></p>
+                                    <p id="archExamples" class="text-[10px] text-slate-400 leading-relaxed"></p>
+                                </div>
+                            </div>
+                            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">Domínios · Intenção (&sigma;)</div>
+                            <div class="space-y-5">
+                                <div class="group"><label for="slider-think" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-indigo-600 transition-colors"><span>Thinking</span><span id="val-think" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label><input type="range" id="slider-think" min="0" max="100" value="50"></div>
+                                <div class="group"><label for="slider-disc" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-indigo-600 transition-colors"><span>Discovering</span><span id="val-disc" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label><input type="range" id="slider-disc" min="0" max="100" value="50"></div>
+                                <div class="group"><label for="slider-design" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-indigo-600 transition-colors"><span>Designing</span><span id="val-design" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label><input type="range" id="slider-design" min="0" max="100" value="50"></div>
+                                <div class="group"><label for="slider-build" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-indigo-600 transition-colors"><span>Building</span><span id="val-build" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label><input type="range" id="slider-build" min="0" max="100" value="50"></div>
+                                <div class="group"><label for="slider-integ" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-indigo-600 transition-colors"><span>Integrating</span><span id="val-integ" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label><input type="range" id="slider-integ" min="0" max="100" value="50"></div>
+                            </div>
+                            <div class="mt-5 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                                <label for="slider-stream" class="flex justify-between text-xs font-bold text-slate-700 mb-2"><span>Streamlining · Fricção (S)</span><span id="val-stream" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label>
+                                <input type="range" id="slider-stream" min="0" max="100" value="50">
+                                <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>Artesão (potência pura)</span><span>Operador (entrega pronta)</span></div>
                             </div>
                         </div>
-                        <div class="relative h-48 w-full -mt-2"><canvas id="userRadarChart"></canvas></div>
-                        <button onclick="generateInsight()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-200 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 group relative overflow-hidden -mt-4">
-                            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div><svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><span>Insight Estratégico ✨</span>
-                        </button>
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                             <div class="flex justify-between items-center cursor-pointer" onclick="document.getElementById('override-controls').classList.toggle('hidden')"><h4 class="text-xs font-bold text-slate-500 uppercase flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>Ajuste Fino</h4><span class="text-xs text-indigo-600">Expandir</span></div>
-                             <div id="override-controls" class="hidden mt-4 space-y-4 pt-4 border-t border-slate-200"><div><label class="flex justify-between text-[10px] font-bold text-slate-500 uppercase"><span>Peso Lógico</span><span id="label-w-meta">1.0x</span></label><input type="range" id="w-meta" min="0.5" max="3.0" step="0.1" value="1.0"></div><div><label class="flex justify-between text-[10px] font-bold text-slate-500 uppercase"><span>Peso Produção</span><span id="label-w-prod">1.0x</span></label><input type="range" id="w-prod" min="0.5" max="3.0" step="0.1" value="1.0"></div><div><label class="flex justify-between text-[10px] font-bold text-slate-500 uppercase"><span>Peso Estratégia</span><span id="label-w-strat">1.0x</span></label><input type="range" id="w-strat" min="0.5" max="3.0" step="0.1" value="1.0"></div><div id="audit-alert-box" class="text-[10px] leading-tight p-2 rounded bg-amber-50 text-amber-800 hidden"></div></div>
-                         </div>
                     </div>
                 </div>
-                <div class="lg:col-span-8 h-full bg-slate-50/50 overflow-y-auto custom-scroll p-4 md:p-8 pb-24 md:pb-8 relative">
-                    <header class="flex justify-between items-end mb-6"><div><h3 class="section-title">Ranking Recomendado</h3><p class="section-subtitle">Baseado no seu perfil atual.</p></div><button onclick="switchTab('tab-details')" class="hidden md:flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-all hover:shadow-md">Ver Matriz Técnica <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></header>
+                <div class="lg:col-span-8 lg:h-full bg-slate-50/50 lg:overflow-y-auto custom-scroll p-4 md:p-8 pb-24 md:pb-8 relative">
+                    <header class="flex justify-between items-end mb-6"><div><h3 class="section-title">Ranking Recomendado</h3><p class="section-subtitle">Baseado no atual perfil profissional selecionado.</p></div><button onclick="switchTab('tab-details')" class="hidden md:flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-all hover:shadow-md">Ver Matriz Técnica <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></header>
+                    <button id="insightCard" onclick="generateInsight()" class="w-full text-left bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white rounded-2xl shadow-lg shadow-indigo-200/60 transition-all hover:-translate-y-0.5 p-4 md:p-5 mb-6 group relative overflow-hidden disabled:opacity-80 disabled:cursor-wait disabled:hover:translate-y-0">
+                        <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                        <div class="relative flex items-start gap-3 md:gap-4">
+                            <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></div>
+                            <div class="flex-1 min-w-0">
+                                <div class="font-bold text-base md:text-lg leading-tight">Insight Estratégico</div>
+                                <div id="insightSubtitle" class="text-xs md:text-sm text-indigo-100 mt-1 leading-snug">Entenda por que a IA do topo lidera para o seu perfil — e quando reconsiderar.</div>
+                                <div class="flex items-center justify-between mt-3 gap-2 flex-wrap">
+                                    <span class="inline-flex items-center gap-1.5 text-[10px] md:text-xs text-indigo-100 bg-white/15 px-2.5 py-1 rounded-full"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M13 3l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>Gerado por IA · Gemini 3.1</span>
+                                    <span id="insightAction" class="inline-flex items-center gap-1.5 text-sm font-bold">Gerar análise <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></span>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                    <div class="leader-surface mb-4 p-3 md:p-4">
+                        <div class="flex items-center justify-between mb-3 px-1">
+                            <p class="text-base font-bold uppercase tracking-wider text-indigo-500">Por que esta IA lidera o ranking para o perfil escolhido</p>
+                            <div id="leaderMedal" class="w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center text-white font-black shadow-lg text-sm flex-shrink-0"></div>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-3 md:gap-4">
+                            <div id="leaderSlot" class="min-w-0"></div>
+                            <div class="rounded-xl p-4 md:p-5 flex flex-col">
+                                <div class="relative flex-1 min-h-[260px] w-full"><canvas id="userRadarChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4" id="rankingGrid"></div>
                 </div>
-                <!-- NOVO COMPONENTE TOAST (Clean Slate) -->
                 <div id="ranking-toast" class="md:hidden fixed bottom-20 left-4 right-4 bg-slate-900 text-white p-3 rounded-lg shadow-2xl flex items-center justify-between z-[100] transform translate-y-32 transition-transform duration-300">
                      <div class="flex items-center gap-3"><div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div><div class="text-sm font-medium">Ranking atualizado!</div></div>
                      <button id="btn-toast-action" class="text-xs font-bold bg-white/10 px-3 py-1.5 rounded text-white active:bg-white/20">Ver</button>
@@ -211,13 +295,27 @@
                         <div><h2 class="section-title">Matriz de Auditoria</h2><p class="section-subtitle">Notas detalhadas (1-5) para cada capacidade.</p></div>
                         <div class="hidden md:flex flex-wrap gap-2" id="audit-filters">
                             <button onclick="setAuditFilter('all')" id="filter-audit-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active">Todos</button>
-                            <button onclick="setAuditFilter('meta')" id="filter-audit-meta" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors">Thinking</button>
-                            <button onclick="setAuditFilter('prod')" id="filter-audit-prod" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors">Doing</button>
-                            <button onclick="setAuditFilter('strat')" id="filter-audit-strat" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors">Integrating</button>
+                            <button onclick="setAuditFilter('think')" id="filter-audit-think" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
+                            <button onclick="setAuditFilter('disc')" id="filter-audit-disc" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
+                            <button onclick="setAuditFilter('design')" id="filter-audit-design" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
+                            <button onclick="setAuditFilter('build')" id="filter-audit-build" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">Building</button>
+                            <button onclick="setAuditFilter('integ')" id="filter-audit-integ" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
+                            <button onclick="setAuditFilter('stream')" id="filter-audit-stream" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors">Streamlining</button>
                         </div>
                     </header>
                     <div class="hidden md:block glass-panel rounded-2xl overflow-hidden shadow-sm border border-slate-200"><div class="overflow-x-auto"><table class="w-full text-left border-collapse table-fixed" id="matrixTable"><thead><tr class="bg-slate-900 text-white text-[10px] uppercase tracking-widest"><th class="p-4 border-r border-slate-700 w-48">Capacidade de IA</th></tr></thead><tbody class="text-xs text-slate-700 divide-y divide-slate-100" id="matrixBody"></tbody></table></div></div>
                     <div class="md:hidden space-y-4" id="mobileMatrixContainer"></div>
+                </div>
+                <div>
+                    <header class="mb-3"><h2 class="section-title">Matriz de Impacto Cruzado</h2><p class="section-subtitle">Como a ausência de cada habilitador degrada cada domínio de potência (Seção 2.2).</p></header>
+                    <div class="glass-panel rounded-2xl p-4 md:p-6 border border-slate-200">
+                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mb-4 text-[10px] font-bold uppercase tracking-wide">
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>Crítica</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>Moderada</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>Neutra</span>
+                        </div>
+                        <div class="overflow-x-auto"><div id="impactMatrix" class="min-w-[640px]"></div></div>
+                    </div>
                 </div>
                 <div class="glass-panel rounded-2xl p-6 border border-slate-200"><div class="flex flex-wrap gap-2 justify-center mb-4" id="radarControls"></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16"><div class="relative h-64 md:h-96 w-full"><canvas id="marketRadarThinking"></canvas></div><div class="relative h-64 md:h-96 w-full"><canvas id="marketRadarDoing"></canvas></div></div></div>
             </div>
@@ -230,9 +328,13 @@
                     <div><h2 class="section-title">Biblioteca de Definições</h2><p class="section-subtitle">Glossário técnico das capacidades.</p></div>
                     <div class="flex flex-wrap gap-2">
                         <button onclick="renderCanon('all')" id="filter-lib-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active">Todos</button>
-                        <button onclick="renderCanon('meta')" id="filter-lib-meta" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
-                        <button onclick="renderCanon('prod')" id="filter-lib-prod" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Doing</button>
-                        <button onclick="renderCanon('strat')" id="filter-lib-strat" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
+                        <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors">Manifesto</button>
+                        <button onclick="renderCanon('think')" id="filter-lib-think" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
+                        <button onclick="renderCanon('disc')" id="filter-lib-disc" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
+                        <button onclick="renderCanon('design')" id="filter-lib-design" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
+                        <button onclick="renderCanon('build')" id="filter-lib-build" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">Building</button>
+                        <button onclick="renderCanon('integ')" id="filter-lib-integ" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
+                        <button onclick="renderCanon('stream')" id="filter-lib-stream" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors">Streamlining</button>
                     </div>
                 </header>
                 <div class="text-sm text-slate-600 leading-relaxed text-justify" id="canonContent"></div>
@@ -250,9 +352,9 @@
     </nav>
 
     <!-- MODAIS E OVERLAYS -->
-    <div id="tags-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="tags-modal-title"><div id="tags-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="tags-modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg></span>Significado das Tags</h2><button onclick="toggleTagsModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><p class="mb-4">No contexto do <strong>AI Strategy Hub app</strong>, essas tags representam a natureza primária de cada ferramenta, ou seja, em qual etapa do "Pipeline Produtivo" (Input → Process → Output) ela brilha com mais intensidade.</p><p>Aqui está o significado prático de cada uma:</p><hr class="border-slate-100 my-4"><div class="space-y-6"><div class="bg-slate-50 p-4 rounded-xl border border-slate-100"><h4 class="text-slate-700 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-slate-500"></span> 1. Insumo (Input)</h4><p><strong>O que é:</strong> Ferramentas especializadas em buscar, filtrar e trazer informação do mundo real para dentro do seu fluxo de trabalho.</p><p><strong>Foco:</strong> Pesquisa (Grounding), verificação de fatos e navegação autônoma na web.</p><p class="text-xs mt-2"><strong class="text-slate-500">IAs nesta categoria:</strong><br><span class="font-bold">Perplexity:</span> Age como um motor de busca conversacional, perfeito para substituir o Google e trazer fontes citadas.<br><span class="font-bold">Manus:</span> Um agente que navega na web para executar tarefas e encontrar dados dispersos.</p></div><div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100"><h4 class="text-emerald-800 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> 2. Raciocínio (Reasoning)</h4><p><strong>O que é:</strong> Ferramentas focadas na etapa de "Processamento". São os "cérebros" mais densos, ideais para lidar com lógica complexa, codificação, estruturação de argumentos e validação teórica.</p><p><strong>Foco:</strong> Lógica pura, matemática, arquitetura de software e escrita complexa/nuanceada.</p><p class="text-xs mt-2"><strong class="text-emerald-700">IAs nesta categoria:</strong><br><span class="font-bold">ChatGPT (o1):</span> Modelo focado em "pensar antes de responder" para evitar alucinações lógicas.<br><span class="font-bold">Claude 3.5 Sonnet:</span> Conhecido pela sua capacidade superior de codificação e nuance textual.<br><span class="font-bold">DeepSeek (R1):</span> Modelo focado em raciocínio matemático e lógico rigoroso.</p></div><div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100"><h4 class="text-indigo-800 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-indigo-500"></span> 3. Entrega (Delivery)</h4><p><strong>O que é:</strong> Ferramentas voltadas para a "Saída" (Output) e produção final. Elas são melhores em empacotar o conteúdo em um formato utilizável (slides, documentos formatados, imagens, integração com e-mail/Office).</p><p><strong>Foco:</strong> Multimodalidade (ver e criar imagens/vídeo), integração com ecossistemas (Google/Microsoft) e geração de artefatos finais.</p><p class="text-xs mt-2"><strong class="text-indigo-700">IAs nesta categoria:</strong><br><span class="font-bold">Gemini Advanced:</span> Forte integração com o Google Workspace e multimodalidade nativa (janela de contexto enorme para ler documentos e produzir conteúdo).<br><span class="font-bold">MS Copilot:</span> Especializado em transformar texto em documentos Word ou slides PowerPoint dentro do ecossistema Microsoft.</p></div></div><p class="text-xs text-center text-slate-400 mt-6 italic">Essas categorias ajudam a entender que não existe uma "melhor IA" absoluta, mas sim a melhor para a etapa do trabalho que você está executando no momento.</p></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleTagsModal()" class="px-6 py-2 bg-slate-800 text-white font-bold text-sm rounded-lg hover:bg-slate-700 focus:ring-4 focus:ring-slate-200 transition-colors w-full md:w-auto">Fechar</button></div></div></div>
+    <div id="tags-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="tags-modal-title"><div id="tags-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="tags-modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg></span>Significado das Tags</h2><button onclick="toggleTagsModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><p class="mb-4">No contexto do <strong>AI Strategy Hub app</strong>, essas tags representam a natureza primária de cada ferramenta, ou seja, em qual etapa do "Pipeline Produtivo" (Input → Process → Output) ela brilha com mais intensidade.</p><p>Aqui está o significado prático de cada uma:</p><hr class="border-slate-100 my-4"><div class="space-y-6"><div class="bg-slate-50 p-4 rounded-xl border border-slate-100"><h4 class="text-slate-700 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-slate-500"></span> 1. Insumo (Input)</h4><p><strong>O que é:</strong> Ferramentas especializadas em buscar, filtrar e trazer informação do mundo real para dentro do seu fluxo de trabalho.</p><p><strong>Foco:</strong> Pesquisa (Grounding), verificação de fatos e navegação autônoma na web.</p><p class="text-xs mt-2"><strong class="text-slate-500">IAs nesta categoria:</strong><br><span class="font-bold">Perplexity:</span> Age como um motor de busca conversacional, perfeito para substituir o Google e trazer fontes citadas.<br><span class="font-bold">Manus:</span> Um agente que navega na web para executar tarefas e encontrar dados dispersos.</p></div><div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100"><h4 class="text-emerald-800 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> 2. Raciocínio (Reasoning)</h4><p><strong>O que é:</strong> Ferramentas focadas na etapa de "Processamento". São os "cérebros" mais densos, ideais para lidar com lógica complexa, codificação, estruturação de argumentos e validação teórica.</p><p><strong>Foco:</strong> Lógica pura, matemática, arquitetura de software e escrita complexa/nuanceada.</p><p class="text-xs mt-2"><strong class="text-emerald-700">IAs nesta categoria:</strong><br><span class="font-bold">GPT-5.5 Pro:</span> Versátil e multimodal, com modos de raciocínio para reduzir alucinações lógicas.<br><span class="font-bold">Claude Opus 4.6:</span> Referência em lógica, codificação limpa (Artifacts) e nuance textual.<br><span class="font-bold">DeepSeek R1:</span> Focado em raciocínio matemático e lógico rigoroso via cadeia de pensamento.</p></div><div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100"><h4 class="text-indigo-800 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-indigo-500"></span> 3. Entrega (Delivery)</h4><p><strong>O que é:</strong> Ferramentas voltadas para a "Saída" (Output) e produção final. Elas são melhores em empacotar o conteúdo em um formato utilizável (slides, documentos formatados, imagens, integração com e-mail/Office).</p><p><strong>Foco:</strong> Multimodalidade (ver e criar imagens/vídeo), integração com ecossistemas (Google/Microsoft) e geração de artefatos finais.</p><p class="text-xs mt-2"><strong class="text-indigo-700">IAs nesta categoria:</strong><br><span class="font-bold">Gemini 3.1 Pro:</span> Forte integração com o Google Workspace e contexto nativo de 2M tokens para ler documentos e produzir conteúdo.<br><span class="font-bold">Copilot M365:</span> Especializado em entregar documentos Word e slides PowerPoint nativos dentro do ecossistema Microsoft.</p></div></div><p class="text-xs text-center text-slate-400 mt-6 italic">Essas categorias ajudam a entender que não existe uma "melhor IA" absoluta, mas sim a melhor para a etapa do trabalho que você está executando no momento.</p></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleTagsModal()" class="px-6 py-2 bg-slate-800 text-white font-bold text-sm rounded-lg hover:bg-slate-700 focus:ring-4 focus:ring-slate-200 transition-colors w-full md:w-auto">Fechar</button></div></div></div>
     <div id="gemini-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity"><div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scroll relative flex flex-col"><div class="p-6 border-b border-slate-100 flex justify-between items-center sticky top-0 bg-white z-10"><div class="flex items-center gap-2"><span class="text-2xl">✨</span><h3 class="font-bold text-lg text-slate-900">Análise Estratégica IA</h3></div><button onclick="document.getElementById('gemini-modal').classList.add('hidden')" class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-50">✕</button></div><div class="p-6 text-sm text-slate-600 leading-relaxed" id="gemini-content"></div></div></div>
-    <div id="help-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="modal-title"><div id="help-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg></span>Manual de Operações</h2><button onclick="toggleHelpModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar ajuda"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><h3 class="text-lg text-slate-900 mt-0">Bem-vindo ao AI Strategy Hub.</h3><p>Este dashboard não é apenas uma lista de ferramentas; é um motor de decisão calibrado para encontrar a melhor ferramenta de IA para o seu perfil profissional. Siga o fluxo lógico abaixo para extrair o máximo deste app.</p><hr class="border-slate-100 my-4"><div class="space-y-8"><div><h4 class="text-base mb-2">1. Entenda os “o quês” (CAPACIDADES)</h4><p>Não comece pelas ferramentas, comece pelo seu <strong>objetivo</strong>. Para entregar o que você precisa, ferramentas de IA contam com 11 capacidades fundamentais, divididas em três naturezas cognitivas:</p><ul class="list-disc pl-5 space-y-1 marker:text-indigo-400"><li><strong>Thinking (Raciocínio):</strong> para planejar, criticar e estruturar.</li><li><strong>Doing (Produção):</strong> para executar, gerar código e desenhar.</li><li><strong>Strategy (Síntese):</strong> para integrar tudo em visão de mercado.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático: A Jornada da Ana</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200"><strong>Cenário:</strong> Ana precisa criar uma estratégia de lançamento para um banco digital. Ela não busca apenas "um chatbot": ela precisa da tecnologia de IA mais adequada para o trabalho. Então, ela abre o app e analisa as capacidades da seção "O que uma IA entrega", e percebe que seu projeto exige três delas: <em>5.3 Pesquisa Acadêmica e Técnica Aprofundada</em> (para ler regulações bancárias), <em>B — Validação lógica, consistência interna e stress-test</em> (para testar seu modelo de precificação) e <em>5.1 Geração Automatizada de Apresentações em PowerPoint</em> (para a apresentação final).</div></details></div><div><h4 class="text-base mb-2">2. Visualize o “como” (PIPELINE)</h4><p>Entenda onde cada capacidade se encaixa no seu fluxo de trabalho real, desde o <strong>Input</strong> (pesquisa e curadoria), passando pelo <strong>Process</strong> (validação lógica) até o <strong>Output</strong> (entrega final).</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">Ana olha para o quadro do Pipeline e traça seu fluxo:<br>1. <strong>Input:</strong> Primeiro, usará a capacidade <strong>5.3 Pesquisa Acadêmica e Técnica Aprofundada</strong> para varrer leis do Banco Central.<br>2. <strong>Process:</strong> Depois, usará o metacaso <strong>B — Validação lógica, consistência interna e stress-test</strong> para encontrar furos na tese.<br>3. <strong>Output:</strong> Por fim, usará a capacidade <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong> para transformar o texto em um deck de slides.</div></details></div><div><h4 class="text-base mb-2">3. Diga o “porquê” (PERFIL de uso)</h4><p><strong>Esta é a etapa mais importante.</strong> Nesta seção, utilize sliders para definir quem você é, ou seja: o papel que você desempenha no sua entrega (perfil de uso).</p><ul class="list-disc pl-5 space-y-1 marker:text-emerald-400"><li>Você precisa de mais rigor lógico ou criatividade visual?</li><li>Você vai auditar código ou escrever ensaios estratégicos?</li></ul><p class="italic text-xs bg-slate-50 p-2 rounded border-l-2 border-indigo-400 mt-2">O sistema reage em tempo real aos seus ajustes.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">No Diagnóstico, Ana define quem ela é <em>hoje</em>: ela move o slider de <strong>Raciocínio Lógico para 90%</strong> (precisa de precisão máxima) e, além dos ajustes anteriores, ela move também o slider de <strong>Produção Visual para 90%</strong>, já que precisará produzir slides. Ela mantém Tecnologia em 20%, pois não vai escrever código. O sistema entende que ela prioriza "cérebros densos" mas com alta capacidade de entrega visual.</div></details></div><div><h4 class="text-base mb-2">4. Escolha a IA certa (RANKING)</h4><p>Com base no perfil definido, o <strong>Motor de Decisão</strong> do app calcula a pontuação de cada IA e monta um ranking, que traz no topo as ferramentas de IA mais indicadas.</p><p><strong>Sincronização:</strong> Observe a caixa de alerta. Após definir o perfil, você terá a oportunidade de refiná-lo ajustando os pesos de três propriedades a eles associadas: <strong>raciocíno</strong>, <strong>produção</strong> e <strong>estratégia</strong>. A combinação das quatro variáveis de perfil muda os valores mínimo e máximo possíveis para cada peso. Se esta faixa for ultrapassada (ex: Perfil Engenheiro, mas Peso Lógico baixo), o sistema emitirá um alerta de inconsistência.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">O Motor de Decisão processa o perfil híbrido da Ana (Alta Lógica + Alta Produção Visual). O ranking reflete essa dualidade: ferramentas de texto puro caem, enquanto o <strong>MS Copilot</strong> e o <strong>Gemini</strong> sobem por sua capacidade de <em>Entrega</em>. O alerta de sincronização destaca que, embora o <strong>ChatGPT o1</strong> seja imbatível na lógica, ele não conseguirá gerar os slides sozinho.</div></details></div><div><h4 class="text-base mb-2">5. Audite e aprofunde-se (MATRIZ)</h4><p>Não confie cegamente no algoritmo.</p><ul class="list-disc pl-5 space-y-1 marker:text-sky-400"><li>Vá à <strong>Auditoria Técnica</strong> (Seção 5) para consultar a nota exata de cada ferramenta para cada uma de suas capacidades.</li><li>Consulte a <strong>Biblioteca</strong> (Seção 6) para ler as definições canônicas de cada capacidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">Ana não quer surpresas. Ela vai à Auditoria Técnica (Seção 5) e verifica especificamente a capacidade de gerar slides na matriz. Ela nota que o <em>ChatGPT</em> possui limitações visuais (nota baixa em <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong>), enquanto o <em>MS Copilot</em> tem nota máxima nesse quesito. Isso valida sua escolha por um fluxo híbrido.</div></details></div></div></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleHelpModal()" class="px-6 py-2 bg-indigo-600 text-white font-bold text-sm rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors w-full md:w-auto">Entendi</button></div></div></div>
+    <div id="help-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="modal-title"><div id="help-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg></span>Manual de Operações</h2><button onclick="toggleHelpModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar ajuda"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><h3 class="text-lg text-slate-900 mt-0">Bem-vindo ao AI Strategy Hub.</h3><p>Este dashboard não é apenas uma lista de ferramentas; é um motor de decisão calibrado para encontrar a melhor ferramenta de IA para o seu perfil profissional. Siga o fluxo lógico abaixo para extrair o máximo deste app.</p><hr class="border-slate-100 my-4"><div class="space-y-8"><div><h4 class="text-base mb-2">1. Entenda os “o quês” (CAPACIDADES)</h4><p>Não comece pelas ferramentas, comece pelo seu <strong>objetivo</strong>. As capacidades das IAs estão organizadas em seis domínios — cinco de potência mais um habilitador transversal:</p><ul class="list-disc pl-5 space-y-1 marker:text-indigo-400"><li><strong>Thinking (Raciocínio):</strong> planejar, criticar, validar e estruturar.</li><li><strong>Discovering (Descoberta):</strong> pesquisar, ler em massa e ingerir dados.</li><li><strong>Designing (Materialização):</strong> slides, identidade visual e multimodalidade.</li><li><strong>Building (Construção):</strong> gerar código e aplicações.</li><li><strong>Integrating (Estratégia):</strong> sintetizar tudo em decisão executiva.</li><li><strong>Streamlining (Habilitador):</strong> reduzir a fricção entre a IA e seu fluxo — acesso a dados, formato de entrega e confiabilidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático: A Jornada da Ana</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200"><strong>Cenário:</strong> Ana precisa criar uma estratégia de lançamento para um banco digital. Ela não busca apenas "um chatbot": ela precisa da tecnologia de IA mais adequada para o trabalho. Então, ela abre o app e analisa as capacidades da seção "O que uma IA entrega", e percebe que seu projeto exige três delas: <em>5.3 Pesquisa Acadêmica e Técnica Aprofundada</em> (para ler regulações bancárias), <em>B — Validação lógica, consistência interna e stress-test</em> (para testar seu modelo de precificação) e <em>5.1 Geração Automatizada de Apresentações em PowerPoint</em> (para a apresentação final).</div></details></div><div><h4 class="text-base mb-2">2. Visualize o “como” (PIPELINE)</h4><p>Entenda onde cada capacidade se encaixa no seu fluxo de trabalho real, desde o <strong>Input</strong> (pesquisa e curadoria), passando pelo <strong>Process</strong> (validação lógica) até o <strong>Output</strong> (entrega final).</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">Ana olha para o quadro do Pipeline e traça seu fluxo:<br>1. <strong>Input:</strong> Primeiro, usará a capacidade <strong>5.3 Pesquisa Acadêmica e Técnica Aprofundada</strong> para varrer leis do Banco Central.<br>2. <strong>Process:</strong> Depois, usará o metacaso <strong>B — Validação lógica, consistência interna e stress-test</strong> para encontrar furos na tese.<br>3. <strong>Output:</strong> Por fim, usará a capacidade <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong> para transformar o texto em um deck de slides.</div></details></div><div><h4 class="text-base mb-2">3. Diga o “porquê” (PERFIL de uso)</h4><p><strong>Esta é a etapa mais importante.</strong> Escolha um dos sete arquétipos profissionais ou ajuste manualmente os cinco sliders de domínio (Thinking, Discovering, Designing, Building, Integrating) conforme a relevância de cada um para o seu trabalho.</p><ul class="list-disc pl-5 space-y-1 marker:text-emerald-400"><li>Quanto cada domínio importa para a sua entrega?</li><li>E o <strong>Streamlining</strong>: você é mais <em>Artesão</em> (quer a potência bruta e monta o resultado à mão) ou <em>Operador</em> (quer o entregável pronto, sem fricção)?</li></ul><p class="italic text-xs bg-slate-50 p-2 rounded border-l-2 border-indigo-400 mt-2">O slider de Streamlining controla o quanto a fricção penaliza o ranking. O sistema reage em tempo real.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">No Diagnóstico, Ana sobe <strong>Thinking</strong> e <strong>Discovering</strong> (precisa de precisão lógica e de varrer regulações) e também <strong>Designing</strong>, já que o entregável final é um deck de slides. Mantém Building baixo, pois não vai escrever código. Como ela precisa do PowerPoint <em>pronto</em> para a diretoria, ela empurra o slider de <strong>Streamlining para o lado Operador</strong> — sinalizando que a fricção de formatação manual deve pesar contra as IAs que só entregam texto bruto.</div></details></div><div><h4 class="text-base mb-2">4. Escolha a IA certa (RANKING)</h4><p>Com base no perfil definido, o <strong>Motor de Decisão</strong> calcula a pontuação de cada IA e monta o ranking. Cada IA recebe um <strong>Score Efetivo por domínio</strong> — a potência bruta multiplicada pelo Fator de Eficiência daquele domínio — e o score final é a média ponderada pelos seus sliders.</p><p><strong>Potência × Eficiência:</strong> uma IA potente mas de alta fricção pode perder para uma menos potente que entrega pronto. Passe o mouse sobre cada card do ranking para ver o detalhamento (P, F, D e E) domínio a domínio. Quando dois líderes ficam a menos de 0,001 de distância, ambos recebem o selo <strong>Empate Técnico</strong>.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">O Motor processa o perfil híbrido da Ana (alta lógica + alta entrega visual + viés Operador). O ranking reflete essa combinação: ferramentas de texto puro caem porque sua baixa <strong>Continuidade de Formato (7.2)</strong> é penalizada pela fricção, enquanto o <strong>Copilot M365</strong> e o <strong>Gemini 3.1 Pro</strong> sobem por entregarem mais perto do pronto. Passando o mouse no card, Ana vê que o <strong>GPT-5.5 Pro</strong> tem ótima potência, mas perde Score Efetivo no domínio Designing por causa do handoff de formato.</div></details></div><div><h4 class="text-base mb-2">5. Audite e aprofunde-se (MATRIZ)</h4><p>Não confie cegamente no algoritmo.</p><ul class="list-disc pl-5 space-y-1 marker:text-sky-400"><li>Vá à <strong>Auditoria Técnica</strong> (Seção 5) para consultar a nota exata de cada ferramenta para cada uma de suas capacidades.</li><li>Consulte a <strong>Biblioteca</strong> (Seção 6) para ler as definições canônicas de cada capacidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">Ana não quer surpresas. Ela vai à Auditoria Técnica (Seção 5) e verifica especificamente a capacidade de gerar slides na matriz. Ela nota que o <em>ChatGPT</em> possui limitações visuais (nota baixa em <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong>), enquanto o <em>MS Copilot</em> tem nota máxima nesse quesito. Isso valida sua escolha por um fluxo híbrido.</div></details></div></div></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleHelpModal()" class="px-6 py-2 bg-indigo-600 text-white font-bold text-sm rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors w-full md:w-auto">Entendi</button></div></div></div>
 
     <script>
         let isInitializing = true; 
@@ -296,29 +398,65 @@
         });
         
         // DADOS
-        const tools=[{id:'gemini',name:'Gemini Advanced',model:'1.5 Pro / Nano',color:'#4361ee',type:'delivery'},{id:'chatgpt',name:'ChatGPT Plus',model:'4o/o1 / Image 1.5',color:'#10a37f',type:'reasoning'},{id:'claude',name:'Claude 3.5',model:'Sonnet',color:'#d97706',type:'reasoning'},{id:'copilot',name:'MS Copilot',model:'Enterprise',color:'#00a4ef',type:'delivery'},{id:'deepseek',name:'DeepSeek',model:'R1/V3',color:'#6366f1',type:'reasoning'},{id:'perplex',name:'Perplexity',model:'Pro Search',color:'#64748b',type:'input'},{id:'manus',name:'Manus',model:'Pro Agent',color:'#0f172a',type:'input'}];
+        const tools=[{id:'gemini',name:'Gemini 3.1 Pro',model:'Google DeepMind',color:'#4361ee',type:'delivery'},{id:'chatgpt',name:'GPT-5.5 Pro',model:'OpenAI',color:'#10a37f',type:'reasoning'},{id:'claude',name:'Claude Opus 4.6',model:'Anthropic',color:'#d97706',type:'reasoning'},{id:'copilot',name:'Copilot M365',model:'Microsoft',color:'#00a4ef',type:'delivery'},{id:'deepseek',name:'DeepSeek R1',model:'DeepSeek',color:'#6366f1',type:'reasoning'},{id:'perplex',name:'Perplexity Sonar',model:'Perplexity',color:'#64748b',type:'input'},{id:'manus',name:'Manus 1.6 Max',model:'Manus',color:'#0f172a',type:'input'}];
         let selectedRadarTools=['gemini','chatgpt','claude'];
+        // === MOTOR CANÔNICO v13.6 (Seção 6 recanonizada) ===
+        // Matriz Mestra 8.1 — colunas: [T, Di, De, B, I, 7.1, 7.2, 7.3]
+        const master81 = {
+            gemini:  [4.50, 5.00, 5.00, 4.00, 5.00, 5.00, 3.00, 4.00], // Gemini 3.1 Pro
+            chatgpt: [4.25, 4.00, 4.00, 5.00, 5.00, 2.00, 4.00, 2.00], // GPT-5.5 Pro
+            claude:  [5.00, 3.50, 3.00, 5.00, 5.00, 3.00, 2.00, 3.00], // Claude Opus 4.6
+            copilot: [3.50, 3.50, 4.33, 4.00, 4.00, 5.00, 5.00, 4.00], // Copilot M365
+            deepseek:[5.00, 3.00, 1.00, 5.00, 4.00, 2.00, 2.00, 5.00], // DeepSeek R1
+            perplex: [3.25, 3.50, 1.00, 1.00, 4.00, 1.00, 2.00, 5.00], // Perplexity Sonar
+            manus:   [4.00, 2.00, 1.00, 5.00, 3.00, 3.00, 4.00, 3.00]  // Manus 1.6 Max
+        };
+        // Mapeamento de Dependência (Seção 6.4): habilitador vinculado (fIdx) + peso D.
+        // pIdx aponta a Potência Pura do domínio; fIdx aponta o habilitador (5=7.1, 6=7.2, 7=7.3).
+        const DOMAINS = [
+            { key:'T',  label:'Thinking',    pIdx:0, fIdx:7, D:0.2 }, // Thinking    -> 7.3
+            { key:'Di', label:'Discovering', pIdx:1, fIdx:7, D:1.0 }, // Discovering -> 7.3
+            { key:'De', label:'Designing',   pIdx:2, fIdx:6, D:1.0 }, // Designing   -> 7.2
+            { key:'B',  label:'Building',    pIdx:3, fIdx:5, D:1.0 }, // Building    -> 7.1
+            { key:'I',  label:'Integrating', pIdx:4, fIdx:7, D:1.0 }  // Integrating -> 7.3
+        ];
+        const SIGMA_SLIDERS = ['slider-think','slider-disc','slider-design','slider-build','slider-integ'];
+        const SIGMA_LABELS  = ['val-think','val-disc','val-design','val-build','val-integ'];
+        // Presets dos Arquétipos (Tabela 8.2): sliders [T,Di,De,B,I] (0-1) + Streamlining S (0-1).
+        const ARCHETYPES = {
+            cirurgiao:    { name:'Cirurgião de Código',    sigma:[1.0,0.3,0.0,1.0,0.2], S:0.2 },
+            showrunner:   { name:'Showrunner Corporativo', sigma:[0.6,0.8,1.0,1.0,0.8], S:0.5 },
+            oraculo:      { name:'Oráculo de Cenários',    sigma:[1.0,0.2,0.0,0.1,1.0], S:0.0 },
+            burocrata:    { name:'Burocrata de Elite',     sigma:[0.2,0.0,0.6,0.1,0.5], S:1.0 },
+            cacador:      { name:'Caçador de Sinais',      sigma:[0.5,1.0,0.0,0.0,0.5], S:1.0 },
+            prototipador: { name:'Prototipador Ágil',      sigma:[0.9,0.1,0.2,0.9,0.0], S:0.4 },
+            legado:       { name:'Analista de Legado',     sigma:[0.6,1.0,0.0,1.0,0.4], S:0.8 }
+        };
+
         
         // CAPACIDADES (CASES)
         const cases=[
-            {id:'A',name:'A. Curadoria e Integração',cat:'meta',desc:'Conciliação de fontes conflitantes e unificação de vocabulário.'},
-            {id:'B',name:'B. Validação Lógica',cat:'meta',desc:'Stress-test, identificação de falácias e auditoria de raciocínio.'},
-            {id:'C',name:'C. Abstração de Níveis',cat:'meta',desc:'Tradução estrutural: Estratégia ↔ Operação ↔ Framework.'},
-            {id:'D',name:'D. Artefatos Intermediários',cat:'meta',desc:'Geração de matrizes e esboços para pensar, não para entregar.'},
-            {id:'5.1',name:'5.1 Slides Automatizados',cat:'prod',desc:'Geração de apresentações diagramadas a partir de roteiros textuais.'},
-            {id:'5.2',name:'5.2 Consistência Visual',cat:'prod',desc:'Geração de ativos de marca com identidade estrita (Style Ref).'},
-            {id:'5.3',name:'5.3 Pesquisa Técnica',cat:'prod',desc:'Varredura de bases com grounding real e citação de fontes.'},
-            {id:'5.4',name:'5.4 Resumos Massivos',cat:'prod',desc:'Leitura integral de livros sem perda de nuance.'},
-            {id:'5.5',name:'5.5 Multimodal',cat:'prod',desc:'Interpretação de gráficos, vídeos, áudios e diagramas complexos.'},
-            {id:'5.6',name:'5.6 Coding & Apps',cat:'prod',desc:'Geração de micro-SaaS e scripts de automação.'},
-            {id:'6.1',name:'6.1 Estratégia-Síntese',cat:'strat',desc:'Eixo articulador: Pesquisa + Síntese + Design + Decisão.'}
+            {id:'A',name:'A. Curadoria e Integração',cat:'think',desc:'Conciliação de fontes conflitantes e unificação de vocabulário.'},
+            {id:'B',name:'B. Validação Lógica',cat:'think',desc:'Stress-test, identificação de falácias e auditoria de raciocínio.'},
+            {id:'C',name:'C. Abstração de Níveis',cat:'think',desc:'Tradução estrutural: Estratégia ↔ Operação ↔ Framework.'},
+            {id:'D',name:'D. Artefatos Intermediários',cat:'think',desc:'Geração de matrizes e esboços para pensar, não para entregar.'},
+            {id:'5.1',name:'5.1 Slides Automatizados',cat:'design',desc:'Geração de apresentações diagramadas a partir de roteiros textuais.'},
+            {id:'5.2',name:'5.2 Consistência Visual',cat:'design',desc:'Geração de ativos de marca com identidade estrita (Style Ref).'},
+            {id:'5.3',name:'5.3 Pesquisa Técnica',cat:'disc',desc:'Varredura de bases com grounding real e citação de fontes.'},
+            {id:'5.4',name:'5.4 Resumos Massivos',cat:'disc',desc:'Leitura integral de livros sem perda de nuance.'},
+            {id:'5.5',name:'5.5 Multimodal',cat:'disc',desc:'Interpretação de gráficos, vídeos, áudios e diagramas complexos.'},
+            {id:'5.6',name:'5.6 Coding & Apps',cat:'build',desc:'Geração de micro-SaaS e scripts de automação.'},
+            {id:'6.1',name:'6.1 Estratégia-Síntese',cat:'integ',desc:'Eixo articulador: Pesquisa + Síntese + Design + Decisão.'},
+            {id:'7.1',name:'7.1 Gravidade de Dados',cat:'stream',desc:'Data Gravity: acesso nativo a dados in-place (SharePoint, Drive, Git) sem ETL manual.'},
+            {id:'7.2',name:'7.2 Continuidade de Formato',cat:'stream',desc:'Asset Handoff: entrega de artefato final editável (.pptx, .docx) vs rascunho bruto.'},
+            {id:'7.3',name:'7.3 Trust & Grounding',cat:'stream',desc:'Verificabilidade: cada afirmação vinculada a fonte primária auditável.'}
         ];
 
         const matrixData={
     gemini:{
         scores:{
             'A':5, 'B':4, 'C':4, 'D':5, 
-            '5.1':5, '5.2':5, '5.3':5, '5.4':5, '5.5':5, '5.6':5, '6.1':5
+            '5.1':5, '5.2':5, '5.3':5, '5.4':5, '5.5':5, '5.6':5, '6.1':5, '7.1':5, '7.2':3, '7.3':4
         },
         justifications:{
             'A':"Liderança absoluta devido à janela de 2M tokens e multimodalidade nativa, permitindo 'ler' vídeos e bibliotecas inteiras para uma integração de memória inigualável.",
@@ -331,13 +469,16 @@
             '5.4':"Engole bibliotecas inteiras (2M tokens) sem perda de detalhe no meio (Lost in the middle).", 
             '5.5':"Nativo multimodal; analisa vídeo e áudio com precisão superior a frames isolados.", 
             '5.6':"Especialista em Legado. Janela de 2M tokens muda o jogo, permitindo ingerir repositórios inteiros e documentação para refatoração massiva sem perda de contexto.",
-            '6.1':"O Onisciente. Imbatível para estratégias baseadas em Big Data não estruturado devido à janela de contexto infinita."
+            '6.1':"O Onisciente. Imbatível para estratégias baseadas em Big Data não estruturado devido à janela de contexto infinita.",
+            '7.1':"Liderança em Data Gravity: ingestão nativa via Google Drive/Workspace e janela de 2M tokens mantêm o contexto vivo sem ETL manual.",
+            '7.2':"Gera no Slides/Canvas com fluidez, mas a saída não é .pptx Microsoft nativo; handoff para Office ainda exige conversão.",
+            '7.3':"Multimodalidade permite verificação visual e o Deep Think reduz alucinações, embora possa perder nuance no meio de contextos massivos."
         }
     },
     chatgpt:{
         scores:{
             'A':4, 'B':5, 'C':4, 'D':4, 
-            '5.1':2, '5.2':5, '5.3':4, '5.4':4, '5.5':5, '5.6':4, '6.1':5
+            '5.1':2, '5.2':5, '5.3':4, '5.4':4, '5.5':5, '5.6':4, '6.1':5, '7.1':2, '7.2':4, '7.3':2
         },
         justifications:{
             'A':"Muito competente, mas depende de RAG para volumes massivos, o que ocasionalmente gera perda de sinal ou conexões fragmentadas em documentos muito longos.",
@@ -350,13 +491,16 @@
             '5.4':"Janela de 128k é boa, mas sofre de 'loss in the middle' em obras massivas.", 
             '5.5':"GPT-4o Vision é excelente em OCR de tabelas complexas e diagramas manuscritos.", 
             '5.6':"Especialista em Lógica. O modelo o3 é imbatível para algoritmos matemáticos complexos, mas a experiência de desenvolvimento (DX) geral perde fluidez para o Claude/Copilot.",
-            '6.1':"O Motor Lógico. Indispensável para modelagem de cenários e 'Game Theory' aplicada a negócios."
+            '6.1':"O Motor Lógico. Indispensável para modelagem de cenários e 'Game Theory' aplicada a negócios.",
+            '7.1':"Sem conectores corporativos nativos; depende de upload manual. A pesquisa é web-first, externa ao repositório da empresa.",
+            '7.2':"Boa geração de artefatos e Canvas, entregando estruturas reutilizáveis, porém o acabamento final em Office ainda pede ajuste manual.",
+            '7.3':"Grounding mediano: alucina em contextos altamente técnicos sem fontes ancoradas, exigindo verificação humana."
         }
     },
     claude:{
         scores:{
             'A':5, 'B':5, 'C':5, 'D':5, 
-            '5.1':4, '5.2':1, '5.3':3, '5.4':4, '5.5':4, '5.6':5, '6.1':5
+            '5.1':4, '5.2':1, '5.3':3, '5.4':4, '5.5':4, '5.6':5, '6.1':5, '7.1':3, '7.2':2, '7.3':3
         },
         justifications:{
             'A':"Excelência na nuance e reconciliação de termos conflitantes; entende sutilmente diferenças conceituais entre fontes e manipula arquivos locais com maestria.",
@@ -369,13 +513,16 @@
             '5.4':"Recall de 200k tokens é muito preciso, mas inferior à capacidade volumétrica do Google.", 
             '5.5':"Ótimo para fotos e documentos, mas sem suporte nativo para análise de vídeo.", 
             '5.6':"Estado da Arte. Claude Opus 4.5 atinge 80.9% no SWE-bench Verified. Insuperável em raciocínio arquitetural e 'vibe coding'. A referência de mercado para engenharia de software segura.",
-            '6.1':"O Estrategista Confiável. Equilibra raciocínio de ponta, nuance de escrita para C-Level e postura de privacidade robusta."
+            '6.1':"O Estrategista Confiável. Equilibra raciocínio de ponta, nuance de escrita para C-Level e postura de privacidade robusta.",
+            '7.1':"Isolamento de dados: foco em privacidade significa poucos conectores nativos; opera melhor sobre o que é fornecido no contexto.",
+            '7.2':"Artifacts entregam código/HTML prontos, mas não há geração nativa de .pptx/.docx corporativo; handoff de documento é limitado.",
+            '7.3':"Alta confiabilidade lógica e postura de incerteza ('não sei'), porém sem busca nativa para ancorar fatos em fontes primárias."
         }
     },
     copilot:{
         scores:{
             'A':4, 'B':3, 'C':3, 'D':4, 
-            '5.1':5, '5.2':4, '5.3':4, '5.4':3, '5.5':4, '5.6':5, '6.1':4
+            '5.1':5, '5.2':4, '5.3':4, '5.4':3, '5.5':4, '5.6':5, '6.1':4, '7.1':5, '7.2':5, '7.3':4
         },
         justifications:{
             'A':"Ótimo para 'memória institucional' varrendo SharePoint/Emails, mas a dependência de indexação (Graph) gera lacunas em comparação à leitura contínua de contexto.",
@@ -388,13 +535,16 @@
             '5.4':"Frequentemente corta textos longos devido a limites de token na interface comercial.", 
             '5.5':"Usa GPT-4o integrado; muito bom para analistas que usam capturas de tela.", 
             '5.6':"Padrão Corporativo. Mantém a liderança pela integração de ecossistema e estratégia multi-modelo (acesso ao Claude/GPT). A escolha segura para escala Enterprise.",
-            '6.1':"A Estratégia Operacional. Excelente para dados internos (Graph), mas tende a entregar o 'consenso corporativo' conservador."
+            '6.1':"A Estratégia Operacional. Excelente para dados internos (Graph), mas tende a entregar o 'consenso corporativo' conservador.",
+            '7.1':"Gravidade máxima no ecossistema Microsoft 365 via Graph (SharePoint, Teams, OneDrive): a IA vive dentro do servidor corporativo.",
+            '7.2':"Referência em Continuidade de Formato: gera .pptx e .docx editáveis respeitando templates e identidade visual da empresa.",
+            '7.3':"Guardrails corporativos e citação dentro do tenant elevam a confiança, embora às vezes o excesso de cautela limite a profundidade."
         }
     },
     deepseek:{
         scores:{
             'A':3, 'B':5, 'C':4, 'D':2, 
-            '5.1':1, '5.2':1, '5.3':3, '5.4':4, '5.5':2, '5.6':4, '6.1':2
+            '5.1':1, '5.2':1, '5.3':3, '5.4':4, '5.5':2, '5.6':4, '6.1':2, '7.1':2, '7.2':2, '7.3':5
         },
         justifications:{
             'A':"Eficiente para volumes técnicos, mas riscos de viés nos dados de treinamento e censura geopolítica comprometem a confiabilidade da curadoria estratégica.",
@@ -407,13 +557,16 @@
             '5.4':"Janela de 128k eficiente com recall técnico robusto a baixo custo.", 
             '5.5':"Visão computacional básica; falha em interpretações de arquitetura técnica.", 
             '5.6':"Risco de Supply Chain. Performance de código bruta é nível 5, mas penalizada por riscos documentados de 'Poisoning' e vulnerabilidades de segurança em ambientes corporativos.",
-            '6.1':"Risco Geopolítico. Censura e viés em tópicos sensíveis criam 'pontos cegos' perigosos para estratégias globais."
+            '6.1':"Risco Geopolítico. Censura e viés em tópicos sensíveis criam 'pontos cegos' perigosos para estratégias globais.",
+            '7.1':"Open-weights sem ferramentas de integração; toda a ingestão de dados recai manualmente sobre o usuário.",
+            '7.2':"Entrega texto/código bruto em Markdown; qualquer formato final depende de ferramentas externas.",
+            '7.3':"Raciocínio matemático transparente (chain-of-thought) confere alta verificabilidade lógica, com baixa taxa de alucinação factual."
         }
     },
     perplex:{
         scores:{
             'A':4, 'B':3, 'C':2, 'D':4, 
-            '5.1':3, '5.2':2, '5.3':5, '5.4':2, '5.5':3, '5.6':2, '6.1':4
+            '5.1':3, '5.2':2, '5.3':5, '5.4':2, '5.5':3, '5.6':2, '6.1':4, '7.1':1, '7.2':2, '7.3':5
         },
         justifications:{
             'A':"Brilha na curadoria de conhecimento externo (Web) com síntese e citações, mas perde para LLMs puros na integração de conhecimento interno proprietário.",
@@ -426,13 +579,16 @@
             '5.4':"Focado em RAG curto; fragmenta o entendimento de obras literárias complexas.", 
             '5.5':"Analisa imagens para contexto, mas sem capacidade de OCR profundo de tabelas.", 
             '5.6':"Suporte à Pesquisa. Excelente 'bibliotecário' para encontrar documentação técnica atualizada, mas incapaz de atuar como engenheiro de software ou gerar aplicações completas.",
-            '6.1':"O Auditor de Mercado. Essencial para Market Sensing e dados reais, mas atua mais como suporte do que arquiteto da tese."
+            '6.1':"O Auditor de Mercado. Essencial para Market Sensing e dados reais, mas atua mais como suporte do que arquiteto da tese.",
+            '7.1':"Pesquisa estritamente web-pública: sem acesso a intranets ou repositórios privados, nula em gravidade corporativa.",
+            '7.2':"Pages estrutura a saída com citações, mas não produz formatos Office nativos; o handoff é de leitura, não de edição.",
+            '7.3':"Padrão-ouro de Grounding: cada afirmação vem com fonte primária citada e verificável em tempo real."
         }
     },
     manus:{
         scores:{
             'A':3, 'B':2, 'C':4, 'D':3, 
-            '5.1':5, '5.2':1, '5.3':5, '5.4':3, '5.5':2, '5.6':3, '6.1':3
+            '5.1':5, '5.2':1, '5.3':5, '5.4':3, '5.5':2, '5.6':3, '6.1':3, '7.1':3, '7.2':4, '7.3':3
         },
         justifications:{
             'A':"Excelente coletor, mas capacidade de síntese inferior. A aquisição pela Meta introduziu riscos de privacidade que violam a governança para dados sensíveis.",
@@ -445,29 +601,42 @@
             '5.4':"Trata resumos como tarefa operacional; perde a nuance analítica de obras densas.", 
             '5.5':"Depende de sub-modelos; análise multimodal lenta e desconectada.", 
             '5.6':"Instabilidade Operacional. Relatos críticos de 'loops infinitos' e falha na execução autônoma. A aquisição pela Meta introduziu riscos de governança de dados inaceitáveis.",
-            '6.1':"Risco de Governança. Tecnicamente capaz, mas a aquisição pela Meta torna seu uso inaceitável para estratégias confidenciais (M&A, Inovação)."
+            '6.1':"Risco de Governança. Tecnicamente capaz, mas a aquisição pela Meta torna seu uso inaceitável para estratégias confidenciais (M&A, Inovação).",
+            '7.1':"Agente autônomo navega a web e abre ferramentas, mas não acessa dados securizados por trás de VPN/SSO corporativo.",
+            '7.2':"Integração com geração visual entrega slides com design, ainda que workflows complexos sofram com instabilidade.",
+            '7.3':"Execução repassa dados sem verificação independente robusta; o risco de governança (Meta) pesa sobre a confiança."
         }
     }
 };
         
         // CANON (BIBLIOTECA)
         const canonBlocks=[
-            {id:'canon-meta-intro',cat:'meta',title:"Thinking (Raciocínio)",text:"A 'sala de máquinas' intelectual. Estas capacidades não geram o produto final, mas garantem a integridade da tese. É aqui que ocorre a estruturação lógica, a validação de hipóteses e a arquitetura de pensamento antes de qualquer execução."},
-            {id:'canon-A',cat:'meta',title:"A — Curadoria, normalização e integração",text:"Este uso não é apenas análise nem apenas síntese. Ele ocorre quando você pede para a IA conciliar conceitos conflitantes entre autores, escolas ou frameworks; normalizar terminologia (ex.: conceitos equivalentes com nomes diferentes) ou integrar múltiplas fontes em um vocabulário coerente único. Resolve ambiguidades conceituais antes de qualquer produção final."},
-            {id:'canon-B',cat:'meta',title:"B — Validação lógica e stress-test",text:"Aqui a IA não é usada para produzir, mas para verificar se um raciocínio “fecha”, identificar contradições internas, apontar saltos lógicos e testar se uma narrativa se sustenta sob pressão. É diferente de revisão textual; é uma auditoria de consistência."},
-            {id:'canon-C',cat:'meta',title:"C — Conversão entre níveis de abstração",text:"Você usa a IA para subir e descer níveis de abstração com precisão: Estratégia ↔ operação, Framework ↔ processo, Arquitetura ↔ implementação. Isso não é “resumo” nem “expansão” genérica — é tradução estrutural."},
-            {id:'canon-D',cat:'meta',title:"D — Artefatos intermediários",text:"Criação de matrizes provisórias, listas de hipóteses e esboços formais que não são para entrega, mas para pensar melhor. Esses artefatos não são rascunhos criativos nem outputs finais; são instrumentos cognitivos temporários."},
+            {id:'canon-manifesto-intro',cat:'manifesto',title:"Manifesto v13.6 — Eficiência Condicional",text:"O núcleo conceitual do Hub: por que a ferramenta mais potente nem sempre é a mais recomendada. A fricção operacional (Streamlining) determina quanto da potência bruta de uma IA chega, de fato, ao seu entregável final."},
+            {id:'canon-falacia',cat:'manifesto',title:"A Falácia do QI Sintético",text:"A versão 13.6 marca o abandono definitivo da busca pela 'IA mais inteligente' em favor da busca pela 'IA mais eficiente'. No mundo real, a inteligência que não consegue ser entregue no formato correto, no tempo correto e com os dados corretos é, para todos os efeitos práticos, inexistente. A Falácia do QI Sintético ocorre quando priorizamos a potência cognitiva bruta (o 'QI' da IA) sobre a capacidade de interoperabilidade. Na v13.6, a inteligência é apenas uma variável; a eficiência é o multiplicador."},
+            {id:'canon-fisica',cat:'manifesto',title:"A Nova Física: Potência × Eficiência",text:"O Hub opera sob uma nova física de sistemas. A Potência (P) é o que a IA pode fazer em isolamento — sua capacidade bruta de processamento e lógica, medida por benchmark. A Eficiência (E) é a capacidade de manifestar essa potência através da fricção do fluxo de trabalho humano e corporativo. O resultado real e mensurável é a Potência Efetiva, e o princípio fundamental é que a potência é multiplicada pela eficiência, jamais somada a ela. Uma Potência 5.0 entregue a uma Eficiência 0.2 não vale 2.6 — vale 1.0, porque a fricção não desconta o valor, ela o estrangula."},
+            {id:'canon-meta-intro',cat:'think',title:"I. Thinking (Raciocínio Cognitivo)",text:"A 'sala de máquinas' intelectual. Estas capacidades não geram o produto final, mas garantem a integridade da tese. É aqui que ocorre a estruturação lógica, a validação de hipóteses e a arquitetura de pensamento antes de qualquer execução."},
+            {id:'canon-A',cat:'think',title:"A — Curadoria, normalização e integração",text:"Este uso não é apenas análise nem apenas síntese. Ele ocorre quando você pede para a IA conciliar conceitos conflitantes entre autores, escolas ou frameworks; normalizar terminologia (ex.: conceitos equivalentes com nomes diferentes) ou integrar múltiplas fontes em um vocabulário coerente único. Resolve ambiguidades conceituais antes de qualquer produção final."},
+            {id:'canon-B',cat:'think',title:"B — Validação lógica e stress-test",text:"Aqui a IA não é usada para produzir, mas para verificar se um raciocínio “fecha”, identificar contradições internas, apontar saltos lógicos e testar se uma narrativa se sustenta sob pressão. É diferente de revisão textual; é uma auditoria de consistência."},
+            {id:'canon-C',cat:'think',title:"C — Conversão entre níveis de abstração",text:"Você usa a IA para subir e descer níveis de abstração com precisão: Estratégia ↔ operação, Framework ↔ processo, Arquitetura ↔ implementação. Isso não é “resumo” nem “expansão” genérica — é tradução estrutural."},
+            {id:'canon-D',cat:'think',title:"D — Artefatos intermediários",text:"Criação de matrizes provisórias, listas de hipóteses e esboços formais que não são para entrega, mas para pensar melhor. Esses artefatos não são rascunhos criativos nem outputs finais; são instrumentos cognitivos temporários."},
             
-            {id:'canon-prod-intro',cat:'prod',title:"Doing (Produção)",text:"A passagem da abstração para o artefato tangível. Este grupo foca na materialização de ideias em formatos consumíveis (slides, código, imagens), garantindo que a estratégia não morra no papel, mas se torne um produto entregável."},
-            {id:'canon-5-1',cat:'prod',title:"5.1 Geração Automatizada de Slides e Apresentações",text:"Sistemas de IA modernos conseguem gerar apresentações completas a partir de roteiros textuais, combinando conteúdo fornecido com temas visuais consistentes. Ferramentas integradas em suites de produtividade, como o Microsoft Copilot, permitem criar slides profissionais diretamente de documentos de texto e aplicar automaticamente elementos visuais alinhados à identidade da marca. Por exemplo, o Copilot no PowerPoint pode referenciar arquivos da organização (Word, PDF, etc.) para compor uma apresentação, além de inserir imagens aprovadas no acervo da empresa para garantir conformidade com o guia de identidade visual. Dessa forma, evita-se a formatação manual trabalhosa, pois a IA consegue analisar textos, tópicos principais, imagens e até logotipos, sugerindo estilos visuais compatíveis com o tema da apresentação. O resultado é uma estrutura de slides coerente, com design consistente em todas as páginas, respeitando paletas de cores e tipografia da marca. Importante notar que a IA entrega um rascunho sólido que pode ser refinado pelo usuário, combinando automação e toque humano para ajustar detalhes quando necessário. Em suma, a IA acelera drasticamente a criação de slides – estudos mostram que usuários conseguem gerar um deck inicial 3–5 vezes mais rápido que pelo método manual, com qualidade visual cada vez mais alta e necessidade de edição reduzida."},
-            {id:'canon-5-2',cat:'prod',title:"5.2 Consistência Visual e Identidade de Marca",text:"O uso de IA generativa para imagens (como DALL-E 3, Midjourney e Adobe Firefly) permite a criação de ativos visuais que seguem diretrizes estritas de estilo. No contexto corporativo, isso significa treinar ou instruir a IA para gerar ícones, ilustrações e diagramas que falem a mesma linguagem visual da marca, garantindo que relatórios técnicos não pareçam colchas de retalhos visuais. A consistência não é apenas estética; é semiótica, garantindo que a mensagem visual reforce a autoridade do documento técnico."},
-            {id:'canon-5-3',cat:'prod',title:"5.3 Pesquisa Acadêmica e Técnica Aprofundada",text:"Assistentes de pesquisa baseados em IA conseguem varrer bases de dados acadêmicas e técnicas para sintetizar o estado da arte de um determinado tema. Diferente da busca tradicional, a IA pode ler os abstracts, cruzar conclusões de diferentes papers e gerar uma revisão bibliográfica estruturada. A introdução de modos de 'Deep Research' alterou a natureza deste caso. A IA agora pode ler integralmente dezenas de livros e centenas de artigos simultaneamente, reduzindo drasticamente a alucinação através de Grounding massivo. A busca deixou de ser apenas 'encontrar o link' para 'sintetizar o conhecimento contido no link'."},
-            {id:'canon-5-4',cat:'prod',title:"5.4 Resumos Massivos e Minuciosos de Livros e Artigos Complexos",text:"Modelos de linguagem com janelas de contexto ampliadas (como Claude com 100k+ tokens ou Gemini 1.5 Pro com 2M) permitem o upload de livros técnicos inteiros, contratos longos ou relatórios de centenas de páginas. A IA pode então extrair argumentos centrais sem perder a nuance."},
-            {id:'canon-5-5',cat:'prod',title:"5.5 Análise Multimodal de Fotos, Vídeos e Arquivos",text:"A capacidade multimodal (como no GPT-4 Vision ou Gemini) permite que a IA 'veja' e interprete imagens. Isso é aplicável na leitura de gráficos complexos em relatórios financeiros, na conversão de esboços desenhados em quadros brancos para código estruturado, ou na análise de vídeos."},
-            {id:'canon-5-6',cat:'prod',title:"5.6 Geração de Aplicações Web e Automação de Codificação",text:"Agentes de IA especializados em código podem gerar não apenas snippets isolados, mas aplicações web inteiras, scripts de automação de dados e interfaces de usuário funcionais. Isso democratiza a engenharia de software para perfis de análise de dados e gestão, permitindo a criação de ferramentas sob medida ('micro-SaaS internos') para resolver dores específicas de processo. A IA atua como um par programador sênior, sugerindo arquitetura, refatorando código legado e escrevendo testes unitários."},
+            {id:'canon-disc-intro',cat:'disc',title:"II. Discovering (Descoberta e Ingestão)",text:"A fronteira de captação de dados do sistema. Expande a base informacional através de buscas externas ativas em tempo real ou da leitura profunda de dados legados complexos — antes que qualquer transformação ocorra."},
+            {id:'canon-design-intro',cat:'design',title:"III. Designing (Materialização Visual)",text:"A passagem da abstração conceitual para o artefato visual tangível. Garante que a estratégia não permaneça como texto frio, mas se materialize em formatos persuasivos e visualmente consistentes."},
+            {id:'canon-5-1',cat:'design',title:"5.1 Geração Automatizada de Slides e Apresentações",text:"Sistemas de IA modernos conseguem gerar apresentações completas a partir de roteiros textuais, combinando conteúdo fornecido com temas visuais consistentes. Ferramentas integradas em suites de produtividade, como o Microsoft Copilot, permitem criar slides profissionais diretamente de documentos de texto e aplicar automaticamente elementos visuais alinhados à identidade da marca. Por exemplo, o Copilot no PowerPoint pode referenciar arquivos da organização (Word, PDF, etc.) para compor uma apresentação, além de inserir imagens aprovadas no acervo da empresa para garantir conformidade com o guia de identidade visual. Dessa forma, evita-se a formatação manual trabalhosa, pois a IA consegue analisar textos, tópicos principais, imagens e até logotipos, sugerindo estilos visuais compatíveis com o tema da apresentação. O resultado é uma estrutura de slides coerente, com design consistente em todas as páginas, respeitando paletas de cores e tipografia da marca. Importante notar que a IA entrega um rascunho sólido que pode ser refinado pelo usuário, combinando automação e toque humano para ajustar detalhes quando necessário. Em suma, a IA acelera drasticamente a criação de slides – estudos mostram que usuários conseguem gerar um deck inicial 3–5 vezes mais rápido que pelo método manual, com qualidade visual cada vez mais alta e necessidade de edição reduzida."},
+            {id:'canon-5-2',cat:'design',title:"5.2 Consistência Visual e Identidade de Marca",text:"O uso de IA generativa para imagens (como DALL-E 3, Midjourney e Adobe Firefly) permite a criação de ativos visuais que seguem diretrizes estritas de estilo. No contexto corporativo, isso significa treinar ou instruir a IA para gerar ícones, ilustrações e diagramas que falem a mesma linguagem visual da marca, garantindo que relatórios técnicos não pareçam colchas de retalhos visuais. A consistência não é apenas estética; é semiótica, garantindo que a mensagem visual reforce a autoridade do documento técnico."},
+            {id:'canon-5-3',cat:'disc',title:"5.3 Pesquisa Acadêmica e Técnica Aprofundada",text:"Assistentes de pesquisa baseados em IA conseguem varrer bases de dados acadêmicas e técnicas para sintetizar o estado da arte de um determinado tema. Diferente da busca tradicional, a IA pode ler os abstracts, cruzar conclusões de diferentes papers e gerar uma revisão bibliográfica estruturada. A introdução de modos de 'Deep Research' alterou a natureza deste caso. A IA agora pode ler integralmente dezenas de livros e centenas de artigos simultaneamente, reduzindo drasticamente a alucinação através de Grounding massivo. A busca deixou de ser apenas 'encontrar o link' para 'sintetizar o conhecimento contido no link'."},
+            {id:'canon-5-4',cat:'disc',title:"5.4 Resumos Massivos e Minuciosos de Livros e Artigos Complexos",text:"Modelos de linguagem com janelas de contexto ampliadas (como Claude com 100k+ tokens ou Gemini 1.5 Pro com 2M) permitem o upload de livros técnicos inteiros, contratos longos ou relatórios de centenas de páginas. A IA pode então extrair argumentos centrais sem perder a nuance."},
+            {id:'canon-5-5',cat:'disc',title:"5.5 Análise Multimodal de Fotos, Vídeos e Arquivos",text:"A capacidade multimodal (como no GPT-4 Vision ou Gemini) permite que a IA 'veja' e interprete imagens. Isso é aplicável na leitura de gráficos complexos em relatórios financeiros, na conversão de esboços desenhados em quadros brancos para código estruturado, ou na análise de vídeos."},
+            {id:'canon-build-intro',cat:'build',title:"IV. Building (Engenharia e Construção)",text:"A capacidade construtiva e de infraestrutura. Separa a atividade de desenhar da atividade de edificar soluções lógicas e funcionais executáveis."},
+            {id:'canon-5-6',cat:'build',title:"5.6 Geração de Aplicações Web e Automação de Codificação",text:"Agentes de IA especializados em código podem gerar não apenas snippets isolados, mas aplicações web inteiras, scripts de automação de dados e interfaces de usuário funcionais. Isso democratiza a engenharia de software para perfis de análise de dados e gestão, permitindo a criação de ferramentas sob medida ('micro-SaaS internos') para resolver dores específicas de processo. A IA atua como um par programador sênior, sugerindo arquitetura, refatorando código legado e escrevendo testes unitários."},
             
-            {id:'canon-strat-intro',cat:'strat',title:"Integrating (Estratégia)",text:"O elo perdido entre dados técnicos e tomada de decisão executiva. Esta capacidade integra inputs dispersos em uma visão coerente, traduzindo complexidade técnica em direção de negócio."},
-            {id:'canon-6-1',cat:'strat',title:"6.1 Caso de Uso Estratégico-Síntese",text:"Uso da IA para geração de análises completas, estruturadas e argumentadas sobre mercados, indústrias, modelos de negócio, cadeias de valor, capacidades, processos, tecnologias e frameworks — com ou sem arquivos externos — visando construção de ponto de vista, suporte à decisão e produção de ensaios técnicos. Na prática, ele é o Eixo Articulador entre pesquisa, síntese, design e tecnologia. É o ponto onde a IA deixa de ser 'ferramenta de leitura' e passa a ser ferramenta de pensamento estratégico estruturado. As saídas típicas incluem ensaios estratégicos completos, relatórios de mercado (TAM/SAM/SOM), matrizes comparativas e narrativas executivas (point of view)."}
+            {id:'canon-strat-intro',cat:'integ',title:"V. Integrating (Estratégia e Decisão)",text:"O elo perdido entre dados técnicos e tomada de decisão executiva. Esta capacidade integra inputs dispersos em uma visão coerente, traduzindo complexidade técnica em direção de negócio."},
+            {id:'canon-6-1',cat:'integ',title:"6.1 Caso de Uso Estratégico-Síntese",text:"Uso da IA para geração de análises completas, estruturadas e argumentadas sobre mercados, indústrias, modelos de negócio, cadeias de valor, capacidades, processos, tecnologias e frameworks — com ou sem arquivos externos — visando construção de ponto de vista, suporte à decisão e produção de ensaios técnicos. Na prática, ele é o Eixo Articulador entre pesquisa, síntese, design e tecnologia. É o ponto onde a IA deixa de ser 'ferramenta de leitura' e passa a ser ferramenta de pensamento estratégico estruturado. As saídas típicas incluem ensaios estratégicos completos, relatórios de mercado (TAM/SAM/SOM), matrizes comparativas e narrativas executivas (point of view)."},
+            
+            {id:'canon-stream-intro',cat:'stream',title:"Streamlining (Habilitador Transversal)",text:"A camada de eficiência que remove o atrito entre a inteligência da máquina e o fluxo de trabalho humano. Diferente dos cinco domínios de potência, o Streamlining é transversal: ele não gera o produto, mas determina se a potência consegue ou não se manifestar sem fricção (o 'Glue Work')."},
+            {id:'canon-7-1',cat:'stream',title:"7.1 Gravidade de Dados (Data Gravity)",text:"A Gravidade de Dados não é apenas uma conveniência de upload; é a eliminação da barreira de engenharia de dados (ETL) para o usuário final. Ela define a competência da IA de operar onde os dados já residem (Data in Place). Diferente de sistemas que exigem movimentação manual de arquivos ou configuração complexa de APIs, aqui a IA indexa nativamente o SharePoint, Graph API ou repositórios de código. Não é a IA \"olhando para um arquivo\" isolado; é a IA \"vivendo dentro do servidor\", mantendo a persistência do contexto e eliminando a necessidade de migração de dados para a análise."},
+            {id:'canon-7-2',cat:'stream',title:"7.2 Continuidade de Formato (Asset Handoff)",text:"Isso não é sobre exportar texto, é sobre entregar produto. Esta capacidade mede o nível de acabamento industrial do entregável. A questão é: a IA entrega um insight em Markdown que exige formatação manual pesada (fricção alta), ou gera o arquivo final editável (.pptx, .docx, .xlsx) respeitando rigorosamente os templates e fontes corporativos? É a diferença fundamental entre receber um \"rascunho inteligente\" que gera trabalho operacional de formatação, e receber um \"artefato pronto\" que gera valor imediato e pode ser enviado diretamente ao cliente final."},
+            {id:'canon-7-3',cat:'stream',title:"7.3 Grounding & Verificabilidade (Trust Architecture)",text:"Aqui a IA não é usada para ser criativa, mas para ser auditável. É a capacidade de construir uma arquitetura de confiança onde cada afirmação é vinculada granularmente (linha a linha) a uma fonte primária verificável. Isso vai além da \"busca na web\" genérica; é um mecanismo de mitigação de risco reputacional. Sem isso, a síntese estratégica (6.1) torna-se apenas uma opinião alucinada; com isso, torna-se uma base segura para a assinatura de decisões executivas e deveres fiduciários, permitindo a rastreabilidade completa da informação."}
         ];
 
         // --- NAVIGATION LOGIC ---
@@ -513,6 +682,8 @@
         // --- HELPER: LINK TO LIBRARY ---
         function goToLibrary(id) {
             switchTab('tab-library');
+            // Garante que o bloco-alvo esteja no DOM mesmo se a Biblioteca estiver filtrada.
+            renderCanon('all');
             setTimeout(() => {
                 const el = document.getElementById('canon-' + id) || document.getElementById('canon-' + id.replace('.', '-'));
                 if(el) {
@@ -524,6 +695,16 @@
         }
 
         // --- RENDERIZADORES ---
+        const archetypeInfo = {
+            cirurgiao:   { tagline: "“Precisão Lógica e Execução Pura: Onde o Algoritmo encontra a Arquitetura.”", desc: "Focado na resolução de problemas complexos de engenharia, priorizando a integridade da lógica e a performance do código acima de qualquer conveniência estética ou integração de dados.", examples: "Ex: Desenvolvedores Backend, Engenheiros de Software, Pesquisadores de Criptografia, Especialistas em Algoritmos." },
+            showrunner:  { tagline: "“A Maestria da Orquestração Multimodal: O Arquiteto da Narrativa de Negócio.”", desc: "Orquestrador que transforma visões estratégicas em ativos multimodais (texto, vídeo, slides) em alta velocidade, gerenciando grandes volumes de contexto.", examples: "Ex: Product Managers, Diretores de Marketing, Líderes de Lançamento de Produto, Chief of Staff." },
+            oraculo:     { tagline: "“O Cérebro Estratégico do Tabuleiro: Antecipando o Próximo Movimento.”", desc: "Perfil de alta abstração que utiliza a IA como parceiro dialético para simular cenários estratégicos, analisar riscos de M&A e construir pontos de vista autorais.", examples: "Ex: Consultores Estratégicos, Analistas de M&A, Planejadores de Cenários, Conselheiros Executivos." },
+            burocrata:   { tagline: "“A Ditadura da Eficiência e Conformidade: Onde o Fluxo é o Produto.”", desc: "Profissional que atua na última milha da entrega corporativa. Exige que a IA opere dentro dos trilhos das ferramentas padrão (Office/Google), com erro zero de formato e conformidade total.", examples: "Ex: Gerentes de Projeto, Especialistas em Compliance, Advogados Corporativos, Analistas de Processos." },
+            cacador:     { tagline: "“A Busca Implacável pela Verdade Auditável: Onde a Evidência Prevalece sobre a Opinião.”", desc: "Investigador focado em extrair a verdade informacional a partir de mares de dados brutos e páginas web. Exige rastreabilidade total e rejeita qualquer afirmação sintética sem vínculo claro a uma fonte real.", examples: "Ex: Jornalistas de Dados, Analistas de Due Diligence, Auditores de Risco, Investigadores de Fraude Financeira." },
+            prototipador:{ tagline: "“Do Conceito ao Artefato em Tempo Real: A Democratização da Construção.”", desc: "Profissional que utiliza a capacidade computacional sintética para materializar ideias abstratas em protótipos funcionais iterativos em alta velocidade, validando hipóteses mercadológicas de forma imediata.", examples: "Ex: UX/UI Designers Construtores, Indie Hackers, Solopreneurs, Founders de Startups de Tecnologia." },
+            legado:      { tagline: "“Navegando na Complexidade do Volume Histórico: A Inteligência sobre o Gigante Adormecido.”", desc: "Especialista encarregado de ler, diagnosticar e intervir em sistemas massivos antigos e arquiteturas de documentação excessivamente extensas. Demanda janelas de contexto colossais para não perder dependências microestruturais.", examples: "Ex: Consultores SAP/Oracle, Engenheiros de Sistemas de Bancos, Especialistas em Infraestrutura Crítica de IT." },
+        };
+
         function init(){
             renderUseCaseCards();
             renderPipeline();
@@ -531,44 +712,50 @@
             initCharts();
             updateRadarDatasets(); // FIX: Initial data load for charts
             setAuditFilter('all');
+            renderImpactMatrix();
+            renderEcosystem();
             renderCanon('all');
             
             // SYSTEM INIT
-            updateAll(); // Calculates initial state without toast
+            applyArchetype('cirurgiao'); // Inicia sempre com perfil Cirurgião
             isInitializing = false; // RELEASE LOCK
             switchTab('tab-knowledge');
             
             // ATTACH LISTENERS FOR TOAST (CLEAN SLATE)
-            ['logic','visual','research','tech'].forEach(id => {
-                const slider = document.getElementById(`slider-${id}`);
-                slider.addEventListener('input', updateAll); // Realtime visual update
-                slider.addEventListener('change', showMobileToast); // Trigger toast ONLY on release
-            });
-            
-            ['w-meta','w-prod','w-strat'].forEach(id => {
+            ['slider-think','slider-disc','slider-design','slider-build','slider-integ','slider-stream'].forEach(id => {
                 const slider = document.getElementById(id);
-                slider.addEventListener('input', calculateFromWeights);
+                slider.addEventListener('input', () => {
+                    // Ajuste manual: deixa de ser um arquétipo nomeado
+                    document.querySelectorAll('.arch-chip').forEach(b => b.classList.remove('arch-active'));
+                    setMobileSummary('Personalizado');
+                    updateAll();
+                });
                 slider.addEventListener('change', showMobileToast);
             });
         }
+
+        // Mapa único de domínios (rótulo + cor da tag) — fonte de verdade visual
+        const DOMAIN_META = {
+            think:  { label:'Thinking',    card:'border-emerald-200 text-emerald-800 bg-emerald-50/50' },
+            disc:   { label:'Discovering', card:'border-sky-200 text-sky-800 bg-sky-50/50' },
+            design: { label:'Designing',   card:'border-pink-200 text-pink-800 bg-pink-50/50' },
+            build:  { label:'Building',    card:'border-amber-200 text-amber-800 bg-amber-50/50' },
+            integ:  { label:'Integrating', card:'border-indigo-200 text-indigo-800 bg-indigo-50/50' },
+            stream: { label:'Streamlining',card:'border-violet-200 text-violet-800 bg-violet-50/50' }
+        };
 
         function renderUseCaseCards(){
             const container=document.getElementById('useCaseGrid');
             container.innerHTML='';
             cases.forEach(c=>{
-                let colorClass="border-slate-200 text-slate-600";
-                if(c.cat==='meta')colorClass="border-emerald-200 text-emerald-800 bg-emerald-50/50";
-                if(c.cat==='prod')colorClass="border-sky-200 text-sky-800 bg-sky-50/50";
-                if(c.cat==='strat')colorClass="border-indigo-200 text-indigo-800 bg-indigo-50/50";
-                
+                const dm = DOMAIN_META[c.cat] || { label:c.cat, card:'border-slate-200 text-slate-600' };
                 const card=document.createElement('div');
-                card.className=`p-4 rounded-xl border ${colorClass} hover:shadow-md transition-all cursor-pointer flex flex-col hover:-translate-y-1 bg-white`;
+                card.className=`p-4 rounded-xl border ${dm.card} hover:shadow-md transition-all cursor-pointer flex flex-col hover:-translate-y-1 bg-white`;
                 card.onclick=()=> goToLibrary(c.id);
-                // Fixed Layout: Badge on same line as title
                 card.innerHTML=`
                     <div class="flex items-start justify-between gap-2 mb-2">
                         <div class="font-bold text-sm leading-tight">${c.name.split(' ').slice(1).join(' ')}</div>
-                        <span class="font-bold text-[9px] uppercase tracking-wide opacity-80 border border-current px-1.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">${c.cat==='meta'?'Thinking':(c.cat==='prod'?'Doing':'Integrating')}</span>
+                        <span class="font-bold text-[9px] uppercase tracking-wide opacity-80 border border-current px-1.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">${dm.label}</span>
                     </div>
                     <div class="text-[11px] opacity-80 flex-grow leading-snug">${c.desc}</div>
                 `;
@@ -657,6 +844,100 @@
             });
         }
 
+        // === ECOSSISTEMA: SUPERPOWER & KRYPTONITE (Seção 5) ===
+        // Vinculado por id ao array tools[] (nomes de modelo já corretos).
+        const ECOSYSTEM = {
+            gemini:  { sp:"Contexto Nativo Infinito (2M tokens) e ingestão massiva multiformato direto do Drive.", kr:"Falta de exportação em formatos de slides nativos (.pptx) sem extensões.", role:"O Generalista de Volume, Leitura Monolítica e Ingestão de Big Data de Documentos." },
+            claude:  { sp:"Lógica Impecável, Raciocínio Dialético Superior e ambientes Artifacts de código limpos.", kr:"Isolamento de dados corporativos nativos (falta de ecossistema próprio de conectores).", role:"O Especialista em Precisão Lógica, Refatoração e Síntese Estratégica Refinada." },
+            chatgpt: { sp:"Versatilidade Multimodal Unificada, velocidades extremas (Spark Mode) e interface amigável.", kr:"Fadiga de contexto em sessões longas acima de 128k e oscilações de Grounding.", role:"O Generalista Equilibrado de Alta Velocidade e Interação Multimodal Fluida." },
+            copilot: { sp:"Integração Nativa no ecossistema M365 Graph, aplicando políticas de segurança corporativa.", kr:"Potência Cognitiva Bruta frequentemente limitada por travas de segurança e filtros corporativos.", role:"O Burocrata Operacional e de Conformidade para a Última Milha de Formato de Documentos." },
+            perplex: { sp:"Pesquisa Web em tempo real com indexação granular automatizada de fontes primárias.", kr:"Nulo em capacidades construtivas de Engenharia de Código e Design Visual avançado.", role:"O Investigador com Grounding e Fact-Checking Ativo em Tempo Real na Web Aberta." },
+            deepseek:{ sp:"Raciocínio lógico-matemático de baixo custo via Cadeia de Pensamento Oculta (CoT).", kr:"Baixa performance multimodal para design complexo e ausência de formatos prontos corporativos.", role:"O Analista de Deep-Thinking Computacional para Validação de Lógica Pura e Algoritmos." },
+            manus:   { sp:"Execução autônoma de fluxos complexos end-to-end em máquinas virtuais dedicadas.", kr:"Alta dependência da estabilidade do workflow e risco de quebra de contexto em tarefas longas.", role:"O Agente Executante Autônomo para tarefas complexas de navegação e automação web." }
+        };
+
+        function renderEcosystem(){
+            const host = document.getElementById('ecosystemGrid');
+            if(!host) return;
+            host.innerHTML = '';
+            tools.forEach(t => {
+                const e = ECOSYSTEM[t.id];
+                if(!e) return;
+                let badge = "Insumo", color = "text-slate-600 bg-slate-100";
+                if(t.type==='delivery'){ badge="Entrega"; color="text-indigo-600 bg-indigo-50"; }
+                if(t.type==='reasoning'){ badge="Raciocínio"; color="text-emerald-600 bg-emerald-50"; }
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col";
+                card.innerHTML =
+                    '<div class="flex items-center justify-between mb-3">' +
+                        '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background-color:' + t.color + '"></span>' +
+                        '<h4 class="font-bold text-slate-900 text-sm">' + t.name + '</h4></div>' +
+                        '<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ' + color + '">' + badge + '</span>' +
+                    '</div>' +
+                    '<div class="space-y-2 text-xs">' +
+                        '<div class="flex gap-2"><span class="font-bold text-emerald-600 shrink-0 w-20">Superpower</span><span class="text-slate-600">' + e.sp + '</span></div>' +
+                        '<div class="flex gap-2"><span class="font-bold text-rose-600 shrink-0 w-20">Kryptonite</span><span class="text-slate-600">' + e.kr + '</span></div>' +
+                        '<div class="flex gap-2 pt-2 border-t border-slate-100"><span class="font-bold text-slate-400 shrink-0 w-20">Papel</span><span class="text-slate-500 italic">' + e.role + '</span></div>' +
+                    '</div>';
+                host.appendChild(card);
+            });
+        }
+
+        // === MATRIZ DE IMPACTO CRUZADO (Seção 2.2) ===
+        // sev: 'crit' (vermelho), 'mod' (amarelo), 'neutral' (branco)
+        const IMPACT_MATRIX = [
+            { dom:'I. Thinking', cells:[
+                { sev:'mod',     text:'Contexto Histórico: acesso a glossários e ontologias internas para normalizar termos. A falta gera definições genéricas.' },
+                { sev:'neutral', text:'Neutro (geralmente texto simples).' },
+                { sev:'crit',    text:'Origem: rastrear de onde veio o conceito conflitante para arbitragem. Sem isso, a curadoria é cega.' }
+            ]},
+            { dom:'II. Discovering', cells:[
+                { sev:'crit',    text:'Intranet/Repo: a pesquisa não pode ser só web; tem que varrer o SharePoint/Drive/Git. Sem isso, a IA é externa à empresa.' },
+                { sev:'mod',     text:'Relatório: entregar a bibliografia formatada e clicável.' },
+                { sev:'crit',    text:'Auditabilidade: o "Link Azul". Sem a fonte primária, a pesquisa é inutilizável profissionalmente.' }
+            ]},
+            { dom:'III. Designing', cells:[
+                { sev:'mod',     text:'Assets de Marca: puxar o logo/ícone correto do DAM (Digital Asset Mgmt).' },
+                { sev:'crit',    text:'Nativo (.pptx): o slide tem que ser editável, não uma imagem estática. Se não edita, o trabalho dobra.' },
+                { sev:'neutral', text:'Neutro.' }
+            ]},
+            { dom:'IV. Building', cells:[
+                { sev:'crit',    text:'Codebase: ler o repositório inteiro (Git) para entender dependências. Código sem contexto gera bugs de integração.' },
+                { sev:'crit',    text:'Pull Request: não apenas gerar código, mas commitar/abrir PR no formato certo.' },
+                { sev:'mod',     text:'Segurança: evitar alucinação de bibliotecas inexistentes ou vulneráveis.' }
+            ]},
+            { dom:'V. Integrating', cells:[
+                { sev:'mod',     text:'Memória Corporativa: cruzar a nova estratégia com decisões passadas arquivadas.' },
+                { sev:'mod',     text:'Doc Executivo: entregar o Memo ou One-Pager formatado.' },
+                { sev:'crit',    text:'Dever Fiduciário: a decisão precisa ser auditável para mitigar risco corporativo e jurídico.' }
+            ]}
+        ];
+        const IMPACT_HEADERS = ['7.1 Gravidade de Dados','7.2 Continuidade de Formato','7.3 Trust & Grounding'];
+        const SEV_DOT = { crit:'bg-rose-500', mod:'bg-amber-400', neutral:'bg-slate-300' };
+        const SEV_CELLBG = { crit:'bg-rose-50', mod:'bg-amber-50', neutral:'bg-slate-50' };
+
+        function renderImpactMatrix(){
+            const host = document.getElementById('impactMatrix');
+            if(!host) return;
+            let h = '<div class="grid grid-cols-[120px_repeat(3,1fr)] gap-px bg-slate-200 rounded-lg overflow-hidden">';
+            // Header row
+            h += '<div class="bg-slate-900 text-white text-[10px] font-bold uppercase tracking-wider p-3 flex items-end">Domínio</div>';
+            IMPACT_HEADERS.forEach(head => {
+                h += '<div class="bg-slate-900 text-white text-[10px] font-bold uppercase tracking-wider p-3">'+head+'</div>';
+            });
+            // Body rows
+            IMPACT_MATRIX.forEach(row => {
+                h += '<div class="bg-white p-3 text-xs font-bold text-slate-700 flex items-center">'+row.dom+'</div>';
+                row.cells.forEach(cell => {
+                    h += '<div class="'+SEV_CELLBG[cell.sev]+' p-3 text-[11px] leading-snug text-slate-600">'
+                       + '<span class="inline-block w-2.5 h-2.5 rounded-full '+SEV_DOT[cell.sev]+' mr-1.5 align-middle"></span>'
+                       + '<span class="align-middle">'+cell.text+'</span></div>';
+                });
+            });
+            h += '</div>';
+            host.innerHTML = h;
+        }
+
         function renderMatrix(){
             const head=document.querySelector('#matrixTable thead tr');
             const body=document.getElementById('matrixBody');
@@ -668,7 +949,7 @@
                 if(currentAuditFilter!=='all' && c.cat!==currentAuditFilter) return;
                 const tr=document.createElement('tr');
                 const tdLabel=document.createElement('td');
-                tdLabel.className="p-3 text-xs font-bold text-slate-700 border-r border-slate-200 bg-white leading-tight w-48 cursor-pointer hover:text-indigo-600 hover:bg-slate-50 transition-colors";
+                tdLabel.className="p-3 text-xs font-bold text-slate-700 border-r border-slate-200 "+(c.cat==='stream'?'bg-violet-50':'bg-white')+" leading-tight w-48 cursor-pointer hover:text-indigo-600 hover:bg-slate-50 transition-colors";
                 tdLabel.innerText=c.name;
                 tdLabel.onclick = () => goToLibrary(c.id);
                 tr.appendChild(tdLabel);
@@ -726,63 +1007,216 @@
 
             window.marketThinkingChart=new Chart(ctxThinking,{type:'radar',data:{labels:[['A. Curadoria','e Integração'],['B. Validação','Lógica'],['C. Abstração','de Níveis'],['D. Artefatos','Intermediários']],datasets:[]},options:marketOptions});
             window.marketDoingChart=new Chart(ctxDoing,{type:'radar',data:{labels:[['5.1 Slides','Automatizados'],['5.2 Consistência','Visual'],['5.3 Pesquisa','Técnica'],['5.4 Resumos','Massivos'],['5.5 Multimodal',''],['5.6 Coding','& Apps'],['6.1 Estratégia','-Síntese']],datasets:[]},options:marketOptions});
-            window.userRadarChart=new Chart(ctxUser,{type:'radar',data:{labels:['Analítico','Visual','Estrategista','Técnico'],datasets:[{data:[50,50,50,50],borderColor:'#6366f1',backgroundColor:'rgba(99, 102, 241, 0.2)',borderWidth:2,pointBackgroundColor:'#fff',pointBorderColor:'#6366f1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{r:{min:0,max:100,ticks:{display:false},pointLabels:{font:{size:14,weight:'bold'},color:'#1e293b'}}}}});
+            window.userRadarChart=new Chart(ctxUser,{type:'radar',data:{labels:['Thinking','Discovering','Designing','Building','Integrating'],datasets:[{label:'Seu perfil',data:[50,50,50,50,50],borderColor:'#534AB7',backgroundColor:'rgba(83,74,183,0.12)',borderWidth:1.5,borderDash:[4,2],pointBackgroundColor:'#fff',pointBorderColor:'#534AB7',pointRadius:3,order:2},{label:'IA líder',data:[0,0,0,0,0],borderColor:'#BA7517',backgroundColor:'rgba(250,199,117,0.30)',borderWidth:1.5,pointBackgroundColor:'#fff',pointBorderColor:'#BA7517',pointRadius:3,order:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:12,boxHeight:12,usePointStyle:true,pointStyle:'circle',font:{size:12,weight:'bold'},color:'#475569',padding:16}},tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+Math.round(ctx.parsed.r);}}}},scales:{r:{min:0,max:100,ticks:{display:false,stepSize:20},pointLabels:{font:{size:11,weight:'bold'},color:'#1e293b',padding:8}}}}});
         }
 
         let currentRanked = [];
         
-        function setProfile(type){
-            const sLogic=document.getElementById('slider-logic'); const sVisual=document.getElementById('slider-visual'); const sResearch=document.getElementById('slider-research'); const sTech=document.getElementById('slider-tech');
-            if(type==='strategist'){sLogic.value=90;sVisual.value=60;sResearch.value=90;sTech.value=30;}
-            if(type==='engineer'){sLogic.value=90;sVisual.value=20;sResearch.value=70;sTech.value=95;}
-            if(type==='creative'){sLogic.value=40;sVisual.value=95;sResearch.value=50;sTech.value=20;}
-            updateAll();
-            showMobileToast();
+        function readSigma(){
+            return SIGMA_SLIDERS.map(id => parseInt(document.getElementById(id).value) / 100);
+        }
+        function readStreamlining(){
+            return parseInt(document.getElementById('slider-stream').value) / 100;
+        }
+
+        // Equação Canônica (Seção 6.2): E_i = 1 - (S * D_i * (5 - F_i)/5); Score_i = P_i * E_i;
+        // Score_Final = Σ(σ_i * Score_i) / Σ(σ_i). Penalidade por domínio, antes da ponderação.
+        function scoreFinalFor(toolId, sigma, S){
+            const row = master81[toolId];
+            let num = 0, den = 0;
+            const breakdown = [];
+            for(let i=0; i<5; i++){
+                const d = DOMAINS[i];
+                const P = row[d.pIdx];
+                const F = row[d.fIdx];
+                const E = 1 - (S * d.D * (5 - F) / 5);
+                const sc = P * E;
+                num += sigma[i] * sc;
+                den += sigma[i];
+                breakdown.push({ key:d.key, label:d.label, P, F, D:d.D, E, score:sc, sigma:sigma[i] });
+            }
+            const final = den > 0 ? num / den : 0;
+            return { final, breakdown };
+        }
+
+        function runEngine(){
+            const sigma = readSigma();
+            const S = readStreamlining();
+            const ranked = tools.map(t => {
+                const r = scoreFinalFor(t.id, sigma, S);
+                return { ...t, scoreVal: r.final, scoreStr: r.final.toFixed(4), breakdown: r.breakdown };
+            }).sort((a,b) => b.scoreVal - a.scoreVal);
+            currentRanked = ranked;
+            renderRankingCards(ranked);
+
+            // Subtítulo do cartão de insight: referencia a IA líder ao vivo
+            const subEl = document.getElementById('insightSubtitle');
+            if(subEl && ranked.length){
+                subEl.innerText = `Entenda por que o ${ranked[0].name} lidera para o seu perfil — e quando reconsiderar.`;
+            }
+
+            // Radar comparativo: série 0 = seu perfil (σ); série 1 = Score Efetivo por domínio da IA líder
+            if (window.userRadarChart && window.userRadarChart.data && ranked.length){
+                const leader = ranked[0];
+                const ds = window.userRadarChart.data.datasets;
+                ds[0].data = sigma.map(v => Math.round(v*100));
+                // breakdown[i].score é P×E (0–5) por domínio, na ordem Thinking..Integrating
+                ds[1].data = leader.breakdown.map(b => Math.round((b.score/5)*100));
+                ds[1].label = leader.name; // cores fixas (âmbar); só o nome muda
+                window.userRadarChart.update();
+            }
+        }
+
+        // Converte #rrggbb para rgba com alpha (para o fundo translúcido da série da IA)
+        function hexToRgba(hex, alpha){
+            const h = (hex||'#0ea5e9').replace('#','');
+            const full = h.length===3 ? h.split('').map(c=>c+c).join('') : h;
+            const r = parseInt(full.substring(0,2),16);
+            const g = parseInt(full.substring(2,4),16);
+            const b = parseInt(full.substring(4,6),16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
         }
 
         function updateAll(){
-            const valLogic=parseInt(document.getElementById('slider-logic').value); const valVisual=parseInt(document.getElementById('slider-visual').value); const valResearch=parseInt(document.getElementById('slider-research').value); const valTech=parseInt(document.getElementById('slider-tech').value);
-            document.getElementById('val-logic').innerText=valLogic+'%'; document.getElementById('val-visual').innerText=valVisual+'%'; document.getElementById('val-research').innerText=valResearch+'%'; document.getElementById('val-tech').innerText=valTech+'%';
-            
-            // Fix: Check if chart exists before updating
-             if (window.userRadarChart && window.userRadarChart.data && window.userRadarChart.data.datasets) {
-                window.userRadarChart.data.datasets[0].data=[valLogic,valVisual,valResearch,valTech]; 
-                window.userRadarChart.update();
-            }
-            
-            const autoMeta=0.5+(valLogic/100*2.5); const autoProd=0.5+((valVisual+valTech)/200*2.5); const autoStrat=0.5+(valResearch/100*2.5);
-            document.getElementById('w-meta').value=autoMeta.toFixed(1); document.getElementById('w-prod').value=autoProd.toFixed(1); document.getElementById('w-strat').value=autoStrat.toFixed(1);
-            calculateFromWeights();
+            const sigma = readSigma();
+            const S = readStreamlining();
+            SIGMA_SLIDERS.forEach((id, i) => {
+                document.getElementById(SIGMA_LABELS[i]).innerText = Math.round(sigma[i]*100) + '%';
+            });
+            document.getElementById('val-stream').innerText = Math.round(S*100) + '%';
+
+            runEngine();
         }
 
-        function calculateFromWeights(){
-            const wMeta=parseFloat(document.getElementById('w-meta').value); const wProd=parseFloat(document.getElementById('w-prod').value); const wStrat=parseFloat(document.getElementById('w-strat').value);
-            document.getElementById('label-w-meta').innerText=wMeta.toFixed(1)+'x';
-            document.getElementById('label-w-prod').innerText=wProd.toFixed(1)+'x';
-            document.getElementById('label-w-strat').innerText=wStrat.toFixed(1)+'x';
-            const ranked=tools.map(t=>{
-                const s=matrixData[t.id].scores;
-                const scoreMeta=(s['A']+s['B']+s['C']+s['D'])/4; const scoreProd=(s['5.1']+s['5.2']+s['5.3']+s['5.4']+s['5.5']+s['5.6'])/6; const scoreStrat=s['6.1'];
-                let final=(scoreMeta*wMeta)+(scoreProd*wProd)+(scoreStrat*wStrat); let weightSum=wMeta+wProd+wStrat; if(weightSum===0)weightSum=1; final=final/weightSum;
-                return{...t,finalScore:final.toFixed(2)};
-            }).sort((a,b)=>b.finalScore-a.finalScore);
-            currentRanked = ranked;
-            renderRankingCards(ranked);
-            const valLogic=parseInt(document.getElementById('slider-logic').value); const expMeta=0.5+(valLogic/100*2.5); const diffMeta=Math.abs(wMeta-expMeta); const alertBox=document.getElementById('audit-alert-box');
-            if(diffMeta>0.8){ alertBox.innerHTML=`<strong>⚠️ Alerta de Coerência:</strong> Seu perfil lógico (${valLogic}%) não bate com o peso forçado (${wMeta}x).`; alertBox.classList.remove('hidden'); } else { alertBox.classList.add('hidden'); }
+        function toggleMobileProfile(){
+            const pane = document.querySelector('.decision-pane');
+            if(pane) pane.classList.toggle('profile-open');
+        }
+        function setMobileSummary(text){
+            const el = document.getElementById('mobileProfileSummary');
+            if(el) el.innerText = text;
+        }
+        // Rótulos curtos por arquétipo (espelham os chips)
+        function updateArchAccordion(key){
+            if(window.innerWidth < 1024) return; // desktop only
+            const info = archetypeInfo[key]; if(!info) return;
+            document.getElementById('archTagline').textContent = info.tagline;
+            document.getElementById('archDesc').textContent = info.desc;
+            document.getElementById('archExamples').textContent = info.examples;
+            document.getElementById('archAccordion').classList.add('open');
+        }
+
+        let __sheetKey = null;
+        function previewArchetype(key){
+            if(window.innerWidth >= 1024){ applyArchetype(key); return; }
+            const info = archetypeInfo[key]; if(!info) return;
+            __sheetKey = key;
+            document.getElementById('sheetArchName').textContent = ARCH_SHORT[key] || key;
+            document.getElementById('sheetTagline').textContent = info.tagline;
+            document.getElementById('sheetDesc').textContent = info.desc;
+            document.getElementById('sheetExamples').textContent = info.examples;
+            document.getElementById('sheetApplyBtn').onclick = function(){ applyArchetype(__sheetKey); closeArchSheet(); };
+            document.getElementById('archSheet').classList.add('open');
+            document.getElementById('archSheetOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeArchSheet(){
+            document.getElementById('archSheet').classList.remove('open');
+            document.getElementById('archSheetOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+            __sheetKey = null;
+        }
+        const ARCH_SHORT = { cirurgiao:'Cirurgião de Código', showrunner:'Showrunner Corporativo', oraculo:'Oráculo de Cenários', burocrata:'Burocrata de Elite', cacador:'Caçador de Sinais', prototipador:'Prototipador Ágil', legado:'Analista de Legado' };
+
+        let __archAnimFrame = null;
+        function applyArchetype(key){
+            const a = ARCHETYPES[key];
+            if(!a) return;
+
+            // Destaca o arquétipo selecionado imediatamente
+            document.querySelectorAll('.arch-chip').forEach(b => b.classList.remove('arch-active'));
+            const chip = document.querySelector(`.arch-chip[data-arch="${key}"]`);
+            if(chip) chip.classList.add('arch-active');
+
+            // Atualiza a barra-resumo mobile e recolhe o painel para revelar o resultado
+            setMobileSummary(ARCH_SHORT[key] || (ARCHETYPES[key] && ARCHETYPES[key].name) || 'Personalizado');
+            const pane = document.querySelector('.decision-pane');
+            if(pane) pane.classList.remove('profile-open');
+
+            // Alvos (0–100) para os 5 domínios + streamlining
+            const sliderIds = [...SIGMA_SLIDERS, 'slider-stream'];
+            const targets = [...a.sigma.map(v => Math.round(v*100)), Math.round(a.S*100)];
+
+            // Cancela qualquer animação em curso (clique rápido entre arquétipos)
+            if(__archAnimFrame){ cancelAnimationFrame(__archAnimFrame); __archAnimFrame = null; }
+
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if(reduceMotion){
+                sliderIds.forEach((id, i) => { const el = document.getElementById(id); if(el) el.value = targets[i]; });
+                updateAll();
+                showMobileToast();
+                return;
+            }
+
+            // Estado inicial de cada slider
+            const starts = sliderIds.map(id => { const el = document.getElementById(id); return el ? Number(el.value) : 0; });
+            const DURATION = 480; // ms
+            const t0 = performance.now();
+            const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+            function step(now){
+                const t = Math.min(1, (now - t0) / DURATION);
+                const e = easeOutCubic(t);
+                sliderIds.forEach((id, i) => {
+                    const el = document.getElementById(id);
+                    if(el) el.value = Math.round(starts[i] + (targets[i] - starts[i]) * e);
+                });
+                updateAll(); // rótulos, ranking e radar acompanham o movimento
+                if(t < 1){
+                    __archAnimFrame = requestAnimationFrame(step);
+                } else {
+                    __archAnimFrame = null;
+                    showMobileToast();
+                }
+            }
+            __archAnimFrame = requestAnimationFrame(step);
+            updateArchAccordion(key);
         }
 
         function renderRankingCards(ranking){
-            const container=document.getElementById('rankingGrid'); container.innerHTML='';
-            ranking.forEach((t,i)=>{
+            const container = document.getElementById('rankingGrid'); container.innerHTML='';
+            const leaderSlot = document.getElementById('leaderSlot'); if(leaderSlot) leaderSlot.innerHTML='';
+            const coLead = ranking.length >= 2 && Math.abs(ranking[0].scoreVal - ranking[1].scoreVal) <= 0.001;
+            ranking.forEach((t, i) => {
                 let badge="Insumo", color="text-slate-600 bg-slate-100";
-                if(t.type==='delivery'){badge="Entrega";color="text-indigo-600 bg-indigo-50";} if(t.type==='reasoning'){badge="Raciocínio";color="text-emerald-600 bg-emerald-50";}
-                const card=document.createElement('div');
-                card.className=`bg-white p-5 rounded-xl border ${i===0 ? 'border-indigo-400 ring-2 ring-indigo-50' : 'border-slate-200'} shadow-sm flex flex-col hover:shadow-md transition-shadow relative overflow-hidden cursor-pointer`;
-                let medal = i===0 ? `<div class="absolute -right-3 -top-3 w-12 h-12 bg-indigo-600 rounded-full flex items-end justify-start pl-2 pb-2 text-white font-black shadow-lg">1</div>` : `<span class="text-xs font-bold text-slate-300">#${i+1}</span>`;
-                card.innerHTML=`${medal}<div class="flex justify-between items-start mb-2 pr-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ${color}">${badge}</span></div><div class="flex justify-between items-end"><div><h3 class="font-bold text-slate-900 leading-tight">${t.name}</h3><p class="text-[10px] text-slate-500 uppercase">${t.model}</p></div><div class="text-2xl font-black text-slate-800">${t.finalScore}</div></div>`;
-                card.onclick = () => toggleTagsModal();
-                container.appendChild(card);
+                if(t.type==='delivery'){ badge="Entrega"; color="text-indigo-600 bg-indigo-50"; }
+                if(t.type==='reasoning'){ badge="Raciocínio"; color="text-emerald-600 bg-emerald-50"; }
+                const isLeader = (i===0) || (coLead && i===1);
+                const card = document.createElement('div');
+                if(i===0){
+                    card.className = `rounded-xl p-5 shadow-none border-0 ring-0 flex flex-col relative cursor-help h-full`;
+                } else {
+                    card.className = `bg-white p-5 border shadow-sm rounded-xl flex flex-col hover:shadow-md transition-shadow relative overflow-visible cursor-help ${isLeader ? 'border-indigo-400 ring-2 ring-indigo-50' : 'border-slate-200'}`;
+                }
+                // Medalhão do #1 vai para o eyebrow (leaderMedal), fora do card
+                if(i===0){
+                    const lm=document.getElementById('leaderMedal');
+                    if(lm) lm.textContent='1';
+                }
+                const medal = isLeader
+                    ? (i===0 ? '' : `<div class="absolute -right-3 -top-3 w-12 h-12 bg-indigo-600 rounded-full flex items-end justify-start pl-2 pb-2 text-white font-black shadow-lg z-10">1</div>`)
+                    : `<span class="text-xs font-bold text-slate-300">#${i+1}</span>`;
+                const tieBadge = (coLead && isLeader)
+                    ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100">Empate Técnico</span>`
+                    : '';
+                const rows = t.breakdown.map(b =>
+                    `<div class="flex justify-between gap-3"><span>${b.label} <span class="text-slate-400">&sigma; ${b.sigma.toFixed(2)} · D ${b.D.toFixed(1)}</span></span><span>E ${b.E.toFixed(4)} · ${b.score.toFixed(4)}</span></div>`
+                ).join('');
+                card.innerHTML = `${medal}
+                    <div class="flex justify-between items-start mb-2 pr-4 gap-1 flex-wrap"><span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ${color}">${badge}</span>${tieBadge}</div>
+                    <div class="flex justify-between items-end"><div><h3 class="font-bold text-slate-900 leading-tight">${t.name}</h3><p class="text-[10px] text-slate-500 uppercase">${t.model}</p></div><div class="text-2xl font-black text-slate-800">${t.scoreStr}</div></div>
+                    <div class="tooltip-container tooltip-up mt-3"><div class="text-[10px] text-indigo-500 font-bold uppercase tracking-wide border-t border-slate-100 pt-2">Score Efetivo por domínio</div><div class="tooltip-text" role="tooltip"><strong class="block mb-1 border-b border-slate-700/50 pb-1">${t.name} — ${t.scoreStr}</strong>${rows}</div></div>`;
+                if(i===0 && leaderSlot){ leaderSlot.appendChild(card); } else { container.appendChild(card); }
             });
         }
 
@@ -811,34 +1245,65 @@
         function toggleTagsModal(){ const m = document.getElementById('tags-modal-overlay'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
         function toggleHelpModal(){ const m = document.getElementById('help-modal-overlay'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
 
-        async function generateInsight() {
-            const modal = document.getElementById('gemini-modal'); const content = document.getElementById('gemini-content');
-            modal.classList.remove('hidden'); modal.classList.add('flex');
-            content.innerHTML = `<div class="space-y-4"><div class="h-4 bg-slate-100 rounded w-3/4 shimmer"></div><div class="h-4 bg-slate-100 rounded w-full shimmer"></div></div><p class="text-xs text-center text-slate-400 mt-6 animate-pulse">Consultando Motor de Decisão...</p>`;
-            
-            const valLogic = document.getElementById('slider-logic').value; const valVisual = document.getElementById('slider-visual').value; const valResearch = document.getElementById('slider-research').value; const valTech = document.getElementById('slider-tech').value;
-            const top3 = currentRanked.slice(0,3).map(t => t.name).join(", ");
-            const prompt = `Consultor Sênior de IA. Perfil: Lógica ${valLogic}%, Visual ${valVisual}%, Estratégia ${valResearch}%, Tech ${valTech}%. Top 3 IAs: ${top3}. 1. Defina um Arquétipo Profissional criativo. 2. Por que a #1 é a melhor (trade-offs). 3. Dica Tática ("Quick Win"). Responda em Português, markdown.`;
-            
-            try {
-                // Nova requisição apontando para a camada Serverless local (Netlify Function)
-                const response = await fetch('/.netlify/functions/gemini', { 
-                    method: 'POST', 
-                    headers: { 'Content-Type': 'application/json' }, 
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }) 
-                });
-                
-                const data = await response.json();
-                
-                if (data.error) throw new Error(data.error.message || data.error);
-                content.innerHTML = marked.parse(data.candidates[0].content.parts[0].text);
-                
-            } catch (error) { 
-                content.innerHTML = `<div class="text-center py-8 text-red-500 font-bold">Erro na conexão</div><p class="text-[10px] bg-slate-100 p-2 font-mono">${error.message}</p>`; 
+        let __insightLoading = false;
+        function setInsightCardLoading(on){
+            const card = document.getElementById('insightCard');
+            const action = document.getElementById('insightAction');
+            if(card) card.disabled = on;
+            if(action){
+                if(on){
+                    action.innerHTML = '<svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg> Analisando…';
+                } else {
+                    action.innerHTML = 'Gerar análise <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>';
+                }
             }
         }
 
-        document.addEventListener('DOMContentLoaded', init);
+        async function generateInsight() {
+            if(__insightLoading) return; // guarda contra clique duplo
+            __insightLoading = true;
+            setInsightCardLoading(true);
+
+            const modal = document.getElementById('gemini-modal'); const content = document.getElementById('gemini-content');
+            modal.classList.remove('hidden'); modal.classList.add('flex');
+            content.innerHTML = `<div class="space-y-4"><div class="h-4 bg-slate-100 rounded w-3/4 shimmer"></div><div class="h-4 bg-slate-100 rounded w-full shimmer"></div><div class="h-4 bg-slate-100 rounded w-5/6 shimmer"></div></div><p class="text-xs text-center text-slate-400 mt-6 animate-pulse">Consultando o Gemini 3.1 Pro…</p>`;
+
+            const sg = SIGMA_SLIDERS.map(id => document.getElementById(id).value);
+            const sStream = document.getElementById('slider-stream').value;
+            const activeChip = document.querySelector('.arch-chip.arch-active');
+            const archName = activeChip ? activeChip.textContent.trim() : 'Perfil personalizado';
+            const top3 = currentRanked.slice(0,3).map(t => `${t.name} (${t.scoreStr})`).join(", ");
+            const prompt = `Consultor Sênior de IA. Arquétipo selecionado: ${archName}. Sliders de domínio (0-100%): Thinking ${sg[0]}, Discovering ${sg[1]}, Designing ${sg[2]}, Building ${sg[3]}, Integrating ${sg[4]}. Streamlining (fricção): ${sStream}%. Top 3 IAs por Score Efetivo: ${top3}. 1. Confirme o arquétipo e descreva o perfil em uma frase. 2. Por que a #1 vence (trade-off potência bruta vs fricção operacional). 3. Dica Tática ("Quick Win"). Responda em Português, markdown.`;
+
+            try {
+                const response = await fetch('/.netlify/functions/gemini', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                const data = await response.json();
+                if (data.error) throw new Error(data.error.message || data.error);
+                content.innerHTML = marked.parse(data.candidates[0].content.parts[0].text)
+                    + '<div class="mt-6 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[10px] text-slate-400"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z"></path></svg>Conteúdo gerado por IA (Gemini 3.1 Pro). Pode conter imprecisões — confira contra a Auditoria Técnica.</div>';
+            } catch (error) {
+                content.innerHTML = `<div class="text-center py-6"><div class="text-red-500 font-bold mb-2">Não foi possível gerar a análise</div><p class="text-xs text-slate-500 mb-4">${error.message}</p><button onclick="generateInsight()" class="inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-4 py-2 rounded-lg transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>Tentar novamente</button></div>`;
+            } finally {
+                __insightLoading = false;
+                setInsightCardLoading(false);
+            }
+        }
+
     </script>
+    <!-- Bottom sheet: preview de arquétipo (mobile) -->
+    <div id="archSheetOverlay" onclick="closeArchSheet()"></div>
+    <div id="archSheet" role="dialog" aria-modal="true">
+        <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto mb-5"></div>
+        <p id="sheetArchName" class="text-base font-black text-slate-900 mb-1"></p>
+        <p id="sheetTagline" class="text-[12px] font-semibold text-indigo-600 italic leading-snug mb-3"></p>
+        <p id="sheetDesc" class="text-[13px] text-slate-600 leading-relaxed mb-3"></p>
+        <p id="sheetExamples" class="text-[11px] text-slate-400 leading-relaxed mb-6"></p>
+        <button id="sheetApplyBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-md shadow-indigo-200">Aplicar este perfil</button>
+        <button onclick="closeArchSheet()" class="w-full mt-3 text-slate-500 font-semibold py-2.5 text-sm">Cancelar</button>
+    </div>
 </body>
 </html>
