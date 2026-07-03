@@ -88,6 +88,10 @@
         #archSheetOverlay.open { opacity:1; pointer-events:all; }
         #archSheet { position:fixed; left:0; right:0; bottom:0; z-index:201; background:#fff; border-radius:1.25rem 1.25rem 0 0; padding:1.5rem 1.25rem 2rem; transform:translateY(100%); transition:transform 0.32s cubic-bezier(0.32,0.72,0,1); max-height:85vh; overflow-y:auto; }
         #archSheet.open { transform:translateY(0); }
+        #customSheetOverlay { position:fixed; inset:0; background:rgba(15,23,42,0.45); z-index:200; opacity:0; pointer-events:none; transition:opacity 0.25s ease; }
+        #customSheetOverlay.open { opacity:1; pointer-events:all; }
+        #customSheet { position:fixed; left:0; right:0; bottom:0; z-index:201; background:#fff; border-radius:1.25rem 1.25rem 0 0; padding:1.5rem 1.25rem 2rem; transform:translateY(100%); transition:transform 0.32s cubic-bezier(0.32,0.72,0,1); max-height:85vh; overflow-y:auto; }
+        #customSheet.open { transform:translateY(0); }
         /* === Superficie unica elevada (#1 + radar): glow radial indigo->violeta cobrindo TODO o bloco uniformemente. Fundo transparente nos cards internos. SEM borda. Robusta em qualquer largura. === */
         .leader-surface {
             background:
@@ -236,6 +240,7 @@
                                 <button data-arch="prototipador" onclick="previewArchetype('prototipador')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Prototipador Ágil</button>
                                 <button data-arch="legado" onclick="previewArchetype('legado')" class="arch-chip col-span-2 px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Analista de Legado</button>
                             </div>
+                            <button onclick="openCustomSheet()" class="lg:hidden w-full mt-4 flex items-center justify-center gap-2 px-3 py-2.5 bg-indigo-50 hover:bg-indigo-100 active:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-lg border border-indigo-200 transition-colors"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>Perfil Personalizado</button>
                             <!-- Accordion: descrição do arquétipo ativo (desktop only) -->
                             <div id="archState" class="mt-3 mb-1 text-[11px] font-bold text-slate-500"><span class="w-2 h-2 rounded-full bg-indigo-500"></span>Perfil personalizado</div>
                             <div id="archAccordion" class="arch-accordion">
@@ -245,6 +250,8 @@
                                     <p id="archExamples" class="text-[10px] text-slate-400 leading-relaxed"></p>
                                 </div>
                             </div>
+                            <div id="sliderBlockHome" class="hidden lg:block">
+                            <div id="sliderBlock">
                             <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">Domínios · o quanto cada um pesa</div>
                             <div class="space-y-5">
                                 <div class="group"><label for="slider-think" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-indigo-600 transition-colors"><span>Thinking <span class="font-normal text-slate-400">· Raciocínio</span></span><span id="val-think" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label><input type="range" id="slider-think" min="0" max="100" value="50"></div>
@@ -258,6 +265,8 @@
                                 <input type="range" id="slider-stream" min="0" max="100" value="50">
                                 <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>Artesão (potência pura)</span><span>Operador (entrega pronta)</span></div>
                                 <div id="streamEffect" class="text-[10px] text-slate-500 mt-3 leading-snug border-t border-slate-200 pt-2"></div>
+                            </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -299,10 +308,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="ranking-toast" class="md:hidden fixed bottom-20 left-4 right-4 bg-slate-900 text-white p-3 rounded-lg shadow-2xl flex items-center justify-between z-[100] transform translate-y-32 transition-transform duration-300">
-                     <div class="flex items-center gap-3"><div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div><div class="text-sm font-medium">Ranking atualizado!</div></div>
-                     <button id="btn-toast-action" class="text-xs font-bold bg-white/10 px-3 py-1.5 rounded text-white active:bg-white/20">Ver</button>
-                </div>
+                
             </div>
         </section>
 
@@ -379,40 +385,23 @@
         let isInitializing = true; 
 
         // --- TOAST LOGIC (FIXED) ---
-        let toastTimeout;
 
-        function showMobileToast() {
-            const isMobile = window.innerWidth < 768;
-            const isDecisionTab = document.getElementById('tab-decision').classList.contains('tab-active');
-            
-            if (isMobile && isDecisionTab && !isInitializing) {
-                const toast = document.getElementById('ranking-toast');
-                toast.classList.remove('translate-y-32'); 
-                
-                clearTimeout(toastTimeout);
-                toastTimeout = setTimeout(() => {
-                    hideToast();
-                }, 4000);
-            }
-        }
 
-        function hideToast(e) {
-            if(e) e.stopPropagation();
-            const toast = document.getElementById('ranking-toast');
-            toast.classList.add('translate-y-32'); 
-            clearTimeout(toastTimeout);
-            
-            if(e && e.type === 'click') {
-                 const grid = document.getElementById('rankingGrid');
-                 if(grid) grid.scrollIntoView({behavior:'smooth'});
-            }
+
+        let mobileCollapseTimeout;
+        let __customSnapshot = null;
+        let __customSheetOpen = false;
+        function scheduleMobileCollapse(){
+            if(window.innerWidth >= 1024) return;
+            if(__customSheetOpen) return;
+            clearTimeout(mobileCollapseTimeout);
+            mobileCollapseTimeout = setTimeout(() => {
+                const pane = document.querySelector('.decision-pane');
+                if(pane) pane.classList.remove('profile-open');
+            }, 2200);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('btn-toast-action');
-            if(btn) {
-                btn.addEventListener('click', hideToast);
-            }
             init();
         });
         
@@ -668,9 +657,7 @@
             target.classList.remove('tab-inactive');
             target.classList.add('tab-active');
 
-            // Force hide toast on tab switch
-            const toast = document.getElementById('ranking-toast');
-            if(toast) toast.classList.add('translate-y-32');
+
 
             // Update Menu States
             document.querySelectorAll('.nav-item').forEach(btn => {
@@ -753,7 +740,7 @@
                     setMobileSummary('Personalizado');
                     updateAll();
                 });
-                slider.addEventListener('change', showMobileToast);
+                slider.addEventListener('change', scheduleMobileCollapse);
             });
 
             // Subtítulo do header mobile: colapsa ao rolar qualquer área de conteúdo
@@ -1177,6 +1164,42 @@
             document.body.style.overflow = '';
             __sheetKey = null;
         }
+
+        const __CUSTOM_SLIDER_IDS = ['slider-think','slider-disc','slider-design','slider-build','slider-integ','slider-stream'];
+        function openCustomSheet(){
+            if(window.innerWidth >= 1024) return;
+            __customSnapshot = __CUSTOM_SLIDER_IDS.map(id => document.getElementById(id).value);
+            const block = document.getElementById('sliderBlock');
+            document.getElementById('customSliderMount').appendChild(block);
+            __customSheetOpen = true;
+            document.getElementById('customSheet').classList.add('open');
+            document.getElementById('customSheetOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function __restoreSliderHome(){
+            const block = document.getElementById('sliderBlock');
+            document.getElementById('sliderBlockHome').appendChild(block);
+        }
+        function __closeCustomSheetShell(){
+            __customSheetOpen = false;
+            __customSnapshot = null;
+            __restoreSliderHome();
+            document.getElementById('customSheet').classList.remove('open');
+            document.getElementById('customSheetOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function applyCustomSheet(){
+            __closeCustomSheetShell();
+            const pane = document.querySelector('.decision-pane');
+            if(pane) pane.classList.remove('profile-open');
+        }
+        function cancelCustomSheet(){
+            if(__customSnapshot){
+                __CUSTOM_SLIDER_IDS.forEach((id, i) => { const el = document.getElementById(id); if(el) el.value = __customSnapshot[i]; });
+                updateAll();
+            }
+            __closeCustomSheetShell();
+        }
         const ARCH_SHORT = { cirurgiao:'Cirurgião de Código', showrunner:'Showrunner Corporativo', oraculo:'Oráculo de Cenários', burocrata:'Burocrata de Elite', cacador:'Caçador de Sinais', prototipador:'Prototipador Ágil', legado:'Analista de Legado' };
 
         let __archAnimFrame = null;
@@ -1206,7 +1229,6 @@
             if(reduceMotion){
                 sliderIds.forEach((id, i) => { const el = document.getElementById(id); if(el) el.value = targets[i]; });
                 updateAll();
-                showMobileToast();
                 return;
             }
 
@@ -1228,7 +1250,6 @@
                     __archAnimFrame = requestAnimationFrame(step);
                 } else {
                     __archAnimFrame = null;
-                    showMobileToast();
                 }
             }
             __archAnimFrame = requestAnimationFrame(step);
@@ -1377,6 +1398,15 @@
     </script>
     <!-- Bottom sheet: preview de arquétipo (mobile) -->
     <div id="archSheetOverlay" onclick="closeArchSheet()"></div>
+    <div id="customSheetOverlay" onclick="cancelCustomSheet()"></div>
+    <div id="customSheet" role="dialog" aria-modal="true" aria-labelledby="customSheetTitle">
+        <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto mb-5"></div>
+        <p id="customSheetTitle" class="text-base font-black text-slate-900 mb-1">Perfil Personalizado</p>
+        <p class="text-[13px] text-slate-600 leading-relaxed mb-5">Ajuste o peso de cada domínio conforme a natureza do seu trabalho. O ranking se adapta ao seu perfil.</p>
+        <div id="customSliderMount"></div>
+        <button onclick="applyCustomSheet()" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-md shadow-indigo-200">Aplicar</button>
+        <button onclick="cancelCustomSheet()" class="w-full mt-3 text-slate-500 font-semibold py-2.5 text-sm">Cancelar</button>
+    </div>
     <div id="archSheet" role="dialog" aria-modal="true">
         <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto mb-5"></div>
         <p id="sheetArchName" class="text-base font-black text-slate-900 mb-1"></p>
