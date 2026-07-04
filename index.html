@@ -59,6 +59,8 @@
         .accordion-open .accordion-content { max-height: 5000px; opacity: 1; }
         .accordion-icon { transition: transform 0.3s ease; }
         .accordion-open .accordion-icon { transform: rotate(180deg); }
+        .imp-accordion.accordion-open .imp-header { background-color: #eef2ff; }
+        .imp-accordion.accordion-open { border-color: #c7d2fe; }
         .filter-active { background-color: #1e293b !important; color: white !important; border-color: #1e293b !important; }
         .arch-active { background-color: #4f46e5 !important; color: #fff !important; border-color: #4f46e5 !important; }
         .shimmer { background: #f6f7f8; background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%); background-repeat: no-repeat; background-size: 800px 104px; animation: placeholderShimmer 1s linear infinite forwards; }
@@ -997,36 +999,40 @@
             IMPACT_MATRIX.forEach((row, i) => {
                 const isOpen = i === __impactMobileOpen;
                 const pulseId = i === 1 ? ' id="impactPulseTarget"' : '';
-                const headerClasses = 'w-full flex items-center justify-between border active:bg-slate-50 px-3 py-2.5 text-left '
-                    + (isOpen ? 'bg-indigo-50 border-indigo-200 rounded-t-lg' : 'bg-white border-slate-200 rounded-lg');
-                h += '<div class="mb-2">';
-                h += '<button type="button" onclick="setImpactMobileOpen('+i+')" class="'+headerClasses+'">';
+                h += '<div class="imp-accordion bg-white rounded-lg border border-slate-200 overflow-hidden mb-2 transition-colors duration-300'+(isOpen ? ' accordion-open' : '')+'">';
+                h += '<button type="button" onclick="setImpactMobileOpen('+i+')" class="imp-header w-full flex items-center justify-between active:bg-slate-50 px-3 py-2.5 text-left">';
                 h += '<span class="text-xs font-bold text-slate-800">'+row.dom+'</span>';
                 h += '<span class="flex items-center gap-1">';
                 row.cells.forEach(c => { h += '<span class="inline-block w-2 h-2 rounded-full '+SEV_DOT[c.sev]+'"></span>'; });
-                h += '<svg'+pulseId+' class="w-3.5 h-3.5 text-indigo-400 ml-1 transition-transform '+(isOpen?'rotate-180':'')+'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>';
+                h += '<svg'+pulseId+' class="w-3.5 h-3.5 text-indigo-400 ml-1 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>';
                 h += '</span></button>';
-                if(isOpen){
-                    h += '<div class="border border-t-0 border-indigo-200 rounded-b-lg overflow-hidden">';
-                    row.cells.forEach((c, ci) => {
-                        h += '<div class="flex gap-2 p-3 '+SEV_CELLBG[c.sev]+'">';
-                        h += '<span class="w-2 h-2 rounded-full '+SEV_DOT[c.sev]+' flex-shrink-0 mt-1"></span>';
-                        h += '<div><div class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-0.5">'+IMPACT_HEADERS[ci]+'</div>';
-                        h += '<div class="text-xs leading-relaxed text-slate-600">'+c.text+'</div></div>';
-                        h += '</div>';
-                    });
+                h += '<div class="accordion-content"><div class="border-t border-slate-200">';
+                row.cells.forEach((c, ci) => {
+                    h += '<div class="flex gap-2 p-3 '+SEV_CELLBG[c.sev]+'">';
+                    h += '<span class="w-2 h-2 rounded-full '+SEV_DOT[c.sev]+' flex-shrink-0 mt-1"></span>';
+                    h += '<div><div class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-0.5">'+IMPACT_HEADERS[ci]+'</div>';
+                    h += '<div class="text-xs leading-relaxed text-slate-600">'+c.text+'</div></div>';
                     h += '</div>';
-                }
+                });
+                h += '</div></div>';
                 h += '</div>';
             });
             host.innerHTML = h;
+        }
+        function setImpactMobileOpen(i){
+            if(i === __impactMobileOpen) return;
+            const host = document.getElementById('impactMatrixMobile');
+            const cards = host ? host.querySelectorAll('.imp-accordion') : [];
+            if(cards[__impactMobileOpen]) cards[__impactMobileOpen].classList.remove('accordion-open');
+            if(cards[i]) cards[i].classList.add('accordion-open');
+            __impactMobileOpen = i;
         }
         function armImpactPulseObserver(){
             const el = document.getElementById('impactPulseTarget');
             if(!el || !('IntersectionObserver' in window)) return;
             const obs = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if(entry.isIntersecting && !__impactPulseShown){
+                    if(entry.isIntersecting && !__impactPulseShown && __impactMobileOpen !== 1){
                         __impactPulseShown = true;
                         el.classList.add('impact-pulse-once');
                         obs.disconnect();
@@ -1034,9 +1040,6 @@
                 });
             }, { threshold: 0.5 });
             obs.observe(el);
-        }
-        function setImpactMobileOpen(i){
-            if(i !== __impactMobileOpen){ __impactMobileOpen = i; renderImpactMatrixMobile(); }
         }
 
         function renderMatrix(){
