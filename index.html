@@ -225,16 +225,13 @@
         <section id="tab-decision" class="tab-content tab-inactive w-full h-full overflow-hidden flex flex-col">
             <div class="decision-pane flex-1 lg:overflow-hidden grid grid-cols-1 lg:grid-cols-12 h-full relative overflow-y-auto custom-scroll">
                 <div class="lg:col-span-4 lg:h-full lg:overflow-y-auto custom-scroll bg-white lg:border-r border-slate-200 z-20 lg:shadow-none">
-                    <div class="lg:hidden sticky top-0 z-30 bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
-                        <div class="flex items-center gap-2 min-w-0">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex-shrink-0">Perfil</span>
-                            <span id="mobileProfileSummary" class="text-sm font-bold text-slate-800 truncate">Personalizado</span>
-                        </div>
-                        <button onclick="toggleMobileProfile()" class="flex items-center gap-1 text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg flex-shrink-0 active:bg-indigo-100 transition-colors">
-                            Configurar
-                            <svg class="mobile-profile-chevron w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                    </div>
+                    <button onclick="toggleMobileProfile()" class="lg:hidden sticky top-0 z-30 bg-white border-b border-slate-200 px-4 py-3 flex items-center gap-3 shadow-sm w-full text-left transition-colors">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex-shrink-0">Perfil</span>
+                        <span class="flex-1 flex items-center justify-between gap-2 min-w-0 bg-indigo-50 border border-indigo-200 rounded-lg px-3 py-2 active:bg-indigo-100 transition-colors">
+                            <span id="mobileProfileSummary" class="text-sm font-bold text-indigo-700 truncate">Personalizado</span>
+                            <svg class="mobile-profile-chevron w-4 h-4 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
                     <div class="profile-collapsible p-6 space-y-6 lg:sticky lg:top-0">
                         <div>
                             <h3 class="section-title hidden lg:block">Perfil Profissional</h3>
@@ -1099,7 +1096,7 @@
         }
 
         function initCharts(){
-            const marketOptions={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true, position:'bottom', labels:{font:{size:10}, padding: 10}}}, scales:{r:{min:0,max:5,ticks:{display:false,stepSize:1},grid:{color:'#e2e8f0'},pointLabels:{font:{size:window.innerWidth<768?10:12,weight:'bold'},color:'#475569'}}}};
+            const marketOptions={responsive:true,maintainAspectRatio:false,interaction:{mode:'nearest',intersect:false},plugins:{legend:{display:true, position:'bottom', labels:{font:{size:10}, padding: 10}}}, scales:{r:{min:0,max:5,ticks:{display:false,stepSize:1},grid:{color:'#e2e8f0'},pointLabels:{font:{size:window.innerWidth<768?10:12,weight:'bold'},color:'#475569'}}}};
             
             const ctxThinking = document.getElementById('marketRadarThinking');
             const ctxDoing = document.getElementById('marketRadarDoing');
@@ -1112,7 +1109,7 @@
 
             window.marketThinkingChart=new Chart(ctxThinking,{type:'radar',data:{labels:[['A. Curadoria','e Integração'],['B. Validação','Lógica'],['C. Abstração','de Níveis'],['D. Artefatos','Intermediários']],datasets:[]},options:marketOptions});
             window.marketDoingChart=new Chart(ctxDoing,{type:'radar',data:{labels:[['5.1 Slides','Automatizados'],['5.2 Consistência','Visual'],['5.3 Pesquisa','Técnica'],['5.4 Resumos','Massivos'],['5.5 Multimodal',''],['5.6 Coding','& Apps'],['6.1 Estratégia','-Síntese']],datasets:[]},options:marketOptions});
-            window.userRadarChart=new Chart(ctxUser,{type:'radar',data:{labels:['Thinking','Discovering','Designing','Building','Integrating'],datasets:[{label:'Seu perfil',data:[50,50,50,50,50],borderColor:'#a78bfa',backgroundColor:'rgba(167,139,250,0)',borderWidth:2.5,borderDash:[5,3],pointBackgroundColor:'rgba(30,27,75,1)',pointBorderColor:'#a78bfa',pointRadius:3.5,order:1},{label:'IA líder',data:[0,0,0,0,0],borderColor:'#f2b84b',backgroundColor:'rgba(242,184,75,0.20)',borderWidth:2,pointBackgroundColor:'rgba(30,27,75,1)',pointBorderColor:'#f2b84b',pointRadius:3,order:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:12,boxHeight:12,usePointStyle:true,pointStyle:'circle',font:{size:12,weight:'bold'},color:'rgba(255,255,255,0.75)',padding:16}},tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+Math.round(ctx.parsed.r);}}}},scales:{r:{min:0,max:100,grid:{color:'rgba(255,255,255,0.14)'},angleLines:{color:'rgba(255,255,255,0.14)'},ticks:{display:false,stepSize:20},pointLabels:{font:{size:11,weight:'bold'},color:'rgba(255,255,255,0.90)',padding:8}}}}});
+            window.userRadarChart=new Chart(ctxUser,{type:'radar',data:{labels:['Thinking','Discovering','Designing','Building','Integrating'],datasets:[{label:'Seu perfil',data:[50,50,50,50,50],borderColor:'#2dd4bf',backgroundColor:'rgba(45,212,191,0.38)',borderWidth:2.5,borderDash:[5,3],pointBackgroundColor:'#2dd4bf',pointBorderColor:'#2dd4bf',pointRadius:3.5,order:2},{label:'IA líder',data:[0,0,0,0,0],borderColor:'#fb7185',backgroundColor:'rgba(251,113,133,0.28)',borderWidth:2,pointBackgroundColor:'#fb7185',pointBorderColor:'#fb7185',pointRadius:3,order:1}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'nearest',intersect:false},plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:12,boxHeight:12,usePointStyle:true,pointStyle:'circle',font:{size:12,weight:'bold'},color:'rgba(255,255,255,0.75)',padding:16}},tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+Math.round(ctx.parsed.r);}}}},scales:{r:{min:0,max:100,grid:{color:'rgba(255,255,255,0.14)'},angleLines:{color:'rgba(255,255,255,0.14)'},ticks:{display:false,stepSize:20},pointLabels:{font:{size:11,weight:'bold'},color:'rgba(255,255,255,0.90)',padding:8}}}}});
         }
 
         let currentRanked = [];
@@ -1335,6 +1332,22 @@
             updateArchAccordion(key);
         }
 
+        function wrapText(text, maxChars) {
+            const words = text.split(' ');
+            const lines = [];
+            let current = '';
+            words.forEach(word => {
+                const test = current ? current + ' ' + word : word;
+                if (test.length > maxChars && current) {
+                    lines.push(current);
+                    current = word;
+                } else {
+                    current = test;
+                }
+            });
+            if (current) lines.push(current);
+            return lines;
+        }
         function renderRankingCards(ranking){
             // leaderSlot (#1): intocado em estrutura — apenas popula o card do líder
             const leaderSlot = document.getElementById('leaderSlot'); if(leaderSlot) leaderSlot.innerHTML='';
@@ -1379,7 +1392,11 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: { display: false },
-                        tooltip: { callbacks: { label: ctx => '  Score: ' + ctx.parsed.x.toFixed(2) } }
+                        tooltip: { callbacks: { label: ctx => {
+                            const eco = (typeof ECOSYSTEM!=='undefined') ? ECOSYSTEM[ranking[ctx.dataIndex].id] : null;
+                            if(eco && eco.role) return wrapText(eco.role, 38);
+                            return '  Score: ' + ctx.parsed.x.toFixed(2);
+                        } } }
                     },
                     scales: {
                         x: { min:0, max:5, grid:{ color:'#e2e8f0' }, ticks:{ color:'#94a3b8', font:{size:11}, callback: v => v.toFixed(1) }, border:{ color:'#e2e8f0' } },
@@ -1486,7 +1503,7 @@
     <div id="archSheetOverlay" onclick="closeArchSheet()"></div>
     <div id="customSheetOverlay" onclick="cancelCustomSheet()"></div>
     <div id="customSheet" role="dialog" aria-modal="true" aria-labelledby="customSheetTitle">
-        <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto mb-5"></div>
+        <div class="py-3 -mt-3 -mb-2 cursor-pointer" onclick="cancelCustomSheet()"><div class="w-10 h-1 bg-slate-200 rounded-full mx-auto"></div></div>
         <p id="customSheetTitle" class="text-base font-black text-slate-900 mb-1">Perfil Personalizado</p>
         <p class="text-[13px] text-slate-600 leading-relaxed mb-5">Ajuste o peso de cada domínio conforme a natureza do seu trabalho. O ranking se adapta ao seu perfil.</p>
         <div id="customSliderMount"></div>
@@ -1494,7 +1511,7 @@
         <button onclick="cancelCustomSheet()" class="w-full mt-3 text-slate-500 font-semibold py-2.5 text-sm">Cancelar</button>
     </div>
     <div id="archSheet" role="dialog" aria-modal="true">
-        <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto mb-5"></div>
+        <div class="py-3 -mt-3 -mb-2 cursor-pointer" onclick="closeArchSheet()"><div class="w-10 h-1 bg-slate-200 rounded-full mx-auto"></div></div>
         <p id="sheetArchName" class="text-base font-black text-slate-900 mb-1"></p>
         <p id="sheetTagline" class="text-[12px] font-semibold text-indigo-600 italic leading-snug mb-3"></p>
         <p id="sheetDesc" class="text-[13px] text-slate-600 leading-relaxed mb-3"></p>
