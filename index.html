@@ -736,6 +736,8 @@
             renderImpactMatrix();
             renderImpactMatrixMobile();
             armImpactPulseObserver();
+            initDragToClose('customSheetHandle', 'customSheet', cancelCustomSheet);
+            initDragToClose('archSheetHandle', 'archSheet', closeArchSheet);
             renderEcosystem();
             renderCanon('all');
             
@@ -1276,6 +1278,34 @@
             }
             __closeCustomSheetShell();
         }
+        function initDragToClose(handleId, sheetId, closeFn){
+            const handle = document.getElementById(handleId);
+            const sheet = document.getElementById(sheetId);
+            if(!handle || !sheet) return;
+            let startY = 0, dy = 0, dragging = false;
+            handle.style.touchAction = 'none';
+            handle.addEventListener('pointerdown', (e) => {
+                dragging = true;
+                startY = e.clientY;
+                sheet.style.transition = 'none';
+                try { handle.setPointerCapture(e.pointerId); } catch(err) {}
+            });
+            handle.addEventListener('pointermove', (e) => {
+                if(!dragging) return;
+                dy = e.clientY - startY;
+                if(dy > 0) sheet.style.transform = 'translateY(' + dy + 'px)';
+            });
+            function endDrag(){
+                if(!dragging) return;
+                dragging = false;
+                sheet.style.transition = '';
+                sheet.style.transform = '';
+                if(dy > 80) closeFn();
+                dy = 0;
+            }
+            handle.addEventListener('pointerup', endDrag);
+            handle.addEventListener('pointercancel', endDrag);
+        }
         const ARCH_SHORT = { cirurgiao:'Cirurgião de Código', showrunner:'Showrunner Corporativo', oraculo:'Oráculo de Cenários', burocrata:'Burocrata de Elite', cacador:'Caçador de Sinais', prototipador:'Prototipador Ágil', legado:'Analista de Legado' };
 
         let __archAnimFrame = null;
@@ -1503,7 +1533,7 @@
     <div id="archSheetOverlay" onclick="closeArchSheet()"></div>
     <div id="customSheetOverlay" onclick="cancelCustomSheet()"></div>
     <div id="customSheet" role="dialog" aria-modal="true" aria-labelledby="customSheetTitle">
-        <div class="py-3 -mt-3 -mb-2 cursor-pointer" onclick="cancelCustomSheet()"><div class="w-10 h-1 bg-slate-200 rounded-full mx-auto"></div></div>
+        <div id="customSheetHandle" class="py-3 -mt-3 -mb-2 cursor-pointer" onclick="cancelCustomSheet()"><div class="w-10 h-1 bg-slate-200 rounded-full mx-auto"></div></div>
         <p id="customSheetTitle" class="text-base font-black text-slate-900 mb-1">Perfil Personalizado</p>
         <p class="text-[13px] text-slate-600 leading-relaxed mb-5">Ajuste o peso de cada domínio conforme a natureza do seu trabalho. O ranking se adapta ao seu perfil.</p>
         <div id="customSliderMount"></div>
@@ -1511,7 +1541,7 @@
         <button onclick="cancelCustomSheet()" class="w-full mt-3 text-slate-500 font-semibold py-2.5 text-sm">Cancelar</button>
     </div>
     <div id="archSheet" role="dialog" aria-modal="true">
-        <div class="py-3 -mt-3 -mb-2 cursor-pointer" onclick="closeArchSheet()"><div class="w-10 h-1 bg-slate-200 rounded-full mx-auto"></div></div>
+        <div id="archSheetHandle" class="py-3 -mt-3 -mb-2 cursor-pointer" onclick="closeArchSheet()"><div class="w-10 h-1 bg-slate-200 rounded-full mx-auto"></div></div>
         <p id="sheetArchName" class="text-base font-black text-slate-900 mb-1"></p>
         <p id="sheetTagline" class="text-[12px] font-semibold text-indigo-600 italic leading-snug mb-3"></p>
         <p id="sheetDesc" class="text-[13px] text-slate-600 leading-relaxed mb-3"></p>
