@@ -348,7 +348,7 @@
     "sourceHash": "ef3e6373"
   },
   "nav.manual_ajuda": {
-    "text": "Manual &amp; Help",
+    "text": "Manual & Help",
     "sourceHash": "e2e5c087"
   },
   "header.subtitle": {
@@ -400,7 +400,7 @@
     "sourceHash": "8bffd6ca"
   },
   "sec.impacto.subtitle": {
-    "text": "How the absence of each cross-cutting enabler (streamlining) — Data Gravity, Format Continuity, Trustworthiness &amp; Verifiability — degrades each domain.",
+    "text": "How the absence of each cross-cutting enabler (streamlining) — Data Gravity, Format Continuity, Trustworthiness & Verifiability — degrades each domain.",
     "sourceHash": "7332f443"
   },
   "sec.biblioteca.title": {
@@ -1264,7 +1264,7 @@
     "sourceHash": "620e412d"
   },
   "diagram.ver_completas": {
-    "text": "See full capabilities &rarr;",
+    "text": "See full capabilities →",
     "sourceHash": "f09793b4"
   },
   "diagram.design.desc": {
@@ -1284,7 +1284,7 @@
     "sourceHash": "e9df9c3e"
   },
   "diagram.ir_diagnostico": {
-    "text": "Go to Decision &rarr;",
+    "text": "Go to Decision →",
     "sourceHash": "24eac54"
   },
   "diagram.conector2": {
@@ -1368,7 +1368,7 @@
     "sourceHash": "45c79454"
   },
   "decidir.sub73": {
-    "text": "7.3 Grounding &amp; Verifiability",
+    "text": "7.3 Grounding & Verifiability",
     "sourceHash": "42556d80"
   },
   "decidir.sub_note": {
@@ -1468,7 +1468,7 @@
     "sourceHash": "47906e2e"
   },
   "conhecimento.ir_diagnostico_decisao": {
-    "text": "Go to Decision &amp; Diagnosis",
+    "text": "Go to Decision & Diagnosis",
     "sourceHash": "cae7b395"
   },
   "insight.modal_title": {
@@ -1478,5 +1478,101 @@
   "help.modal_title": {
     "text": "Operations Manual",
     "sourceHash": "fc755b7"
+  },
+  "impacto.header.0": {
+    "text": "7.1 Data Gravity",
+    "sourceHash": "142b3a16"
+  },
+  "impacto.header.1": {
+    "text": "7.2 Format Continuity",
+    "sourceHash": "45c79454"
+  },
+  "impacto.header.2": {
+    "text": "7.3 Trustworthiness & Verifiability",
+    "sourceHash": "1c8185f8"
+  },
+  "impacto.cell.think.0": {
+    "text": "Historical Context: glossaries and ontologies help normalize terms, but reasoning survives without them.",
+    "sourceHash": "97c25ed2"
+  },
+  "impacto.cell.think.1": {
+    "text": "Neutral: typically consumed as running text, with no requirement for a final format.",
+    "sourceHash": "afaa5f14"
+  },
+  "impacto.cell.think.2": {
+    "text": "Provenance: without tracing the origin of a conflicting concept, curation operates blindly.",
+    "sourceHash": "63f7b907"
+  },
+  "impacto.cell.disc.0": {
+    "text": "Internal Repositories: research can't be limited to the open web; it must scan internal repositories, or risk staying disconnected from the organization.",
+    "sourceHash": "1f444538"
+  },
+  "impacto.cell.disc.1": {
+    "text": "Report: delivering the bibliography already formatted saves work, but doesn't rule out using the raw content.",
+    "sourceHash": "c91dadec"
+  },
+  "impacto.cell.disc.2": {
+    "text": "Auditability: without a traceable primary source line by line, discovery is professionally unusable.",
+    "sourceHash": "5689d480"
+  },
+  "impacto.cell.design.0": {
+    "text": "Brand Assets: accessing logos and palettes directly from the source avoids rework, but the design can still be redone manually.",
+    "sourceHash": "6582b81b"
+  },
+  "impacto.cell.design.1": {
+    "text": "Native (.pptx): an artifact that isn't natively editable doubles the work for whoever needs to adjust it.",
+    "sourceHash": "e84e7ebb"
+  },
+  "impacto.cell.design.2": {
+    "text": "Neutral: the focus here is aesthetic and semiotic, not factual.",
+    "sourceHash": "435a1fde"
+  },
+  "impacto.cell.build.0": {
+    "text": "Codebase: code produced without reading the entire repository generates integration bugs that only surface in production.",
+    "sourceHash": "91545e47"
+  },
+  "impacto.cell.build.1": {
+    "text": "Pull Request: delivering scattered snippets, instead of a commit ready for review, shifts all the integration work onto the developer.",
+    "sourceHash": "ed40748b"
+  },
+  "impacto.cell.build.2": {
+    "text": "Security: prevents hallucination of nonexistent libraries, but isn't the defining axis of the capability.",
+    "sourceHash": "bc67bd29"
+  },
+  "impacto.cell.integ.0": {
+    "text": "Corporate Memory: cross-referencing the proposal with archived decisions enriches the analysis; without it, the analysis is still possible, just shallower.",
+    "sourceHash": "d81af544"
+  },
+  "impacto.cell.integ.1": {
+    "text": "Executive Doc: a well-formatted memo saves executive time, but the content can still be reformatted manually.",
+    "sourceHash": "b92afb9"
+  },
+  "impacto.cell.integ.2": {
+    "text": "Fiduciary Duty: a decision that can't be audited constitutes fiduciary and corporate accountability risk.",
+    "sourceHash": "7ac7a471"
+  },
+  "common.todos": {
+    "text": "All",
+    "sourceHash": "e2da0ae"
+  },
+  "biblioteca.manifesto": {
+    "text": "Manifesto",
+    "sourceHash": "905f146b"
+  },
+  "navmobile.saber": {
+    "text": "Learn",
+    "sourceHash": "e13d112"
+  },
+  "navmobile.decidir": {
+    "text": "Decide",
+    "sourceHash": "690b8d39"
+  },
+  "navmobile.auditoria": {
+    "text": "Audit",
+    "sourceHash": "8eead787"
+  },
+  "navmobile.biblio": {
+    "text": "Library",
+    "sourceHash": "a97721b6"
   }
 }
