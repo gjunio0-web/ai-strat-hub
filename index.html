@@ -14,6 +14,118 @@
     
     <!-- Estilos -->
     <style>
+        /* Acordeão do diagrama-âncora: grid-rows anima para a altura real do conteúdo, sem chutar max-height */
+        .arch-detail {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 200ms ease-in;
+        }
+        .arch-detail.arch-open {
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 250ms ease-out;
+        }
+        .arch-detail-inner {
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 200ms ease-in, transform 200ms ease-in;
+        }
+        .arch-detail.arch-open .arch-detail-inner {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 250ms ease-out 40ms, transform 250ms ease-out 40ms;
+        }
+        .arch-chevron.rotate-180 { transform: rotate(180deg); }
+        @media (prefers-reduced-motion: reduce) {
+            .arch-detail, .arch-detail.arch-open, .arch-detail-inner, .arch-detail.arch-open .arch-detail-inner, .arch-chevron {
+                transition: none !important;
+            }
+        }
+
+        /* Streamlining avançado: mesmo padrão grid-rows do acordeão */
+        #stream-advanced {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 200ms ease-in;
+        }
+        #stream-advanced.stream-adv-open {
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 250ms ease-out;
+        }
+        .stream-adv-inner {
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 200ms ease-in, transform 200ms ease-in;
+            padding-top: 0;
+        }
+        #stream-advanced.stream-adv-open .stream-adv-inner {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 250ms ease-out 40ms, transform 250ms ease-out 40ms;
+            padding-top: 0.5rem;
+        }
+        #stream-simple {
+            overflow: hidden;
+            max-height: 120px;
+            opacity: 1;
+            transition: max-height 250ms ease-out, opacity 200ms ease-out;
+        }
+        #stream-simple.stream-simple-hidden {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 200ms ease-in, opacity 150ms ease-in;
+        }
+        #stream-toggle-chevron.rotate-180 { transform: rotate(180deg); }
+        @media (prefers-reduced-motion: reduce) {
+            #stream-advanced, #stream-advanced.stream-adv-open, .stream-adv-inner,
+            #stream-advanced.stream-adv-open .stream-adv-inner, #stream-simple,
+            #stream-simple.stream-simple-hidden, #stream-toggle-chevron {
+                transition: none !important;
+            }
+        }
+
+        /* Callout de arquétipos: colapsa (não remove) + ícone para reabrir */
+        .arch-hint-wrap {
+            display: grid;
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 220ms ease-in;
+        }
+        .arch-hint-wrap.hint-collapsed {
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 200ms ease-in;
+        }
+        .arch-hint-clip { overflow: hidden; }
+        .arch-hint-box {
+            opacity: 1;
+            transition: opacity 180ms ease-out 40ms;
+        }
+        .arch-hint-wrap.hint-collapsed .arch-hint-box {
+            opacity: 0;
+            transition: opacity 120ms ease-in;
+        }
+        /* Entrada sutil na primeira renderização — reforça que é algo novo, não decoração estática */
+        @keyframes archHintEnter { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        .arch-hint-enter { animation: archHintEnter 320ms ease-out 200ms both; }
+        .arch-hint-restore {
+            display: none;
+            opacity: 0;
+            transform: scale(0.85);
+            pointer-events: none;
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+        .arch-hint-restore.hint-visible {
+            display: inline-flex;
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .arch-hint-wrap, .arch-hint-wrap.hint-collapsed, .arch-hint-box,
+            .arch-hint-wrap.hint-collapsed .arch-hint-box, .arch-hint-restore, .arch-hint-restore.hint-visible,
+            .arch-hint-enter {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
         :root { --app-bg: #f8fafc; --sidebar-bg: #0f172a; }
         body { font-family: 'Inter', sans-serif; background-color: var(--app-bg); color: #1e293b; overflow: hidden; height: 100vh !important; height: 100dvh !important; }
         
@@ -67,6 +179,19 @@
         @keyframes placeholderShimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
         @keyframes impactPulse { 0% { transform: scale(1); } 30% { transform: scale(1.35); } 60% { transform: scale(1); } 100% { transform: scale(1); } }
         .impact-pulse-once { animation: impactPulse 0.8s ease-out 0.5s 1; }
+
+        /* Animações de entrada/saída de modal (backdrop + conteúdo) */
+        @keyframes modalBackdropIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes modalBackdropOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes modalPopIn { from { opacity: 0; transform: scale(0.95) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes modalPopOut { from { opacity: 1; transform: scale(1) translateY(0); } to { opacity: 0; transform: scale(0.97) translateY(4px); } }
+        .modal-fade-enter { animation: modalBackdropIn 200ms ease-out both; }
+        .modal-fade-exit { animation: modalBackdropOut 180ms ease-in both; }
+        .modal-pop-enter { animation: modalPopIn 260ms cubic-bezier(0.16,1,0.3,1) both; }
+        .modal-pop-exit { animation: modalPopOut 160ms ease-in both; }
+        @media (prefers-reduced-motion: reduce) {
+            .modal-fade-enter, .modal-fade-exit, .modal-pop-enter, .modal-pop-exit { animation: none !important; }
+        }
         
         .section-title { font-size: 1.5rem; line-height: 2rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem; }
         .section-subtitle { font-size: 0.875rem; color: #64748b; }
@@ -183,24 +308,178 @@
                     <p class="section-subtitle">Entenda as capacidades fundamentais, organizadas em seis domínios — Thinking, Discovering, Designing, Building, Integrating e o habilitador transversal Streamlining.</p>
                 </header>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="useCaseGrid"></div>
+                <div class="border-2 border-dashed border-slate-300 rounded-2xl p-4 md:p-6 space-y-3">
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-1">A fábrica · potência × eficiência</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 items-start" id="archGridDomains">
+                        <div class="arch-block">
+                            <button id="arch-btn-disc" onclick="toggleArchDetail('disc')" class="w-full flex items-center justify-between gap-3 text-left bg-sky-600 hover:bg-sky-700 transition-colors rounded-xl p-3 text-white shadow-sm">
+                                <div class="min-w-0">
+                                    <p class="font-bold text-sm">Discovering</p>
+                                    <p class="text-[11px] text-sky-100">5.3 · 5.4</p>
+                                </div>
+                                <svg class="arch-chevron w-4 h-4 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="arch-detail-disc" class="arch-detail">
+                                <div class="overflow-hidden">
+                                    <div class="arch-detail-inner bg-sky-50 border border-sky-200 rounded-b-xl -mt-1 pt-3 p-3 text-[12px] text-sky-900 leading-snug">
+                                <p>A capacidade de expandir a base informacional do sistema por busca ativa e ingestão de grandes volumes de dados. Cobre pesquisa técnica profunda (5.3) e leitura massiva de documentos extensos sem perder precisão (5.4).</p>
+                                <button onclick="switchTab('tab-library'); renderCanon('disc')" class="mt-2 text-[11px] font-bold text-sky-700 hover:text-sky-900">Ver capacidades completas &rarr;</button>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arch-block">
+                            <button id="arch-btn-design" onclick="toggleArchDetail('design')" class="w-full flex items-center justify-between gap-3 text-left bg-pink-600 hover:bg-pink-700 transition-colors rounded-xl p-3 text-white shadow-sm">
+                                <div class="min-w-0">
+                                    <p class="font-bold text-sm">Designing</p>
+                                    <p class="text-[11px] text-pink-100">5.1 · 5.2 · 5.5</p>
+                                </div>
+                                <svg class="arch-chevron w-4 h-4 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="arch-detail-design" class="arch-detail">
+                                <div class="overflow-hidden">
+                                    <div class="arch-detail-inner bg-pink-50 border border-pink-200 rounded-b-xl -mt-1 pt-3 p-3 text-[12px] text-pink-900 leading-snug">
+                                <p>A capacidade de materializar abstrações em artefatos visuais consumíveis. Cobre geração de slides (5.1), consistência de identidade visual (5.2) e análise multimodal de imagens e arquivos (5.5).</p>
+                                <button onclick="switchTab('tab-library'); renderCanon('design')" class="mt-2 text-[11px] font-bold text-pink-700 hover:text-pink-900">Ver capacidades completas &rarr;</button>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arch-block">
+                            <button id="arch-btn-build" onclick="toggleArchDetail('build')" class="w-full flex items-center justify-between gap-3 text-left bg-amber-600 hover:bg-amber-700 transition-colors rounded-xl p-3 text-white shadow-sm">
+                                <div class="min-w-0">
+                                    <p class="font-bold text-sm">Building</p>
+                                    <p class="text-[11px] text-amber-100">5.6</p>
+                                </div>
+                                <svg class="arch-chevron w-4 h-4 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="arch-detail-build" class="arch-detail">
+                                <div class="overflow-hidden">
+                                    <div class="arch-detail-inner bg-amber-50 border border-amber-200 rounded-b-xl -mt-1 pt-3 p-3 text-[12px] text-amber-900 leading-snug">
+                                <p>A capacidade de construção e engenharia de software. Cobre geração de aplicações web e automação de código (5.6) — a IA atuando como programadora sênior, da arquitetura ao teste.</p>
+                                <button onclick="switchTab('tab-library'); renderCanon('build')" class="mt-2 text-[11px] font-bold text-amber-700 hover:text-amber-900">Ver capacidades completas &rarr;</button>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arch-block">
+                            <button id="arch-btn-integ" onclick="toggleArchDetail('integ')" class="w-full flex items-center justify-between gap-3 text-left bg-indigo-600 hover:bg-indigo-700 transition-colors rounded-xl p-3 text-white shadow-sm">
+                                <div class="min-w-0">
+                                    <p class="font-bold text-sm">Integrating</p>
+                                    <p class="text-[11px] text-indigo-100">6.1</p>
+                                </div>
+                                <svg class="arch-chevron w-4 h-4 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div id="arch-detail-integ" class="arch-detail">
+                                <div class="overflow-hidden">
+                                    <div class="arch-detail-inner bg-indigo-50 border border-indigo-200 rounded-b-xl -mt-1 pt-3 p-3 text-[12px] text-indigo-900 leading-snug">
+                                <p>A capacidade de síntese executiva, o topo da pirâmide. Cobre análise estratégica, setorial e de cenários (6.1) — reúne pesquisa, lógica, dados e visuais numa recomendação auditável para decisão de negócio.</p>
+                                <button onclick="switchTab('tab-library'); renderCanon('integ')" class="mt-2 text-[11px] font-bold text-indigo-700 hover:text-indigo-900">Ver capacidades completas &rarr;</button>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arch-block">
+                        <button id="arch-btn-think" onclick="toggleArchDetail('think')" class="w-full flex items-center justify-between gap-3 text-left bg-emerald-600 hover:bg-emerald-700 transition-colors rounded-xl p-3 text-white shadow-sm">
+                                <div class="min-w-0">
+                                    <p class="font-bold text-sm">Thinking</p>
+                                    <p class="text-[11px] text-emerald-100">A B C D · o substrato de como pensa</p>
+                                </div>
+                                <svg class="arch-chevron w-4 h-4 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                        <div id="arch-detail-think" class="arch-detail">
+                                <div class="overflow-hidden">
+                                    <div class="arch-detail-inner bg-emerald-50 border border-emerald-200 rounded-b-xl -mt-1 pt-3 p-3 text-[12px] text-emerald-900 leading-snug">
+                            <p>O domínio do raciocínio puro. Suas quatro capacidades nucleares são as metacapacidades: curadoria e integração de fontes (A), validação lógica e stress-test (B), conversão entre níveis de abstração (C) e geração de artefatos intermediários de pensamento (D). Não produz o entregável final, mas garante que a lógica por trás dele seja sólida.</p>
+                            <button onclick="switchTab('tab-library'); renderCanon('think')" class="mt-2 text-[11px] font-bold text-emerald-700 hover:text-emerald-900">Ver capacidades completas &rarr;</button>
+                        </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="arch-block">
+                        <button id="arch-btn-stream" onclick="toggleArchDetail('stream')" class="w-full flex items-center justify-between gap-3 text-left bg-violet-600 hover:bg-violet-700 transition-colors rounded-xl p-3 text-white shadow-sm">
+                                <div class="min-w-0">
+                                    <p class="font-bold text-sm">Streamlining</p>
+                                    <p class="text-[11px] text-violet-100">7.1 · 7.2 · 7.3 · filtra a fricção, transversal</p>
+                                </div>
+                                <svg class="arch-chevron w-4 h-4 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                        <div id="arch-detail-stream" class="arch-detail">
+                                <div class="overflow-hidden">
+                                    <div class="arch-detail-inner bg-violet-50 border border-violet-200 rounded-b-xl -mt-1 pt-3 p-3 text-[12px] text-violet-900 leading-snug">
+                            <p>A camada transversal de habilitadores que determina quanto da potência dos domínios chega ao entregável sem se perder em atrito. Não é uma competência da IA, mas uma condição de entrega: dados na fonte (7.1), formato pronto (7.2) e grounding rastreável (7.3).</p>
+                            <button onclick="switchTab('tab-library'); renderCanon('stream')" class="mt-2 text-[11px] font-bold text-violet-700 hover:text-violet-900">Ver capacidades completas &rarr;</button>
+                        </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="flex items-center justify-center gap-3 !mt-0">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                            <span class="w-px h-5 bg-slate-300"></span>
+                            <span class="w-6 h-6 rounded-full border border-slate-300 bg-white flex items-center justify-center text-[11px] font-bold text-slate-600 flex-shrink-0">1</span>
+                            <span class="w-px h-5 bg-slate-300"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                        </div>
+                        <p class="text-[12px] text-slate-500 leading-snug max-w-[170px]">aplica pesos e fricção ao seu perfil</p>
+                    </div>
+
+                    <div class="arch-block !mt-0">
+                        <button id="arch-btn-arch" onclick="toggleArchDetail('arch')" class="w-full flex items-center justify-between gap-3 text-left bg-purple-600 hover:bg-purple-700 transition-colors rounded-xl p-3 text-white shadow-sm">
+                                <div class="min-w-0">
+                                    <p class="font-bold text-sm">Arquétipos</p>
+                                    <p class="text-[11px] text-purple-100">aplica os pesos σ e o slider de fricção S</p>
+                                </div>
+                                <svg class="arch-chevron w-4 h-4 flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                        <div id="arch-detail-arch" class="arch-detail">
+                                <div class="overflow-hidden">
+                                    <div class="arch-detail-inner bg-purple-50 border border-purple-200 rounded-b-xl -mt-1 pt-3 p-3 text-[12px] text-purple-900 leading-snug">
+                            <p>Os perfis profissionais que traduzem uma identidade de uso em configuração matemática. Cada arquétipo define os pesos dos cinco domínios e a posição do slider de fricção — o mecanismo pelo qual você personaliza a fábrica para o seu contexto.</p>
+                            <button onclick="switchTab('tab-decision')" class="mt-2 text-[11px] font-bold text-purple-700 hover:text-purple-900">Ir para Diagnóstico &rarr;</button>
+                        </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="flex items-center justify-center gap-3 !mt-0">
+                        <div class="flex flex-col items-center flex-shrink-0">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                            <span class="w-px h-5 bg-slate-300"></span>
+                            <span class="w-6 h-6 rounded-full border border-slate-300 bg-white flex items-center justify-center text-[11px] font-bold text-slate-600 flex-shrink-0">2</span>
+                            <span class="w-px h-5 bg-slate-300"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                        </div>
+                        <p class="text-[12px] text-slate-500 leading-snug max-w-[170px]">gera o score efetivo personalizado</p>
+                    </div>
+
+                    <button onclick="switchTab('tab-decision')" class="w-full !mt-0 text-left bg-slate-900 border-2 border-indigo-500 rounded-xl p-3 text-white shadow-sm hover:bg-slate-800 transition-colors">
+                        <p class="font-bold text-sm">Score Efetivo personalizado</p>
+                        <p class="text-[11px] text-indigo-300">o ranking de IAs do seu perfil</p>
+                    </button>
+                </div>
 
                 <div class="pt-8 border-t border-slate-200">
                     <header class="mb-6">
                         <h3 class="section-title">Pipeline Produtivo</h3>
-                        <p class="section-subtitle">O fluxo de trabalho, em três etapas, de uma IA.</p>
+                        <p class="section-subtitle">As capacidades descritas acima, agora reorganizadas pelo estágio do fluxo de trabalho: Insumo, Processamento e Entrega.</p>
                     </header>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
                         <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 z-0 rounded-full"></div>
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative z-10 flex flex-col h-full hover:-translate-y-1 transition-transform">
-                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">In</div><div><h4 class="font-bold text-slate-900">INPUT</h4><p class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Insumo & Grounding</p></div></div><div class="mt-auto space-y-2" id="pipeline-input-list"></div>
+                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">1</div><div><h4 class="font-bold text-slate-900">Insumo</h4><p class="text-[11px] text-slate-500 leading-snug">Trazer informação do mundo real para dentro do fluxo: pesquisa, leitura e captação de dados.</p></div></div><div class="space-y-3" id="pipeline-input-list"></div>
                         </div>
                         <div class="bg-white p-6 rounded-2xl border border-emerald-200 shadow-sm relative z-10 flex flex-col h-full hover:-translate-y-1 transition-transform">
-                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-emerald-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">Pro</div><div><h4 class="font-bold text-slate-900">PROCESS</h4><p class="text-[10px] text-emerald-600 uppercase tracking-wider font-bold">Lógica & Estrutura</p></div></div><div class="mt-auto space-y-2" id="pipeline-process-list"></div>
+                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-emerald-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">2</div><div><h4 class="font-bold text-slate-900">Processamento</h4><p class="text-[11px] text-slate-500 leading-snug">Raciocinar sobre o insumo: validar a lógica, estruturar o argumento e sintetizar a decisão.</p></div></div><div class="space-y-3" id="pipeline-process-list"></div>
                         </div>
                         <div class="bg-white p-6 rounded-2xl border border-indigo-200 shadow-sm relative z-10 flex flex-col h-full hover:-translate-y-1 transition-transform">
-                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">Out</div><div><h4 class="font-bold text-slate-900">OUTPUT</h4><p class="text-[10px] text-indigo-600 uppercase tracking-wider font-bold">Entrega Final</p></div></div><div class="mt-auto space-y-2" id="pipeline-output-list"></div>
+                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">3</div><div><h4 class="font-bold text-slate-900">Entrega</h4><p class="text-[11px] text-slate-500 leading-snug">Empacotar o resultado em formato final utilizável: slides, código e artefatos prontos.</p></div></div><div class="space-y-3" id="pipeline-output-list"></div>
                         </div>
                     </div>
                 </div>
@@ -236,6 +515,21 @@
                         <div>
                             <h3 class="section-title hidden lg:block">Perfil Profissional</h3>
                             <p class="section-subtitle hidden lg:block">Escolha um arquétipo ou ajuste os domínios.</p>
+                            <div id="archHintWrap" class="arch-hint-wrap">
+                                <div class="arch-hint-clip">
+                                    <div id="archHint" class="arch-hint-box arch-hint-enter flex items-start gap-2 mt-3 mb-1 bg-slate-50 border border-purple-200 rounded-lg p-3 leading-snug">
+                                        <svg class="w-[18px] h-[18px] flex-shrink-0 text-purple-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.989-2.386l-.548-.547z"></path></svg>
+                                        <div class="min-w-0">
+                                            <p class="text-sm font-medium text-purple-700 mb-1.5">Você já viu os Arquétipos no "Saber" — aqui é onde você os aplica.</p>
+                                            <p class="text-[11px] text-slate-500">Os arquétipos são a camada que configura a fábrica — cada um aplica um peso diferente aos domínios e ao Streamlining. <b class="font-semibold text-slate-700">Importante:</b> não existe um arquétipo certo para você — existe o certo para a tarefa. A mesma pessoa pode ser Cirurgião num projeto de código e Burocrata num relatório executivo. Troque quando quiser: o ranking recalcula ao vivo.</p>
+                                        </div>
+                                        <button onclick="dismissArchHint()" class="flex-shrink-0 text-slate-400 hover:text-slate-600 transition-colors" aria-label="Dispensar dica"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="archHintRestore" onclick="restoreArchHint()" class="arch-hint-restore w-7 h-7 mt-2 mb-1 rounded-full bg-slate-50 border border-purple-200 text-purple-500 hover:bg-purple-50 hover:text-purple-700 transition-colors items-center justify-center" aria-label="Reabrir dica sobre arquétipos">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </button>
                             <div class="grid grid-cols-2 gap-2 my-5">
                                 <button data-arch="cirurgiao" onclick="previewArchetype('cirurgiao')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Cirurgião de Código</button>
                                 <button data-arch="showrunner" onclick="previewArchetype('showrunner')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors">Showrunner Corporativo</button>
@@ -266,9 +560,40 @@
                                 <div class="group"><label for="slider-integ" class="flex justify-between text-xs font-bold text-slate-700 mb-2 group-hover:text-indigo-600 transition-colors"><span>Integrating <span class="font-normal text-slate-400">· Estratégia</span></span><span id="val-integ" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label><input type="range" id="slider-integ" min="0" max="100" value="50"></div>
                             </div>
                             <div class="mt-5 bg-slate-50 border border-slate-200 rounded-xl p-4">
-                                <label for="slider-stream" class="flex justify-between text-xs font-bold text-slate-700 mb-2"><span>Streamlining · Fricção</span><span id="val-stream" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label>
-                                <input type="range" id="slider-stream" min="0" max="100" value="50">
-                                <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>Artesão (potência pura)</span><span>Operador (entrega pronta)</span></div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs font-bold text-slate-700">Streamlining · Fricção</span>
+                                    <button id="stream-toggle" onclick="toggleStreamAdvanced()" class="flex items-center gap-1 text-[10px] font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+                                        <span id="stream-toggle-label">Abrir componentes</span>
+                                        <svg id="stream-toggle-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </button>
+                                </div>
+
+                                <div id="stream-simple">
+                                    <label for="slider-stream" class="flex justify-between text-[11px] text-slate-500 mb-1"><span>exigência global</span><span id="val-stream" class="text-indigo-600 bg-indigo-50 px-2 rounded">50%</span></label>
+                                    <input type="range" id="slider-stream" min="0" max="100" value="50">
+                                    <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>Artesão (potência pura)</span><span>Operador (entrega pronta)</span></div>
+                                </div>
+
+                                <div id="stream-advanced" class="stream-adv-collapsed">
+                                    <div class="overflow-hidden">
+                                        <div class="stream-adv-inner space-y-3">
+                                            <div class="group">
+                                                <label for="slider-stream-71" class="flex justify-between text-[11px] font-bold text-slate-600 mb-1"><span>7.1 Gravidade de Dados</span><span id="val-stream-71" class="text-violet-600 bg-violet-50 px-2 rounded">50%</span></label>
+                                                <input type="range" id="slider-stream-71" min="0" max="100" value="50">
+                                            </div>
+                                            <div class="group">
+                                                <label for="slider-stream-72" class="flex justify-between text-[11px] font-bold text-slate-600 mb-1"><span>7.2 Continuidade de Formato</span><span id="val-stream-72" class="text-violet-600 bg-violet-50 px-2 rounded">50%</span></label>
+                                                <input type="range" id="slider-stream-72" min="0" max="100" value="50">
+                                            </div>
+                                            <div class="group">
+                                                <label for="slider-stream-73" class="flex justify-between text-[11px] font-bold text-slate-600 mb-1"><span>7.3 Grounding &amp; Verificabilidade</span><span id="val-stream-73" class="text-violet-600 bg-violet-50 px-2 rounded">50%</span></label>
+                                                <input type="range" id="slider-stream-73" min="0" max="100" value="50">
+                                            </div>
+                                            <p class="text-[10px] text-slate-400 leading-snug pt-1 border-t border-slate-200">Regule cada habilitador de forma independente — ex.: exija formato pronto (7.2 alto) mas ignore gravidade de dados (7.1 baixo).</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div id="streamEffect" class="text-[10px] text-slate-500 mt-3 leading-snug border-t border-slate-200 pt-2"></div>
                             </div>
                             </div>
@@ -322,7 +647,7 @@
             <div class="max-w-7xl mx-auto space-y-6">
                 <div>
                     <header class="mb-3 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-                        <div><h2 class="section-title">Matriz de Auditoria</h2><p class="section-subtitle">Notas detalhadas (1-5) para cada capacidade.</p></div>
+                        <div><h2 class="section-title">Matriz de Auditoria</h2><p class="section-subtitle">Como cada uma das 7 IAs pontua, capacidade por capacidade — nota e justificativa por trás dela — para que você possa auditar o ranking gerado pelo motor de decisão.</p><button onclick="toggleOrigemNotasModal()" class="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-sky-600 hover:text-sky-800 hover:underline transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>De onde vêm as notas?</button></div>
                         <div class="hidden md:flex flex-wrap gap-2" id="audit-filters">
                             <button onclick="setAuditFilter('all')" id="filter-audit-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active">Todos</button>
                             <button onclick="setAuditFilter('think')" id="filter-audit-think" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
@@ -390,6 +715,48 @@
     </nav>
 
     <!-- MODAIS E OVERLAYS -->
+    <!-- MODAL: ORIGEM DAS NOTAS -->
+    <div id="origem-notas-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="origem-notas-modal-title">
+      <div id="origem-notas-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200">
+        <div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center">
+          <h2 id="origem-notas-modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-8 h-8 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </span>
+            De onde vêm as notas
+          </h2>
+          <button onclick="toggleOrigemNotasModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed">
+          <div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700">
+            <p class="mb-4">A capacidade de uma IA não é fixa &ndash; ela muda rápido, às vezes de uma semana para a outra, conforme novos modelos chegam ao mercado. Por isso este Hub não é um ranking congelado, e sim um instrumento vivo, reavaliado periodicamente. Quando uma nota se move, na maioria das vezes não é correção de erro: é o mundo tendo mudado.</p>
+            <p class="mb-4">Cada nota nasce da melhor evidência disponível para aquela capacidade específica &ndash; e essa evidência não é uniforme. Ela vem de três origens:</p>
+            <div class="space-y-4 not-prose">
+              <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                <h4 class="text-emerald-800 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> Medido por benchmark</h4>
+                <p class="text-slate-600">Onde existem benchmarks públicos e confiáveis, a nota deriva deles &ndash; é o caso de engenharia de código, análise de gráficos e documentos, leitura de contexto massivo e verificabilidade (grounding). Nota ancorada em dado externo e reproduzível.</p>
+              </div>
+              <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
+                <h4 class="text-amber-800 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-amber-500"></span> Aproximado (proxy)</h4>
+                <p class="text-slate-600">Em algumas capacidades não há régua direta, mas há benchmarks gerais que servem de aproximação. O raciocínio lógico, por exemplo, é medido por provas que chegam perto, sem capturar exatamente o uso profissional. Nota informada por dado, com uma camada de interpretação.</p>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="text-slate-700 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-slate-500"></span> Avaliação especializada</h4>
+                <p class="text-slate-600">Algumas capacidades simplesmente não têm benchmark público &ndash; converter entre níveis de abstração ou manter consistência de identidade de marca, por exemplo. Aqui a nota é uma avaliação especializada declarada, não uma medição.</p>
+              </div>
+            </div>
+            <hr class="border-slate-100 my-5">
+            <p class="mb-4"><strong>Como escolhemos os benchmarks.</strong> Não vale qualquer leaderboard. Um benchmark só entra se for dinâmico (renova as questões, para o resultado não envelhecer), resistente a contaminação (as questões não estavam no treino do modelo &ndash; senão o score mede memória, não capacidade) e ainda capaz de separar os melhores modelos. Benchmarks célebres porém saturados ou contaminados são deliberadamente rebaixados a papel histórico.</p>
+            <p class="mb-4"><strong>O que a nota não é.</strong> Ela não é um veredito de "melhor IA" absoluta &ndash; é um retrato, na melhor evidência de hoje, de uma capacidade específica. A decisão final é sua: o caminho mais seguro é testar as duas ou três candidatas que o Hub aponta em casos reais do seu próprio trabalho.</p>
+            </div>
+        </div>
+        <div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center">
+          <button onclick="toggleOrigemNotasModal()" class="px-6 py-2 bg-slate-800 text-white font-bold text-sm rounded-lg hover:bg-slate-700 focus:ring-4 focus:ring-slate-200 transition-colors w-full md:w-auto">Fechar</button>
+        </div>
+      </div>
+    </div>
     <div id="tags-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="tags-modal-title"><div id="tags-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="tags-modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg></span>Significado das Tags</h2><button onclick="toggleTagsModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><p class="mb-4">No contexto do <strong>AI Strategy Hub app</strong>, essas tags representam a natureza primária de cada ferramenta, ou seja, em qual etapa do "Pipeline Produtivo" (Input → Process → Output) ela brilha com mais intensidade.</p><p>Aqui está o significado prático de cada uma:</p><hr class="border-slate-100 my-4"><div class="space-y-6"><div class="bg-slate-50 p-4 rounded-xl border border-slate-100"><h4 class="text-slate-700 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-slate-500"></span> 1. Insumo (Input)</h4><p><strong>O que é:</strong> Ferramentas especializadas em buscar, filtrar e trazer informação do mundo real para dentro do seu fluxo de trabalho.</p><p><strong>Foco:</strong> Pesquisa (Grounding), verificação de fatos e navegação autônoma na web.</p><p class="text-xs mt-2"><strong class="text-slate-500">IAs nesta categoria:</strong><br><span class="font-bold">Perplexity:</span> Age como um motor de busca conversacional, perfeito para substituir o Google e trazer fontes citadas.<br><span class="font-bold">Manus:</span> Um agente que navega na web para executar tarefas e encontrar dados dispersos.</p></div><div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100"><h4 class="text-emerald-800 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> 2. Raciocínio (Reasoning)</h4><p><strong>O que é:</strong> Ferramentas focadas na etapa de "Processamento". São os "cérebros" mais densos, ideais para lidar com lógica complexa, codificação, estruturação de argumentos e validação teórica.</p><p><strong>Foco:</strong> Lógica pura, matemática, arquitetura de software e escrita complexa/nuanceada.</p><p class="text-xs mt-2"><strong class="text-emerald-700">IAs nesta categoria:</strong><br><span class="font-bold">GPT-5.5 Pro:</span> Versátil e multimodal, com modos de raciocínio para reduzir alucinações lógicas.<br><span class="font-bold">Claude Opus 4.8:</span> Referência em lógica, codificação limpa (Artifacts) e nuance textual.<br><span class="font-bold">DeepSeek R1:</span> Focado em raciocínio matemático e lógico rigoroso via cadeia de pensamento.</p></div><div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100"><h4 class="text-indigo-800 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-indigo-500"></span> 3. Entrega (Delivery)</h4><p><strong>O que é:</strong> Ferramentas voltadas para a "Saída" (Output) e produção final. Elas são melhores em empacotar o conteúdo em um formato utilizável (slides, documentos formatados, imagens, integração com e-mail/Office).</p><p><strong>Foco:</strong> Multimodalidade (ver e criar imagens/vídeo), integração com ecossistemas (Google/Microsoft) e geração de artefatos finais.</p><p class="text-xs mt-2"><strong class="text-indigo-700">IAs nesta categoria:</strong><br><span class="font-bold">Gemini 3.1 Pro:</span> Forte integração com o Google Workspace e contexto nativo de 2M tokens para ler documentos e produzir conteúdo.<br><span class="font-bold">Copilot M365:</span> Especializado em entregar documentos Word e slides PowerPoint nativos dentro do ecossistema Microsoft.</p></div></div><p class="text-xs text-center text-slate-400 mt-6 italic">Essas categorias ajudam a entender que não existe uma "melhor IA" absoluta, mas sim a melhor para a etapa do trabalho que você está executando no momento.</p></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleTagsModal()" class="px-6 py-2 bg-slate-800 text-white font-bold text-sm rounded-lg hover:bg-slate-700 focus:ring-4 focus:ring-slate-200 transition-colors w-full md:w-auto">Fechar</button></div></div></div>
     <div id="gemini-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity"><div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scroll relative flex flex-col"><div class="p-6 border-b border-slate-100 flex justify-between items-center sticky top-0 bg-white z-10"><div class="flex items-center gap-2"><span class="text-2xl">✨</span><h3 class="font-bold text-lg text-slate-900">Análise Estratégica IA</h3></div><button onclick="document.getElementById('gemini-modal').classList.add('hidden')" class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-50">✕</button></div><div class="p-6 text-sm text-slate-600 leading-relaxed" id="gemini-content"></div></div></div>
     <div id="help-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="modal-title"><div id="help-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg></span>Manual de Operações</h2><button onclick="toggleHelpModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar ajuda"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><h3 class="text-lg text-slate-900 mt-0">Bem-vindo ao AI Strategy Hub.</h3><p>Este dashboard não é apenas uma lista de ferramentas; é um motor de decisão calibrado para encontrar a melhor ferramenta de IA para o seu perfil profissional. Siga o fluxo lógico abaixo para extrair o máximo deste app.</p><hr class="border-slate-100 my-4"><div class="space-y-8"><div><h4 class="text-base mb-2">1. Entenda os “o quês” (CAPACIDADES)</h4><p>Não comece pelas ferramentas, comece pelo seu <strong>objetivo</strong>. As capacidades das IAs estão organizadas em seis domínios — cinco de potência mais um habilitador transversal:</p><ul class="list-disc pl-5 space-y-1 marker:text-indigo-400"><li><strong>Thinking (Raciocínio):</strong> planejar, criticar, validar e estruturar.</li><li><strong>Discovering (Descoberta):</strong> pesquisar, ler em massa e ingerir dados.</li><li><strong>Designing (Materialização):</strong> slides, identidade visual e multimodalidade.</li><li><strong>Building (Construção):</strong> gerar código e aplicações.</li><li><strong>Integrating (Estratégia):</strong> sintetizar tudo em decisão executiva.</li><li><strong>Streamlining (Habilitador):</strong> reduzir a fricção entre a IA e seu fluxo — acesso a dados, formato de entrega e confiabilidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático: A Jornada da Ana</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200"><strong>Cenário:</strong> Ana precisa criar uma estratégia de lançamento para um banco digital. Ela não busca apenas "um chatbot": ela precisa da tecnologia de IA mais adequada para o trabalho. Então, ela abre o app e analisa as capacidades da seção "O que uma IA entrega", e percebe que seu projeto exige três delas: <em>5.3 Pesquisa Acadêmica e Técnica Aprofundada</em> (para ler regulações bancárias), <em>B — Validação lógica, consistência interna e stress-test</em> (para testar seu modelo de precificação) e <em>5.1 Geração Automatizada de Apresentações em PowerPoint</em> (para a apresentação final).</div></details></div><div><h4 class="text-base mb-2">2. Visualize o “como” (PIPELINE)</h4><p>Entenda onde cada capacidade se encaixa no seu fluxo de trabalho real, desde o <strong>Input</strong> (pesquisa e curadoria), passando pelo <strong>Process</strong> (validação lógica) até o <strong>Output</strong> (entrega final).</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">Ana olha para o quadro do Pipeline e traça seu fluxo:<br>1. <strong>Input:</strong> Primeiro, usará a capacidade <strong>5.3 Pesquisa Acadêmica e Técnica Aprofundada</strong> para varrer leis do Banco Central.<br>2. <strong>Process:</strong> Depois, usará o metacaso <strong>B — Validação lógica, consistência interna e stress-test</strong> para encontrar furos na tese.<br>3. <strong>Output:</strong> Por fim, usará a capacidade <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong> para transformar o texto em um deck de slides.</div></details></div><div><h4 class="text-base mb-2">3. Diga o “porquê” (PERFIL de uso)</h4><p><strong>Esta é a etapa mais importante.</strong> Escolha um dos sete arquétipos profissionais ou ajuste manualmente os cinco sliders de domínio (Thinking, Discovering, Designing, Building, Integrating) conforme a relevância de cada um para o seu trabalho.</p><ul class="list-disc pl-5 space-y-1 marker:text-emerald-400"><li>Quanto cada domínio importa para a sua entrega?</li><li>E o <strong>Streamlining</strong>: você é mais <em>Artesão</em> (quer a potência bruta e monta o resultado à mão) ou <em>Operador</em> (quer o entregável pronto, sem fricção)?</li></ul><p class="italic text-xs bg-slate-50 p-2 rounded border-l-2 border-indigo-400 mt-2">O slider de Streamlining controla o quanto a fricção penaliza o ranking. O sistema reage em tempo real.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">No Diagnóstico, Ana sobe <strong>Thinking</strong> e <strong>Discovering</strong> (precisa de precisão lógica e de varrer regulações) e também <strong>Designing</strong>, já que o entregável final é um deck de slides. Mantém Building baixo, pois não vai escrever código. Como ela precisa do PowerPoint <em>pronto</em> para a diretoria, ela empurra o slider de <strong>Streamlining para o lado Operador</strong> — sinalizando que a fricção de formatação manual deve pesar contra as IAs que só entregam texto bruto.</div></details></div><div><h4 class="text-base mb-2">4. Escolha a IA certa (RANKING)</h4><p>Com base no perfil definido, o <strong>Motor de Decisão</strong> calcula a pontuação de cada IA e monta o ranking. Cada IA recebe um <strong>Score Efetivo por domínio</strong> — a potência bruta multiplicada pelo Fator de Eficiência daquele domínio — e o score final é a média ponderada pelos seus sliders.</p><p><strong>Potência × Eficiência:</strong> uma IA potente mas de alta fricção pode perder para uma menos potente que entrega pronto. Passe o mouse sobre cada card do ranking para ver o detalhamento (P, F, D e E) domínio a domínio. Quando dois líderes ficam a menos de 0,001 de distância, ambos recebem o selo <strong>Empate Técnico</strong>.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">O Motor processa o perfil híbrido da Ana (alta lógica + alta entrega visual + viés Operador). O ranking reflete essa combinação: ferramentas de texto puro caem porque sua baixa <strong>Continuidade de Formato (7.2)</strong> é penalizada pela fricção, enquanto o <strong>Copilot M365</strong> e o <strong>Gemini 3.1 Pro</strong> sobem por entregarem mais perto do pronto. Passando o mouse no card, Ana vê que o <strong>GPT-5.5 Pro</strong> tem ótima potência, mas perde Score Efetivo no domínio Designing por causa do handoff de formato.</div></details></div><div><h4 class="text-base mb-2">5. Audite e aprofunde-se (MATRIZ)</h4><p>Não confie cegamente no algoritmo.</p><ul class="list-disc pl-5 space-y-1 marker:text-sky-400"><li>Vá à <strong>Auditoria Técnica</strong> (Seção 5) para consultar a nota exata de cada ferramenta para cada uma de suas capacidades.</li><li>Consulte a <strong>Biblioteca</strong> (Seção 6) para ler as definições canônicas de cada capacidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">Ana não quer surpresas. Ela vai à Auditoria Técnica (Seção 5) e verifica especificamente a capacidade de gerar slides na matriz. Ela nota que o <em>ChatGPT</em> possui limitações visuais (nota baixa em <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong>), enquanto o <em>MS Copilot</em> tem nota máxima nesse quesito. Isso valida sua escolha por um fluxo híbrido.</div></details></div></div></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleHelpModal()" class="px-6 py-2 bg-indigo-600 text-white font-bold text-sm rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors w-full md:w-auto">Entendi</button></div></div></div><div id="welcome-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="welcome-modal-title"><div id="welcome-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="welcome-modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.989-2.386l-.548-.547z"></path></svg></span>Bem-vindo ao AI Strategy Hub</h2></div><div class="p-6 md:p-8 space-y-4 text-sm text-slate-600 leading-relaxed prose prose-sm max-w-none prose-strong:text-indigo-700"><p>Não existe "a melhor IA" — existe a melhor IA <em>para o seu trabalho</em>. Cada ferramenta é forte em algumas coisas e fraca em outras; <strong>a pergunta certa</strong> não é "qual é mais inteligente", mas "qual entrega o que eu preciso, do jeito que eu preciso".</p><p>É para responder essa pergunta que este app existe. Escolha um <strong>perfil profissional</strong> que se pareça com o seu, ou personalize-o. Em segundos, você verá um <strong>ranking das 7 IAs</strong> mais relevantes do mercado, ordenadas para este perfil específico.</p><p><strong>Potência bruta</strong> é só metade da conta. A outra metade é a <strong>fricção</strong>: se a IA já lê seus dados, entrega pronto para usar, e se você pode confiar na fonte do que ela afirma. O app pesa isso também.</p><p>Explore os perfis, mexa nos controles, e veja a recomendação mudar ao vivo.</p></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3"><label class="flex items-center gap-2 text-xs font-medium text-slate-500 cursor-pointer select-none"><input type="checkbox" id="welcome-dont-show" class="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">Não mostrar novamente</label><button onclick="closeWelcomeModal()" class="px-6 py-2 bg-indigo-600 text-white font-bold text-sm rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors w-full sm:w-auto">Entendi</button></div></div></div>
@@ -441,6 +808,21 @@
             { key:'B',  label:'Building',    pIdx:3, fIdx:5, D:1.0 }, // Building    -> 7.1
             { key:'I',  label:'Integrating', pIdx:4, fIdx:7, D:1.0 }  // Integrating -> 7.3
         ];
+
+        // v13.7 — Matriz de acoplamento normalizada k̂ (blend de habilitadores por domínio).
+        // Derivada da Matriz de Impacto Cruzado (§5.3 do cânone de habilitadores). Cada linha soma 1.
+        // Colunas na ordem [7.1, 7.2, 7.3]; índices de F em master81 são [5, 6, 7].
+        const KHAT = {
+            T:  [0.25, 0.13, 0.62],
+            Di: [0.50, 0.13, 0.37],
+            De: [0.36, 0.56, 0.08],
+            B:  [0.40, 0.40, 0.20],
+            I:  [0.25, 0.25, 0.50]
+        };
+
+        // v13.7 — Conversão de slider de domínio (σ, 0–1) em peso W (§4.1 do cânone).
+        // Veto em 0; piso 0.5 e teto 3.0 para σ ∈ (0, 1].
+        function weightFor(s){ return s === 0 ? 0 : 0.5 + s * 2.5; }
         const SIGMA_SLIDERS = ['slider-think','slider-disc','slider-design','slider-build','slider-integ'];
         const SIGMA_LABELS  = ['val-think','val-disc','val-design','val-build','val-integ'];
         // Presets dos Arquétipos (Tabela 8.2): sliders [T,Di,De,B,I] (0-1) + Streamlining S (0-1).
@@ -661,6 +1043,34 @@
         ];
 
         // --- NAVIGATION LOGIC ---
+        function dismissArchHint(){
+            const wrap = document.getElementById('archHintWrap');
+            const restore = document.getElementById('archHintRestore');
+            if(wrap) wrap.classList.add('hint-collapsed');
+            if(restore) restore.classList.add('hint-visible');
+        }
+
+        function restoreArchHint(){
+            const wrap = document.getElementById('archHintWrap');
+            const restore = document.getElementById('archHintRestore');
+            if(wrap) wrap.classList.remove('hint-collapsed');
+            if(restore) restore.classList.remove('hint-visible');
+        }
+
+        function toggleArchDetail(key) {
+            const target = document.getElementById('arch-detail-' + key);
+            if (!target) return;
+            const wasOpen = target.classList.contains('arch-open');
+            document.querySelectorAll('.arch-detail').forEach(el => el.classList.remove('arch-open'));
+            document.querySelectorAll('.arch-chevron').forEach(el => el.classList.remove('rotate-180'));
+            if (!wasOpen) {
+                target.classList.add('arch-open');
+                const btn = document.getElementById('arch-btn-' + key);
+                const chevron = btn && btn.querySelector('.arch-chevron');
+                if (chevron) chevron.classList.add('rotate-180');
+            }
+        }
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.remove('tab-active');
@@ -727,7 +1137,6 @@
         };
 
         function init(){
-            renderUseCaseCards();
             renderPipeline();
             renderRadarControls();
             initCharts();
@@ -743,11 +1152,15 @@
             
             // SYSTEM INIT
             applyArchetype('cirurgiao'); // Inicia sempre com perfil Cirurgião
+            // Mantém o painel de perfil aberto na primeira carga (mobile inclusive) — só o bootstrap automático
+            // força reabertura; escolhas manuais do usuário continuam colapsando normalmente para revelar o ranking.
+            const __initialPane = document.querySelector('.decision-pane');
+            if(__initialPane) __initialPane.classList.add('profile-open');
             isInitializing = false; // RELEASE LOCK
             switchTab('tab-knowledge');
             
             // ATTACH LISTENERS FOR TOAST (CLEAN SLATE)
-            ['slider-think','slider-disc','slider-design','slider-build','slider-integ','slider-stream'].forEach(id => {
+            ['slider-think','slider-disc','slider-design','slider-build','slider-integ','slider-stream','slider-stream-71','slider-stream-72','slider-stream-73'].forEach(id => {
                 const slider = document.getElementById(id);
                 slider.addEventListener('input', () => {
                     // Ajuste manual: deixa de ser um arquétipo nomeado
@@ -795,56 +1208,33 @@
             stream: { label:'Streamlining',card:'border-violet-200 text-violet-800 bg-violet-50/50' }
         };
 
-        function renderUseCaseCards(){
-            const container=document.getElementById('useCaseGrid');
-            container.innerHTML='';
-            cases.forEach(c=>{
-                const dm = DOMAIN_META[c.cat] || { label:c.cat, card:'border-slate-200 text-slate-600' };
-                const card=document.createElement('div');
-                card.className=`p-4 rounded-xl border ${dm.card} hover:shadow-md transition-all cursor-pointer flex flex-col hover:-translate-y-1 bg-white`;
-                card.onclick=()=> goToLibrary(c.id);
-                card.innerHTML=`
-                    <div class="flex items-start justify-between gap-2 mb-2">
-                        <div class="font-bold text-sm leading-tight">${c.name.split(' ').slice(1).join(' ')}</div>
-                        <span class="font-bold text-[9px] uppercase tracking-wide opacity-80 border border-current px-1.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">${dm.label}</span>
-                    </div>
-                    <div class="text-[11px] opacity-80 flex-grow leading-snug">${c.desc}</div>
-                `;
-                container.appendChild(card);
-            });
+        function buildCapabilityCard(c){
+            const dm = DOMAIN_META[c.cat] || { label:c.cat, card:'border-slate-200 text-slate-600' };
+            const card=document.createElement('div');
+            card.className=`p-4 rounded-xl border ${dm.card} hover:shadow-md transition-all cursor-pointer flex flex-col hover:-translate-y-1 bg-white`;
+            card.onclick=()=> goToLibrary(c.id);
+            card.innerHTML=`
+                <div class="flex items-start justify-between gap-2 mb-2">
+                    <div class="font-bold text-sm leading-tight">${c.name.split(' ').slice(1).join(' ')}</div>
+                    <span class="font-bold text-[9px] uppercase tracking-wide opacity-80 border border-current px-1.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">${dm.label}</span>
+                </div>
+                <div class="text-[11px] opacity-80 flex-grow leading-snug">${c.desc}</div>
+            `;
+            return card;
         }
 
         function renderPipeline() {
-            // Apply correct colors based on category
-            const getColor = (id) => {
-                const cat = cases.find(c=>c.id===id)?.cat;
-                if(cat==='meta') return 'text-emerald-700 bg-emerald-50 border-emerald-100';
-                if(cat==='prod') return 'text-sky-700 bg-sky-50 border-sky-100';
-                return 'text-indigo-700 bg-indigo-50 border-indigo-100';
+            const fill = (listId, ids) => {
+                const el = document.getElementById(listId);
+                el.innerHTML = '';
+                ids.forEach(id => {
+                    const c = cases.find(x => x.id === id);
+                    if (c) el.appendChild(buildCapabilityCard(c));
+                });
             };
-
-            const createBadge = (id) => {
-                const colorCls = getColor(id);
-                return `<div class="p-2 rounded border ${colorCls} cursor-pointer hover:shadow-sm transition-all flex items-center gap-2" onclick="goToLibrary('${id}')"><span class="text-[10px] font-bold opacity-60">${id}</span><span class="text-xs font-bold">${cases.find(c=>c.id===id).name.split(' ').slice(1).join(' ')}</span></div>`;
-            };
-            
-            document.getElementById('pipeline-input-list').innerHTML = `
-                ${createBadge('5.3')}
-                ${createBadge('5.4')}
-                ${createBadge('A')}
-                ${createBadge('5.5')}
-            `;
-            document.getElementById('pipeline-process-list').innerHTML = `
-                ${createBadge('B')}
-                ${createBadge('C')}
-                ${createBadge('6.1')}
-                ${createBadge('D')}
-            `;
-            document.getElementById('pipeline-output-list').innerHTML = `
-                ${createBadge('5.1')}
-                ${createBadge('5.6')}
-                ${createBadge('5.2')}
-            `;
+            fill('pipeline-input-list',   ['5.3','5.4','A','5.5']);
+            fill('pipeline-process-list', ['B','C','6.1','D']);
+            fill('pipeline-output-list',  ['5.1','5.6','5.2']);
         }
 
         let currentAuditFilter = 'all';
@@ -1119,25 +1509,71 @@
         function readSigma(){
             return SIGMA_SLIDERS.map(id => parseInt(document.getElementById(id).value) / 100);
         }
+        let advancedStreamMode = false;
+
         function readStreamlining(){
+            if(advancedStreamMode){
+                return [
+                    parseInt(document.getElementById('slider-stream-71').value) / 100,
+                    parseInt(document.getElementById('slider-stream-72').value) / 100,
+                    parseInt(document.getElementById('slider-stream-73').value) / 100
+                ];
+            }
             return parseInt(document.getElementById('slider-stream').value) / 100;
+        }
+
+        function toggleStreamAdvanced(){
+            advancedStreamMode = !advancedStreamMode;
+            const adv = document.getElementById('stream-advanced');
+            const simple = document.getElementById('stream-simple');
+            const label = document.getElementById('stream-toggle-label');
+            const chevron = document.getElementById('stream-toggle-chevron');
+            if(advancedStreamMode){
+                // §7.3: ao abrir, os três nascem no valor do slider mestre (explosão neutra)
+                const base = document.getElementById('slider-stream').value;
+                ['71','72','73'].forEach(suf => { document.getElementById('slider-stream-'+suf).value = base; });
+                simple.classList.add('stream-simple-hidden');
+                adv.classList.add('stream-adv-open');
+                if(label) label.textContent = 'Fechar componentes';
+                if(chevron) chevron.classList.add('rotate-180');
+            } else {
+                // Ao fechar, o mestre passa a reger no valor médio dos três (colapso)
+                const avg = Math.round((
+                    Number(document.getElementById('slider-stream-71').value) +
+                    Number(document.getElementById('slider-stream-72').value) +
+                    Number(document.getElementById('slider-stream-73').value)
+                ) / 3);
+                document.getElementById('slider-stream').value = avg;
+                simple.classList.remove('stream-simple-hidden');
+                adv.classList.remove('stream-adv-open');
+                if(label) label.textContent = 'Abrir componentes';
+                if(chevron) chevron.classList.remove('rotate-180');
+            }
+            updateAll();
         }
 
         // Equação Canônica (Seção 6.2): E_i = 1 - (S * D_i * (5 - F_i)/5); Score_i = P_i * E_i;
         // Score_Final = Σ(σ_i * Score_i) / Σ(σ_i). Penalidade por domínio, antes da ponderação.
         function scoreFinalFor(toolId, sigma, S){
             const row = master81[toolId];
+            // Hiatos de fricção dos três habilitadores (índices 5,6,7 = 7.1,7.2,7.3)
+            const g = [ (5 - row[5]) / 5, (5 - row[6]) / 5, (5 - row[7]) / 5 ];
+            // S pode ser escalar (modo simples: mesmo valor nos três) ou vetor [S71,S72,S73] (modo avançado)
+            const Sv = Array.isArray(S) ? S : [S, S, S];
             let num = 0, den = 0;
             const breakdown = [];
             for(let i=0; i<5; i++){
                 const d = DOMAINS[i];
                 const P = row[d.pIdx];
-                const F = row[d.fIdx];
-                const E = 1 - (S * d.D * (5 - F) / 5);
+                const k = KHAT[d.key];
+                // Blend: Gap_i = Σ_j S_j · k̂_{i,j} · (5−F_j)/5
+                const gap = k[0]*Sv[0]*g[0] + k[1]*Sv[1]*g[1] + k[2]*Sv[2]*g[2];
+                const E = 1 - d.D * gap;
                 const sc = P * E;
-                num += sigma[i] * sc;
-                den += sigma[i];
-                breakdown.push({ key:d.key, label:d.label, P, F, D:d.D, E, score:sc, sigma:sigma[i] });
+                const W = weightFor(sigma[i]);
+                num += W * sc;
+                den += W;
+                breakdown.push({ key:d.key, label:d.label, P, D:d.D, E, score:sc, sigma:sigma[i], W });
             }
             const final = den > 0 ? num / den : 0;
             return { final, breakdown };
@@ -1195,11 +1631,18 @@
 
         function updateAll(){
             const sigma = readSigma();
-            const S = readStreamlining();
             SIGMA_SLIDERS.forEach((id, i) => {
                 document.getElementById(SIGMA_LABELS[i]).innerText = Math.round(sigma[i]*100) + '%';
             });
-            document.getElementById('val-stream').innerText = Math.round(S*100) + '%';
+            if(advancedStreamMode){
+                ['71','72','73'].forEach(suf => {
+                    const el = document.getElementById('slider-stream-'+suf);
+                    const lbl = document.getElementById('val-stream-'+suf);
+                    if(el && lbl) lbl.innerText = el.value + '%';
+                });
+            } else {
+                document.getElementById('val-stream').innerText = document.getElementById('slider-stream').value + '%';
+            }
 
             runEngine();
         }
@@ -1324,9 +1767,17 @@
             const pane = document.querySelector('.decision-pane');
             if(pane) pane.classList.remove('profile-open');
 
-            // Alvos (0–100) para os 5 domínios + streamlining
-            const sliderIds = [...SIGMA_SLIDERS, 'slider-stream'];
-            const targets = [...a.sigma.map(v => Math.round(v*100)), Math.round(a.S*100)];
+            // Alvos (0–100): 5 domínios + streamlining (mestre OU os 3 sub-sliders no modo avançado)
+            let sliderIds, targets;
+            const sTarget = Math.round(a.S*100);
+            if(advancedStreamMode){
+                // Opção B: arquétipo preenche os três habilitadores no mesmo valor do preset, painel segue aberto
+                sliderIds = [...SIGMA_SLIDERS, 'slider-stream-71', 'slider-stream-72', 'slider-stream-73'];
+                targets = [...a.sigma.map(v => Math.round(v*100)), sTarget, sTarget, sTarget];
+            } else {
+                sliderIds = [...SIGMA_SLIDERS, 'slider-stream'];
+                targets = [...a.sigma.map(v => Math.round(v*100)), sTarget];
+            }
 
             // Cancela qualquer animação em curso (clique rápido entre arquétipos)
             if(__archAnimFrame){ cancelAnimationFrame(__archAnimFrame); __archAnimFrame = null; }
@@ -1471,6 +1922,25 @@
         }
 
         function toggleTagsModal(){ const m = document.getElementById('tags-modal-overlay'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
+        function toggleOrigemNotasModal(){
+            const m = document.getElementById('origem-notas-modal-overlay');
+            const c = document.getElementById('origem-notas-modal-content');
+            const opening = m.classList.contains('hidden');
+            if (opening) {
+                m.classList.remove('hidden'); m.classList.add('flex');
+                m.classList.remove('modal-fade-exit'); c.classList.remove('modal-pop-exit');
+                void m.offsetWidth;
+                m.classList.add('modal-fade-enter'); c.classList.add('modal-pop-enter');
+            } else {
+                m.classList.remove('modal-fade-enter'); c.classList.remove('modal-pop-enter');
+                void m.offsetWidth;
+                m.classList.add('modal-fade-exit'); c.classList.add('modal-pop-exit');
+                setTimeout(() => {
+                    m.classList.add('hidden'); m.classList.remove('flex', 'modal-fade-exit');
+                    c.classList.remove('modal-pop-exit');
+                }, 180);
+            }
+        }
         function toggleHelpModal(){ const m = document.getElementById('help-modal-overlay'); m.classList.toggle('hidden'); m.classList.toggle('flex'); }
         function showWelcomeModal(){ const m = document.getElementById('welcome-modal-overlay'); m.classList.remove('hidden'); m.classList.add('flex'); }
         function closeWelcomeModal(){
@@ -1504,7 +1974,9 @@
             content.innerHTML = `<div class="space-y-4"><div class="h-4 bg-slate-100 rounded w-3/4 shimmer"></div><div class="h-4 bg-slate-100 rounded w-full shimmer"></div><div class="h-4 bg-slate-100 rounded w-5/6 shimmer"></div></div><p class="text-xs text-center text-slate-400 mt-6 animate-pulse">Consultando o Gemini 3.1 Pro…</p>`;
 
             const sg = SIGMA_SLIDERS.map(id => document.getElementById(id).value);
-            const sStream = document.getElementById('slider-stream').value;
+            const sStream = advancedStreamMode
+                ? `7.1 Dados ${document.getElementById('slider-stream-71').value}%, 7.2 Formato ${document.getElementById('slider-stream-72').value}%, 7.3 Grounding ${document.getElementById('slider-stream-73').value}%`
+                : `${document.getElementById('slider-stream').value}%`;
             const activeChip = document.querySelector('.arch-chip.arch-active');
             const archName = activeChip ? activeChip.textContent.trim() : 'Perfil personalizado';
             const top3 = currentRanked.slice(0,3).map(t => `${t.name} (${t.scoreStr})`).join(", ");
