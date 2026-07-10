@@ -1,0 +1,1194 @@
+{
+  "cases.A.name": {
+    "text": "A. Curation and Integration",
+    "sourceHash": "aee968d6"
+  },
+  "cases.A.desc": {
+    "text": "Reconciliation of conflicting sources and vocabulary unification.",
+    "sourceHash": "e85d946d"
+  },
+  "cases.B.name": {
+    "text": "B. Logical Validation",
+    "sourceHash": "dda9f032"
+  },
+  "cases.B.desc": {
+    "text": "Stress-testing, fallacy identification, and reasoning audit.",
+    "sourceHash": "ce89454a"
+  },
+  "cases.C.name": {
+    "text": "C. Level Abstraction",
+    "sourceHash": "94500987"
+  },
+  "cases.C.desc": {
+    "text": "Structural translation: Strategy ↔ Operations ↔ Framework.",
+    "sourceHash": "ca9916f4"
+  },
+  "cases.D.name": {
+    "text": "D. Intermediate Artifacts",
+    "sourceHash": "6df2f23f"
+  },
+  "cases.D.desc": {
+    "text": "Generation of matrices and drafts for thinking, not for delivery.",
+    "sourceHash": "a8a6e0ef"
+  },
+  "cases.5.1.name": {
+    "text": "5.1 Automated Slides",
+    "sourceHash": "54ff0d02"
+  },
+  "cases.5.1.desc": {
+    "text": "Generation of diagrammed presentations from text scripts.",
+    "sourceHash": "7e0bc923"
+  },
+  "cases.5.2.name": {
+    "text": "5.2 Visual Consistency",
+    "sourceHash": "983065b6"
+  },
+  "cases.5.2.desc": {
+    "text": "Generation of brand assets with strict identity (Style Ref).",
+    "sourceHash": "1597dd9c"
+  },
+  "cases.5.3.name": {
+    "text": "5.3 Technical Research",
+    "sourceHash": "54a0de41"
+  },
+  "cases.5.3.desc": {
+    "text": "Scanning of databases with real grounding and source citation.",
+    "sourceHash": "6598291d"
+  },
+  "cases.5.4.name": {
+    "text": "5.4 Massive Summaries",
+    "sourceHash": "fbbbdf9f"
+  },
+  "cases.5.4.desc": {
+    "text": "Full reading of books without loss of nuance.",
+    "sourceHash": "68ff42bb"
+  },
+  "cases.5.5.name": {
+    "text": "5.5 Multimodal",
+    "sourceHash": "5fd5ea95"
+  },
+  "cases.5.5.desc": {
+    "text": "Interpretation of charts, videos, audio, and complex diagrams.",
+    "sourceHash": "9bd2cd4"
+  },
+  "cases.5.6.name": {
+    "text": "5.6 Coding & Apps",
+    "sourceHash": "bf3715ec"
+  },
+  "cases.5.6.desc": {
+    "text": "Generation of micro-SaaS products and automation scripts.",
+    "sourceHash": "5a61579"
+  },
+  "cases.6.1.name": {
+    "text": "6.1 Strategy Synthesis",
+    "sourceHash": "b9891e13"
+  },
+  "cases.6.1.desc": {
+    "text": "Connecting axis: Research + Synthesis + Design + Decision.",
+    "sourceHash": "8d1c269b"
+  },
+  "cases.7.1.name": {
+    "text": "7.1 Data Gravity",
+    "sourceHash": "142b3a16"
+  },
+  "cases.7.1.desc": {
+    "text": "Data Gravity: native access to in-place data (SharePoint, Drive, Git) without manual ETL.",
+    "sourceHash": "8918659d"
+  },
+  "cases.7.2.name": {
+    "text": "7.2 Format Continuity",
+    "sourceHash": "45c79454"
+  },
+  "cases.7.2.desc": {
+    "text": "Asset Handoff: delivery of an editable final artifact (.pptx, .docx) vs. a raw draft.",
+    "sourceHash": "29f4e20b"
+  },
+  "cases.7.3.name": {
+    "text": "7.3 Trustworthiness & Verifiability",
+    "sourceHash": "1c8185f8"
+  },
+  "cases.7.3.desc": {
+    "text": "Verifiability: every claim linked to an auditable primary source.",
+    "sourceHash": "345f4cde"
+  },
+  "archetypes.cirurgiao.name": {
+    "text": "Code Surgeon",
+    "sourceHash": "f79d51ce"
+  },
+  "archetypes.cirurgiao.tagline": {
+    "text": "“Logical Precision and Pure Execution: Where the Algorithm Meets the Architecture.”",
+    "sourceHash": "1ac55996"
+  },
+  "archetypes.cirurgiao.desc": {
+    "text": "Focused on solving complex engineering problems, prioritizing logical integrity and code performance above any aesthetic convenience or data integration.",
+    "sourceHash": "beedc4fa"
+  },
+  "archetypes.cirurgiao.examples": {
+    "text": "E.g.: Backend Developers, Software Engineers, Cryptography Researchers, Algorithm Specialists.",
+    "sourceHash": "f79737e2"
+  },
+  "archetypes.showrunner.name": {
+    "text": "Corporate Showrunner",
+    "sourceHash": "dc5b0f38"
+  },
+  "archetypes.showrunner.tagline": {
+    "text": "“The Mastery of Multimodal Orchestration: The Architect of Business Narrative.”",
+    "sourceHash": "7df3ea24"
+  },
+  "archetypes.showrunner.desc": {
+    "text": "Orchestrator who transforms strategic visions into multimodal assets (text, video, slides) at high speed, managing large volumes of context.",
+    "sourceHash": "46aa2b8f"
+  },
+  "archetypes.showrunner.examples": {
+    "text": "E.g.: Product Managers, Marketing Directors, Product Launch Leaders, Chief of Staff.",
+    "sourceHash": "fdbd08b2"
+  },
+  "archetypes.oraculo.name": {
+    "text": "Scenario Oracle",
+    "sourceHash": "42e25877"
+  },
+  "archetypes.oraculo.tagline": {
+    "text": "“The Strategic Brain of the Board: Anticipating the Next Move.”",
+    "sourceHash": "734fb1d8"
+  },
+  "archetypes.oraculo.desc": {
+    "text": "High-abstraction profile that uses AI as a dialectical partner to simulate strategic scenarios, analyze M&A risks, and build original points of view.",
+    "sourceHash": "1c2ecf9"
+  },
+  "archetypes.oraculo.examples": {
+    "text": "E.g.: Strategy Consultants, M&A Analysts, Scenario Planners, Executive Advisors.",
+    "sourceHash": "7e442def"
+  },
+  "archetypes.burocrata.name": {
+    "text": "Elite Bureaucrat",
+    "sourceHash": "65b7db84"
+  },
+  "archetypes.burocrata.tagline": {
+    "text": "“The Dictatorship of Efficiency and Compliance: Where the Workflow Is the Product.”",
+    "sourceHash": "978e7617"
+  },
+  "archetypes.burocrata.desc": {
+    "text": "Professional operating in the last mile of corporate delivery. Requires the AI to work within the rails of standard tools (Office/Google), with zero formatting errors and full compliance.",
+    "sourceHash": "b1087154"
+  },
+  "archetypes.burocrata.examples": {
+    "text": "E.g.: Project Managers, Compliance Specialists, Corporate Lawyers, Process Analysts.",
+    "sourceHash": "b438023b"
+  },
+  "archetypes.cacador.name": {
+    "text": "Signal Hunter",
+    "sourceHash": "8d91bc86"
+  },
+  "archetypes.cacador.tagline": {
+    "text": "“The Relentless Pursuit of Auditable Truth: Where Evidence Prevails Over Opinion.”",
+    "sourceHash": "fbc18367"
+  },
+  "archetypes.cacador.desc": {
+    "text": "Investigator focused on extracting informational truth from seas of raw data and web pages. Requires full traceability and rejects any synthetic claim without a clear link to a real source.",
+    "sourceHash": "bd731f16"
+  },
+  "archetypes.cacador.examples": {
+    "text": "E.g.: Data Journalists, Due Diligence Analysts, Risk Auditors, Financial Fraud Investigators.",
+    "sourceHash": "1e1f5347"
+  },
+  "archetypes.prototipador.name": {
+    "text": "Agile Prototyper",
+    "sourceHash": "5a29e8c9"
+  },
+  "archetypes.prototipador.tagline": {
+    "text": "“From Concept to Artifact in Real Time: The Democratization of Building.”",
+    "sourceHash": "23a70847"
+  },
+  "archetypes.prototipador.desc": {
+    "text": "Professional who uses synthetic computational capacity to turn abstract ideas into functional, iterative prototypes at high speed, validating market hypotheses immediately.",
+    "sourceHash": "be70f4e6"
+  },
+  "archetypes.prototipador.examples": {
+    "text": "E.g.: Builder UX/UI Designers, Indie Hackers, Solopreneurs, Tech Startup Founders.",
+    "sourceHash": "a65620e5"
+  },
+  "archetypes.legado.name": {
+    "text": "Legacy Analyst",
+    "sourceHash": "a96f6567"
+  },
+  "archetypes.legado.tagline": {
+    "text": "“Navigating the Complexity of Historical Volume: Intelligence Over the Sleeping Giant.”",
+    "sourceHash": "35e19f2c"
+  },
+  "archetypes.legado.desc": {
+    "text": "Specialist tasked with reading, diagnosing, and intervening in massive legacy systems and excessively long documentation architectures. Demands colossal context windows to avoid losing microstructural dependencies.",
+    "sourceHash": "707d4288"
+  },
+  "archetypes.legado.examples": {
+    "text": "E.g.: SAP/Oracle Consultants, Bank Systems Engineers, Critical IT Infrastructure Specialists.",
+    "sourceHash": "f63ed418"
+  },
+  "ecosystem.gemini.sp": {
+    "text": "Broad native context (2M tokens) and massive multi-format ingestion directly from Drive.",
+    "sourceHash": "c4d43bc1"
+  },
+  "ecosystem.gemini.kr": {
+    "text": "No native export to slide formats (.pptx), requiring third-party extensions.",
+    "sourceHash": "dde66c50"
+  },
+  "ecosystem.gemini.role": {
+    "text": "The High-Volume Generalist, for monolithic reading and ingestion of large document bases.",
+    "sourceHash": "e5c1a953"
+  },
+  "ecosystem.claude.sp": {
+    "text": "Impeccable logic, superior dialectical reasoning, and Artifacts environments for clean code.",
+    "sourceHash": "2aa5ef53"
+  },
+  "ecosystem.claude.kr": {
+    "text": "Isolation from native corporate data — lack of its own connector ecosystem.",
+    "sourceHash": "8cd23eab"
+  },
+  "ecosystem.claude.role": {
+    "text": "The Specialist in Logical Precision, Refactoring, and Refined Strategic Synthesis.",
+    "sourceHash": "d215ddfd"
+  },
+  "ecosystem.chatgpt.sp": {
+    "text": "Unified multimodal versatility, high-speed responses, and a friendly interface.",
+    "sourceHash": "50190ef7"
+  },
+  "ecosystem.chatgpt.kr": {
+    "text": "Context fatigue in long sessions beyond 128,000 tokens and fluctuations in grounding quality.",
+    "sourceHash": "fedfabcf"
+  },
+  "ecosystem.chatgpt.role": {
+    "text": "The Balanced High-Speed Generalist with Fluid Multimodal Interaction.",
+    "sourceHash": "a702248b"
+  },
+  "ecosystem.copilot.sp": {
+    "text": "Native integration with the Microsoft 365 ecosystem (Graph API), applying corporate security policies.",
+    "sourceHash": "892afa4d"
+  },
+  "ecosystem.copilot.kr": {
+    "text": "Raw cognitive power frequently constrained by corporate security locks and filters.",
+    "sourceHash": "5b5663ec"
+  },
+  "ecosystem.copilot.role": {
+    "text": "The Operational and Compliance Bureaucrat for the Last Mile of Document Formatting.",
+    "sourceHash": "28d52997"
+  },
+  "ecosystem.perplex.sp": {
+    "text": "Real-time web research with automated granular indexing of primary sources.",
+    "sourceHash": "89f3de8"
+  },
+  "ecosystem.perplex.kr": {
+    "text": "Limited capability in code engineering and advanced visual design.",
+    "sourceHash": "dfd28e61"
+  },
+  "ecosystem.perplex.role": {
+    "text": "The Investigator with Active Real-Time Grounding and Fact-Checking on the Open Web.",
+    "sourceHash": "8037acc3"
+  },
+  "ecosystem.deepseek.sp": {
+    "text": "Low-cost logical-mathematical reasoning via Hidden Chain of Thought (CoT).",
+    "sourceHash": "106eecec"
+  },
+  "ecosystem.deepseek.kr": {
+    "text": "Low multimodal performance for complex design and lack of ready-made corporate formats.",
+    "sourceHash": "72ec9dee"
+  },
+  "ecosystem.deepseek.role": {
+    "text": "The Deep Computational Reasoning Analyst for Pure Logic and Algorithm Validation.",
+    "sourceHash": "289e9ce0"
+  },
+  "ecosystem.manus.sp": {
+    "text": "Autonomous execution of complex end-to-end workflows on dedicated virtual machines.",
+    "sourceHash": "e7daf5f8"
+  },
+  "ecosystem.manus.kr": {
+    "text": "High dependency on workflow stability and risk of context breakage in long tasks.",
+    "sourceHash": "a0c4443f"
+  },
+  "ecosystem.manus.role": {
+    "text": "The Autonomous Executing Agent for complex web navigation and automation tasks.",
+    "sourceHash": "a3cd1f50"
+  },
+  "ecosystem.badge.insumo": {
+    "text": "Input",
+    "sourceHash": "ba2f31e0"
+  },
+  "ecosystem.badge.entrega": {
+    "text": "Delivery",
+    "sourceHash": "cc3ccb8b"
+  },
+  "ecosystem.badge.raciocinio": {
+    "text": "Reasoning",
+    "sourceHash": "9ebf5ac9"
+  },
+  "ecosystem.label.superpower": {
+    "text": "Superpower",
+    "sourceHash": "8f9762e1"
+  },
+  "ecosystem.label.kryptonite": {
+    "text": "Kryptonite",
+    "sourceHash": "b37611be"
+  },
+  "ecosystem.label.papel": {
+    "text": "Role",
+    "sourceHash": "dddc317"
+  },
+  "nav.conhecimento": {
+    "text": "Knowledge",
+    "sourceHash": "238eaa1"
+  },
+  "nav.decisao": {
+    "text": "Decision",
+    "sourceHash": "690bdcbf"
+  },
+  "nav.auditoria": {
+    "text": "Audit",
+    "sourceHash": "8eead787"
+  },
+  "nav.biblioteca": {
+    "text": "Library",
+    "sourceHash": "ef3e6373"
+  },
+  "nav.manual_ajuda": {
+    "text": "Manual &amp; Help",
+    "sourceHash": "e2e5c087"
+  },
+  "header.subtitle": {
+    "text": "Find the best AI for your professional profile",
+    "sourceHash": "2b004ff0"
+  },
+  "footer.poweredby": {
+    "text": "Powered by",
+    "sourceHash": "3d8b5376"
+  },
+  "sec.capacidades.title": {
+    "text": "Core AI Capabilities",
+    "sourceHash": "7cef74ac"
+  },
+  "sec.pipeline.title": {
+    "text": "Production Pipeline",
+    "sourceHash": "66687d27"
+  },
+  "sec.ecosystem.title": {
+    "text": "Intelligence Ecosystem",
+    "sourceHash": "f94bbbff"
+  },
+  "sec.ranking.title": {
+    "text": "Recommended Ranking",
+    "sourceHash": "45f902d0"
+  },
+  "sec.ranking.subtitle": {
+    "text": "Based on the currently selected professional profile.",
+    "sourceHash": "f5a7fe97"
+  },
+  "sec.ranking.vermatriz": {
+    "text": "View Technical Matrix ",
+    "sourceHash": "7e821544"
+  },
+  "sec.auditoria.title": {
+    "text": "Audit Matrix",
+    "sourceHash": "9197ec27"
+  },
+  "sec.auditoria.subtitle": {
+    "text": "How each of the 7 AIs scores, capability by capability — the rating and the reasoning behind it — so you can audit the ranking produced by the decision engine.",
+    "sourceHash": "db7f5a61"
+  },
+  "sec.auditoria.origemnotas": {
+    "text": "Where do the ratings come from?",
+    "sourceHash": "5a0f2f9"
+  },
+  "sec.impacto.title": {
+    "text": "Cross-Impact Matrix",
+    "sourceHash": "8bffd6ca"
+  },
+  "sec.impacto.subtitle": {
+    "text": "How the absence of each cross-cutting enabler (streamlining) — Data Gravity, Format Continuity, Trustworthiness &amp; Verifiability — degrades each domain.",
+    "sourceHash": "7332f443"
+  },
+  "sec.biblioteca.title": {
+    "text": "Definitions Library",
+    "sourceHash": "e65286df"
+  },
+  "sec.biblioteca.subtitle": {
+    "text": "Technical glossary of the capabilities.",
+    "sourceHash": "39c646a9"
+  },
+  "pipeline.insumo.title": {
+    "text": "Input",
+    "sourceHash": "ba2f31e0"
+  },
+  "pipeline.insumo.desc": {
+    "text": "Bringing real-world information into the flow: research, reading, and data capture.",
+    "sourceHash": "f0ee3dd"
+  },
+  "pipeline.processamento.title": {
+    "text": "Processing",
+    "sourceHash": "ff9d3448"
+  },
+  "pipeline.processamento.desc": {
+    "text": "Reasoning about the input: validating logic, structuring the argument, and synthesizing the decision.",
+    "sourceHash": "40c3a95f"
+  },
+  "pipeline.entrega.title": {
+    "text": "Delivery",
+    "sourceHash": "cc3ccb8b"
+  },
+  "pipeline.entrega.desc": {
+    "text": "Packaging the result into a usable final format: slides, code, and ready-made artifacts.",
+    "sourceHash": "f5db4a34"
+  },
+  "archhint.hook": {
+    "text": "You already saw the Archetypes in “Knowledge” — this is where you apply them.",
+    "sourceHash": "1e5afac6"
+  },
+  "archhint.body": {
+    "text": "The archetypes are the layer that configures the factory — each one applies a different weight to the domains and to Streamlining. <b class=\"font-semibold text-slate-700\">Important:</b> there is no “right” archetype for you — only the right one for the task. The same person can be a Code Surgeon on a code project and an Elite Bureaucrat on an executive report. Switch whenever you like: the ranking recalculates live.",
+    "sourceHash": "22f79c98"
+  },
+  "common.entendi": {
+    "text": "Got it",
+    "sourceHash": "cc35d08c"
+  },
+  "common.fechar": {
+    "text": "Close",
+    "sourceHash": "b283dc8e"
+  },
+  "welcome.title": {
+    "text": "Welcome to AI Strategy Hub",
+    "sourceHash": "84f2f0d2"
+  },
+  "welcome.p1": {
+    "text": "There is no “best AI” — there is the best AI <em>for your work</em>. Each tool is strong at some things and weak at others; <strong>the right question</strong> is not “which is smarter”, but “which delivers what I need, the way I need it”.",
+    "sourceHash": "313803fc"
+  },
+  "welcome.p2": {
+    "text": "This app exists to answer that question. Choose a <strong>professional profile</strong> that resembles yours, or customize one. In seconds, you will see a <strong>ranking of the 7 AIs</strong> most relevant on the market, ordered for this specific profile.",
+    "sourceHash": "84fc456c"
+  },
+  "welcome.p3": {
+    "text": "<strong>Raw power</strong> is only half the story. The other half is <strong>friction</strong>: whether the AI already reads your data, delivers ready to use, and whether you can trust the source of what it states. The app weighs that too.",
+    "sourceHash": "2b302458"
+  },
+  "welcome.p4": {
+    "text": "Explore the profiles, play with the controls, and watch the recommendation change live.",
+    "sourceHash": "b8ef6c29"
+  },
+  "welcome.dontshow": {
+    "text": "Don't show again",
+    "sourceHash": "3a58381a"
+  },
+  "origemnotas.title": {
+    "text": "Where the ratings come from",
+    "sourceHash": "9390837a"
+  },
+  "origemnotas.p1": {
+    "text": "An AI's capability is not fixed – it changes fast, sometimes from one week to the next, as new models reach the market. That is why this Hub is not a frozen ranking, but a living instrument, periodically re-evaluated. When a rating moves, most of the time it is not an error correction: it is the world having changed.",
+    "sourceHash": "d7e45b1"
+  },
+  "origemnotas.p2": {
+    "text": "Each rating is born from the best evidence available for that specific capability – and that evidence is not uniform. It comes from three sources:",
+    "sourceHash": "714fa2e0"
+  },
+  "origemnotas.medido.title": {
+    "text": "Measured by benchmark",
+    "sourceHash": "afe358b3"
+  },
+  "origemnotas.medido.desc": {
+    "text": "Where public, reliable benchmarks exist, the rating derives from them – this is the case for code engineering, chart and document analysis, massive context reading, and verifiability (grounding). A rating anchored in external, reproducible data.",
+    "sourceHash": "f8a45636"
+  },
+  "origemnotas.aproximado.title": {
+    "text": "Approximated (proxy)",
+    "sourceHash": "b40b140c"
+  },
+  "origemnotas.aproximado.desc": {
+    "text": "In some capabilities there is no direct measure, but general benchmarks serve as an approximation. Logical reasoning, for example, is measured by tests that come close, without exactly capturing professional use. A rating informed by data, with a layer of interpretation.",
+    "sourceHash": "46cf56fd"
+  },
+  "origemnotas.especializada.title": {
+    "text": "Expert assessment",
+    "sourceHash": "6297327b"
+  },
+  "origemnotas.especializada.desc": {
+    "text": "Some capabilities simply have no public benchmark – converting between levels of abstraction or maintaining brand identity consistency, for example. Here the rating is a declared expert assessment, not a measurement.",
+    "sourceHash": "9ddc06a"
+  },
+  "origemnotas.p3": {
+    "text": "<strong>How we choose benchmarks.</strong> Not just any leaderboard counts. A benchmark only qualifies if it is dynamic (refreshes its questions, so the result does not age), resistant to contamination (the questions were not in the model's training data – otherwise the score measures memory, not capability), and still able to separate the best models. Famous benchmarks that are saturated or contaminated are deliberately downgraded to historical status.",
+    "sourceHash": "ea39e118"
+  },
+  "origemnotas.p4": {
+    "text": "<strong>What the rating is not.</strong> It is not a verdict of an absolute “best AI” – it is a snapshot, based on today's best evidence, of a specific capability. The final decision is yours: the safest path is to test the two or three candidates the Hub points to in real cases from your own work.",
+    "sourceHash": "7fc5d3ef"
+  },
+  "canon.canon-manifesto-intro.title": {
+    "text": "Manifesto: Conditional Efficiency",
+    "sourceHash": "b27ec0ed"
+  },
+  "canon.canon-manifesto-intro.text": {
+    "text": "The Hub's conceptual core: why the most powerful tool isn't always the most recommended one. Operational friction (Streamlining) determines how much of an AI's raw power actually reaches your final deliverable.",
+    "sourceHash": "d666c9ae"
+  },
+  "canon.canon-falacia.title": {
+    "text": "The Synthetic IQ Fallacy",
+    "sourceHash": "a4e5c70a"
+  },
+  "canon.canon-falacia.text": {
+    "text": "This framework marks the definitive abandonment of the search for the “smartest AI” in favor of the search for the “most efficient AI.” In the real world, intelligence that can't be delivered in the right format, at the right time, with the right data is, for all practical purposes, nonexistent. The Synthetic IQ Fallacy occurs when we prioritize raw cognitive power (the AI's “IQ”) over interoperability. Here, intelligence is just one variable; efficiency is the multiplier.",
+    "sourceHash": "a7abc529"
+  },
+  "canon.canon-fisica.title": {
+    "text": "The New Physics: Power × Efficiency",
+    "sourceHash": "110ee33b"
+  },
+  "canon.canon-fisica.text": {
+    "text": "The Hub operates under a new physics of systems. Power (P) is what the AI can do in isolation — its raw processing and logic capacity, measured by benchmark. Efficiency (E) is the capacity to manifest that power through the friction of human and corporate workflow. The real, measurable result is Effective Power, and the core principle is that power is multiplied by efficiency, never added to it. A Power of 5.0 delivered at an Efficiency of 0.2 isn't worth 2.6 — it's worth 1.0, because friction doesn't discount the value, it strangles it.",
+    "sourceHash": "94f56cf1"
+  },
+  "canon.canon-meta-intro.title": {
+    "text": "I. Thinking (Cognitive Reasoning)",
+    "sourceHash": "50db4b9f"
+  },
+  "canon.canon-meta-intro.text": {
+    "text": "The intellectual ‘engine room.’ These capabilities don't generate the final product, but they guarantee the integrity of the argument. This is where logical structuring, hypothesis validation, and thought architecture happen before any execution.",
+    "sourceHash": "84c9dfd1"
+  },
+  "canon.canon-A.title": {
+    "text": "A — Curation, normalization, and integration",
+    "sourceHash": "287f2b4e"
+  },
+  "canon.canon-A.text": {
+    "text": "This use isn't just analysis nor just synthesis. It happens when you ask the AI to reconcile conflicting concepts between authors, schools, or frameworks; normalize terminology (e.g., equivalent concepts with different names); or integrate multiple sources into a single coherent vocabulary. It resolves conceptual ambiguities before any final production.",
+    "sourceHash": "1f0eb9fe"
+  },
+  "canon.canon-B.title": {
+    "text": "B — Logical validation and stress-testing",
+    "sourceHash": "506c0d0e"
+  },
+  "canon.canon-B.text": {
+    "text": "Here the AI isn't used to produce, but to check whether a line of reasoning “holdsup,” identify internal contradictions, point out logical leaps, and test whether a narrative holds under pressure. It's different from text review; it's a consistency audit.",
+    "sourceHash": "68337666"
+  },
+  "canon.canon-C.title": {
+    "text": "C — Conversion between levels of abstraction",
+    "sourceHash": "481d78bd"
+  },
+  "canon.canon-C.text": {
+    "text": "You use the AI to move up and down levels of abstraction with precision: Strategy ↔ operations, Framework ↔ process, Architecture ↔ implementation. This isn't generic “summarizing” or “expanding” — it's structural translation.",
+    "sourceHash": "abfae3fe"
+  },
+  "canon.canon-D.title": {
+    "text": "D — Intermediate artifacts",
+    "sourceHash": "771ee245"
+  },
+  "canon.canon-D.text": {
+    "text": "Creation of provisional matrices, hypothesis lists, and formal drafts that aren't meant for delivery, but for thinking better. These artifacts are neither creative drafts nor final outputs; they are temporary cognitive instruments.",
+    "sourceHash": "c38f02c4"
+  },
+  "canon.canon-disc-intro.title": {
+    "text": "II. Discovering (Discovery and Ingestion)",
+    "sourceHash": "5ee8a010"
+  },
+  "canon.canon-disc-intro.text": {
+    "text": "The system's data-capture frontier. It expands the information base through active real-time external search or deep reading of complex legacy data — before any transformation takes place.",
+    "sourceHash": "61d319b9"
+  },
+  "canon.canon-5-3.title": {
+    "text": "5.3 In-Depth Academic and Technical Research",
+    "sourceHash": "e916f2b8"
+  },
+  "canon.canon-5-3.text": {
+    "text": "AI-based research assistants can scan academic and technical databases to synthesize the state of the art on a given topic. Unlike traditional search, the AI can read abstracts, cross-reference conclusions from different papers, and generate a structured literature review. The introduction of ‘Deep Research’ modes changed the nature of this use case. The AI can now fully read dozens of books and hundreds of articles simultaneously, drastically reducing hallucination through massive Grounding. Search has stopped being just about ‘finding the link’ and become about ‘synthesizing the knowledge contained in the link.’",
+    "sourceHash": "bfa3cb1b"
+  },
+  "canon.canon-5-4.title": {
+    "text": "5.4 Massive, Thorough Summaries of Books and Complex Articles",
+    "sourceHash": "a07e0dad"
+  },
+  "canon.canon-5-4.text": {
+    "text": "Language models with expanded context windows (like Claude with 100k+ tokens or Gemini 1.5 Pro with 2M) allow the upload of entire technical books, long contracts, or hundred-page reports. The AI can then extract central arguments without losing nuance.",
+    "sourceHash": "fe4710e3"
+  },
+  "canon.canon-design-intro.title": {
+    "text": "III. Designing (Visual Materialization)",
+    "sourceHash": "c3b51517"
+  },
+  "canon.canon-design-intro.text": {
+    "text": "The passage from conceptual abstraction to tangible visual artifact. It ensures the strategy doesn't remain cold text, but materializes into persuasive, visually consistent formats.",
+    "sourceHash": "4892771e"
+  },
+  "canon.canon-5-1.title": {
+    "text": "5.1 Automated Generation of Slides and Presentations",
+    "sourceHash": "8ad6e43e"
+  },
+  "canon.canon-5-1.text": {
+    "text": "Modern AI systems can generate complete presentations from text scripts, combining provided content with consistent visual themes. Tools built into productivity suites, like Microsoft Copilot, allow professional slides to be created directly from text documents and automatically apply visual elements aligned with brand identity. For example, Copilot in PowerPoint can reference organizational files (Word, PDF, etc.) to compose a presentation, as well as insert approved images from the company's library to ensure compliance with the visual identity guide. This avoids laborious manual formatting, since the AI can analyze text, key topics, images, and even logos, suggesting visual styles compatible with the presentation's theme. The result is a coherent slide structure, with consistent design across all pages, respecting the brand's color palette and typography. Importantly, the AI delivers a solid draft that can be refined by the user, combining automation with a human touch to adjust details when needed. In short, the AI drastically speeds up slide creation — studies show users can generate an initial deck 3–5 times faster than the manual method, with ever-higher visual quality and reduced need for editing.",
+    "sourceHash": "8b11abf6"
+  },
+  "canon.canon-5-2.title": {
+    "text": "5.2 Visual Consistency and Brand Identity",
+    "sourceHash": "5bf241d3"
+  },
+  "canon.canon-5-2.text": {
+    "text": "The use of generative AI for images (such as DALL-E 3, Midjourney, and Adobe Firefly) enables the creation of visual assets that follow strict style guidelines. In the corporate context, this means training or instructing the AI to generate icons, illustrations, and diagrams that speak the same visual language as the brand, ensuring technical reports don't look like a visual patchwork. Consistency isn't just aesthetic; it's semiotic, ensuring the visual message reinforces the authority of the technical document.",
+    "sourceHash": "836ecd78"
+  },
+  "canon.canon-5-5.title": {
+    "text": "5.5 Multimodal Analysis of Photos, Videos, and Files",
+    "sourceHash": "bff1087f"
+  },
+  "canon.canon-5-5.text": {
+    "text": "Multimodal capability (as in GPT-4 Vision or Gemini) allows the AI to ‘see’ and interpret images. This applies to reading complex charts in financial reports, converting whiteboard sketches into structured code, or analyzing video.",
+    "sourceHash": "8ed85e5b"
+  },
+  "canon.canon-build-intro.title": {
+    "text": "IV. Building (Engineering and Construction)",
+    "sourceHash": "fafec18f"
+  },
+  "canon.canon-build-intro.text": {
+    "text": "The constructive and infrastructure capability. It separates the activity of designing from the activity of building executable, functional logical solutions.",
+    "sourceHash": "a65f7042"
+  },
+  "canon.canon-5-6.title": {
+    "text": "5.6 Web Application Generation and Coding Automation",
+    "sourceHash": "6ce36cb4"
+  },
+  "canon.canon-5-6.text": {
+    "text": "AI agents specialized in code can generate not just isolated snippets, but entire web applications, data automation scripts, and functional user interfaces. This democratizes software engineering for data-analysis and management profiles, enabling the creation of custom tools (‘internal micro-SaaS’) to solve specific process pain points. The AI acts as a senior pair programmer, suggesting architecture, refactoring legacy code, and writing unit tests.",
+    "sourceHash": "8a28dc35"
+  },
+  "canon.canon-strat-intro.title": {
+    "text": "V. Integrating (Strategy and Decision)",
+    "sourceHash": "db41d322"
+  },
+  "canon.canon-strat-intro.text": {
+    "text": "The missing link between technical data and executive decision-making. This capability integrates scattered inputs into a coherent view, translating technical complexity into business direction.",
+    "sourceHash": "9fad5dd5"
+  },
+  "canon.canon-6-1.title": {
+    "text": "6.1 Strategic-Synthesis Use Case",
+    "sourceHash": "9048ec2a"
+  },
+  "canon.canon-6-1.text": {
+    "text": "Use of AI to generate complete, structured, and well-argued analyses of markets, industries, business models, value chains, capabilities, processes, technologies, and frameworks — with or without external files — aimed at building a point of view, supporting decisions, and producing technical essays. In practice, it is the Connecting Axis between research, synthesis, design, and technology. It's the point where AI stops being a ‘reading tool’ and becomes a structured strategic-thinking tool. Typical outputs include complete strategic essays, market reports (TAM/SAM/SOM), comparative matrices, and executive narratives (points of view).",
+    "sourceHash": "2d568590"
+  },
+  "canon.canon-stream-intro.title": {
+    "text": "Streamlining (Cross-Cutting Enabler)",
+    "sourceHash": "580af2bb"
+  },
+  "canon.canon-stream-intro.text": {
+    "text": "The efficiency layer that removes friction between machine intelligence and the human workflow. Unlike the five power domains, Streamlining is cross-cutting: it doesn't generate the product, but it determines whether that power can manifest without friction (the ‘Glue Work’).",
+    "sourceHash": "87b500d9"
+  },
+  "canon.canon-7-1.title": {
+    "text": "7.1 Data Gravity",
+    "sourceHash": "92767587"
+  },
+  "canon.canon-7-1.text": {
+    "text": "Data Gravity isn't just an upload convenience; it's the elimination of the data-engineering (ETL) barrier for the end user. It defines the AI's competence to operate where the data already resides (Data in Place). Unlike systems that require manual file movement or complex API configuration, here the AI natively indexes SharePoint, the Graph API, or code repositories. It's not the AI “looking at” an isolated file; it's the AI “living inside the server,” maintaining context persistence and eliminating the need to migrate data for analysis.",
+    "sourceHash": "53dac8c1"
+  },
+  "canon.canon-7-2.title": {
+    "text": "7.2 Format Continuity (Asset Handoff)",
+    "sourceHash": "7b3666fb"
+  },
+  "canon.canon-7-2.text": {
+    "text": "This isn't about exporting text, it's about delivering a product. This capability measures the level of industrial finish of the deliverable. The question is: does the AI deliver an insight in Markdown that requires heavy manual formatting (high friction), or does it generate the final editable file (.pptx, .docx, .xlsx) rigorously respecting corporate templates and fonts? It's the fundamental difference between receiving a ‘smart draft’ that creates operational formatting work, and receiving a ‘ready artifact’ that creates immediate value and can be sent directly to the end client.",
+    "sourceHash": "1b0e5124"
+  },
+  "canon.canon-7-3.title": {
+    "text": "7.3 Trustworthiness & Verifiability (Trust Architecture)",
+    "sourceHash": "318e3d8e"
+  },
+  "canon.canon-7-3.text": {
+    "text": "Here the AI isn't used to be creative, but to be auditable. It's the capability to build a trust architecture where every claim is granularly linked (line by line) to a verifiable primary source. This goes beyond generic ‘web search’; it's a reputational-risk mitigation mechanism. Without it, strategic synthesis (6.1) becomes just a hallucinated opinion; with it, it becomes a safe basis for signing off on executive decisions and fiduciary duties, enabling full traceability of information.",
+    "sourceHash": "5b6ff0e9"
+  },
+  "matrix.gemini.A": {
+    "text": "Absolute leadership thanks to the 2M-token window and native multimodality, enabling it to ‘read’ entire videos and libraries for unmatched memory integration.",
+    "sourceHash": "6830398b"
+  },
+  "matrix.gemini.B": {
+    "text": "Deep Think mode drastically reduced logical hallucinations, making it capable of corporate-grade validations, despite a slight disadvantage on extreme abstract benchmarks.",
+    "sourceHash": "26627215"
+  },
+  "matrix.gemini.C": {
+    "text": "Unique ability to convert formats (e.g., a 1-hour video into a 1-page memo) and good tone adaptation (‘Vibe Coding’).",
+    "sourceHash": "1992607"
+  },
+  "matrix.gemini.D": {
+    "text": "Reached parity with Claude. Multimodal integration allows dragging in images and generating instant UI prototypes.",
+    "sourceHash": "62647f79"
+  },
+  "matrix.gemini.5.1": {
+    "text": "Closed the gap. Generates complete decks in Slides/Canvas, fluidly leveraging Drive data and Imagen 3 images.",
+    "sourceHash": "fc833523"
+  },
+  "matrix.gemini.5.2": {
+    "text": "Nano Banana enables superior character and style consistency via visual reference.",
+    "sourceHash": "d18c6413"
+  },
+  "matrix.gemini.5.3": {
+    "text": "Combines web research with a 2M-token window, cross-referencing recent news with the user's internal PDF libraries.",
+    "sourceHash": "71514839"
+  },
+  "matrix.gemini.5.4": {
+    "text": "Swallows entire libraries (2M tokens) without losing detail in the middle (Lost in the middle).",
+    "sourceHash": "7daad3e3"
+  },
+  "matrix.gemini.5.5": {
+    "text": "Natively multimodal; analyzes video and audio with precision superior to isolated frames.",
+    "sourceHash": "d73d29ef"
+  },
+  "matrix.gemini.5.6": {
+    "text": "Legacy Specialist. The 2M-token window changes the game, allowing entire repositories and documentation to be ingested for massive refactoring without losing context.",
+    "sourceHash": "87b270d"
+  },
+  "matrix.gemini.6.1": {
+    "text": "The Omniscient One. Unbeatable for strategies based on unstructured Big Data thanks to its virtually infinite context window.",
+    "sourceHash": "d6aa8daf"
+  },
+  "matrix.gemini.7.1": {
+    "text": "Leadership in Data Gravity: native ingestion via Google Drive/Workspace and a 2M-token window keep context alive without manual ETL.",
+    "sourceHash": "c675381c"
+  },
+  "matrix.gemini.7.2": {
+    "text": "Generates fluidly in Slides/Canvas, but the output isn't native Microsoft .pptx; handoff to Office still requires conversion.",
+    "sourceHash": "48d10810"
+  },
+  "matrix.gemini.7.3": {
+    "text": "Multimodality enables visual verification and Deep Think reduces hallucinations, though it can lose nuance in the middle of massive contexts.",
+    "sourceHash": "863e9489"
+  },
+  "matrix.claude.A": {
+    "text": "Excels at nuance and reconciling conflicting terms; subtly understands conceptual differences between sources and handles local files with mastery.",
+    "sourceHash": "62f20e40"
+  },
+  "matrix.claude.B": {
+    "text": "Competes with o1 via visible ‘thinking blocks’; superior at validating qualitative arguments and ethical nuance, being more ‘Socratic.’",
+    "sourceHash": "b5a0d26d"
+  },
+  "matrix.claude.C": {
+    "text": "The ‘Universal Translator.’ Unmatched at converting technical specifications into executive summaries while keeping tone and intent precise.",
+    "sourceHash": "6591041e"
+  },
+  "matrix.claude.D": {
+    "text": "Market benchmark. The Artifacts interface lets you ‘build’ thinking visually with diagrams and interactive apps in a dedicated window.",
+    "sourceHash": "c103089"
+  },
+  "matrix.claude.5.1": {
+    "text": "Now generates native .pptx files with superior logical structure, though without Manus's visual design engine.",
+    "sourceHash": "eb6a2263"
+  },
+  "matrix.claude.5.2": {
+    "text": "Text-only; doesn't generate raster images or handle graphic visual identity.",
+    "sourceHash": "cabc9fd3"
+  },
+  "matrix.claude.5.3": {
+    "text": "Excellent analyst, limited researcher. Depends on configured tools, without a robust autonomous native browser.",
+    "sourceHash": "44276e1d"
+  },
+  "matrix.claude.5.4": {
+    "text": "200k-token recall is very precise, but inferior to Google's volumetric capacity.",
+    "sourceHash": "971a8be5"
+  },
+  "matrix.claude.5.5": {
+    "text": "Great for photos and documents, but lacks native video-analysis support.",
+    "sourceHash": "c6bb828e"
+  },
+  "matrix.claude.5.6": {
+    "text": "State of the art. Claude Opus 4.5 hits 80.9% on SWE-bench Verified. Unbeatable at architectural reasoning and ‘vibe coding.’ The market benchmark for safe software engineering.",
+    "sourceHash": "8a6fc130"
+  },
+  "matrix.claude.6.1": {
+    "text": "The Trusted Strategist. Balances cutting-edge reasoning, C-level writing nuance, and a robust privacy posture.",
+    "sourceHash": "67140882"
+  },
+  "matrix.claude.7.1": {
+    "text": "Data isolation: privacy focus means few native connectors; performs best on what's supplied in context.",
+    "sourceHash": "7f59bbb1"
+  },
+  "matrix.claude.7.2": {
+    "text": "Artifacts deliver ready-to-use code/HTML, but there's no native generation of corporate .pptx/.docx; document handoff is limited.",
+    "sourceHash": "29cd6fd4"
+  },
+  "matrix.claude.7.3": {
+    "text": "High logical reliability and an honest ‘I don't know’ posture, but lacks native search to anchor facts in primary sources.",
+    "sourceHash": "8fbe3640"
+  },
+  "matrix.chatgpt.A": {
+    "text": "Very competent, but relies on RAG for massive volumes, which occasionally causes signal loss or fragmented connections in very long documents.",
+    "sourceHash": "57b659ef"
+  },
+  "matrix.chatgpt.B": {
+    "text": "Keeps the crown for pure reasoning. Unmatched at formal logic and fallacy detection through deep verification chains.",
+    "sourceHash": "55ccd8c4"
+  },
+  "matrix.chatgpt.C": {
+    "text": "Robust and competent, but requires more prompt engineering to nail the exact tone for sensitive executive communication compared to Claude.",
+    "sourceHash": "58f21c26"
+  },
+  "matrix.chatgpt.D": {
+    "text": "Robust for writing and inline coding, but visual-element integration and fluidity are still a step behind Anthropic.",
+    "sourceHash": "b47eb12c"
+  },
+  "matrix.chatgpt.5.1": {
+    "text": "Still relies on juggling Python or standalone DALL-E; lacks a native ‘text to deck’ solution.",
+    "sourceHash": "2587ddd0"
+  },
+  "matrix.chatgpt.5.2": {
+    "text": "Image 1.5 (DALL-E 3) maintains fidelity to storytelling and complex prompts.",
+    "sourceHash": "e1ea0c32"
+  },
+  "matrix.chatgpt.5.3": {
+    "text": "Powerful agentic capability, but cohesive, cited-report integration is still inferior to Perplexity.",
+    "sourceHash": "9cd0ea70"
+  },
+  "matrix.chatgpt.5.4": {
+    "text": "A 128k window is good, but suffers from ‘loss in the middle’ on massive works.",
+    "sourceHash": "7678b6a3"
+  },
+  "matrix.chatgpt.5.5": {
+    "text": "GPT-4o Vision excels at OCR of complex tables and handwritten diagrams.",
+    "sourceHash": "51dde6f9"
+  },
+  "matrix.chatgpt.5.6": {
+    "text": "Logic Specialist. The o3 model is unbeatable for complex mathematical algorithms, but the overall developer experience (DX) loses fluidity to Claude/Copilot.",
+    "sourceHash": "c16a595e"
+  },
+  "matrix.chatgpt.6.1": {
+    "text": "The Logic Engine. Indispensable for scenario modeling and ‘Game Theory’ applied to business.",
+    "sourceHash": "39795b96"
+  },
+  "matrix.chatgpt.7.1": {
+    "text": "No native corporate connectors; relies on manual upload. Research is web-first, external to the company's repository.",
+    "sourceHash": "ed92f16"
+  },
+  "matrix.chatgpt.7.2": {
+    "text": "Good artifact and Canvas generation, delivering reusable structures, though final Office polish still needs manual adjustment.",
+    "sourceHash": "ada9a6f"
+  },
+  "matrix.chatgpt.7.3": {
+    "text": "Middling grounding: hallucinates in highly technical contexts without anchored sources, requiring human verification.",
+    "sourceHash": "5f4c2a03"
+  },
+  "matrix.copilot.A": {
+    "text": "Great for ‘institutional memory’ scanning SharePoint/Emails, but dependence on indexing (Graph) creates gaps compared to continuous context reading.",
+    "sourceHash": "c3e23eda"
+  },
+  "matrix.copilot.B": {
+    "text": "Excessive corporate guardrails make the model overly cautious, avoiding the harsh criticism needed for aggressive stress-testing.",
+    "sourceHash": "48ed2370"
+  },
+  "matrix.copilot.C": {
+    "text": "Fulfills the role of converting docs to PPTs, but the quality is often bureaucratic and unpolished in restructuring information.",
+    "sourceHash": "77c063f"
+  },
+  "matrix.copilot.D": {
+    "text": "Introduced the multiplayer paradigm, enabling real-time collaboration on artifacts, raising corporate utility.",
+    "sourceHash": "b66ce870"
+  },
+  "matrix.copilot.5.1": {
+    "text": "Corporate leader. The only one that natively accesses the company's .potx templates, ensuring full brand compliance.",
+    "sourceHash": "dd353187"
+  },
+  "matrix.copilot.5.2": {
+    "text": "Uses OpenAI's engine integrated into Designer; good but with less agentic control.",
+    "sourceHash": "d8e5b66b"
+  },
+  "matrix.copilot.5.3": {
+    "text": "Brings deep research into a secure environment, but the Bing index can be less comprehensive for technical niches.",
+    "sourceHash": "f2e3ae37"
+  },
+  "matrix.copilot.5.4": {
+    "text": "Frequently cuts off long texts due to token limits in the commercial interface.",
+    "sourceHash": "79cd339"
+  },
+  "matrix.copilot.5.5": {
+    "text": "Uses integrated GPT-4o; very good for analysts working with screenshots.",
+    "sourceHash": "874d3a52"
+  },
+  "matrix.copilot.5.6": {
+    "text": "Corporate Standard. Keeps the lead through ecosystem integration and a multi-model strategy (access to Claude/GPT). The safe choice for Enterprise scale.",
+    "sourceHash": "c0620202"
+  },
+  "matrix.copilot.6.1": {
+    "text": "Operational Strategy. Excellent for internal data (Graph), but tends to deliver the conservative ‘corporate consensus.’",
+    "sourceHash": "5df1716"
+  },
+  "matrix.copilot.7.1": {
+    "text": "Maximum gravity within the Microsoft 365 ecosystem via Graph (SharePoint, Teams, OneDrive): the AI lives inside the corporate server.",
+    "sourceHash": "f93c323a"
+  },
+  "matrix.copilot.7.2": {
+    "text": "Benchmark for Format Continuity: generates editable .pptx and .docx respecting the company's templates and visual identity.",
+    "sourceHash": "2666e66b"
+  },
+  "matrix.copilot.7.3": {
+    "text": "Corporate guardrails and citation within the tenant boost trust, though excessive caution sometimes limits depth.",
+    "sourceHash": "1f4fb322"
+  },
+  "matrix.perplex.A": {
+    "text": "Shines at curating external (web) knowledge with synthesis and citations, but loses to pure LLMs at integrating proprietary internal knowledge.",
+    "sourceHash": "72ef567"
+  },
+  "matrix.perplex.B": {
+    "text": "Validates facts (whether X happened), but struggles to validate abstract logic (whether X implies Y).",
+    "sourceHash": "b51be06d"
+  },
+  "matrix.perplex.C": {
+    "text": "It's a summarizer, not a translator. Compacts information with a factual focus, often resulting in dense text poorly adapted to the strategic level.",
+    "sourceHash": "c3deaa55"
+  },
+  "matrix.perplex.D": {
+    "text": "Pages turns chaotic research into structured visual articles, excellent for presentation artifacts.",
+    "sourceHash": "983f9097"
+  },
+  "matrix.perplex.5.1": {
+    "text": "Generates outlines and exports to PPT via Labs, useful for structure, but with rudimentary visual design.",
+    "sourceHash": "d58cbfd"
+  },
+  "matrix.perplex.5.2": {
+    "text": "Generates images via external models, but without consistency control across generations.",
+    "sourceHash": "e41c90db"
+  },
+  "matrix.perplex.5.3": {
+    "text": "State of the art in Grounding. Runs dozens of iterative searches and compiles densely cited reports, ideal for due diligence.",
+    "sourceHash": "88a6c5f7"
+  },
+  "matrix.perplex.5.4": {
+    "text": "Focused on short RAG; fragments understanding of complex literary works.",
+    "sourceHash": "773d163d"
+  },
+  "matrix.perplex.5.5": {
+    "text": "Analyzes images for context, but without deep table-OCR capability.",
+    "sourceHash": "d6b1fe28"
+  },
+  "matrix.perplex.5.6": {
+    "text": "Research Support. Excellent ‘librarian’ for finding up-to-date technical documentation, but unable to act as a software engineer or generate complete applications.",
+    "sourceHash": "527dfcdf"
+  },
+  "matrix.perplex.6.1": {
+    "text": "The Market Auditor. Essential for Market Sensing and real data, but acts more as support than as architect of the thesis.",
+    "sourceHash": "e8198cba"
+  },
+  "matrix.perplex.7.1": {
+    "text": "Strictly public-web research: no access to intranets or private repositories, nil on corporate gravity.",
+    "sourceHash": "c99da01a"
+  },
+  "matrix.perplex.7.2": {
+    "text": "Pages structures the output with citations, but doesn't produce native Office formats; the handoff is for reading, not editing.",
+    "sourceHash": "3bdca641"
+  },
+  "matrix.perplex.7.3": {
+    "text": "Gold standard for Grounding: every claim comes with a primary source cited and verifiable in real time.",
+    "sourceHash": "42ef0eee"
+  },
+  "matrix.deepseek.A": {
+    "text": "Efficient for technical volumes, but risks of bias in training data and geopolitical censorship compromise the reliability of strategic curation.",
+    "sourceHash": "b1ed5df8"
+  },
+  "matrix.deepseek.B": {
+    "text": "The ‘Disruptor’ that matched o1 in math and logic at marginal cost. Open-weights transparency allows auditing of the reasoning process.",
+    "sourceHash": "cd789e24"
+  },
+  "matrix.deepseek.C": {
+    "text": "Specialist in Technical <-> Code conversion. Translates business requirements into software architecture better than most.",
+    "sourceHash": "d606a989"
+  },
+  "matrix.deepseek.D": {
+    "text": "Limited to text and code, lacking a rich interface for manipulating visual objects.",
+    "sourceHash": "e2386eba"
+  },
+  "matrix.deepseek.5.1": {
+    "text": "Has no native presentation-file generation capability.",
+    "sourceHash": "8ab49db7"
+  },
+  "matrix.deepseek.5.2": {
+    "text": "Has no generative computer-vision features in the public interface.",
+    "sourceHash": "ba2e36f3"
+  },
+  "matrix.deepseek.5.3": {
+    "text": "Has search, but political censorship and source bias introduce fatal risks for global strategic research.",
+    "sourceHash": "3a305f62"
+  },
+  "matrix.deepseek.5.4": {
+    "text": "Efficient 128k window with robust technical recall at low cost.",
+    "sourceHash": "d5c83c4"
+  },
+  "matrix.deepseek.5.5": {
+    "text": "Basic computer vision; fails at interpreting technical architecture.",
+    "sourceHash": "68bae8bf"
+  },
+  "matrix.deepseek.5.6": {
+    "text": "Supply Chain Risk. Raw code performance is tier 5, but penalized by documented ‘poisoning’ risks and security vulnerabilities in corporate environments.",
+    "sourceHash": "194db867"
+  },
+  "matrix.deepseek.6.1": {
+    "text": "Geopolitical Risk. Censorship and bias on sensitive topics create dangerous ‘blind spots’ for global strategies.",
+    "sourceHash": "37e79836"
+  },
+  "matrix.deepseek.7.1": {
+    "text": "Open-weights with no integration tooling; all data ingestion falls manually on the user.",
+    "sourceHash": "b824cbf7"
+  },
+  "matrix.deepseek.7.2": {
+    "text": "Delivers raw text/code in Markdown; any final format depends on external tools.",
+    "sourceHash": "c7e5d5e3"
+  },
+  "matrix.deepseek.7.3": {
+    "text": "Transparent mathematical reasoning (chain-of-thought) gives it high logical verifiability, with a low rate of factual hallucination.",
+    "sourceHash": "36cadfe3"
+  },
+  "matrix.manus.A": {
+    "text": "Excellent collector, but inferior synthesis capability. The Meta acquisition introduced privacy risks that violate governance for sensitive data.",
+    "sourceHash": "6fe0f24"
+  },
+  "matrix.manus.B": {
+    "text": "Designed for execution, not reflection. Tends to be sycophantic to move tasks forward, failing as a critical auditor.",
+    "sourceHash": "89a97f54"
+  },
+  "matrix.manus.C": {
+    "text": "Shines at ‘descending’ (Strategy -> Execution/Product), turning intentions into code/design, but lacks sophistication in strategic ‘ascent.’",
+    "sourceHash": "51ad63e9"
+  },
+  "matrix.manus.D": {
+    "text": "Focuses on the finished final artifact, being less useful for generating intermediate exploratory ‘scaffolding.’",
+    "sourceHash": "f068ca4b"
+  },
+  "matrix.manus.5.1": {
+    "text": "Best standalone tool. Integration with Nano Banana Pro produces slides with professional design and legible infographics, automating end to end.",
+    "sourceHash": "aea4ef8d"
+  },
+  "matrix.manus.5.2": {
+    "text": "Not designed for creating brand visual assets.",
+    "sourceHash": "7fd3fde7"
+  },
+  "matrix.manus.5.3": {
+    "text": "Operates as an autonomous agent that navigates, clicks, and solves captchas to access deep data (e.g., downloading government CSVs).",
+    "sourceHash": "7450906"
+  },
+  "matrix.manus.5.4": {
+    "text": "Treats summarization as an operational task; loses the analytical nuance of dense works.",
+    "sourceHash": "1f8798f9"
+  },
+  "matrix.manus.5.5": {
+    "text": "Depends on sub-models; multimodal analysis is slow and disconnected.",
+    "sourceHash": "2af18f42"
+  },
+  "matrix.manus.5.6": {
+    "text": "Operational Instability. Critical reports of ‘infinite loops’ and autonomous-execution failures. The Meta acquisition introduced unacceptable data-governance risks.",
+    "sourceHash": "985acb83"
+  },
+  "matrix.manus.6.1": {
+    "text": "Governance Risk. Technically capable, but the Meta acquisition makes its use unacceptable for confidential strategies (M&A, Innovation).",
+    "sourceHash": "e309aff4"
+  },
+  "matrix.manus.7.1": {
+    "text": "The autonomous agent browses the web and opens tools, but doesn't access data secured behind corporate VPN/SSO.",
+    "sourceHash": "13b3a01e"
+  },
+  "matrix.manus.7.2": {
+    "text": "Integration with visual generation delivers slides with design, though complex workflows suffer from instability.",
+    "sourceHash": "e0cb7414"
+  },
+  "matrix.manus.7.3": {
+    "text": "Execution passes along data without robust independent verification; governance risk (Meta) weighs on trust.",
+    "sourceHash": "1b8afcf8"
+  },
+  "help.heading": {
+    "text": "Welcome to AI Strategy Hub.",
+    "sourceHash": "23510b40"
+  },
+  "help.intro": {
+    "text": "This dashboard isn't just a list of tools; it's a decision engine calibrated to find the best AI tool for your professional profile. Follow the logical flow below to get the most out of this app.",
+    "sourceHash": "bed337cb"
+  },
+  "help.s1.title": {
+    "text": "1. Understand the “whats” (CAPABILITIES)",
+    "sourceHash": "1774fb23"
+  },
+  "help.s1.p": {
+    "text": "Don't start with the tools, start with your <strong>goal</strong>. AI capabilities are organized into six domains — five power domains plus one cross-cutting enabler:",
+    "sourceHash": "273c7907"
+  },
+  "help.s1.list": {
+    "text": "<li><strong>Thinking (Reasoning):</strong> planning, critiquing, validating, and structuring.</li><li><strong>Discovering (Discovery):</strong> researching, mass reading, and ingesting data.</li><li><strong>Designing (Materialization):</strong> slides, visual identity, and multimodality.</li><li><strong>Building (Construction):</strong> generating code and applications.</li><li><strong>Integrating (Strategy):</strong> synthesizing everything into an executive decision.</li><li><strong>Streamlining (Enabler):</strong> reducing friction between the AI and your workflow — data access, delivery format, and trustworthiness.</li>",
+    "sourceHash": "f5168e27"
+  },
+  "help.s1.summary": {
+    "text": "💡 See Practical Example: Ana's Journey",
+    "sourceHash": "21198f4b"
+  },
+  "help.s1.example": {
+    "text": "<strong>Scenario:</strong> Ana needs to create a launch strategy for a digital bank. She's not just looking for “a chatbot”: she needs the AI technology best suited to the job. So she opens the app and looks at the capabilities in the “What an AI delivers” section, and realizes her project requires three of them: <em>5.3 In-Depth Academic and Technical Research</em> (to read banking regulations), <em>B — Logical validation, internal consistency, and stress-testing</em> (to test her pricing model), and <em>5.1 Automated Generation of PowerPoint Presentations</em> (for the final presentation).",
+    "sourceHash": "1e051067"
+  },
+  "help.s2.title": {
+    "text": "2. Visualize the “how” (PIPELINE)",
+    "sourceHash": "e61bc93e"
+  },
+  "help.s2.p": {
+    "text": "Understand where each capability fits into your real workflow, from <strong>Input</strong> (research and curation), through <strong>Process</strong> (logical validation), to <strong>Output</strong> (final delivery).",
+    "sourceHash": "39c0d7b6"
+  },
+  "help.s2.example": {
+    "text": "Ana looks at the Pipeline board and maps out her flow:<br>1. <strong>Input:</strong> First, she'll use the <strong>5.3 In-Depth Academic and Technical Research</strong> capability to scan Central Bank regulations.<br>2. <strong>Process:</strong> Then, she'll use the <strong>B — Logical validation, internal consistency, and stress-testing</strong> meta-case to find holes in the thesis.<br>3. <strong>Output:</strong> Finally, she'll use the <strong>5.1 Automated Generation of PowerPoint Presentations</strong> capability to turn the text into a slide deck.",
+    "sourceHash": "907a5e6f"
+  },
+  "help.s3.title": {
+    "text": "3. State the “why” (usage PROFILE)",
+    "sourceHash": "42384bd7"
+  },
+  "help.s3.p": {
+    "text": "<strong>This is the most important step.</strong> Choose one of the seven professional archetypes or manually adjust the five domain sliders (Thinking, Discovering, Designing, Building, Integrating) according to how relevant each is to your work.",
+    "sourceHash": "bbbd2d18"
+  },
+  "help.s3.list": {
+    "text": "<li>How much does each domain matter for your deliverable?</li><li>And Streamlining: are you more of an <em>Artisan</em> (you want raw power and assemble the result by hand) or an <em>Operator</em> (you want the deliverable ready, with no friction)?</li>",
+    "sourceHash": "b0298581"
+  },
+  "help.s3.note": {
+    "text": "The Streamlining slider controls how much friction penalizes the ranking. The system reacts in real time.",
+    "sourceHash": "4c04cae1"
+  },
+  "help.s3.example": {
+    "text": "In the Decision tab, Ana raises <strong>Thinking</strong> and <strong>Discovering</strong> (she needs logical precision and to scan regulations) and also <strong>Designing</strong>, since the final deliverable is a slide deck. She keeps Building low, since she won't be writing code. Since she needs the PowerPoint <em>ready to go</em> for leadership, she pushes the <strong>Streamlining slider toward Operator</strong> — signaling that manual-formatting friction should count against AIs that only deliver raw text.",
+    "sourceHash": "1ca73440"
+  },
+  "help.s4.title": {
+    "text": "4. Choose the right AI (RANKING)",
+    "sourceHash": "1ec42e7b"
+  },
+  "help.s4.p1": {
+    "text": "Based on the defined profile, the <strong>Decision Engine</strong> calculates each AI's score and builds the ranking. Each AI receives an <strong>Effective Score per domain</strong> — raw power multiplied by that domain's Efficiency Factor — and the final score is the weighted average across your sliders.",
+    "sourceHash": "43ac4a26"
+  },
+  "help.s4.p2": {
+    "text": "<strong>Power × Efficiency:</strong> a powerful but high-friction AI can lose to a less powerful one that delivers ready to use. Hover over each ranking card to see the breakdown (P, F, D, and E) domain by domain. When two leaders are within 0.001 of each other, both receive the <strong>Technical Tie</strong> badge.",
+    "sourceHash": "5e416d18"
+  },
+  "help.s4.example": {
+    "text": "The Engine processes Ana's hybrid profile (high logic + high visual delivery + Operator bias). The ranking reflects that combination: pure-text tools drop because their low <strong>Format Continuity (7.2)</strong> is penalized by friction, while <strong>Copilot M365</strong> and <strong>Gemini 3.1 Pro</strong> rise for delivering closer to ready-to-use. Hovering over the card, Ana sees that <strong>GPT-5.5 Pro</strong> has great power, but loses Effective Score in the Designing domain due to format handoff.",
+    "sourceHash": "b083b07c"
+  },
+  "help.s5.title": {
+    "text": "5. Audit and dig deeper (MATRIX)",
+    "sourceHash": "cff0173a"
+  },
+  "help.s5.p": {
+    "text": "Don't blindly trust the algorithm.",
+    "sourceHash": "848a8c5b"
+  },
+  "help.s5.list": {
+    "text": "<li>Go to the <strong>Technical Audit</strong> (Section 5) to check each tool's exact rating for each of its capabilities.</li><li>Check the <strong>Library</strong> (Section 6) to read the canonical definitions of each capability.</li>",
+    "sourceHash": "3c81023a"
+  },
+  "help.s5.example": {
+    "text": "Ana doesn't want surprises. She goes to the Technical Audit (Section 5) and specifically checks the slide-generation capability in the matrix. She notices that <em>ChatGPT</em> has visual limitations (a low score on <strong>5.1 Automated Generation of PowerPoint Presentations</strong>), while <em>MS Copilot</em> scores at the top on this item. This validates her choice of a hybrid workflow.",
+    "sourceHash": "b2c8f6bb"
+  },
+  "help.summary_generic": {
+    "text": "💡 See Practical Example",
+    "sourceHash": "1a28359c"
+  }
+}

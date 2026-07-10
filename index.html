@@ -246,9 +246,16 @@
                 <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-black text-xs shadow-lg shadow-indigo-900/50 flex-shrink-0">AI</div>
                 <h1 class="font-black text-white text-[32px] tracking-tight leading-tight">STRATEGY <span class="text-indigo-500">HUB</span></h1>
             </div>
-            <button onclick="toggleHelpModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold hover:bg-indigo-600 hover:text-white transition-all border border-slate-700">?</button>
+            <div class="flex items-center gap-2">
+                <select id="langSelectMobile" onchange="applyLocale(this.value)" class="bg-slate-800 text-slate-300 text-xs font-bold rounded-lg px-2 py-1.5 border border-slate-700 focus:outline-none" aria-label="Idioma">
+                    <option value="pt">PT</option>
+                    <option value="en">EN</option>
+                    <option value="de">DE</option>
+                </select>
+                <button onclick="toggleHelpModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold hover:bg-indigo-600 hover:text-white transition-all border border-slate-700">?</button>
+            </div>
         </div>
-        <p id="mobileSubtitle" class="text-slate-300 text-sm font-medium leading-snug">Encontre a melhor IA para o seu perfil profissional</p>
+        <p id="mobileSubtitle" class="text-slate-300 text-sm font-medium leading-snug" data-i18n="header.subtitle" data-i18n-pt="Encontre a melhor IA para o seu perfil profissional">Encontre a melhor IA para o seu perfil profissional</p>
     </header>
 
     <!-- === DESKTOP SIDEBAR === -->
@@ -263,34 +270,42 @@
         <div class="flex-1 py-8 space-y-3 px-4">
             <button onclick="switchTab('tab-knowledge')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-knowledge">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-                <span class="hidden lg:block font-bold text-sm">Conhecimento</span>
+                <span class="hidden lg:block font-bold text-sm" data-i18n="nav.conhecimento" data-i18n-pt="Conhecimento">Conhecimento</span>
             </button>
             <button onclick="switchTab('tab-decision')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-decision">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                <span class="hidden lg:block font-bold text-sm">Decisão</span>
+                <span class="hidden lg:block font-bold text-sm" data-i18n="nav.decisao" data-i18n-pt="Decisão">Decisão</span>
             </button>
             <button onclick="switchTab('tab-details')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-details">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                <span class="hidden lg:block font-bold text-sm">Auditoria</span>
+                <span class="hidden lg:block font-bold text-sm" data-i18n="nav.auditoria" data-i18n-pt="Auditoria">Auditoria</span>
             </button>
             <button onclick="switchTab('tab-library')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-library">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg>
-                <span class="hidden lg:block font-bold text-sm">Biblioteca</span>
+                <span class="hidden lg:block font-bold text-sm" data-i18n="nav.biblioteca" data-i18n-pt="Biblioteca">Biblioteca</span>
             </button>
         </div>
 
         <div class="px-4 pb-4">
             <button onclick="toggleHelpModal()" class="w-full flex items-center gap-3 px-3 py-3 rounded-xl bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white transition-all shadow-md">
                 <span class="w-6 h-6 rounded-full border-2 border-current flex items-center justify-center text-xs font-bold">?</span>
-                <span class="hidden lg:block font-bold text-sm">Manual & Ajuda</span>
+                <span class="hidden lg:block font-bold text-sm" data-i18n="nav.manual_ajuda" data-i18n-pt="Manual &amp; Ajuda">Manual &amp; Ajuda</span>
             </button>
+        </div>
+
+        <div class="px-4 pb-3">
+            <select id="langSelect" onchange="applyLocale(this.value)" class="w-full bg-slate-800 text-slate-300 text-xs font-bold rounded-lg px-3 py-2 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Idioma">
+                <option value="pt">Português</option>
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+            </select>
         </div>
 
         <div class="p-6 border-t border-slate-800 bg-slate-950">
             <div class="flex items-center gap-3">
                  <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-xs font-bold text-white shadow-lg">AI</div>
                  <div class="hidden lg:block overflow-hidden">
-                     <p class="text-xs font-bold text-white truncate">Powered by</p>
+                     <p class="text-xs font-bold text-white truncate" data-i18n="footer.poweredby" data-i18n-pt="Powered by">Powered by</p>
                      <p class="text-[10px] text-indigo-400 truncate">Gemini API</p>
                  </div>
             </div>
@@ -304,7 +319,7 @@
         <section id="tab-knowledge" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll p-4 md:p-8 lg:p-12 mobile-nav-clearance md:pb-8">
             <div class="max-w-6xl mx-auto space-y-12">
                 <header>
-                    <h2 class="section-title">Capacidades Fundamentais de IAs</h2>
+                    <h2 class="section-title" data-i18n="sec.capacidades.title" data-i18n-pt="Capacidades Fundamentais de IAs">Capacidades Fundamentais de IAs</h2>
                     <p class="section-subtitle">Entenda as capacidades fundamentais, organizadas em seis domínios — Thinking, Discovering, Designing, Building, Integrating e o habilitador transversal Streamlining.</p>
                 </header>
 
@@ -466,27 +481,27 @@
 
                 <div class="pt-8 border-t border-slate-200">
                     <header class="mb-6">
-                        <h3 class="section-title">Pipeline Produtivo</h3>
+                        <h3 class="section-title" data-i18n="sec.pipeline.title" data-i18n-pt="Pipeline Produtivo">Pipeline Produtivo</h3>
                         <p class="section-subtitle">As capacidades descritas acima, agora reorganizadas pelo estágio do fluxo de trabalho: Insumo, Processamento e Entrega.</p>
                     </header>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
                         <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 z-0 rounded-full"></div>
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative z-10 flex flex-col h-full hover:-translate-y-1 transition-transform">
-                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">1</div><div><h4 class="font-bold text-slate-900">Insumo</h4><p class="text-[11px] text-slate-500 leading-snug">Trazer informação do mundo real para dentro do fluxo: pesquisa, leitura e captação de dados.</p></div></div><div class="space-y-3" id="pipeline-input-list"></div>
+                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">1</div><div><h4 class="font-bold text-slate-900" data-i18n="pipeline.insumo.title" data-i18n-pt="Insumo">Insumo</h4><p class="text-[11px] text-slate-500 leading-snug" data-i18n="pipeline.insumo.desc" data-i18n-pt="Trazer informação do mundo real para dentro do fluxo: pesquisa, leitura e captação de dados.">Trazer informação do mundo real para dentro do fluxo: pesquisa, leitura e captação de dados.</p></div></div><div class="space-y-3" id="pipeline-input-list"></div>
                         </div>
                         <div class="bg-white p-6 rounded-2xl border border-emerald-200 shadow-sm relative z-10 flex flex-col h-full hover:-translate-y-1 transition-transform">
-                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-emerald-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">2</div><div><h4 class="font-bold text-slate-900">Processamento</h4><p class="text-[11px] text-slate-500 leading-snug">Raciocinar sobre o insumo: validar a lógica, estruturar o argumento e sintetizar a decisão.</p></div></div><div class="space-y-3" id="pipeline-process-list"></div>
+                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-emerald-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">2</div><div><h4 class="font-bold text-slate-900" data-i18n="pipeline.processamento.title" data-i18n-pt="Processamento">Processamento</h4><p class="text-[11px] text-slate-500 leading-snug" data-i18n="pipeline.processamento.desc" data-i18n-pt="Raciocinar sobre o insumo: validar a lógica, estruturar o argumento e sintetizar a decisão.">Raciocinar sobre o insumo: validar a lógica, estruturar o argumento e sintetizar a decisão.</p></div></div><div class="space-y-3" id="pipeline-process-list"></div>
                         </div>
                         <div class="bg-white p-6 rounded-2xl border border-indigo-200 shadow-sm relative z-10 flex flex-col h-full hover:-translate-y-1 transition-transform">
-                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">3</div><div><h4 class="font-bold text-slate-900">Entrega</h4><p class="text-[11px] text-slate-500 leading-snug">Empacotar o resultado em formato final utilizável: slides, código e artefatos prontos.</p></div></div><div class="space-y-3" id="pipeline-output-list"></div>
+                            <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg">3</div><div><h4 class="font-bold text-slate-900" data-i18n="pipeline.entrega.title" data-i18n-pt="Entrega">Entrega</h4><p class="text-[11px] text-slate-500 leading-snug" data-i18n="pipeline.entrega.desc" data-i18n-pt="Empacotar o resultado em formato final utilizável: slides, código e artefatos prontos.">Empacotar o resultado em formato final utilizável: slides, código e artefatos prontos.</p></div></div><div class="space-y-3" id="pipeline-output-list"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="pt-8 border-t border-slate-200">
                     <header class="mb-6">
-                        <h3 class="section-title">Ecossistema de Inteligência</h3>
+                        <h3 class="section-title" data-i18n="sec.ecosystem.title" data-i18n-pt="Ecossistema de Inteligência">Ecossistema de Inteligência</h3>
                         <p class="section-subtitle">O retrato executivo de cada IA: seu ponto forte (Superpower), seu ponto fraco (Kryptonite) e seu papel.</p>
                     </header>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ecosystemGrid"></div>
@@ -520,8 +535,8 @@
                                     <div id="archHint" class="arch-hint-box arch-hint-enter flex items-start gap-2 mt-3 mb-1 bg-slate-50 border border-purple-200 rounded-lg p-3 leading-snug">
                                         <svg class="w-[18px] h-[18px] flex-shrink-0 text-purple-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.989-2.386l-.548-.547z"></path></svg>
                                         <div class="min-w-0">
-                                            <p class="text-sm font-medium text-purple-700 mb-1.5">Você já viu os Arquétipos no "Saber" — aqui é onde você os aplica.</p>
-                                            <p class="text-[11px] text-slate-500">Os arquétipos são a camada que configura a fábrica — cada um aplica um peso diferente aos domínios e ao Streamlining. <b class="font-semibold text-slate-700">Importante:</b> não existe um arquétipo certo para você — existe o certo para a tarefa. A mesma pessoa pode ser Cirurgião num projeto de código e Burocrata num relatório executivo. Troque quando quiser: o ranking recalcula ao vivo.</p>
+                                            <p class="text-sm font-medium text-purple-700 mb-1.5" data-i18n="archhint.hook" data-i18n-pt="Você já viu os Arquétipos no &quot;Saber&quot; — aqui é onde você os aplica.">Você já viu os Arquétipos no "Saber" — aqui é onde você os aplica.</p>
+                                            <p class="text-[11px] text-slate-500" data-i18n="archhint.body" data-i18n-html="1">Os arquétipos são a camada que configura a fábrica — cada um aplica um peso diferente aos domínios e ao Streamlining. <b class="font-semibold text-slate-700">Importante:</b> não existe um arquétipo certo para você — existe o certo para a tarefa. A mesma pessoa pode ser Cirurgião num projeto de código e Burocrata num relatório executivo. Troque quando quiser: o ranking recalcula ao vivo.</p>
                                         </div>
                                         <button onclick="dismissArchHint()" class="flex-shrink-0 text-slate-400 hover:text-slate-600 transition-colors" aria-label="Dispensar dica"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
                                     </div>
@@ -602,7 +617,7 @@
                     </div>
                 </div>
                 <div class="lg:col-span-8 lg:h-full bg-slate-50/50 lg:overflow-y-auto custom-scroll p-4 md:p-8 mobile-nav-clearance md:pb-8 relative">
-                    <header class="flex justify-between items-end mb-6"><div><h3 class="section-title">Ranking Recomendado</h3><p class="section-subtitle">Baseado no atual perfil profissional selecionado.</p></div><button onclick="switchTab('tab-details')" class="hidden md:flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-all hover:shadow-md">Ver Matriz Técnica <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></header>
+                    <header class="flex justify-between items-end mb-6"><div><h3 class="section-title" data-i18n="sec.ranking.title" data-i18n-pt="Ranking Recomendado">Ranking Recomendado</h3><p class="section-subtitle" data-i18n="sec.ranking.subtitle" data-i18n-pt="Baseado no atual perfil profissional selecionado.">Baseado no atual perfil profissional selecionado.</p></div><button onclick="switchTab('tab-details')" class="hidden md:flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm transition-all hover:shadow-md" data-i18n="sec.ranking.vermatriz" data-i18n-pt="Ver Matriz Técnica ">Ver Matriz Técnica <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></header>
                     <div class="leader-surface mb-4 p-3 md:p-4">
                         <div class="flex items-center gap-2 mb-4 px-1">
                             <span class="w-[7px] h-[7px] rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
@@ -647,7 +662,7 @@
             <div class="max-w-7xl mx-auto space-y-6">
                 <div>
                     <header class="mb-3 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-                        <div><h2 class="section-title">Matriz de Auditoria</h2><p class="section-subtitle">Como cada uma das 7 IAs pontua, capacidade por capacidade — nota e justificativa por trás dela — para que você possa auditar o ranking gerado pelo motor de decisão.</p><button onclick="toggleOrigemNotasModal()" class="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-sky-600 hover:text-sky-800 hover:underline transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>De onde vêm as notas?</button></div>
+                        <div><h2 class="section-title" data-i18n="sec.auditoria.title" data-i18n-pt="Matriz de Auditoria">Matriz de Auditoria</h2><p class="section-subtitle" data-i18n="sec.auditoria.subtitle" data-i18n-pt="Como cada uma das 7 IAs pontua, capacidade por capacidade — nota e justificativa por trás dela — para que você possa auditar o ranking gerado pelo motor de decisão.">Como cada uma das 7 IAs pontua, capacidade por capacidade — nota e justificativa por trás dela — para que você possa auditar o ranking gerado pelo motor de decisão.</p><button onclick="toggleOrigemNotasModal()" class="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-sky-600 hover:text-sky-800 hover:underline transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span data-i18n="sec.auditoria.origemnotas" data-i18n-pt="De onde vêm as notas?">De onde vêm as notas?</span></button></div>
                         <div class="hidden md:flex flex-wrap gap-2" id="audit-filters">
                             <button onclick="setAuditFilter('all')" id="filter-audit-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active">Todos</button>
                             <button onclick="setAuditFilter('think')" id="filter-audit-think" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
@@ -663,7 +678,7 @@
                 </div>
                 <div class="glass-panel rounded-2xl p-6 border border-slate-200"><div class="flex flex-wrap gap-2 justify-center mb-4" id="radarControls"></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16"><div class="relative h-64 md:h-96 w-full"><canvas id="marketRadarThinking"></canvas></div><div class="relative h-64 md:h-96 w-full"><canvas id="marketRadarDoing"></canvas></div></div></div>
                 <div>
-                    <header class="mb-3"><h2 class="section-title">Matriz de Impacto Cruzado</h2><p class="section-subtitle">Como a ausência de cada habilitador transversal (streamlining) — Gravidade de Dados, Continuidade de Formato, Confiabilidade & Verificabilidade — degrada cada domínio.</p></header>
+                    <header class="mb-3"><h2 class="section-title" data-i18n="sec.impacto.title" data-i18n-pt="Matriz de Impacto Cruzado">Matriz de Impacto Cruzado</h2><p class="section-subtitle" data-i18n="sec.impacto.subtitle" data-i18n-pt="Como a ausência de cada habilitador transversal (streamlining) — Gravidade de Dados, Continuidade de Formato, Confiabilidade &amp; Verificabilidade — degrada cada domínio.">Como a ausência de cada habilitador transversal (streamlining) — Gravidade de Dados, Continuidade de Formato, Confiabilidade &amp; Verificabilidade — degrada cada domínio.</p></header>
                     <div class="hidden md:block glass-panel rounded-2xl p-4 md:p-6 border border-slate-200">
                         <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mb-4 text-[10px] font-bold uppercase tracking-wide">
                             <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>Crítica</span>
@@ -688,7 +703,7 @@
         <section id="tab-library" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll p-4 md:p-8 lg:p-12 mobile-nav-clearance md:pb-8">
             <div class="max-w-4xl mx-auto">
                 <header class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-slate-200 pb-6">
-                    <div><h2 class="section-title">Biblioteca de Definições</h2><p class="section-subtitle">Glossário técnico das capacidades.</p></div>
+                    <div><h2 class="section-title" data-i18n="sec.biblioteca.title" data-i18n-pt="Biblioteca de Definições">Biblioteca de Definições</h2><p class="section-subtitle" data-i18n="sec.biblioteca.subtitle" data-i18n-pt="Glossário técnico das capacidades.">Glossário técnico das capacidades.</p></div>
                     <div class="flex flex-wrap gap-2">
                         <button onclick="renderCanon('all')" id="filter-lib-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active">Todos</button>
                         <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors">Manifesto</button>
@@ -723,7 +738,7 @@
             <span class="w-8 h-8 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
             </span>
-            De onde vêm as notas
+            <span data-i18n="origemnotas.title" data-i18n-pt="De onde vêm as notas">De onde vêm as notas</span>
           </h2>
           <button onclick="toggleOrigemNotasModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -731,35 +746,35 @@
         </div>
         <div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed">
           <div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700">
-            <p class="mb-4">A capacidade de uma IA não é fixa &ndash; ela muda rápido, às vezes de uma semana para a outra, conforme novos modelos chegam ao mercado. Por isso este Hub não é um ranking congelado, e sim um instrumento vivo, reavaliado periodicamente. Quando uma nota se move, na maioria das vezes não é correção de erro: é o mundo tendo mudado.</p>
-            <p class="mb-4">Cada nota nasce da melhor evidência disponível para aquela capacidade específica &ndash; e essa evidência não é uniforme. Ela vem de três origens:</p>
+            <p class="mb-4" data-i18n="origemnotas.p1" data-i18n-pt="A capacidade de uma IA não é fixa &ndash; ela muda rápido, às vezes de uma semana para a outra, conforme novos modelos chegam ao mercado. Por isso este Hub não é um ranking congelado, e sim um instrumento vivo, reavaliado periodicamente. Quando uma nota se move, na maioria das vezes não é correção de erro: é o mundo tendo mudado.">A capacidade de uma IA não é fixa &ndash; ela muda rápido, às vezes de uma semana para a outra, conforme novos modelos chegam ao mercado. Por isso este Hub não é um ranking congelado, e sim um instrumento vivo, reavaliado periodicamente. Quando uma nota se move, na maioria das vezes não é correção de erro: é o mundo tendo mudado.</p>
+            <p class="mb-4" data-i18n="origemnotas.p2" data-i18n-pt="Cada nota nasce da melhor evidência disponível para aquela capacidade específica &ndash; e essa evidência não é uniforme. Ela vem de três origens:">Cada nota nasce da melhor evidência disponível para aquela capacidade específica &ndash; e essa evidência não é uniforme. Ela vem de três origens:</p>
             <div class="space-y-4 not-prose">
               <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                <h4 class="text-emerald-800 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> Medido por benchmark</h4>
-                <p class="text-slate-600">Onde existem benchmarks públicos e confiáveis, a nota deriva deles &ndash; é o caso de engenharia de código, análise de gráficos e documentos, leitura de contexto massivo e verificabilidade (grounding). Nota ancorada em dado externo e reproduzível.</p>
+                <h4 class="text-emerald-800 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> <span data-i18n="origemnotas.medido.title" data-i18n-pt="Medido por benchmark">Medido por benchmark</span></h4>
+                <p class="text-slate-600" data-i18n="origemnotas.medido.desc" data-i18n-pt="Onde existem benchmarks públicos e confiáveis, a nota deriva deles &ndash; é o caso de engenharia de código, análise de gráficos e documentos, leitura de contexto massivo e verificabilidade (grounding). Nota ancorada em dado externo e reproduzível.">Onde existem benchmarks públicos e confiáveis, a nota deriva deles &ndash; é o caso de engenharia de código, análise de gráficos e documentos, leitura de contexto massivo e verificabilidade (grounding). Nota ancorada em dado externo e reproduzível.</p>
               </div>
               <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
-                <h4 class="text-amber-800 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-amber-500"></span> Aproximado (proxy)</h4>
-                <p class="text-slate-600">Em algumas capacidades não há régua direta, mas há benchmarks gerais que servem de aproximação. O raciocínio lógico, por exemplo, é medido por provas que chegam perto, sem capturar exatamente o uso profissional. Nota informada por dado, com uma camada de interpretação.</p>
+                <h4 class="text-amber-800 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-amber-500"></span> <span data-i18n="origemnotas.aproximado.title" data-i18n-pt="Aproximado (proxy)">Aproximado (proxy)</span></h4>
+                <p class="text-slate-600" data-i18n="origemnotas.aproximado.desc" data-i18n-pt="Em algumas capacidades não há régua direta, mas há benchmarks gerais que servem de aproximação. O raciocínio lógico, por exemplo, é medido por provas que chegam perto, sem capturar exatamente o uso profissional. Nota informada por dado, com uma camada de interpretação.">Em algumas capacidades não há régua direta, mas há benchmarks gerais que servem de aproximação. O raciocínio lógico, por exemplo, é medido por provas que chegam perto, sem capturar exatamente o uso profissional. Nota informada por dado, com uma camada de interpretação.</p>
               </div>
               <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                <h4 class="text-slate-700 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-slate-500"></span> Avaliação especializada</h4>
-                <p class="text-slate-600">Algumas capacidades simplesmente não têm benchmark público &ndash; converter entre níveis de abstração ou manter consistência de identidade de marca, por exemplo. Aqui a nota é uma avaliação especializada declarada, não uma medição.</p>
+                <h4 class="text-slate-700 font-bold flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-slate-500"></span> <span data-i18n="origemnotas.especializada.title" data-i18n-pt="Avaliação especializada">Avaliação especializada</span></h4>
+                <p class="text-slate-600" data-i18n="origemnotas.especializada.desc" data-i18n-pt="Algumas capacidades simplesmente não têm benchmark público &ndash; converter entre níveis de abstração ou manter consistência de identidade de marca, por exemplo. Aqui a nota é uma avaliação especializada declarada, não uma medição.">Algumas capacidades simplesmente não têm benchmark público &ndash; converter entre níveis de abstração ou manter consistência de identidade de marca, por exemplo. Aqui a nota é uma avaliação especializada declarada, não uma medição.</p>
               </div>
             </div>
             <hr class="border-slate-100 my-5">
-            <p class="mb-4"><strong>Como escolhemos os benchmarks.</strong> Não vale qualquer leaderboard. Um benchmark só entra se for dinâmico (renova as questões, para o resultado não envelhecer), resistente a contaminação (as questões não estavam no treino do modelo &ndash; senão o score mede memória, não capacidade) e ainda capaz de separar os melhores modelos. Benchmarks célebres porém saturados ou contaminados são deliberadamente rebaixados a papel histórico.</p>
-            <p class="mb-4"><strong>O que a nota não é.</strong> Ela não é um veredito de "melhor IA" absoluta &ndash; é um retrato, na melhor evidência de hoje, de uma capacidade específica. A decisão final é sua: o caminho mais seguro é testar as duas ou três candidatas que o Hub aponta em casos reais do seu próprio trabalho.</p>
+            <p class="mb-4" data-i18n="origemnotas.p3" data-i18n-html="1"><strong>Como escolhemos os benchmarks.</strong> Não vale qualquer leaderboard. Um benchmark só entra se for dinâmico (renova as questões, para o resultado não envelhecer), resistente a contaminação (as questões não estavam no treino do modelo &ndash; senão o score mede memória, não capacidade) e ainda capaz de separar os melhores modelos. Benchmarks célebres porém saturados ou contaminados são deliberadamente rebaixados a papel histórico.</p>
+            <p class="mb-4" data-i18n="origemnotas.p4" data-i18n-html="1"><strong>O que a nota não é.</strong> Ela não é um veredito de "melhor IA" absoluta &ndash; é um retrato, na melhor evidência de hoje, de uma capacidade específica. A decisão final é sua: o caminho mais seguro é testar as duas ou três candidatas que o Hub aponta em casos reais do seu próprio trabalho.</p>
             </div>
         </div>
         <div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center">
-          <button onclick="toggleOrigemNotasModal()" class="px-6 py-2 bg-slate-800 text-white font-bold text-sm rounded-lg hover:bg-slate-700 focus:ring-4 focus:ring-slate-200 transition-colors w-full md:w-auto">Fechar</button>
+          <button onclick="toggleOrigemNotasModal()" class="px-6 py-2 bg-slate-800 text-white font-bold text-sm rounded-lg hover:bg-slate-700 focus:ring-4 focus:ring-slate-200 transition-colors w-full md:w-auto" data-i18n="common.fechar" data-i18n-pt="Fechar">Fechar</button>
         </div>
       </div>
     </div>
     <div id="tags-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="tags-modal-title"><div id="tags-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="tags-modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg></span>Significado das Tags</h2><button onclick="toggleTagsModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><p class="mb-4">No contexto do <strong>AI Strategy Hub app</strong>, essas tags representam a natureza primária de cada ferramenta, ou seja, em qual etapa do "Pipeline Produtivo" (Input → Process → Output) ela brilha com mais intensidade.</p><p>Aqui está o significado prático de cada uma:</p><hr class="border-slate-100 my-4"><div class="space-y-6"><div class="bg-slate-50 p-4 rounded-xl border border-slate-100"><h4 class="text-slate-700 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-slate-500"></span> 1. Insumo (Input)</h4><p><strong>O que é:</strong> Ferramentas especializadas em buscar, filtrar e trazer informação do mundo real para dentro do seu fluxo de trabalho.</p><p><strong>Foco:</strong> Pesquisa (Grounding), verificação de fatos e navegação autônoma na web.</p><p class="text-xs mt-2"><strong class="text-slate-500">IAs nesta categoria:</strong><br><span class="font-bold">Perplexity:</span> Age como um motor de busca conversacional, perfeito para substituir o Google e trazer fontes citadas.<br><span class="font-bold">Manus:</span> Um agente que navega na web para executar tarefas e encontrar dados dispersos.</p></div><div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100"><h4 class="text-emerald-800 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> 2. Raciocínio (Reasoning)</h4><p><strong>O que é:</strong> Ferramentas focadas na etapa de "Processamento". São os "cérebros" mais densos, ideais para lidar com lógica complexa, codificação, estruturação de argumentos e validação teórica.</p><p><strong>Foco:</strong> Lógica pura, matemática, arquitetura de software e escrita complexa/nuanceada.</p><p class="text-xs mt-2"><strong class="text-emerald-700">IAs nesta categoria:</strong><br><span class="font-bold">GPT-5.5 Pro:</span> Versátil e multimodal, com modos de raciocínio para reduzir alucinações lógicas.<br><span class="font-bold">Claude Opus 4.8:</span> Referência em lógica, codificação limpa (Artifacts) e nuance textual.<br><span class="font-bold">DeepSeek R1:</span> Focado em raciocínio matemático e lógico rigoroso via cadeia de pensamento.</p></div><div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100"><h4 class="text-indigo-800 flex items-center gap-2 mt-0"><span class="w-3 h-3 rounded-full bg-indigo-500"></span> 3. Entrega (Delivery)</h4><p><strong>O que é:</strong> Ferramentas voltadas para a "Saída" (Output) e produção final. Elas são melhores em empacotar o conteúdo em um formato utilizável (slides, documentos formatados, imagens, integração com e-mail/Office).</p><p><strong>Foco:</strong> Multimodalidade (ver e criar imagens/vídeo), integração com ecossistemas (Google/Microsoft) e geração de artefatos finais.</p><p class="text-xs mt-2"><strong class="text-indigo-700">IAs nesta categoria:</strong><br><span class="font-bold">Gemini 3.1 Pro:</span> Forte integração com o Google Workspace e contexto nativo de 2M tokens para ler documentos e produzir conteúdo.<br><span class="font-bold">Copilot M365:</span> Especializado em entregar documentos Word e slides PowerPoint nativos dentro do ecossistema Microsoft.</p></div></div><p class="text-xs text-center text-slate-400 mt-6 italic">Essas categorias ajudam a entender que não existe uma "melhor IA" absoluta, mas sim a melhor para a etapa do trabalho que você está executando no momento.</p></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleTagsModal()" class="px-6 py-2 bg-slate-800 text-white font-bold text-sm rounded-lg hover:bg-slate-700 focus:ring-4 focus:ring-slate-200 transition-colors w-full md:w-auto">Fechar</button></div></div></div>
     <div id="gemini-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity"><div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scroll relative flex flex-col"><div class="p-6 border-b border-slate-100 flex justify-between items-center sticky top-0 bg-white z-10"><div class="flex items-center gap-2"><span class="text-2xl">✨</span><h3 class="font-bold text-lg text-slate-900">Análise Estratégica IA</h3></div><button onclick="document.getElementById('gemini-modal').classList.add('hidden')" class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-50">✕</button></div><div class="p-6 text-sm text-slate-600 leading-relaxed" id="gemini-content"></div></div></div>
-    <div id="help-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="modal-title"><div id="help-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg></span>Manual de Operações</h2><button onclick="toggleHelpModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar ajuda"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><h3 class="text-lg text-slate-900 mt-0">Bem-vindo ao AI Strategy Hub.</h3><p>Este dashboard não é apenas uma lista de ferramentas; é um motor de decisão calibrado para encontrar a melhor ferramenta de IA para o seu perfil profissional. Siga o fluxo lógico abaixo para extrair o máximo deste app.</p><hr class="border-slate-100 my-4"><div class="space-y-8"><div><h4 class="text-base mb-2">1. Entenda os “o quês” (CAPACIDADES)</h4><p>Não comece pelas ferramentas, comece pelo seu <strong>objetivo</strong>. As capacidades das IAs estão organizadas em seis domínios — cinco de potência mais um habilitador transversal:</p><ul class="list-disc pl-5 space-y-1 marker:text-indigo-400"><li><strong>Thinking (Raciocínio):</strong> planejar, criticar, validar e estruturar.</li><li><strong>Discovering (Descoberta):</strong> pesquisar, ler em massa e ingerir dados.</li><li><strong>Designing (Materialização):</strong> slides, identidade visual e multimodalidade.</li><li><strong>Building (Construção):</strong> gerar código e aplicações.</li><li><strong>Integrating (Estratégia):</strong> sintetizar tudo em decisão executiva.</li><li><strong>Streamlining (Habilitador):</strong> reduzir a fricção entre a IA e seu fluxo — acesso a dados, formato de entrega e confiabilidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático: A Jornada da Ana</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200"><strong>Cenário:</strong> Ana precisa criar uma estratégia de lançamento para um banco digital. Ela não busca apenas "um chatbot": ela precisa da tecnologia de IA mais adequada para o trabalho. Então, ela abre o app e analisa as capacidades da seção "O que uma IA entrega", e percebe que seu projeto exige três delas: <em>5.3 Pesquisa Acadêmica e Técnica Aprofundada</em> (para ler regulações bancárias), <em>B — Validação lógica, consistência interna e stress-test</em> (para testar seu modelo de precificação) e <em>5.1 Geração Automatizada de Apresentações em PowerPoint</em> (para a apresentação final).</div></details></div><div><h4 class="text-base mb-2">2. Visualize o “como” (PIPELINE)</h4><p>Entenda onde cada capacidade se encaixa no seu fluxo de trabalho real, desde o <strong>Input</strong> (pesquisa e curadoria), passando pelo <strong>Process</strong> (validação lógica) até o <strong>Output</strong> (entrega final).</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">Ana olha para o quadro do Pipeline e traça seu fluxo:<br>1. <strong>Input:</strong> Primeiro, usará a capacidade <strong>5.3 Pesquisa Acadêmica e Técnica Aprofundada</strong> para varrer leis do Banco Central.<br>2. <strong>Process:</strong> Depois, usará o metacaso <strong>B — Validação lógica, consistência interna e stress-test</strong> para encontrar furos na tese.<br>3. <strong>Output:</strong> Por fim, usará a capacidade <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong> para transformar o texto em um deck de slides.</div></details></div><div><h4 class="text-base mb-2">3. Diga o “porquê” (PERFIL de uso)</h4><p><strong>Esta é a etapa mais importante.</strong> Escolha um dos sete arquétipos profissionais ou ajuste manualmente os cinco sliders de domínio (Thinking, Discovering, Designing, Building, Integrating) conforme a relevância de cada um para o seu trabalho.</p><ul class="list-disc pl-5 space-y-1 marker:text-emerald-400"><li>Quanto cada domínio importa para a sua entrega?</li><li>E o <strong>Streamlining</strong>: você é mais <em>Artesão</em> (quer a potência bruta e monta o resultado à mão) ou <em>Operador</em> (quer o entregável pronto, sem fricção)?</li></ul><p class="italic text-xs bg-slate-50 p-2 rounded border-l-2 border-indigo-400 mt-2">O slider de Streamlining controla o quanto a fricção penaliza o ranking. O sistema reage em tempo real.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">No Diagnóstico, Ana sobe <strong>Thinking</strong> e <strong>Discovering</strong> (precisa de precisão lógica e de varrer regulações) e também <strong>Designing</strong>, já que o entregável final é um deck de slides. Mantém Building baixo, pois não vai escrever código. Como ela precisa do PowerPoint <em>pronto</em> para a diretoria, ela empurra o slider de <strong>Streamlining para o lado Operador</strong> — sinalizando que a fricção de formatação manual deve pesar contra as IAs que só entregam texto bruto.</div></details></div><div><h4 class="text-base mb-2">4. Escolha a IA certa (RANKING)</h4><p>Com base no perfil definido, o <strong>Motor de Decisão</strong> calcula a pontuação de cada IA e monta o ranking. Cada IA recebe um <strong>Score Efetivo por domínio</strong> — a potência bruta multiplicada pelo Fator de Eficiência daquele domínio — e o score final é a média ponderada pelos seus sliders.</p><p><strong>Potência × Eficiência:</strong> uma IA potente mas de alta fricção pode perder para uma menos potente que entrega pronto. Passe o mouse sobre cada card do ranking para ver o detalhamento (P, F, D e E) domínio a domínio. Quando dois líderes ficam a menos de 0,001 de distância, ambos recebem o selo <strong>Empate Técnico</strong>.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">O Motor processa o perfil híbrido da Ana (alta lógica + alta entrega visual + viés Operador). O ranking reflete essa combinação: ferramentas de texto puro caem porque sua baixa <strong>Continuidade de Formato (7.2)</strong> é penalizada pela fricção, enquanto o <strong>Copilot M365</strong> e o <strong>Gemini 3.1 Pro</strong> sobem por entregarem mais perto do pronto. Passando o mouse no card, Ana vê que o <strong>GPT-5.5 Pro</strong> tem ótima potência, mas perde Score Efetivo no domínio Designing por causa do handoff de formato.</div></details></div><div><h4 class="text-base mb-2">5. Audite e aprofunde-se (MATRIZ)</h4><p>Não confie cegamente no algoritmo.</p><ul class="list-disc pl-5 space-y-1 marker:text-sky-400"><li>Vá à <strong>Auditoria Técnica</strong> (Seção 5) para consultar a nota exata de cada ferramenta para cada uma de suas capacidades.</li><li>Consulte a <strong>Biblioteca</strong> (Seção 6) para ler as definições canônicas de cada capacidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>💡 Ver Exemplo Prático</summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200">Ana não quer surpresas. Ela vai à Auditoria Técnica (Seção 5) e verifica especificamente a capacidade de gerar slides na matriz. Ela nota que o <em>ChatGPT</em> possui limitações visuais (nota baixa em <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong>), enquanto o <em>MS Copilot</em> tem nota máxima nesse quesito. Isso valida sua escolha por um fluxo híbrido.</div></details></div></div></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleHelpModal()" class="px-6 py-2 bg-indigo-600 text-white font-bold text-sm rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors w-full md:w-auto">Entendi</button></div></div></div><div id="welcome-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="welcome-modal-title"><div id="welcome-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="welcome-modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.989-2.386l-.548-.547z"></path></svg></span>Bem-vindo ao AI Strategy Hub</h2></div><div class="p-6 md:p-8 space-y-4 text-sm text-slate-600 leading-relaxed prose prose-sm max-w-none prose-strong:text-indigo-700"><p>Não existe "a melhor IA" — existe a melhor IA <em>para o seu trabalho</em>. Cada ferramenta é forte em algumas coisas e fraca em outras; <strong>a pergunta certa</strong> não é "qual é mais inteligente", mas "qual entrega o que eu preciso, do jeito que eu preciso".</p><p>É para responder essa pergunta que este app existe. Escolha um <strong>perfil profissional</strong> que se pareça com o seu, ou personalize-o. Em segundos, você verá um <strong>ranking das 7 IAs</strong> mais relevantes do mercado, ordenadas para este perfil específico.</p><p><strong>Potência bruta</strong> é só metade da conta. A outra metade é a <strong>fricção</strong>: se a IA já lê seus dados, entrega pronto para usar, e se você pode confiar na fonte do que ela afirma. O app pesa isso também.</p><p>Explore os perfis, mexa nos controles, e veja a recomendação mudar ao vivo.</p></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3"><label class="flex items-center gap-2 text-xs font-medium text-slate-500 cursor-pointer select-none"><input type="checkbox" id="welcome-dont-show" class="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">Não mostrar novamente</label><button onclick="closeWelcomeModal()" class="px-6 py-2 bg-indigo-600 text-white font-bold text-sm rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors w-full sm:w-auto">Entendi</button></div></div></div>
+    <div id="help-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="modal-title"><div id="help-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg></span>Manual de Operações</h2><button onclick="toggleHelpModal()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors" aria-label="Fechar ajuda"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><div class="p-6 md:p-8 space-y-6 text-sm text-slate-600 leading-relaxed"><div class="prose prose-sm max-w-none prose-headings:text-slate-800 prose-headings:font-bold prose-strong:text-indigo-700"><h3 class="text-lg text-slate-900 mt-0" data-i18n="help.heading" data-i18n-pt="Bem-vindo ao AI Strategy Hub.">Bem-vindo ao AI Strategy Hub.</h3><p data-i18n="help.intro" data-i18n-pt="Este dashboard não é apenas uma lista de ferramentas; é um motor de decisão calibrado para encontrar a melhor ferramenta de IA para o seu perfil profissional. Siga o fluxo lógico abaixo para extrair o máximo deste app.">Este dashboard não é apenas uma lista de ferramentas; é um motor de decisão calibrado para encontrar a melhor ferramenta de IA para o seu perfil profissional. Siga o fluxo lógico abaixo para extrair o máximo deste app.</p><hr class="border-slate-100 my-4"><div class="space-y-8"><div><h4 class="text-base mb-2" data-i18n="help.s1.title" data-i18n-pt="1. Entenda os “o quês” (CAPACIDADES)">1. Entenda os “o quês” (CAPACIDADES)</h4><p data-i18n="help.s1.p" data-i18n-html="1">Não comece pelas ferramentas, comece pelo seu <strong>objetivo</strong>. As capacidades das IAs estão organizadas em seis domínios — cinco de potência mais um habilitador transversal:</p><ul class="list-disc pl-5 space-y-1 marker:text-indigo-400" data-i18n="help.s1.list" data-i18n-html="1"><li><strong>Thinking (Raciocínio):</strong> planejar, criticar, validar e estruturar.</li><li><strong>Discovering (Descoberta):</strong> pesquisar, ler em massa e ingerir dados.</li><li><strong>Designing (Materialização):</strong> slides, identidade visual e multimodalidade.</li><li><strong>Building (Construção):</strong> gerar código e aplicações.</li><li><strong>Integrating (Estratégia):</strong> sintetizar tudo em decisão executiva.</li><li><strong>Streamlining (Habilitador):</strong> reduzir a fricção entre a IA e seu fluxo — acesso a dados, formato de entrega e confiabilidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg><span data-i18n="help.s1.summary" data-i18n-pt="💡 Ver Exemplo Prático: A Jornada da Ana">💡 Ver Exemplo Prático: A Jornada da Ana</span></summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200" data-i18n="help.s1.example" data-i18n-html="1"><strong>Cenário:</strong> Ana precisa criar uma estratégia de lançamento para um banco digital. Ela não busca apenas "um chatbot": ela precisa da tecnologia de IA mais adequada para o trabalho. Então, ela abre o app e analisa as capacidades da seção "O que uma IA entrega", e percebe que seu projeto exige três delas: <em>5.3 Pesquisa Acadêmica e Técnica Aprofundada</em> (para ler regulações bancárias), <em>B — Validação lógica, consistência interna e stress-test</em> (para testar seu modelo de precificação) e <em>5.1 Geração Automatizada de Apresentações em PowerPoint</em> (para a apresentação final).</div></details></div><div><h4 class="text-base mb-2" data-i18n="help.s2.title" data-i18n-pt="2. Visualize o “como” (PIPELINE)">2. Visualize o “como” (PIPELINE)</h4><p data-i18n="help.s2.p" data-i18n-html="1">Entenda onde cada capacidade se encaixa no seu fluxo de trabalho real, desde o <strong>Input</strong> (pesquisa e curadoria), passando pelo <strong>Process</strong> (validação lógica) até o <strong>Output</strong> (entrega final).</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg><span data-i18n="help.summary_generic" data-i18n-pt="💡 Ver Exemplo Prático">💡 Ver Exemplo Prático</span></summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200" data-i18n="help.s2.example" data-i18n-html="1">Ana olha para o quadro do Pipeline e traça seu fluxo:<br>1. <strong>Input:</strong> Primeiro, usará a capacidade <strong>5.3 Pesquisa Acadêmica e Técnica Aprofundada</strong> para varrer leis do Banco Central.<br>2. <strong>Process:</strong> Depois, usará o metacaso <strong>B — Validação lógica, consistência interna e stress-test</strong> para encontrar furos na tese.<br>3. <strong>Output:</strong> Por fim, usará a capacidade <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong> para transformar o texto em um deck de slides.</div></details></div><div><h4 class="text-base mb-2" data-i18n="help.s3.title" data-i18n-pt="3. Diga o “porquê” (PERFIL de uso)">3. Diga o “porquê” (PERFIL de uso)</h4><p data-i18n="help.s3.p" data-i18n-html="1"><strong>Esta é a etapa mais importante.</strong> Escolha um dos sete arquétipos profissionais ou ajuste manualmente os cinco sliders de domínio (Thinking, Discovering, Designing, Building, Integrating) conforme a relevância de cada um para o seu trabalho.</p><ul class="list-disc pl-5 space-y-1 marker:text-emerald-400" data-i18n="help.s3.list" data-i18n-html="1"><li>Quanto cada domínio importa para a sua entrega?</li><li>E o <strong>Streamlining</strong>: você é mais <em>Artesão</em> (quer a potência bruta e monta o resultado à mão) ou <em>Operador</em> (quer o entregável pronto, sem fricção)?</li></ul><p class="italic text-xs bg-slate-50 p-2 rounded border-l-2 border-indigo-400 mt-2" data-i18n="help.s3.note" data-i18n-pt="O slider de Streamlining controla o quanto a fricção penaliza o ranking. O sistema reage em tempo real.">O slider de Streamlining controla o quanto a fricção penaliza o ranking. O sistema reage em tempo real.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg><span data-i18n="help.summary_generic" data-i18n-pt="💡 Ver Exemplo Prático">💡 Ver Exemplo Prático</span></summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200" data-i18n="help.s3.example" data-i18n-html="1">No Diagnóstico, Ana sobe <strong>Thinking</strong> e <strong>Discovering</strong> (precisa de precisão lógica e de varrer regulações) e também <strong>Designing</strong>, já que o entregável final é um deck de slides. Mantém Building baixo, pois não vai escrever código. Como ela precisa do PowerPoint <em>pronto</em> para a diretoria, ela empurra o slider de <strong>Streamlining para o lado Operador</strong> — sinalizando que a fricção de formatação manual deve pesar contra as IAs que só entregam texto bruto.</div></details></div><div><h4 class="text-base mb-2" data-i18n="help.s4.title" data-i18n-pt="4. Escolha a IA certa (RANKING)">4. Escolha a IA certa (RANKING)</h4><p data-i18n="help.s4.p1" data-i18n-html="1">Com base no perfil definido, o <strong>Motor de Decisão</strong> calcula a pontuação de cada IA e monta o ranking. Cada IA recebe um <strong>Score Efetivo por domínio</strong> — a potência bruta multiplicada pelo Fator de Eficiência daquele domínio — e o score final é a média ponderada pelos seus sliders.</p><p data-i18n="help.s4.p2" data-i18n-html="1"><strong>Potência × Eficiência:</strong> uma IA potente mas de alta fricção pode perder para uma menos potente que entrega pronto. Passe o mouse sobre cada card do ranking para ver o detalhamento (P, F, D e E) domínio a domínio. Quando dois líderes ficam a menos de 0,001 de distância, ambos recebem o selo <strong>Empate Técnico</strong>.</p><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg><span data-i18n="help.summary_generic" data-i18n-pt="💡 Ver Exemplo Prático">💡 Ver Exemplo Prático</span></summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200" data-i18n="help.s4.example" data-i18n-html="1">O Motor processa o perfil híbrido da Ana (alta lógica + alta entrega visual + viés Operador). O ranking reflete essa combinação: ferramentas de texto puro caem porque sua baixa <strong>Continuidade de Formato (7.2)</strong> é penalizada pela fricção, enquanto o <strong>Copilot M365</strong> e o <strong>Gemini 3.1 Pro</strong> sobem por entregarem mais perto do pronto. Passando o mouse no card, Ana vê que o <strong>GPT-5.5 Pro</strong> tem ótima potência, mas perde Score Efetivo no domínio Designing por causa do handoff de formato.</div></details></div><div><h4 class="text-base mb-2" data-i18n="help.s5.title" data-i18n-pt="5. Audite e aprofunde-se (MATRIZ)">5. Audite e aprofunde-se (MATRIZ)</h4><p data-i18n="help.s5.p" data-i18n-pt="Não confie cegamente no algoritmo.">Não confie cegamente no algoritmo.</p><ul class="list-disc pl-5 space-y-1 marker:text-sky-400" data-i18n="help.s5.list" data-i18n-html="1"><li>Vá à <strong>Auditoria Técnica</strong> (Seção 5) para consultar a nota exata de cada ferramenta para cada uma de suas capacidades.</li><li>Consulte a <strong>Biblioteca</strong> (Seção 6) para ler as definições canônicas de cada capacidade.</li></ul><details class="mt-3 group"><summary class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded cursor-pointer hover:bg-indigo-100 transition-colors w-fit"><svg class="arrow w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg><span data-i18n="help.summary_generic" data-i18n-pt="💡 Ver Exemplo Prático">💡 Ver Exemplo Prático</span></summary><div class="mt-2 text-xs text-slate-500 pl-4 border-l-2 border-indigo-200" data-i18n="help.s5.example" data-i18n-html="1">Ana não quer surpresas. Ela vai à Auditoria Técnica (Seção 5) e verifica especificamente a capacidade de gerar slides na matriz. Ela nota que o <em>ChatGPT</em> possui limitações visuais (nota baixa em <strong>5.1 Geração Automatizada de Apresentações em PowerPoint</strong>), enquanto o <em>MS Copilot</em> tem nota máxima nesse quesito. Isso valida sua escolha por um fluxo híbrido.</div></details></div></div></div></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 text-center"><button onclick="toggleHelpModal()" class="px-6 py-2 bg-indigo-600 text-white font-bold text-sm rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors w-full md:w-auto" data-i18n="common.entendi" data-i18n-pt="Entendi">Entendi</button></div></div></div><div id="welcome-modal-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 transition-opacity" aria-modal="true" role="dialog" aria-labelledby="welcome-modal-title"><div id="welcome-modal-content" class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto custom-scroll relative border border-slate-200"><div class="sticky top-0 bg-white z-10 px-6 py-4 border-b border-slate-100 flex justify-between items-center"><h2 id="welcome-modal-title" class="text-xl font-bold text-slate-900 flex items-center gap-2"><span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.989-2.386l-.548-.547z"></path></svg></span><span data-i18n="welcome.title" data-i18n-pt="Bem-vindo ao AI Strategy Hub">Bem-vindo ao AI Strategy Hub</span></h2></div><div class="p-6 md:p-8 space-y-4 text-sm text-slate-600 leading-relaxed prose prose-sm max-w-none prose-strong:text-indigo-700"><p data-i18n="welcome.p1" data-i18n-html="1">Não existe "a melhor IA" — existe a melhor IA <em>para o seu trabalho</em>. Cada ferramenta é forte em algumas coisas e fraca em outras; <strong>a pergunta certa</strong> não é "qual é mais inteligente", mas "qual entrega o que eu preciso, do jeito que eu preciso".</p><p data-i18n="welcome.p2" data-i18n-html="1">É para responder essa pergunta que este app existe. Escolha um <strong>perfil profissional</strong> que se pareça com o seu, ou personalize-o. Em segundos, você verá um <strong>ranking das 7 IAs</strong> mais relevantes do mercado, ordenadas para este perfil específico.</p><p data-i18n="welcome.p3" data-i18n-html="1"><strong>Potência bruta</strong> é só metade da conta. A outra metade é a <strong>fricção</strong>: se a IA já lê seus dados, entrega pronto para usar, e se você pode confiar na fonte do que ela afirma. O app pesa isso também.</p><p data-i18n="welcome.p4" data-i18n-pt="Explore os perfis, mexa nos controles, e veja a recomendação mudar ao vivo.">Explore os perfis, mexa nos controles, e veja a recomendação mudar ao vivo.</p></div><div class="bg-slate-50 px-6 py-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3"><label class="flex items-center gap-2 text-xs font-medium text-slate-500 cursor-pointer select-none"><input type="checkbox" id="welcome-dont-show" class="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"><span data-i18n="welcome.dontshow" data-i18n-pt="Não mostrar novamente">Não mostrar novamente</span></label><button onclick="closeWelcomeModal()" class="px-6 py-2 bg-indigo-600 text-white font-bold text-sm rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors w-full sm:w-auto" data-i18n="common.entendi" data-i18n-pt="Entendi">Entendi</button></div></div></div>
 
     <script>
         let isInitializing = true; 
@@ -823,6 +838,95 @@
         // v13.7 — Conversão de slider de domínio (σ, 0–1) em peso W (§4.1 do cânone).
         // Veto em 0; piso 0.5 e teto 3.0 para σ ∈ (0, 1].
         function weightFor(s){ return s === 0 ? 0 : 0.5 + s * 2.5; }
+
+        // ============================================================
+        // i18n — internacionalização (v1.0, ver Especificacao-Arquitetura-i18n-v1.md)
+        // ============================================================
+        let currentLang = 'pt';           // 'pt' | 'en' | 'de' — português é sempre a fonte embutida
+        let I18N_EN = null, I18N_DE = null; // dicionários carregados via fetch, null até chegarem
+        const LOCALE_MAP = { pt: 'pt-BR', en: 'en-US', de: 'de-DE' };
+
+        // t(textoPT, chave): português é o literal já presente no código (nunca extraído);
+        // em en/de, consulta o dicionário carregado; se a chave faltar, cai de volta pro PT.
+        function tx(ptText, key){
+            if(currentLang === 'pt') return ptText;
+            const dict = (currentLang === 'de') ? I18N_DE : I18N_EN;
+            return (dict && dict[key] && dict[key].text) || ptText;
+        }
+
+        // Formatação numérica correta por locale (vírgula em pt/de, ponto em en) — ver §6 da especificação.
+        function fmtNum(n, opts){
+            return Number(n).toLocaleString(LOCALE_MAP[currentLang] || 'pt-BR', opts || { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function detectInitialLang(){
+            const saved = localStorage.getItem('aistrathub_lang');
+            if(saved === 'pt' || saved === 'en' || saved === 'de') return saved;
+            const nav = (navigator.language || 'pt').slice(0,2).toLowerCase();
+            if(nav === 'en' || nav === 'de') return nav;
+            return 'pt';
+        }
+
+        function updateLangSelectUI(lang){
+            const sel1 = document.getElementById('langSelect');
+            const sel2 = document.getElementById('langSelectMobile');
+            if(sel1) sel1.value = lang;
+            if(sel2) sel2.value = lang;
+        }
+
+        // applyLocale: troca o idioma ativo. PT renderiza na hora (síncrono); en/de buscam o
+        // dicionário via fetch — enquanto isso, a tela permanece no idioma anterior (§8 da especificação).
+        function applyLocale(lang){
+            localStorage.setItem('aistrathub_lang', lang);
+            const params = new URLSearchParams(window.location.search);
+
+            const finishSwitch = () => {
+                currentLang = lang;
+                params.set('lang', lang);
+                history.replaceState(null, '', '?' + params.toString());
+                updateLangSelectUI(lang);
+                document.querySelectorAll('[data-i18n]').forEach(applyStaticI18nNode);
+                rerenderAllForLocale();
+            };
+
+            if(lang === 'pt'){ finishSwitch(); return; }
+
+            const already = (lang === 'en') ? I18N_EN : I18N_DE;
+            if(already){ finishSwitch(); return; }
+
+            fetch('i18n/' + lang + '.json')
+                .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                .then(dict => {
+                    if(lang === 'en') I18N_EN = dict; else I18N_DE = dict;
+                    finishSwitch();
+                })
+                .catch(err => {
+                    console.warn('[i18n] Falha ao carregar ' + lang + '.json — permanecendo no idioma atual.', err);
+                    updateLangSelectUI(currentLang);
+                });
+        }
+
+        // Substitui o texto de um elemento estático marcado com data-i18n="chave" + data-i18n-pt="texto original".
+        // Nós com data-i18n-html="1" usam innerHTML (preservam markup como <b>) em vez de textContent.
+        function applyStaticI18nNode(el){
+            const key = el.getAttribute('data-i18n');
+            const useHtml = el.getAttribute('data-i18n-html') === '1';
+            const ptText = el.getAttribute('data-i18n-pt') || (useHtml ? el.innerHTML : el.textContent);
+            const translated = tx(ptText, key);
+            if(useHtml) el.innerHTML = translated; else el.textContent = translated;
+        }
+
+        // Rechama as funções de renderização já existentes — nenhuma função nova é criada,
+        // elas passam a ler de t() em vez de string fixa em português.
+        function rerenderAllForLocale(){
+            if(typeof renderPipeline === 'function') renderPipeline();
+            if(typeof renderEcosystem === 'function') renderEcosystem();
+            if(typeof renderCanon === 'function') renderCanon('all');
+            if(typeof renderMatrix === 'function') renderMatrix();
+            if(typeof renderMobileMatrix === 'function') renderMobileMatrix();
+            if(typeof updateAll === 'function') updateAll();
+        }
+
         const SIGMA_SLIDERS = ['slider-think','slider-disc','slider-design','slider-build','slider-integ'];
         const SIGMA_LABELS  = ['val-think','val-disc','val-design','val-build','val-integ'];
         // Presets dos Arquétipos (Tabela 8.2): sliders [T,Di,De,B,I] (0-1) + Streamlining S (0-1).
@@ -1137,6 +1241,13 @@
         };
 
         function init(){
+            // i18n: resolve idioma inicial (URL > localStorage > navegador > português) e aplica.
+            // Primeira renderização abaixo já ocorre em PT (síncrono); se o idioma resolvido
+            // for en/de, applyLocale troca assim que o dicionário chegar (ver §8 da especificação).
+            const urlLang = new URLSearchParams(window.location.search).get('lang');
+            const initialLang = (urlLang === 'en' || urlLang === 'de' || urlLang === 'pt') ? urlLang : detectInitialLang();
+            updateLangSelectUI(initialLang);
+
             renderPipeline();
             renderRadarControls();
             initCharts();
@@ -1157,6 +1268,8 @@
             const __initialPane = document.querySelector('.decision-pane');
             if(__initialPane) __initialPane.classList.add('profile-open');
             isInitializing = false; // RELEASE LOCK
+            // Dispara a troca para en/de (assíncrona) só depois que a tela já pintou em PT.
+            if(initialLang !== 'pt') applyLocale(initialLang);
             switchTab('tab-knowledge');
             
             // ATTACH LISTENERS FOR TOAST (CLEAN SLATE)
@@ -1213,12 +1326,14 @@
             const card=document.createElement('div');
             card.className=`p-4 rounded-xl border ${dm.card} hover:shadow-md transition-all cursor-pointer flex flex-col hover:-translate-y-1 bg-white`;
             card.onclick=()=> goToLibrary(c.id);
+            const cName = tx(c.name, 'cases.'+c.id+'.name');
+            const cDesc = tx(c.desc, 'cases.'+c.id+'.desc');
             card.innerHTML=`
                 <div class="flex items-start justify-between gap-2 mb-2">
-                    <div class="font-bold text-sm leading-tight">${c.name.split(' ').slice(1).join(' ')}</div>
+                    <div class="font-bold text-sm leading-tight">${cName.split(' ').slice(1).join(' ')}</div>
                     <span class="font-bold text-[9px] uppercase tracking-wide opacity-80 border border-current px-1.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">${dm.label}</span>
                 </div>
-                <div class="text-[11px] opacity-80 flex-grow leading-snug">${c.desc}</div>
+                <div class="text-[11px] opacity-80 flex-grow leading-snug">${cDesc}</div>
             `;
             return card;
         }
@@ -1268,7 +1383,7 @@
                     <div class="accordion-content bg-slate-50 border-t border-slate-100"><div class="p-4 space-y-4">
                         ${cases.map(c => {
                             const val = matrixData[t.id].scores[c.id];
-                            const just = matrixData[t.id].justifications[c.id];
+                            const just = tx(matrixData[t.id].justifications[c.id], 'matrix.'+t.id+'.'+c.id);
                             let color = val >= 5 ? 'text-emerald-600 font-bold' : (val >= 3 ? 'text-indigo-600' : 'text-slate-400');
                             return `
                                 <div class="border-b border-slate-200/50 pb-3 last:border-0 last:pb-0">
@@ -1304,11 +1419,17 @@
             tools.forEach(t => {
                 const e = ECOSYSTEM[t.id];
                 if(!e) return;
-                let badge = "Insumo", color = "text-slate-600 bg-slate-100";
-                if(t.type==='delivery'){ badge="Entrega"; color="text-indigo-600 bg-indigo-50"; }
-                if(t.type==='reasoning'){ badge="Raciocínio"; color="text-emerald-600 bg-emerald-50"; }
+                let badge = tx("Insumo", "ecosystem.badge.insumo"), color = "text-slate-600 bg-slate-100";
+                if(t.type==='delivery'){ badge=tx("Entrega", "ecosystem.badge.entrega"); color="text-indigo-600 bg-indigo-50"; }
+                if(t.type==='reasoning'){ badge=tx("Raciocínio", "ecosystem.badge.raciocinio"); color="text-emerald-600 bg-emerald-50"; }
                 const card = document.createElement('div');
                 card.className = "bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col";
+                const eSp = tx(e.sp, 'ecosystem.'+t.id+'.sp');
+                const eKr = tx(e.kr, 'ecosystem.'+t.id+'.kr');
+                const eRole = tx(e.role, 'ecosystem.'+t.id+'.role');
+                const lblSuper = tx('Superpower', 'ecosystem.label.superpower');
+                const lblKrypto = tx('Kryptonite', 'ecosystem.label.kryptonite');
+                const lblPapel = tx('Papel', 'ecosystem.label.papel');
                 card.innerHTML =
                     '<div class="flex items-center justify-between mb-3">' +
                         '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background-color:' + t.color + '"></span>' +
@@ -1316,9 +1437,9 @@
                         '<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ' + color + '">' + badge + '</span>' +
                     '</div>' +
                     '<div class="space-y-2 text-xs">' +
-                        '<div class="flex gap-2"><span class="font-bold text-emerald-600 shrink-0 w-20">Superpower</span><span class="text-slate-600">' + e.sp + '</span></div>' +
-                        '<div class="flex gap-2"><span class="font-bold text-rose-600 shrink-0 w-20">Kryptonite</span><span class="text-slate-600">' + e.kr + '</span></div>' +
-                        '<div class="flex gap-2 pt-2 border-t border-slate-100"><span class="font-bold text-slate-400 shrink-0 w-20">Papel</span><span class="text-slate-500 italic">' + e.role + '</span></div>' +
+                        '<div class="flex gap-2"><span class="font-bold text-emerald-600 shrink-0 w-20">' + lblSuper + '</span><span class="text-slate-600">' + eSp + '</span></div>' +
+                        '<div class="flex gap-2"><span class="font-bold text-rose-600 shrink-0 w-20">' + lblKrypto + '</span><span class="text-slate-600">' + eKr + '</span></div>' +
+                        '<div class="flex gap-2 pt-2 border-t border-slate-100"><span class="font-bold text-slate-400 shrink-0 w-20">' + lblPapel + '</span><span class="text-slate-500 italic">' + eRole + '</span></div>' +
                     '</div>';
                 host.appendChild(card);
             });
@@ -1449,7 +1570,7 @@
                 
                 tools.forEach((t, ti)=>{
                     const val=matrixData[t.id].scores[c.id];
-                    const just=matrixData[t.id].justifications[c.id];
+                    const just=tx(matrixData[t.id].justifications[c.id], 'matrix.'+t.id+'.'+c.id);
                     const td=document.createElement('td');
                     td.className="p-2 text-center border-l border-slate-100 hover:bg-slate-50 transition-colors cursor-help relative";
                     let tipPos = index < 3 ? 'tooltip-down' : 'tooltip-up';
@@ -1659,9 +1780,9 @@
         function updateArchAccordion(key){
             if(window.innerWidth < 1024) return; // desktop only
             const info = archetypeInfo[key]; if(!info) return;
-            document.getElementById('archTagline').textContent = info.tagline;
-            document.getElementById('archDesc').textContent = info.desc;
-            document.getElementById('archExamples').textContent = info.examples;
+            document.getElementById('archTagline').textContent = tx(info.tagline, 'archetypes.'+key+'.tagline');
+            document.getElementById('archDesc').textContent = tx(info.desc, 'archetypes.'+key+'.desc');
+            document.getElementById('archExamples').textContent = tx(info.examples, 'archetypes.'+key+'.examples');
             document.getElementById('archAccordion').classList.add('open');
         }
 
@@ -1670,10 +1791,10 @@
             if(window.innerWidth >= 1024){ applyArchetype(key); return; }
             const info = archetypeInfo[key]; if(!info) return;
             __sheetKey = key;
-            document.getElementById('sheetArchName').textContent = ARCH_SHORT[key] || key;
-            document.getElementById('sheetTagline').textContent = info.tagline;
-            document.getElementById('sheetDesc').textContent = info.desc;
-            document.getElementById('sheetExamples').textContent = info.examples;
+            document.getElementById('sheetArchName').textContent = tx(ARCH_SHORT[key] || key, 'archetypes.'+key+'.name');
+            document.getElementById('sheetTagline').textContent = tx(info.tagline, 'archetypes.'+key+'.tagline');
+            document.getElementById('sheetDesc').textContent = tx(info.desc, 'archetypes.'+key+'.desc');
+            document.getElementById('sheetExamples').textContent = tx(info.examples, 'archetypes.'+key+'.examples');
             document.getElementById('sheetApplyBtn').onclick = function(){ applyArchetype(__sheetKey); closeArchSheet(); };
             document.getElementById('archSheet').classList.add('open');
             document.getElementById('archSheetOverlay').classList.add('open');
@@ -1909,13 +2030,15 @@
                 const div=document.createElement('div');
                 let id = b.id; if(!id && b.cat!=='meta'){const match=b.title.match(/^(\d+\.\d+)/);if(match)id='canon-'+match[1].replace('.','-')}
                 div.id = id;
-                
+                const bTitle = tx(b.title, 'canon.'+b.id+'.title');
+                const bText = tx(b.text, 'canon.'+b.id+'.text');
+
                 if(b.id && b.id.includes('intro')) {
                     div.className="mb-4 mt-6 first:mt-0 pl-4 border-l-4 border-slate-400";
-                    div.innerHTML=`<h4 class="text-xl font-black text-slate-400 uppercase tracking-widest mb-2">${b.title}</h4><div class="text-slate-700 text-sm font-medium leading-relaxed">${b.text}</div>`;
+                    div.innerHTML=`<h4 class="text-xl font-black text-slate-400 uppercase tracking-widest mb-2">${bTitle}</h4><div class="text-slate-700 text-sm font-medium leading-relaxed">${bText}</div>`;
                 } else {
                     div.className="mb-3 border-b border-slate-100 pb-3 last:border-0 scroll-mt-24 transition-colors duration-1000 p-2 rounded hover:bg-slate-50/50";
-                    div.innerHTML=`<h4 class="text-base font-bold text-indigo-900 mb-1">${b.title}</h4><div class="text-slate-600 text-sm leading-relaxed">${b.text}</div>`;
+                    div.innerHTML=`<h4 class="text-base font-bold text-indigo-900 mb-1">${bTitle}</h4><div class="text-slate-600 text-sm leading-relaxed">${bText}</div>`;
                 }
                 container.appendChild(div);
             });
@@ -1980,7 +2103,8 @@
             const activeChip = document.querySelector('.arch-chip.arch-active');
             const archName = activeChip ? activeChip.textContent.trim() : 'Perfil personalizado';
             const top3 = currentRanked.slice(0,3).map(t => `${t.name} (${t.scoreStr})`).join(", ");
-            const prompt = `Consultor Sênior de IA. Arquétipo selecionado: ${archName}. Sliders de domínio (0-100%): Thinking ${sg[0]}, Discovering ${sg[1]}, Designing ${sg[2]}, Building ${sg[3]}, Integrating ${sg[4]}. Streamlining (fricção): ${sStream}%. Top 3 IAs por Score Efetivo: ${top3}. 1. Confirme o arquétipo e descreva o perfil em uma frase. 2. Por que a #1 vence (trade-off potência bruta vs fricção operacional). 3. Dica Tática ("Quick Win"). Responda em Português, markdown.`;
+            const promptLangName = { pt: 'Português', en: 'English', de: 'Deutsch' }[currentLang] || 'Português';
+            const prompt = `Consultor Sênior de IA. Arquétipo selecionado: ${archName}. Sliders de domínio (0-100%): Thinking ${sg[0]}, Discovering ${sg[1]}, Designing ${sg[2]}, Building ${sg[3]}, Integrating ${sg[4]}. Streamlining (fricção): ${sStream}%. Top 3 IAs por Score Efetivo: ${top3}. 1. Confirme o arquétipo e descreva o perfil em uma frase. 2. Por que a #1 vence (trade-off potência bruta vs fricção operacional). 3. Dica Tática ("Quick Win"). Responda em ${promptLangName}, markdown.`;
 
             try {
                 const response = await fetch('/.netlify/functions/gemini', {
