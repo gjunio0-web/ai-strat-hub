@@ -715,7 +715,24 @@
     </main>
 
     <!-- === BOTÃO FLUTUANTE DE IDIOMA (mobile) === -->
-    <button id="langFab" onclick="cycleLocale()" class="md:hidden fixed right-4 z-40 w-11 h-11 rounded-full bg-indigo-600/30 backdrop-blur-md border border-indigo-300/40 text-white text-[11px] font-bold flex items-center justify-center shadow-lg shadow-indigo-900/20 active:scale-95 transition-transform" style="bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 14px);" aria-label="Idioma">
+    <!-- === MENU DE IDIOMA (mobile) — mostra todas as opções, não um ciclo === -->
+    <div id="langMenuOverlay" onclick="closeLangMenu()" class="md:hidden fixed inset-0 z-30 hidden"></div>
+    <div id="langMenu" class="md:hidden fixed right-4 z-40 hidden flex-col gap-0.5 bg-slate-900/95 backdrop-blur-md border border-indigo-300/30 rounded-xl p-1.5 shadow-xl min-w-[168px]" style="bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 68px);">
+        <button onclick="selectLocale('pt')" data-lang-option="pt" class="lang-menu-item flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 active:bg-white/15 transition-colors">
+            <span>Português</span>
+            <svg class="w-4 h-4 text-indigo-300 lang-check hidden flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+        </button>
+        <button onclick="selectLocale('en')" data-lang-option="en" class="lang-menu-item flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 active:bg-white/15 transition-colors">
+            <span>English</span>
+            <svg class="w-4 h-4 text-indigo-300 lang-check hidden flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+        </button>
+        <button disabled data-lang-option="de" class="lang-menu-item flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-white/35 cursor-not-allowed">
+            <span>Deutsch</span>
+            <span class="text-[9px] font-bold uppercase tracking-wide bg-white/10 text-white/45 px-1.5 py-0.5 rounded flex-shrink-0" data-i18n="langmenu.embreve" data-i18n-pt="Em breve">Em breve</span>
+        </button>
+    </div>
+
+    <button id="langFab" onclick="toggleLangMenu()" class="md:hidden fixed right-4 z-40 w-11 h-11 rounded-full bg-indigo-600/30 backdrop-blur-md border border-indigo-300/40 text-white text-[11px] font-bold flex items-center justify-center shadow-lg shadow-indigo-900/20 active:scale-95 transition-transform" style="bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 14px);" aria-label="Idioma" aria-haspopup="true" aria-expanded="false">
         <span id="langFabLabel">PT</span>
     </button>
 
@@ -870,13 +887,40 @@
             if(sel1) sel1.value = lang;
             const fabLabel = document.getElementById('langFabLabel');
             if(fabLabel) fabLabel.textContent = lang.toUpperCase();
+            // Marca com um check apenas a opção ativa no menu mobile
+            document.querySelectorAll('#langMenu [data-lang-option]').forEach(btn => {
+                const check = btn.querySelector('.lang-check');
+                if(check) check.classList.toggle('hidden', btn.getAttribute('data-lang-option') !== lang);
+            });
         }
 
-        // Botão flutuante mobile: um toque avança para o próximo idioma (PT -> EN -> DE -> PT).
-        function cycleLocale(){
-            const order = ['pt', 'en', 'de'];
-            const next = order[(order.indexOf(currentLang) + 1) % order.length];
-            applyLocale(next);
+        // Menu de idioma mobile: mostra todas as opções de uma vez (em vez de ciclar por toque único),
+        // para que o usuário sempre veja quais idiomas existem — inclusive quando novos forem adicionados.
+        function toggleLangMenu(){
+            const menu = document.getElementById('langMenu');
+            const overlay = document.getElementById('langMenuOverlay');
+            const fab = document.getElementById('langFab');
+            if(!menu || !overlay) return;
+            const isOpen = !menu.classList.contains('hidden');
+            if(isOpen){ closeLangMenu(); return; }
+            menu.classList.remove('hidden');
+            menu.classList.add('flex');
+            overlay.classList.remove('hidden');
+            if(fab) fab.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeLangMenu(){
+            const menu = document.getElementById('langMenu');
+            const overlay = document.getElementById('langMenuOverlay');
+            const fab = document.getElementById('langFab');
+            if(menu){ menu.classList.add('hidden'); menu.classList.remove('flex'); }
+            if(overlay) overlay.classList.add('hidden');
+            if(fab) fab.setAttribute('aria-expanded', 'false');
+        }
+
+        function selectLocale(lang){
+            closeLangMenu();
+            applyLocale(lang);
         }
 
         // applyLocale: troca o idioma ativo. PT renderiza na hora (síncrono); en/de buscam o
@@ -906,8 +950,12 @@
                     finishSwitch();
                 })
                 .catch(err => {
-                    console.warn('[i18n] Falha ao carregar ' + lang + '.json — permanecendo no idioma atual.', err);
-                    updateLangSelectUI(currentLang);
+                    // Dicionário ausente ou inacessível (ex.: de.json ainda não existe). Mesmo assim,
+                    // avançamos o idioma ativo — tx() já cai de volta para o texto em PT chave a chave
+                    // quando o dicionário está nulo, então o app continua funcional e o ciclo do botão
+                    // flutuante não trava neste idioma para sempre.
+                    console.warn('[i18n] Falha ao carregar ' + lang + '.json — usando fallback para português nas chaves ausentes.', err);
+                    finishSwitch();
                 });
         }
 

@@ -1654,5 +1654,9 @@
   "decidir.perfil_personalizado_status": {
     "text": "Custom profile",
     "sourceHash": "7f24c022"
+  },
+  "langmenu.embreve": {
+    "text": "Coming soon",
+    "sourceHash": "41d03ecb"
   }
 }
