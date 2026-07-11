@@ -53,7 +53,14 @@ function extractLiteralStrings(html) {
 
     const reTx = /tx\(\s*(['"`])((?:\\.|(?!\1).)*)\1\s*,\s*(['"`])((?:\\.|(?!\3).)*)\3\s*\)/g;
     while ((m = reTx.exec(html))) {
-        map[m[4]] = m[2].replace(/\\(['"`])/g, '$1');
+        // Interpreta as sequências de escape (\n, \t, \\, \') para casar com a string que o JS
+        // realmente monta em runtime — senão um rótulo com '\n' no código não bateria com o
+        // newline real recebido por tx(), quebrando busca de tradução e hash de auditoria.
+        const text = m[2]
+            .replace(/\\n/g, '\n')
+            .replace(/\\t/g, '\t')
+            .replace(/\\(['"`\\])/g, '$1');
+        map[m[4]] = text;
     }
 
     const reStatic = /<[a-z][^>]*?data-i18n="([^"]+)"[^>]*?data-i18n-pt="((?:[^"\\]|\\.)*)"[^>]*>/gi;
@@ -109,6 +116,8 @@ globalThis.__archetypeInfo = (typeof archetypeInfo !== 'undefined') ? archetypeI
 globalThis.__ARCH_SHORT = (typeof ARCH_SHORT !== 'undefined') ? ARCH_SHORT : null;
 globalThis.__ECOSYSTEM = (typeof ECOSYSTEM !== 'undefined') ? ECOSYSTEM : null;
 globalThis.__matrixData = (typeof matrixData !== 'undefined') ? matrixData : null;
+globalThis.__IMPACT_HEADERS = (typeof IMPACT_HEADERS !== 'undefined') ? IMPACT_HEADERS : null;
+globalThis.__IMPACT_MATRIX = (typeof IMPACT_MATRIX !== 'undefined') ? IMPACT_MATRIX : null;
 `, sandbox, { timeout: 8000 });
 
     const map = {};
@@ -147,6 +156,19 @@ globalThis.__matrixData = (typeof matrixData !== 'undefined') ? matrixData : nul
             if (!data.justifications) return;
             Object.entries(data.justifications).forEach(([capId, text]) => {
                 map['matrix.' + toolId + '.' + capId] = text;
+            });
+        });
+    }
+    if (sandbox.__IMPACT_HEADERS) {
+        sandbox.__IMPACT_HEADERS.forEach((head, hi) => {
+            map['impacto.header.' + hi] = head;
+        });
+    }
+    if (sandbox.__IMPACT_MATRIX) {
+        const domKeys = ['think', 'disc', 'design', 'build', 'integ'];
+        sandbox.__IMPACT_MATRIX.forEach((row, ri) => {
+            row.cells.forEach((cell, ci) => {
+                map['impacto.cell.' + domKeys[ri] + '.' + ci] = cell.text;
             });
         });
     }

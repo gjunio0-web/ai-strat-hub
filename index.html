@@ -246,14 +246,7 @@
                 <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-black text-xs shadow-lg shadow-indigo-900/50 flex-shrink-0">AI</div>
                 <h1 class="font-black text-white text-[32px] tracking-tight leading-tight">STRATEGY <span class="text-indigo-500">HUB</span></h1>
             </div>
-            <div class="flex items-center gap-2">
-                <select id="langSelectMobile" onchange="applyLocale(this.value)" class="bg-slate-800 text-slate-300 text-xs font-bold rounded-lg px-2 py-1.5 border border-slate-700 focus:outline-none" aria-label="Idioma">
-                    <option value="pt">PT</option>
-                    <option value="en">EN</option>
-                    <option value="de">DE</option>
-                </select>
-                <button onclick="toggleHelpModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold hover:bg-indigo-600 hover:text-white transition-all border border-slate-700">?</button>
-            </div>
+            <button onclick="toggleHelpModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold hover:bg-indigo-600 hover:text-white transition-all border border-slate-700">?</button>
         </div>
         <p id="mobileSubtitle" class="text-slate-300 text-sm font-medium leading-snug" data-i18n="header.subtitle" data-i18n-pt="Encontre a melhor IA para o seu perfil profissional">Encontre a melhor IA para o seu perfil profissional</p>
     </header>
@@ -295,9 +288,9 @@
 
         <div class="px-4 pb-3">
             <select id="langSelect" onchange="applyLocale(this.value)" class="w-full bg-slate-800 text-slate-300 text-xs font-bold rounded-lg px-3 py-2 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Idioma">
-                <option value="pt">Português</option>
-                <option value="en">English</option>
-                <option value="de">Deutsch</option>
+                <option value="pt">PT</option>
+                <option value="en">EN</option>
+                <option value="de">DE</option>
             </select>
         </div>
 
@@ -554,7 +547,7 @@
                                 <button data-arch="prototipador" onclick="previewArchetype('prototipador')" class="arch-chip px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors" data-i18n="archetypes.prototipador.name" data-i18n-pt="Prototipador Ágil">Prototipador Ágil</button>
                                 <button data-arch="legado" onclick="previewArchetype('legado')" class="arch-chip col-span-2 px-2 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 text-xs font-bold rounded-lg border border-slate-200 transition-colors" data-i18n="archetypes.legado.name" data-i18n-pt="Analista de Legado">Analista de Legado</button>
                             </div>
-                            <button onclick="openCustomSheet()" class="lg:hidden w-full mt-4 flex items-center justify-center gap-2 px-3 py-2.5 bg-indigo-50 hover:bg-indigo-100 active:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-lg border border-indigo-200 transition-colors"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>Perfil Personalizado</button>
+                            <button onclick="openCustomSheet()" class="lg:hidden w-full mt-4 flex items-center justify-center gap-2 px-3 py-2.5 bg-indigo-50 hover:bg-indigo-100 active:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-lg border border-indigo-200 transition-colors"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg><span data-i18n="decidir.perfil_personalizado" data-i18n-pt="Perfil Personalizado">Perfil Personalizado</span></button>
                             <!-- Accordion: descrição do arquétipo ativo (desktop only) -->
                             <div id="archState" class="mt-3 mb-1 text-[11px] font-bold text-slate-500"><span class="w-2 h-2 rounded-full bg-indigo-500"></span>Perfil personalizado</div>
                             <div id="archAccordion" class="arch-accordion">
@@ -664,7 +657,7 @@
                     <header class="mb-3 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                         <div><h2 class="section-title" data-i18n="sec.auditoria.title" data-i18n-pt="Matriz de Auditoria">Matriz de Auditoria</h2><p class="section-subtitle" data-i18n="sec.auditoria.subtitle" data-i18n-pt="Como cada uma das 7 IAs pontua, capacidade por capacidade — nota e justificativa por trás dela — para que você possa auditar o ranking gerado pelo motor de decisão.">Como cada uma das 7 IAs pontua, capacidade por capacidade — nota e justificativa por trás dela — para que você possa auditar o ranking gerado pelo motor de decisão.</p><button onclick="toggleOrigemNotasModal()" class="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-sky-600 hover:text-sky-800 hover:underline transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span data-i18n="sec.auditoria.origemnotas" data-i18n-pt="De onde vêm as notas?">De onde vêm as notas?</span></button></div>
                         <div class="hidden md:flex flex-wrap gap-2" id="audit-filters">
-                            <button onclick="setAuditFilter('all')" id="filter-audit-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active">Todos</button>
+                            <button onclick="setAuditFilter('all')" id="filter-audit-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active" data-i18n="common.todos" data-i18n-pt="Todos">Todos</button>
                             <button onclick="setAuditFilter('think')" id="filter-audit-think" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
                             <button onclick="setAuditFilter('disc')" id="filter-audit-disc" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
                             <button onclick="setAuditFilter('design')" id="filter-audit-design" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
@@ -705,8 +698,8 @@
                 <header class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-slate-200 pb-6">
                     <div><h2 class="section-title" data-i18n="sec.biblioteca.title" data-i18n-pt="Biblioteca de Definições">Biblioteca de Definições</h2><p class="section-subtitle" data-i18n="sec.biblioteca.subtitle" data-i18n-pt="Glossário técnico das capacidades.">Glossário técnico das capacidades.</p></div>
                     <div class="flex flex-wrap gap-2">
-                        <button onclick="renderCanon('all')" id="filter-lib-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active">Todos</button>
-                        <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors">Manifesto</button>
+                        <button onclick="renderCanon('all')" id="filter-lib-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active" data-i18n="common.todos" data-i18n-pt="Todos">Todos</button>
+                        <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors" data-i18n="biblioteca.manifesto" data-i18n-pt="Manifesto">Manifesto</button>
                         <button onclick="renderCanon('think')" id="filter-lib-think" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
                         <button onclick="renderCanon('disc')" id="filter-lib-disc" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
                         <button onclick="renderCanon('design')" id="filter-lib-design" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
@@ -721,12 +714,17 @@
 
     </main>
 
+    <!-- === BOTÃO FLUTUANTE DE IDIOMA (mobile) === -->
+    <button id="langFab" onclick="cycleLocale()" class="md:hidden fixed right-4 z-40 w-11 h-11 rounded-full bg-indigo-600/30 backdrop-blur-md border border-indigo-300/40 text-white text-[11px] font-bold flex items-center justify-center shadow-lg shadow-indigo-900/20 active:scale-95 transition-transform" style="bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 14px);" aria-label="Idioma">
+        <span id="langFabLabel">PT</span>
+    </button>
+
     <!-- === MOBILE BOTTOM NAVIGATION === -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-2 py-2 flex justify-around items-center z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] h-16 safe-area-bottom">
-        <button onclick="switchTab('tab-knowledge')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-knowledge"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg><span class="text-[9px] font-bold uppercase">Saber</span></button>
-        <button onclick="switchTab('tab-decision')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-decision"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg><span class="text-[9px] font-bold uppercase">Decidir</span></button>
-        <button onclick="switchTab('tab-details')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-details"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><span class="text-[9px] font-bold uppercase">Auditoria</span></button>
-        <button onclick="switchTab('tab-library')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-library"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg><span class="text-[9px] font-bold uppercase">Biblio</span></button>
+        <button onclick="switchTab('tab-knowledge')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-knowledge"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.saber" data-i18n-pt="Saber">Saber</span></button>
+        <button onclick="switchTab('tab-decision')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-decision"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.decidir" data-i18n-pt="Decidir">Decidir</span></button>
+        <button onclick="switchTab('tab-details')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-details"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.auditoria" data-i18n-pt="Auditoria">Auditoria</span></button>
+        <button onclick="switchTab('tab-library')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-library"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.biblio" data-i18n-pt="Biblio">Biblio</span></button>
     </nav>
 
     <!-- MODAIS E OVERLAYS -->
@@ -869,9 +867,16 @@
 
         function updateLangSelectUI(lang){
             const sel1 = document.getElementById('langSelect');
-            const sel2 = document.getElementById('langSelectMobile');
             if(sel1) sel1.value = lang;
-            if(sel2) sel2.value = lang;
+            const fabLabel = document.getElementById('langFabLabel');
+            if(fabLabel) fabLabel.textContent = lang.toUpperCase();
+        }
+
+        // Botão flutuante mobile: um toque avança para o próximo idioma (PT -> EN -> DE -> PT).
+        function cycleLocale(){
+            const order = ['pt', 'en', 'de'];
+            const next = order[(order.indexOf(currentLang) + 1) % order.length];
+            applyLocale(next);
         }
 
         // applyLocale: troca o idioma ativo. PT renderiza na hora (síncrono); en/de buscam o
@@ -924,6 +929,11 @@
             if(typeof renderCanon === 'function') renderCanon('all');
             if(typeof renderMatrix === 'function') renderMatrix();
             if(typeof renderMobileMatrix === 'function') renderMobileMatrix();
+            if(typeof renderImpactMatrix === 'function') renderImpactMatrix();
+            if(typeof renderImpactMatrixMobile === 'function') renderImpactMatrixMobile();
+            // Reconstrói os radares para reaplicar os rótulos no novo idioma, então re-preenche os dados.
+            if(typeof initCharts === 'function') initCharts();
+            if(typeof updateRadarDatasets === 'function') updateRadarDatasets();
             if(typeof updateAll === 'function') updateAll();
         }
 
@@ -1388,7 +1398,7 @@
                             return `
                                 <div class="border-b border-slate-200/50 pb-3 last:border-0 last:pb-0">
                                     <div class="flex justify-between items-center text-xs mb-1">
-                                        <span class="text-slate-700 font-medium w-2/3 truncate pr-2 cursor-pointer hover:underline decoration-indigo-300" onclick="goToLibrary('${c.id}')">${c.name}</span>
+                                        <span class="text-slate-700 font-medium w-2/3 truncate pr-2 cursor-pointer hover:underline decoration-indigo-300" onclick="goToLibrary('${c.id}')">${tx(c.name, 'cases.'+c.id+'.name')}</span>
                                         <span class="${color}">${val}/5</span>
                                     </div>
                                     <p class="text-[10px] text-slate-500 leading-tight">${just}</p>
@@ -1481,19 +1491,20 @@
         function renderImpactMatrix(){
             const host = document.getElementById('impactMatrix');
             if(!host) return;
+            const domKeys = ['think','disc','design','build','integ'];
             let h = '<div class="grid grid-cols-[120px_repeat(3,1fr)] gap-px bg-slate-200 rounded-lg overflow-hidden">';
             // Header row
             h += '<div class="bg-slate-900 text-white text-[10px] font-bold uppercase tracking-wider p-3 flex items-end">' + tx('Domínio', 'matrix.dominio_header') + '</div>';
-            IMPACT_HEADERS.forEach(head => {
-                h += '<div class="bg-slate-900 text-white text-[10px] font-bold uppercase tracking-wider p-3">'+head+'</div>';
+            IMPACT_HEADERS.forEach((head, hi) => {
+                h += '<div class="bg-slate-900 text-white text-[10px] font-bold uppercase tracking-wider p-3">'+tx(head, 'impacto.header.'+hi)+'</div>';
             });
             // Body rows
-            IMPACT_MATRIX.forEach(row => {
+            IMPACT_MATRIX.forEach((row, ri) => {
                 h += '<div class="bg-white p-3 text-xs font-bold text-slate-700 flex items-center">'+row.dom+'</div>';
-                row.cells.forEach(cell => {
+                row.cells.forEach((cell, ci) => {
                     h += '<div class="'+SEV_CELLBG[cell.sev]+' p-3 text-[11px] leading-snug text-slate-600">'
                        + '<span class="inline-block w-2.5 h-2.5 rounded-full '+SEV_DOT[cell.sev]+' mr-1.5 align-middle"></span>'
-                       + '<span class="align-middle">'+cell.text+'</span></div>';
+                       + '<span class="align-middle">'+tx(cell.text, 'impacto.cell.'+domKeys[ri]+'.'+ci)+'</span></div>';
                 });
             });
             h += '</div>';
@@ -1505,6 +1516,7 @@
         function renderImpactMatrixMobile(){
             const host = document.getElementById('impactMatrixMobile');
             if(!host) return;
+            const domKeys = ['think','disc','design','build','integ'];
             let h = '';
             IMPACT_MATRIX.forEach((row, i) => {
                 const isOpen = i === __impactMobileOpen;
@@ -1520,8 +1532,8 @@
                 row.cells.forEach((c, ci) => {
                     h += '<div class="flex gap-2 p-3 '+SEV_CELLBG[c.sev]+'">';
                     h += '<span class="w-2 h-2 rounded-full '+SEV_DOT[c.sev]+' flex-shrink-0 mt-1"></span>';
-                    h += '<div><div class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-0.5">'+IMPACT_HEADERS[ci]+'</div>';
-                    h += '<div class="text-xs leading-relaxed text-slate-600">'+c.text+'</div></div>';
+                    h += '<div><div class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-0.5">'+tx(IMPACT_HEADERS[ci], 'impacto.header.'+ci)+'</div>';
+                    h += '<div class="text-xs leading-relaxed text-slate-600">'+tx(c.text, 'impacto.cell.'+domKeys[i]+'.'+ci)+'</div></div>';
                     h += '</div>';
                 });
                 h += '</div></div>';
@@ -1564,7 +1576,7 @@
                 const tr=document.createElement('tr');
                 const tdLabel=document.createElement('td');
                 tdLabel.className="p-3 text-xs font-bold text-slate-700 border-r border-slate-200 "+(c.cat==='stream'?'bg-violet-50':'bg-white')+" leading-tight w-48 cursor-pointer hover:text-indigo-600 hover:bg-slate-50 transition-colors";
-                tdLabel.innerText=c.name;
+                tdLabel.innerText=tx(c.name, 'cases.'+c.id+'.name');
                 tdLabel.onclick = () => goToLibrary(c.id);
                 tr.appendChild(tdLabel);
                 
@@ -1620,9 +1632,37 @@
             if (window.marketDoingChart && typeof window.marketDoingChart.destroy === 'function') { window.marketDoingChart.destroy(); }
             if (window.userRadarChart && typeof window.userRadarChart.destroy === 'function') { window.userRadarChart.destroy(); }
 
-            window.marketThinkingChart=new Chart(ctxThinking,{type:'radar',data:{labels:[['A. Curadoria','e Integração'],['B. Validação','Lógica'],['C. Abstração','de Níveis'],['D. Artefatos','Intermediários']],datasets:[]},options:marketOptions});
-            window.marketDoingChart=new Chart(ctxDoing,{type:'radar',data:{labels:[['5.1 Slides','Automatizados'],['5.2 Consistência','Visual'],['5.3 Pesquisa','Técnica'],['5.4 Resumos','Massivos'],['5.5 Multimodal',''],['5.6 Coding','& Apps'],['6.1 Estratégia','-Síntese']],datasets:[]},options:marketOptions});
-            window.userRadarChart=new Chart(ctxUser,{type:'radar',data:{labels:['Thinking','Discovering','Designing','Building','Integrating'],datasets:[{label:'Seu perfil',data:[50,50,50,50,50],borderColor:'#2dd4bf',backgroundColor:'rgba(45,212,191,0.38)',borderWidth:2.5,borderDash:[5,3],pointBackgroundColor:'#2dd4bf',pointBorderColor:'#2dd4bf',pointRadius:3.5,order:2},{label:'IA líder',data:[0,0,0,0,0],borderColor:'#fb7185',backgroundColor:'rgba(251,113,133,0.28)',borderWidth:2,pointBackgroundColor:'#fb7185',pointBorderColor:'#fb7185',pointRadius:3,order:1}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'nearest',intersect:false},plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:12,boxHeight:12,usePointStyle:true,pointStyle:'circle',font:{size:12,weight:'bold'},color:'rgba(255,255,255,0.75)',padding:16}},tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+Math.round(ctx.parsed.r);}}}},scales:{r:{min:0,max:100,grid:{color:'rgba(255,255,255,0.14)'},angleLines:{color:'rgba(255,255,255,0.14)'},ticks:{display:false,stepSize:20},pointLabels:{font:{size:11,weight:'bold'},color:'rgba(255,255,255,0.90)',padding:8}}}}});
+            // Rótulos dos radares traduzidos via tx(). O '\n' separa as duas linhas do rótulo
+            // (Chart.js quebra o rótulo em array); a tradução usa \n e é reconvertida aqui em array.
+            const splitLbl = (s) => s.split('\n');
+            const thinkingLabels = [
+                tx('A. Curadoria\ne Integração', 'radarlbl.think.A'),
+                tx('B. Validação\nLógica', 'radarlbl.think.B'),
+                tx('C. Abstração\nde Níveis', 'radarlbl.think.C'),
+                tx('D. Artefatos\nIntermediários', 'radarlbl.think.D'),
+            ].map(splitLbl);
+            const doingLabels = [
+                tx('5.1 Slides\nAutomatizados', 'radarlbl.doing.51'),
+                tx('5.2 Consistência\nVisual', 'radarlbl.doing.52'),
+                tx('5.3 Pesquisa\nTécnica', 'radarlbl.doing.53'),
+                tx('5.4 Resumos\nMassivos', 'radarlbl.doing.54'),
+                tx('5.5 Multimodal\n', 'radarlbl.doing.55'),
+                tx('5.6 Coding\n& Apps', 'radarlbl.doing.56'),
+                tx('6.1 Estratégia\n-Síntese', 'radarlbl.doing.61'),
+            ].map(splitLbl);
+            const userLabels = [
+                tx('Thinking', 'radarlbl.user.think'),
+                tx('Discovering', 'radarlbl.user.disc'),
+                tx('Designing', 'radarlbl.user.design'),
+                tx('Building', 'radarlbl.user.build'),
+                tx('Integrating', 'radarlbl.user.integ'),
+            ];
+            const lblSeuPerfil = tx('Seu perfil', 'radarlbl.seu_perfil');
+            const lblIaLider = tx('IA líder', 'radarlbl.ia_lider');
+
+            window.marketThinkingChart=new Chart(ctxThinking,{type:'radar',data:{labels:thinkingLabels,datasets:[]},options:marketOptions});
+            window.marketDoingChart=new Chart(ctxDoing,{type:'radar',data:{labels:doingLabels,datasets:[]},options:marketOptions});
+            window.userRadarChart=new Chart(ctxUser,{type:'radar',data:{labels:userLabels,datasets:[{label:lblSeuPerfil,data:[50,50,50,50,50],borderColor:'#2dd4bf',backgroundColor:'rgba(45,212,191,0.38)',borderWidth:2.5,borderDash:[5,3],pointBackgroundColor:'#2dd4bf',pointBorderColor:'#2dd4bf',pointRadius:3.5,order:2},{label:lblIaLider,data:[0,0,0,0,0],borderColor:'#fb7185',backgroundColor:'rgba(251,113,133,0.28)',borderWidth:2,pointBackgroundColor:'#fb7185',pointBorderColor:'#fb7185',pointRadius:3,order:1}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'nearest',intersect:false},plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:12,boxHeight:12,usePointStyle:true,pointStyle:'circle',font:{size:12,weight:'bold'},color:'rgba(255,255,255,0.75)',padding:16}},tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+Math.round(ctx.parsed.r);}}}},scales:{r:{min:0,max:100,grid:{color:'rgba(255,255,255,0.14)'},angleLines:{color:'rgba(255,255,255,0.14)'},ticks:{display:false,stepSize:20},pointLabels:{font:{size:11,weight:'bold'},color:'rgba(255,255,255,0.90)',padding:8}}}}});
         }
 
         let currentRanked = [];
@@ -2131,7 +2171,7 @@
     <div id="customSheetOverlay" onclick="cancelCustomSheet()"></div>
     <div id="customSheet" role="dialog" aria-modal="true" aria-labelledby="customSheetTitle">
         <div id="customSheetHandle" class="py-6 -mt-6 -mb-5 cursor-pointer" onclick="cancelCustomSheet()"><div class="w-10 h-1 bg-slate-200 rounded-full mx-auto"></div></div>
-        <p id="customSheetTitle" class="text-base font-black text-slate-900 mb-1">Perfil Personalizado</p>
+        <p id="customSheetTitle" class="text-base font-black text-slate-900 mb-1" data-i18n="decidir.perfil_personalizado" data-i18n-pt="Perfil Personalizado">Perfil Personalizado</p>
         <p class="text-[13px] text-slate-600 leading-relaxed mb-5" data-i18n="radar.subtitle" data-i18n-pt="Ajuste o peso de cada domínio conforme a natureza do seu trabalho. O ranking se adapta ao seu perfil.">Ajuste o peso de cada domínio conforme a natureza do seu trabalho. O ranking se adapta ao seu perfil.</p>
         <div id="customSliderMount"></div>
         <button onclick="applyCustomSheet()" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-md shadow-indigo-200">Aplicar</button>
