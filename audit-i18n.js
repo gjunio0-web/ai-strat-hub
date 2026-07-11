@@ -239,4 +239,4 @@ function audit() {
     process.exit(totalIssues === 0 ? 0 : 1);
 }
 
-audit();
+audit(); 
