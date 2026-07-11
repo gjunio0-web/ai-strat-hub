@@ -549,7 +549,7 @@
                             </div>
                             <button onclick="openCustomSheet()" class="lg:hidden w-full mt-4 flex items-center justify-center gap-2 px-3 py-2.5 bg-indigo-50 hover:bg-indigo-100 active:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-lg border border-indigo-200 transition-colors"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg><span data-i18n="decidir.perfil_personalizado" data-i18n-pt="Perfil Personalizado">Perfil Personalizado</span></button>
                             <!-- Accordion: descrição do arquétipo ativo (desktop only) -->
-                            <div id="archState" class="mt-3 mb-1 text-[11px] font-bold text-slate-500"><span class="w-2 h-2 rounded-full bg-indigo-500"></span>Perfil personalizado</div>
+                            <div id="archState" class="mt-3 mb-1 text-[11px] font-bold text-slate-500"><span class="w-2 h-2 rounded-full bg-indigo-500"></span><span data-i18n="decidir.perfil_personalizado_status" data-i18n-pt="Perfil personalizado">Perfil personalizado</span></div>
                             <div id="archAccordion" class="arch-accordion">
                                 <div class="mt-2 mb-4 bg-indigo-50/60 border border-indigo-100 rounded-xl p-4">
                                     <p id="archTagline" class="text-[11px] font-semibold text-indigo-600 italic mb-2 leading-snug"></p>
@@ -2142,7 +2142,7 @@
                 ? `7.1 Dados ${document.getElementById('slider-stream-71').value}%, 7.2 Formato ${document.getElementById('slider-stream-72').value}%, 7.3 Grounding ${document.getElementById('slider-stream-73').value}%`
                 : `${document.getElementById('slider-stream').value}%`;
             const activeChip = document.querySelector('.arch-chip.arch-active');
-            const archName = activeChip ? activeChip.textContent.trim() : 'Perfil personalizado';
+            const archName = activeChip ? activeChip.textContent.trim() : tx('Perfil personalizado', 'decidir.perfil_personalizado_status');
             const top3 = currentRanked.slice(0,3).map(t => `${t.name} (${t.scoreStr})`).join(", ");
             const promptLangName = { pt: 'Português', en: 'English', de: 'Deutsch' }[currentLang] || 'Português';
             const prompt = `Consultor Sênior de IA. Arquétipo selecionado: ${archName}. Sliders de domínio (0-100%): Thinking ${sg[0]}, Discovering ${sg[1]}, Designing ${sg[2]}, Building ${sg[3]}, Integrating ${sg[4]}. Streamlining (fricção): ${sStream}%. Top 3 IAs por Score Efetivo: ${top3}. 1. Confirme o arquétipo e descreva o perfil em uma frase. 2. Por que a #1 vence (trade-off potência bruta vs fricção operacional). 3. Dica Tática ("Quick Win"). Responda em ${promptLangName}, markdown.`;
