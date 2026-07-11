@@ -83,6 +83,36 @@
             }
         }
 
+        /* Menu de idioma (mobile): entra/sai a partir do botão que o ancora (canto inferior direito) —
+           escala + fade, mesmo padrão de duração/easing dos outros acordeões do app (ease-out ao abrir,
+           ease-in ao fechar), para não introduzir uma linguagem de movimento nova. */
+        #langMenu {
+            transform-origin: bottom right;
+            opacity: 0;
+            transform: scale(0.92) translateY(6px);
+            pointer-events: none;
+            transition: opacity 160ms ease-in, transform 160ms ease-in;
+        }
+        #langMenu.lang-menu-open {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+        #langMenuOverlay {
+            opacity: 0;
+            transition: opacity 160ms ease-in;
+        }
+        #langMenuOverlay.lang-menu-open {
+            opacity: 1;
+            transition: opacity 200ms ease-out;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #langMenu, #langMenu.lang-menu-open, #langMenuOverlay, #langMenuOverlay.lang-menu-open {
+                transition: none !important;
+            }
+        }
+
         /* Callout de arquétipos: colapsa (não remove) + ícone para reabrir */
         .arch-hint-wrap {
             display: grid;
@@ -716,7 +746,7 @@
 
     <!-- === BOTÃO FLUTUANTE DE IDIOMA (mobile) === -->
     <!-- === MENU DE IDIOMA (mobile) — mostra todas as opções, não um ciclo === -->
-    <div id="langMenuOverlay" onclick="closeLangMenu()" class="md:hidden fixed inset-0 z-30 hidden"></div>
+    <div id="langMenuOverlay" onclick="closeLangMenu()" class="md:hidden fixed inset-0 z-30 hidden bg-slate-900/10"></div>
     <div id="langMenu" class="md:hidden fixed right-4 z-40 hidden flex-col gap-0.5 bg-slate-900/95 backdrop-blur-md border border-indigo-300/30 rounded-xl p-1.5 shadow-xl min-w-[168px]" style="bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 68px);">
         <button onclick="selectLocale('pt')" data-lang-option="pt" class="lang-menu-item flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg text-sm font-bold text-white hover:bg-white/10 active:bg-white/15 transition-colors">
             <span>Português</span>
@@ -896,16 +926,29 @@
 
         // Menu de idioma mobile: mostra todas as opções de uma vez (em vez de ciclar por toque único),
         // para que o usuário sempre veja quais idiomas existem — inclusive quando novos forem adicionados.
+        // A abertura/fechamento anima (escala + fade a partir do botão), não só aparece/some — visibilidade
+        // do estado do sistema (heurística de Nielsen) e consistência com os outros acordeões do app.
+        let __langMenuCloseTimer = null;
+
         function toggleLangMenu(){
             const menu = document.getElementById('langMenu');
             const overlay = document.getElementById('langMenuOverlay');
             const fab = document.getElementById('langFab');
             if(!menu || !overlay) return;
-            const isOpen = !menu.classList.contains('hidden');
+            const isOpen = menu.classList.contains('lang-menu-open');
             if(isOpen){ closeLangMenu(); return; }
+
+            if(__langMenuCloseTimer){ clearTimeout(__langMenuCloseTimer); __langMenuCloseTimer = null; }
             menu.classList.remove('hidden');
             menu.classList.add('flex');
             overlay.classList.remove('hidden');
+            // Força o navegador a aplicar o estado fechado antes de animar para o aberto —
+            // sem isso, remover 'hidden' e adicionar 'lang-menu-open' no mesmo tick pula a transição.
+            void menu.offsetHeight;
+            requestAnimationFrame(() => {
+                menu.classList.add('lang-menu-open');
+                overlay.classList.add('lang-menu-open');
+            });
             if(fab) fab.setAttribute('aria-expanded', 'true');
         }
 
@@ -913,9 +956,18 @@
             const menu = document.getElementById('langMenu');
             const overlay = document.getElementById('langMenuOverlay');
             const fab = document.getElementById('langFab');
-            if(menu){ menu.classList.add('hidden'); menu.classList.remove('flex'); }
-            if(overlay) overlay.classList.add('hidden');
+            if(!menu) return;
+            menu.classList.remove('lang-menu-open');
+            if(overlay) overlay.classList.remove('lang-menu-open');
             if(fab) fab.setAttribute('aria-expanded', 'false');
+
+            if(__langMenuCloseTimer) clearTimeout(__langMenuCloseTimer);
+            __langMenuCloseTimer = setTimeout(() => {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+                if(overlay) overlay.classList.add('hidden');
+                __langMenuCloseTimer = null;
+            }, 200); // casa com a duração da transição de saída definida no CSS
         }
 
         function selectLocale(lang){
@@ -2085,7 +2137,7 @@
                         legend: { display: false },
                         tooltip: { callbacks: { label: ctx => {
                             const eco = (typeof ECOSYSTEM!=='undefined') ? ECOSYSTEM[ranking[ctx.dataIndex].id] : null;
-                            if(eco && eco.role) return wrapText(eco.role, 38);
+                            if(eco && eco.role) return wrapText(tx(eco.role, 'ecosystem.'+ranking[ctx.dataIndex].id+'.role'), 38);
                             return '  ' + tx('Score:', 'ranking.score_tooltip') + ' ' + ctx.parsed.x.toFixed(2);
                         } } }
                     },
@@ -2222,8 +2274,8 @@
         <p id="customSheetTitle" class="text-base font-black text-slate-900 mb-1" data-i18n="decidir.perfil_personalizado" data-i18n-pt="Perfil Personalizado">Perfil Personalizado</p>
         <p class="text-[13px] text-slate-600 leading-relaxed mb-5" data-i18n="radar.subtitle" data-i18n-pt="Ajuste o peso de cada domínio conforme a natureza do seu trabalho. O ranking se adapta ao seu perfil.">Ajuste o peso de cada domínio conforme a natureza do seu trabalho. O ranking se adapta ao seu perfil.</p>
         <div id="customSliderMount"></div>
-        <button onclick="applyCustomSheet()" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-md shadow-indigo-200">Aplicar</button>
-        <button onclick="cancelCustomSheet()" class="w-full mt-3 text-slate-500 font-semibold py-2.5 text-sm">Cancelar</button>
+        <button onclick="applyCustomSheet()" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-md shadow-indigo-200" data-i18n="common.aplicar" data-i18n-pt="Aplicar">Aplicar</button>
+        <button onclick="cancelCustomSheet()" class="w-full mt-3 text-slate-500 font-semibold py-2.5 text-sm" data-i18n="common.cancelar" data-i18n-pt="Cancelar">Cancelar</button>
     </div>
     <div id="archSheet" role="dialog" aria-modal="true">
         <div id="archSheetHandle" class="py-6 -mt-6 -mb-5 cursor-pointer" onclick="closeArchSheet()"><div class="w-10 h-1 bg-slate-200 rounded-full mx-auto"></div></div>
@@ -2231,8 +2283,8 @@
         <p id="sheetTagline" class="text-[12px] font-semibold text-indigo-600 italic leading-snug mb-3"></p>
         <p id="sheetDesc" class="text-[13px] text-slate-600 leading-relaxed mb-3"></p>
         <p id="sheetExamples" class="text-[11px] text-slate-400 leading-relaxed mb-6"></p>
-        <button id="sheetApplyBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-md shadow-indigo-200">Aplicar este perfil</button>
-        <button onclick="closeArchSheet()" class="w-full mt-3 text-slate-500 font-semibold py-2.5 text-sm">Cancelar</button>
+        <button id="sheetApplyBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-md shadow-indigo-200" data-i18n="decidir.aplicar_perfil" data-i18n-pt="Aplicar este perfil">Aplicar este perfil</button>
+        <button onclick="closeArchSheet()" class="w-full mt-3 text-slate-500 font-semibold py-2.5 text-sm" data-i18n="common.cancelar" data-i18n-pt="Cancelar">Cancelar</button>
     </div>
 </body>
 </html>

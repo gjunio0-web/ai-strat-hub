@@ -1658,5 +1658,17 @@
   "langmenu.embreve": {
     "text": "Coming soon",
     "sourceHash": "41d03ecb"
+  },
+  "common.aplicar": {
+    "text": "Apply",
+    "sourceHash": "9c686d21"
+  },
+  "common.cancelar": {
+    "text": "Cancel",
+    "sourceHash": "838f2fbe"
+  },
+  "decidir.aplicar_perfil": {
+    "text": "Apply this profile",
+    "sourceHash": "61bc04f4"
   }
 }

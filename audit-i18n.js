@@ -187,6 +187,61 @@ function loadDict(relPath) {
 
 function truncate(s, n) { return s.length > n ? s.slice(0, n) + '…' : s; }
 
+// Detector de texto em português que NÃO passa por tx() nem data-i18n — o ponto cego
+// que fazia "zero divergências" não significar "cobertura completa". Heurística, não perfeita:
+// pode gerar falsos positivos (nomes próprios, siglas), mas cobre o vetor real de escape.
+function findUnmarkedPortuguese(html) {
+    const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(mm => mm[1]);
+    const appScript = scripts.reduce((a, b) => b.length > a.length ? b : a, '');
+    const htmlPart = html.replace(appScript, '');
+
+    // Sinal de PT: acento, ou "ç", ou palavra funcional que difere do inglês.
+    const ptSignal = /[áàâãéêíóôõúüçÁÀÂÃÉÊÍÓÔÕÚÜÇ]|\b(não|são|está|você|também|até|então|após|já|só|é)\b/;
+
+    const findings = [];
+
+    // (1) HTML: nós de texto sem data-i18n. Para reduzir falsos positivos, ignora texto que
+    // esteja DENTRO de um elemento com data-i18n-html="1" (onde o PT é fallback legítimo e a
+    // tradução do bloco inteiro já existe) — busca num ancestral próximo, não só na tag imediata.
+    for (const m of htmlPart.matchAll(/>([^<>]{3,300})</g)) {
+        const t = m[1].trim();
+        if (t.length < 3 || !ptSignal.test(t)) continue;
+        // Janela de contexto ampla para trás, para achar um data-i18n-html de bloco.
+        const wide = htmlPart.slice(Math.max(0, m.index - 1200), m.index);
+        // Se há um data-i18n-html="1" aberto e ainda não fechou seu </p>/</div>/</h_> depois dele, é bloco traduzido.
+        const lastHtmlMark = wide.lastIndexOf('data-i18n-html');
+        if (lastHtmlMark !== -1) {
+            const afterMark = wide.slice(lastHtmlMark);
+            // heurística simples: se depois do marcador ainda não veio a tag de fechamento do bloco, estamos dentro dele
+            if (!/<\/(p|div|h[1-6]|ul|li|summary)>/.test(afterMark)) continue;
+        }
+        const ctx = wide.slice(wide.lastIndexOf('<'));
+        if (ctx.includes('data-i18n')) continue;
+        findings.push({ where: 'HTML', text: t });
+    }
+
+    // (2) JS: strings literais PT que não são o 1º argumento de tx(...)
+    const strRe = /(['"`])((?:\\.|(?!\1).){4,200}?)\1/g;
+    let sm;
+    while ((sm = strRe.exec(appScript))) {
+        const s = sm[2];
+        if (!ptSignal.test(s)) continue;
+        const before = appScript.slice(Math.max(0, sm.index - 5), sm.index);
+        if (/tx\(\s*$/.test(before)) continue;               // é o texto-fonte de tx(): ok
+        if (s.startsWith('.') || s.startsWith('#')) continue; // seletor CSS
+        // ignora se a string é um VALOR conhecido de arrays de dados (matrixData/ECOSYSTEM/etc.)
+        // — esses são text-fonte de tx() em outro ponto; para reduzir ruído, só reportamos
+        // strings que aparecem em contexto de atribuição a .textContent/.innerHTML/.innerText/label.
+        const after = appScript.slice(sm.index + sm[0].length, sm.index + sm[0].length + 3);
+        const ctxBefore = appScript.slice(Math.max(0, sm.index - 60), sm.index);
+        const looksLikeUiSink = /(textContent|innerHTML|innerText|\.label|label:|placeholder|title:|\+\s*$|=\s*$|return\s*$|\?\s*$|:\s*$)/.test(ctxBefore);
+        if (!looksLikeUiSink) continue;
+        findings.push({ where: 'JS', text: s });
+    }
+
+    return findings;
+}
+
 function audit() {
     if (!fs.existsSync(HTML_PATH)) {
         console.error(`index.html não encontrado em ${HTML_PATH}`);
@@ -232,9 +287,20 @@ function audit() {
 
     console.log(`\n${'─'.repeat(50)}`);
     console.log(totalIssues === 0
-        ? 'Nenhuma divergência encontrada — traduções em dia. ✅'
+        ? 'Nenhuma divergência encontrada nas chaves marcadas. ✅'
         : `Total de divergências encontradas: ${totalIssues} ⚠`);
-    console.log(`${'─'.repeat(50)}\n`);
+    console.log(`${'─'.repeat(50)}`);
+
+    // Ponto cego coberto: texto PT que nunca foi marcado (não aparece como divergência acima
+    // justamente por nunca ter virado uma chave). Heurístico — revisar manualmente.
+    const unmarked = findUnmarkedPortuguese(html);
+    console.log(`\nTexto PT possivelmente NÃO instrumentado (heurístico): ${unmarked.length}`);
+    if (unmarked.length) {
+        unmarked.slice(0, 60).forEach(f => console.log(`    [${f.where}] ${truncate(f.text, 90)}`));
+        if (unmarked.length > 60) console.log(`    … e mais ${unmarked.length - 60}`);
+        console.log('  (heurístico: alguns podem ser falsos positivos — nomes próprios, siglas, texto-fonte de tx())');
+    }
+    console.log('');
 
     process.exit(totalIssues === 0 ? 0 : 1);
 }
