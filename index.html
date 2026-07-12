@@ -1048,8 +1048,13 @@
         function applyStaticI18nNode(el){
             const key = el.getAttribute('data-i18n');
             const useHtml = el.getAttribute('data-i18n-html') === '1';
-            const ptText = el.getAttribute('data-i18n-pt') || (useHtml ? el.innerHTML : el.textContent);
-            const translated = tx(ptText, key);
+            // Memoriza o texto-fonte PT na PRIMEIRA aplicação, antes de qualquer tradução mutar o nó.
+            // Sem este cache, nós data-i18n-html sem data-i18n-pt releem o innerHTML já traduzido como
+            // se fosse o PT e, ao voltar para PT, ficam presos no idioma anterior.
+            if(el.__i18nPt === undefined){
+                el.__i18nPt = el.getAttribute('data-i18n-pt') || (useHtml ? el.innerHTML : el.textContent);
+            }
+            const translated = tx(el.__i18nPt, key);
             if(useHtml) el.innerHTML = translated; else el.textContent = translated;
         }
 
