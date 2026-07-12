@@ -224,48 +224,48 @@
     "sourceHash": "f63ed418"
   },
   "ecosystem.gemini.sp": {
-    "text": "Broad native context (2M tokens) and massive multi-format ingestion directly from Drive.",
-    "sourceHash": "c4d43bc1"
+    "text": "Broad native context (~1M tokens) and massive multi-format ingestion directly from Drive.",
+    "sourceHash": "bfb9379e"
   },
   "ecosystem.gemini.kr": {
-    "text": "No native export to slide formats (.pptx), requiring third-party extensions.",
-    "sourceHash": "dde66c50"
+    "text": "No direct .pptx export from Canvas – requires an intermediate pass through Google Slides.",
+    "sourceHash": "ae872474"
   },
   "ecosystem.gemini.role": {
-    "text": "The High-Volume Generalist, for monolithic reading and ingestion of large document bases.",
-    "sourceHash": "e5c1a953"
+    "text": "The High-Volume, Competitive-Reasoning Generalist, for monolithic reading and ingestion of large document bases.",
+    "sourceHash": "e17428ef"
   },
   "ecosystem.claude.sp": {
     "text": "Impeccable logic, superior dialectical reasoning, and Artifacts environments for clean code.",
     "sourceHash": "2aa5ef53"
   },
   "ecosystem.claude.kr": {
-    "text": "Isolation from native corporate data — lack of its own connector ecosystem.",
-    "sourceHash": "8cd23eab"
+    "text": "Agentic behaviors still inconsistent in long sessions – Anthropic itself documents premature stops and excessive file deletion as known failures of Opus 4.8.",
+    "sourceHash": "88b9a74d"
   },
   "ecosystem.claude.role": {
     "text": "The Specialist in Logical Precision, Refactoring, and Refined Strategic Synthesis.",
     "sourceHash": "d215ddfd"
   },
   "ecosystem.chatgpt.sp": {
-    "text": "Unified multimodal versatility, high-speed responses, and a friendly interface.",
-    "sourceHash": "50190ef7"
+    "text": "Unified multimodal versatility (natively omnimodal) and deep deliberative reasoning, with a friendly interface.",
+    "sourceHash": "20a6f63d"
   },
   "ecosystem.chatgpt.kr": {
-    "text": "Context fatigue in long sessions beyond 128,000 tokens and fluctuations in grounding quality.",
-    "sourceHash": "fedfabcf"
+    "text": "Context fatigue in the product (32k–256k tokens depending on plan and mode) and fluctuations in grounding quality, with the highest hallucination rate among frontier models without tool access.",
+    "sourceHash": "275315bb"
   },
   "ecosystem.chatgpt.role": {
-    "text": "The Balanced High-Speed Generalist with Fluid Multimodal Interaction.",
-    "sourceHash": "a702248b"
+    "text": "The Multimodal, Deep-Reasoning Generalist with Fluid Interaction.",
+    "sourceHash": "4985535f"
   },
   "ecosystem.copilot.sp": {
-    "text": "Native integration with the Microsoft 365 ecosystem (Graph API), applying corporate security policies.",
-    "sourceHash": "892afa4d"
+    "text": "Native integration with the Microsoft 365 ecosystem, applying corporate security policies.",
+    "sourceHash": "50defad0"
   },
   "ecosystem.copilot.kr": {
-    "text": "Raw cognitive power frequently constrained by corporate security locks and filters.",
-    "sourceHash": "5b5663ec"
+    "text": "More restrained responses due to strict content filters and the multi-model orchestration layer – not because of an inherently weaker underlying model.",
+    "sourceHash": "67c09f1e"
   },
   "ecosystem.copilot.role": {
     "text": "The Operational and Compliance Bureaucrat for the Last Mile of Document Formatting.",
@@ -284,16 +284,16 @@
     "sourceHash": "8037acc3"
   },
   "ecosystem.deepseek.sp": {
-    "text": "Low-cost logical-mathematical reasoning via Hidden Chain of Thought (CoT).",
-    "sourceHash": "106eecec"
+    "text": "Ultra-low-cost logical-mathematical reasoning via native Thinking mode, with open weights under the MIT license.",
+    "sourceHash": "d8326c5e"
   },
   "ecosystem.deepseek.kr": {
-    "text": "Low multimodal performance for complex design and lack of ready-made corporate formats.",
-    "sourceHash": "72ec9dee"
+    "text": "No native multimodality and no ready-made corporate formats – the focus remains on text, code, and reasoning.",
+    "sourceHash": "97dab242"
   },
   "ecosystem.deepseek.role": {
-    "text": "The Deep Computational Reasoning Analyst for Pure Logic and Algorithm Validation.",
-    "sourceHash": "289e9ce0"
+    "text": "The Deep, Low-Cost Computational Reasoning Analyst, for Pure Logic and Algorithm Validation.",
+    "sourceHash": "5748a47b"
   },
   "ecosystem.manus.sp": {
     "text": "Autonomous execution of complex end-to-end workflows on dedicated virtual machines.",
@@ -326,10 +326,6 @@
   "ecosystem.label.kryptonite": {
     "text": "Kryptonite",
     "sourceHash": "b37611be"
-  },
-  "ecosystem.label.papel": {
-    "text": "Role",
-    "sourceHash": "dddc317"
   },
   "nav.conhecimento": {
     "text": "Knowledge",
@@ -704,8 +700,8 @@
     "sourceHash": "5b6ff0e9"
   },
   "matrix.gemini.A": {
-    "text": "Absolute leadership thanks to the 2M-token window and native multimodality, enabling it to ‘read’ entire videos and libraries for unmatched memory integration.",
-    "sourceHash": "6830398b"
+    "text": "Absolute leadership thanks to a massive context window and native multimodality, enabling it to ‘read’ entire videos and libraries for unmatched memory integration.",
+    "sourceHash": "b16e9c0"
   },
   "matrix.gemini.B": {
     "text": "Deep Think mode drastically reduced logical hallucinations, making it capable of corporate-grade validations, despite a slight disadvantage on extreme abstract benchmarks.",
@@ -728,28 +724,28 @@
     "sourceHash": "d18c6413"
   },
   "matrix.gemini.5.3": {
-    "text": "Combines web research with a 2M-token window, cross-referencing recent news with the user's internal PDF libraries.",
-    "sourceHash": "71514839"
+    "text": "Combines web research with a massive context window, cross-referencing recent news with the user's internal PDF libraries.",
+    "sourceHash": "1621506e"
   },
   "matrix.gemini.5.4": {
-    "text": "Swallows entire libraries (2M tokens) without losing detail in the middle (Lost in the middle).",
-    "sourceHash": "7daad3e3"
+    "text": "Swallows entire libraries without losing detail in the middle (Lost in the middle).",
+    "sourceHash": "aa322b5f"
   },
   "matrix.gemini.5.5": {
     "text": "Natively multimodal; analyzes video and audio with precision superior to isolated frames.",
     "sourceHash": "d73d29ef"
   },
   "matrix.gemini.5.6": {
-    "text": "Legacy Specialist. The 2M-token window changes the game, allowing entire repositories and documentation to be ingested for massive refactoring without losing context.",
-    "sourceHash": "87b270d"
+    "text": "Legacy Specialist. The massive context window changes the game, allowing entire repositories and documentation to be ingested for massive refactoring without losing context.",
+    "sourceHash": "a1554903"
   },
   "matrix.gemini.6.1": {
     "text": "The Omniscient One. Unbeatable for strategies based on unstructured Big Data thanks to its virtually infinite context window.",
     "sourceHash": "d6aa8daf"
   },
   "matrix.gemini.7.1": {
-    "text": "Leadership in Data Gravity: native ingestion via Google Drive/Workspace and a 2M-token window keep context alive without manual ETL.",
-    "sourceHash": "c675381c"
+    "text": "Leadership in Data Gravity: native ingestion via Google Drive/Workspace and a massive context window keep context alive without manual ETL.",
+    "sourceHash": "221998b1"
   },
   "matrix.gemini.7.2": {
     "text": "Generates fluidly in Slides/Canvas, but the output isn't native Microsoft .pptx; handoff to Office still requires conversion.",
@@ -1432,12 +1428,12 @@
     "sourceHash": "f4644d4e"
   },
   "tags.card2": {
-    "text": "<h4 class=\"text-emerald-800 flex items-center gap-2 mt-0\"><span class=\"w-3 h-3 rounded-full bg-emerald-500\"></span> 2. Reasoning</h4><p><strong>What it is:</strong> Tools focused on the \"Processing\" stage. They are the densest \"brains,\" ideal for handling complex logic, coding, structuring arguments, and theoretical validation.</p><p><strong>Focus:</strong> Pure logic, mathematics, software architecture, and complex/nuanced writing.</p><p class=\"text-xs mt-2\"><strong class=\"text-emerald-700\">AIs in this category:</strong><br><span class=\"font-bold\">GPT-5.5 Pro:</span> Versatile and multimodal, with reasoning modes to reduce logical hallucinations.<br><span class=\"font-bold\">Claude Opus 4.8:</span> Benchmark for logic, clean coding (Artifacts), and textual nuance.<br><span class=\"font-bold\">DeepSeek R1:</span> Focused on rigorous mathematical and logical reasoning via chain of thought.</p>",
-    "sourceHash": "a790364c"
+    "text": "<h4 class=\"text-emerald-800 flex items-center gap-2 mt-0\"><span class=\"w-3 h-3 rounded-full bg-emerald-500\"></span> 2. Reasoning</h4><p><strong>What it is:</strong> Tools focused on the \"Processing\" stage. They are the densest \"brains,\" ideal for handling complex logic, coding, structuring arguments, and theoretical validation.</p><p><strong>Focus:</strong> Pure logic, mathematics, software architecture, and complex/nuanced writing.</p><p class=\"text-xs mt-2\"><strong class=\"text-emerald-700\">AIs in this category:</strong><br><span class=\"font-bold\">GPT:</span> Versatile and multimodal, with reasoning modes to reduce logical hallucinations.<br><span class=\"font-bold\">Claude:</span> Benchmark for logic, clean coding (Artifacts), and textual nuance.<br><span class=\"font-bold\">DeepSeek:</span> Focused on rigorous mathematical and logical reasoning via chain of thought.</p>",
+    "sourceHash": "9493ce32"
   },
   "tags.card3": {
-    "text": "<h4 class=\"text-indigo-800 flex items-center gap-2 mt-0\"><span class=\"w-3 h-3 rounded-full bg-indigo-500\"></span> 3. Delivery</h4><p><strong>What it is:</strong> Tools geared toward \"Output\" and final production. They’re best at packaging content into a usable format (slides, formatted documents, images, email/Office integration).</p><p><strong>Focus:</strong> Multimodality (viewing and creating images/video), integration with ecosystems (Google/Microsoft), and generation of final artifacts.</p><p class=\"text-xs mt-2\"><strong class=\"text-indigo-700\">AIs in this category:</strong><br><span class=\"font-bold\">Gemini 3.1 Pro:</span> Strong integration with Google Workspace and a native 2M-token context for reading documents and producing content.<br><span class=\"font-bold\">Copilot M365:</span> Specialized in delivering native Word documents and PowerPoint slides within the Microsoft ecosystem.</p>",
-    "sourceHash": "25f7d69"
+    "text": "<h4 class=\"text-indigo-800 flex items-center gap-2 mt-0\"><span class=\"w-3 h-3 rounded-full bg-indigo-500\"></span> 3. Delivery</h4><p><strong>What it is:</strong> Tools geared toward \"Output\" and final production. They’re best at packaging content into a usable format (slides, formatted documents, images, email/Office integration).</p><p><strong>Focus:</strong> Multimodality (viewing and creating images/video), integration with ecosystems (Google/Microsoft), and generation of final artifacts.</p><p class=\"text-xs mt-2\"><strong class=\"text-indigo-700\">AIs in this category:</strong><br><span class=\"font-bold\">Gemini:</span> Strong integration with Google Workspace and a native 1M-token context for reading documents and producing content.<br><span class=\"font-bold\">Copilot M365:</span> Specialized in delivering native Word documents and PowerPoint slides within the Microsoft ecosystem.</p>",
+    "sourceHash": "d1beb05"
   },
   "diagram.think.subtitle": {
     "text": "A B C D · the substrate of how it thinks",
@@ -1670,5 +1666,9 @@
   "decidir.aplicar_perfil": {
     "text": "Apply this profile",
     "sourceHash": "61bc04f4"
+  },
+  "ecosystem.badge.tooltip": {
+    "text": "What does this tag mean?",
+    "sourceHash": "6872e954"
   }
 }
