@@ -280,10 +280,18 @@
             box-shadow: 0 12px 36px -8px rgba(30,10,80,0.55), 0 4px 14px -4px rgba(30,10,80,0.35);
         }
         .leader-surface { position: relative; }
+        /* Supressão de transições/animações durante o carregamento inicial: evita que o
+           subtítulo do header mobile (e outros elementos com transition) "animem" no primeiro
+           paint, aparecendo cortados por um instante. A classe é removida logo após o layout
+           inicial assentar (ver fim de init()). */
+        body.preload *, body.preload *::before, body.preload *::after {
+            transition: none !important;
+            animation: none !important;
+        }
     </style>
 </head>
 
-<body class="h-screen w-screen flex flex-col md:flex-row overflow-hidden bg-slate-50">
+<body class="preload h-screen w-screen flex flex-col md:flex-row overflow-hidden bg-slate-50">
 
     <!-- === MOBILE TOP BAR === -->
     <header id="mobileTopBar" class="md:hidden flex-shrink-0 bg-slate-900 border-b border-slate-800 z-50 px-4 shadow-md">
@@ -1422,8 +1430,11 @@
             document.querySelectorAll('.tab-content, .decision-pane').forEach(el => {
                 el.addEventListener('scroll', onScrollArea, { passive: true });
             });
-            // áreas de scroll aninhadas (colunas internas da aba Decisão)
+            // áreas de scroll aninhadas (colunas internas da aba Decisão), EXCETO modais —
+            // rolar dentro de um modal (ex.: o de boas-vindas) não deve colapsar o subtítulo do
+            // cabeçalho atrás dele; do contrário a classe subtitle-hidden vaza e persiste após fechar.
             document.querySelectorAll('.custom-scroll').forEach(el => {
+                if(el.closest('[id$="-modal-overlay"], [id$="-modal-content"], #welcome-modal-content, #gemini-modal')) return;
                 el.addEventListener('scroll', onScrollArea, { passive: true });
             });
         
@@ -1435,6 +1446,15 @@
             } catch(e) {
                 showWelcomeModal();
             }
+
+            // Reativa as transições só depois que o layout inicial já pintou (rAF duplo),
+            // para que o estado inicial do header (subtítulo visível) apareça assentado,
+            // sem o flash de animação no primeiro paint.
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    document.body.classList.remove('preload');
+                });
+            });
         }
 
         // Mapa único de domínios (rótulo + cor da tag) — fonte de verdade visual
@@ -2260,6 +2280,15 @@
             const cb = document.getElementById('welcome-dont-show');
             if(cb && cb.checked){ try { localStorage.setItem('aistrathub_welcome_dismissed', '1'); } catch(e) {} }
             closeModalAnimated('welcome-modal-overlay', 'welcome-modal-content');
+            // Rede de segurança: garante que o subtítulo do cabeçalho reflita o scroll REAL do
+            // conteúdo (e não algum estado herdado da rolagem interna do modal). Na primeira carga
+            // o conteúdo está no topo, então o subtítulo deve reaparecer.
+            const topBar = document.getElementById('mobileTopBar');
+            const active = document.querySelector('.tab-content.tab-active') || document.getElementById('tab-knowledge');
+            if(topBar){
+                if(active && active.scrollTop > 40) topBar.classList.add('subtitle-hidden');
+                else topBar.classList.remove('subtitle-hidden');
+            }
         }
 
         let __insightLoading = false;
@@ -2283,7 +2312,9 @@
 
             const modal = document.getElementById('gemini-modal'); const content = document.getElementById('gemini-content');
             modal.classList.remove('hidden'); modal.classList.add('flex');
-            content.innerHTML = `<div class="space-y-4"><div class="h-4 bg-slate-100 rounded w-3/4 shimmer"></div><div class="h-4 bg-slate-100 rounded w-full shimmer"></div><div class="h-4 bg-slate-100 rounded w-5/6 shimmer"></div></div><p class="text-xs text-center text-slate-400 mt-6 animate-pulse">Consultando o Gemini 3.1 Pro…</p>`;
+            const geminiName = (tools.find(t => t.id === 'gemini') || {}).name || 'Gemini';
+            const loadingMsg = tx('Consultando o {model}…', 'insight.loading').replace('{model}', geminiName);
+            content.innerHTML = `<div class="space-y-4"><div class="h-4 bg-slate-100 rounded w-3/4 shimmer"></div><div class="h-4 bg-slate-100 rounded w-full shimmer"></div><div class="h-4 bg-slate-100 rounded w-5/6 shimmer"></div></div><p class="text-xs text-center text-slate-400 mt-6 animate-pulse">${loadingMsg}</p>`;
 
             const sg = SIGMA_SLIDERS.map(id => document.getElementById(id).value);
             const sStream = advancedStreamMode
@@ -2304,7 +2335,7 @@
                 const data = await response.json();
                 if (data.error) throw new Error(data.error.message || data.error);
                 content.innerHTML = marked.parse(data.candidates[0].content.parts[0].text)
-                    + '<div class="mt-6 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[10px] text-slate-400"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z"></path></svg>' + tx('Conteúdo gerado por IA (Gemini 3.1 Pro). Pode conter imprecisões — confira contra a Auditoria Técnica.', 'insight.disclaimer') + '</div>';
+                    + '<div class="mt-6 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[10px] text-slate-400"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z"></path></svg>' + tx('Conteúdo gerado por IA ({model}). Pode conter imprecisões – confira contra a Auditoria Técnica.', 'insight.disclaimer').replace('{model}', geminiName) + '</div>';
             } catch (error) {
                 content.innerHTML = `<div class="text-center py-6"><div class="text-red-500 font-bold mb-2">${tx('Não foi possível gerar a análise', 'insight.erro_titulo')}</div><p class="text-xs text-slate-500 mb-4">${error.message}</p><button onclick="generateInsight()" class="inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-4 py-2 rounded-lg transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>${tx('Tentar novamente', 'insight.tentar_novamente')}</button></div>`;
             } finally {
