@@ -1417,14 +1417,13 @@
             isInitializing = false; // RELEASE LOCK
             // Rodapé de créditos (mobile): injeta a credencial no fim das seções roláveis de leitura.
             // Reutiliza a chave i18n 'credits.line' (fonte no rodapé da sidebar); applyLocale traduz ao vivo.
-            ['tab-knowledge','tab-details','tab-library'].forEach(__id => {
-                const __sec = document.getElementById(__id);
-                if(!__sec || __sec.querySelector('[data-credit-footer]')) return;
+            [document.getElementById('tab-knowledge'), document.getElementById('tab-details'), document.getElementById('tab-library'), document.querySelector('#tab-decision .mobile-nav-clearance')].forEach(__t => {
+                if(!__t || __t.querySelector('[data-credit-footer]')) return;
                 const __f = document.createElement('div');
                 __f.setAttribute('data-credit-footer','1');
                 __f.className = 'md:hidden mt-10 pt-5 border-t border-slate-200 flex justify-center';
                 __f.innerHTML = '<button onclick="toggleCreditsModal()" class="flex items-center gap-2 text-slate-500 hover:text-indigo-600 transition-colors"><svg class="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg><span class="text-[11px]"><span data-i18n="credits.line" data-i18n-html="1">Desenvolvido por <strong>GM Digital Bunker™</strong></span> <span class="text-slate-400">· © 2026</span></span></button>';
-                __sec.appendChild(__f);
+                __t.appendChild(__f);
             });
             // Dispara a troca para en/de (assíncrona) só depois que a tela já pintou em PT.
             if(initialLang !== 'pt') applyLocale(initialLang);
