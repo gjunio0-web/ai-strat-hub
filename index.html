@@ -308,7 +308,317 @@
 
         <div class="flex-1 py-8 space-y-3 px-4">
             <button onclick="switchTab('tab-knowledge')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-knowledge">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.63<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Dashboard estratégico para análise e comparação de ferramentas de Inteligência Artificial">
+    <title>AI Strategy Hub v13.6 | Enterprise Edition</title>
+    
+    <!-- Bibliotecas Externas -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
+    <style>
+        /* Acordeão do diagrama-âncora: grid-rows anima para a altura real do conteúdo, sem chutar max-height */
+        .arch-detail {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 200ms ease-in;
+        }
+        .arch-detail.arch-open {
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 250ms ease-out;
+        }
+        .arch-detail-inner {
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 200ms ease-in, transform 200ms ease-in;
+        }
+        .arch-detail.arch-open .arch-detail-inner {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 250ms ease-out 40ms, transform 250ms ease-out 40ms;
+        }
+        .arch-chevron.rotate-180 { transform: rotate(180deg); }
+        @media (prefers-reduced-motion: reduce) {
+            .arch-detail, .arch-detail.arch-open, .arch-detail-inner, .arch-detail.arch-open .arch-detail-inner, .arch-chevron {
+                transition: none !important;
+            }
+        }
+
+        /* Streamlining avançado: mesmo padrão grid-rows do acordeão */
+        #stream-advanced {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 200ms ease-in;
+        }
+        #stream-advanced.stream-adv-open {
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 250ms ease-out;
+        }
+        .stream-adv-inner {
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 200ms ease-in, transform 200ms ease-in;
+            padding-top: 0;
+        }
+        #stream-advanced.stream-adv-open .stream-adv-inner {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 250ms ease-out 40ms, transform 250ms ease-out 40ms;
+            padding-top: 0.5rem;
+        }
+        #stream-simple {
+            overflow: hidden;
+            max-height: 120px;
+            opacity: 1;
+            transition: max-height 250ms ease-out, opacity 200ms ease-out;
+        }
+        #stream-simple.stream-simple-hidden {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 200ms ease-in, opacity 150ms ease-in;
+        }
+        #stream-toggle-chevron.rotate-180 { transform: rotate(180deg); }
+        @media (prefers-reduced-motion: reduce) {
+            #stream-advanced, #stream-advanced.stream-adv-open, .stream-adv-inner,
+            #stream-advanced.stream-adv-open .stream-adv-inner, #stream-simple,
+            #stream-simple.stream-simple-hidden, #stream-toggle-chevron {
+                transition: none !important;
+            }
+        }
+
+        /* Menu de idioma (mobile): entra/sai a partir do botão que o ancora (canto inferior direito) —
+           escala + fade, mesmo padrão de duração/easing dos outros acordeões do app (ease-out ao abrir,
+           ease-in ao fechar), para não introduzir uma linguagem de movimento nova. */
+        #langMenu {
+            transform-origin: bottom right;
+            opacity: 0;
+            transform: scale(0.92) translateY(6px);
+            pointer-events: none;
+            transition: opacity 160ms ease-in, transform 160ms ease-in;
+        }
+        #langMenu.lang-menu-open {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+        #langMenuOverlay {
+            opacity: 0;
+            transition: opacity 160ms ease-in;
+        }
+        #langMenuOverlay.lang-menu-open {
+            opacity: 1;
+            transition: opacity 200ms ease-out;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #langMenu, #langMenu.lang-menu-open, #langMenuOverlay, #langMenuOverlay.lang-menu-open {
+                transition: none !important;
+            }
+        }
+
+        /* Callout de arquétipos: colapsa (não remove) + ícone para reabrir */
+        .arch-hint-wrap {
+            display: grid;
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 220ms ease-in;
+        }
+        .arch-hint-wrap.hint-collapsed {
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 200ms ease-in;
+        }
+        .arch-hint-clip { overflow: hidden; }
+        .arch-hint-box {
+            opacity: 1;
+            transition: opacity 180ms ease-out 40ms;
+        }
+        .arch-hint-wrap.hint-collapsed .arch-hint-box {
+            opacity: 0;
+            transition: opacity 120ms ease-in;
+        }
+        /* Entrada sutil na primeira renderização — reforça que é algo novo, não decoração estática */
+        @keyframes archHintEnter { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        .arch-hint-enter { animation: archHintEnter 320ms ease-out 200ms both; }
+        .arch-hint-restore {
+            display: none;
+            opacity: 0;
+            transform: scale(0.85);
+            pointer-events: none;
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+        .arch-hint-restore.hint-visible {
+            display: inline-flex;
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .arch-hint-wrap, .arch-hint-wrap.hint-collapsed, .arch-hint-box,
+            .arch-hint-wrap.hint-collapsed .arch-hint-box, .arch-hint-restore, .arch-hint-restore.hint-visible,
+            .arch-hint-enter {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+        :root { --app-bg: #f8fafc; --sidebar-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--app-bg); color: #1e293b; overflow: hidden; height: 100vh !important; height: 100dvh !important; }
+        
+        /* Scrollbars */
+        .custom-scroll { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
+        
+        /* Glassmorphism */
+        .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        
+        /* Tabs Logic */
+        .tab-active { display: block !important; opacity: 1; animation: fadeIn 0.3s ease-out; }
+        .tab-inactive { display: none !important; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Sliders */
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; height: 28px; cursor: pointer; }
+        input[type=range]:focus { outline: none; }
+        input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 0 0 3px #fff, 0 0 0 6px #4f46e5; }
+        input[type=range]:focus-visible::-moz-range-thumb { box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 0 0 3px #fff, 0 0 0 6px #4f46e5; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #4f46e5; cursor: pointer; margin-top: -10px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); border: 2px solid white; transition: transform 0.1s; }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #cbd5e1; border-radius: 4px; }
+        input[type=range]::-moz-range-thumb { height: 24px; width: 24px; border-radius: 50%; background: #4f46e5; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2); border: 2px solid white; }
+        input[type=range]::-moz-range-track { width: 100%; height: 4px; cursor: pointer; background: #cbd5e1; border-radius: 4px; }
+
+        /* Tooltips Customizados */
+        .tooltip-container { position: relative; display: inline-block; width: 100%; height: 100%; }
+        .tooltip-text { visibility: hidden; width: 280px; max-width: 90vw; background-color: #0f172a; color: #fff; text-align: left; border-radius: 0.5rem; padding: 1rem; position: absolute; z-index: 50; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.2s; font-size: 0.75rem; line-height: 1.5; pointer-events: none; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.25); border: 1px solid #334155; white-space: normal; }
+        .tooltip-up .tooltip-text { bottom: 140%; }
+        .tooltip-up .tooltip-text::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #0f172a transparent transparent transparent; }
+        .tooltip-down .tooltip-text { top: 140%; }
+        .tooltip-down .tooltip-text::after { content: ""; position: absolute; bottom: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: transparent transparent #0f172a transparent; }
+        .tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; }
+        .tooltip-last .tooltip-text { left: auto; right: 0; transform: none; }
+        .tooltip-last .tooltip-text::after { left: auto; right: 40px; margin-left: 0; }
+
+        /* Utilities */
+        .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom); }
+        .accordion-content { transition: max-height 0.3s ease-out, opacity 0.3s ease; max-height: 0; opacity: 0; overflow: hidden; }
+        .accordion-open .accordion-content { max-height: 5000px; opacity: 1; }
+        .accordion-icon { transition: transform 0.3s ease; }
+        .accordion-open .accordion-icon { transform: rotate(180deg); }
+        .imp-accordion.accordion-open .imp-header { background-color: #eef2ff; }
+        .imp-accordion.accordion-open { border-color: #c7d2fe; }
+        .eco-accordion.accordion-open { border-color: #c7d2fe; }
+
+        /* Pipeline: colapsável APENAS no mobile. No desktop (md+) os três cards ficam sempre
+           abertos, lado a lado, para preservar a leitura da sequência Input→Process→Delivery. */
+        @media (max-width: 767px) {
+            .pipe-body {
+                max-height: 0; opacity: 0; overflow: hidden;
+                transition: max-height 0.3s ease-out, opacity 0.3s ease, margin 0.3s ease;
+            }
+            .pipe-card.pipe-open .pipe-body { max-height: 2000px; opacity: 1; }
+            .pipe-card .pipe-chevron { transition: transform 0.3s ease; }
+            .pipe-card.pipe-open .pipe-chevron { transform: rotate(180deg); }
+        }
+        @media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+            .pipe-body, .pipe-card .pipe-chevron { transition: none !important; }
+        }
+        .filter-active { background-color: #1e293b !important; color: white !important; border-color: #1e293b !important; }
+        .arch-active { background-color: #4f46e5 !important; color: #fff !important; border-color: #4f46e5 !important; }
+        .shimmer { background: #f6f7f8; background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%); background-repeat: no-repeat; background-size: 800px 104px; animation: placeholderShimmer 1s linear infinite forwards; }
+        @keyframes placeholderShimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
+        @keyframes impactPulse { 0% { transform: scale(1); } 30% { transform: scale(1.35); } 60% { transform: scale(1); } 100% { transform: scale(1); } }
+        .impact-pulse-once { animation: impactPulse 0.8s ease-out 0.5s 1; }
+
+        /* Animações de entrada/saída de modal (backdrop + conteúdo) */
+        @keyframes modalBackdropIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes modalBackdropOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes modalPopIn { from { opacity: 0; transform: scale(0.95) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes modalPopOut { from { opacity: 1; transform: scale(1) translateY(0); } to { opacity: 0; transform: scale(0.97) translateY(4px); } }
+        .modal-fade-enter { animation: modalBackdropIn 200ms ease-out both; }
+        .modal-fade-exit { animation: modalBackdropOut 180ms ease-in both; }
+        .modal-pop-enter { animation: modalPopIn 260ms cubic-bezier(0.16,1,0.3,1) both; }
+        .modal-pop-exit { animation: modalPopOut 160ms ease-in both; }
+        @media (prefers-reduced-motion: reduce) {
+            .modal-fade-enter, .modal-fade-exit, .modal-pop-enter, .modal-pop-exit { animation: none !important; }
+        }
+        
+        .section-title { font-size: 1.5rem; line-height: 2rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem; }
+        .section-subtitle { font-size: 0.875rem; color: #64748b; }
+        @media (min-width: 768px) { .section-title { font-size: 1.875rem; line-height: 2.25rem; } }
+
+        /* Respiro único para não deixar a nav fixa inferior "engolir" conteúdo — usado nos 4 pontos de scroll mobile (Saber, Auditoria, Biblioteca, Decidir). Calculado a partir da altura real da nav (h-16=4rem) + safe-area do aparelho + margem de segurança contra redimensionamento dinâmico da barra do navegador. */
+        @media (max-width: 767px) {
+            .mobile-nav-clearance { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 3rem) !important; }
+        }
+        /* Mobile: perfil colapsável (no desktop lg+ fica sempre aberto e sticky) */
+        @media (max-width: 1023px) {
+            .profile-collapsible { max-height: 0; opacity: 0; overflow: hidden; padding-top: 0 !important; padding-bottom: 0 !important; transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease; }
+            .decision-pane.profile-open .profile-collapsible { max-height: 2000px; opacity: 1; padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+            .mobile-profile-chevron { transition: transform 0.3s ease; }
+            .decision-pane.profile-open .mobile-profile-chevron { transform: rotate(180deg); }
+        }
+        /* Accordion de arquétipo: desktop only (>=1024px) */
+        .arch-accordion { max-height:0; overflow:hidden; opacity:0; transition:max-height 0.35s ease, opacity 0.3s ease; }
+        @media(min-width:1024px){ .arch-accordion.open { max-height:320px; opacity:1; } }
+        #archState { display:none; align-items:center; gap:0.5rem; }
+        @media(min-width:1024px){ #archState.on { display:flex; } }
+        /* Subtítulo do header mobile: colapsa com push-up ao rolar */
+        #mobileSubtitle { max-height:40px; opacity:1; overflow:hidden; padding-bottom:10px; transform:translateY(0); transition:max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease, transform 0.3s ease; }
+        #mobileTopBar.subtitle-hidden #mobileSubtitle { max-height:0; opacity:0; padding-bottom:0; transform:translateY(-100%); }
+        /* Bottom sheet de preview de arquétipo (mobile) */
+        #archSheetOverlay { position:fixed; inset:0; background:rgba(15,23,42,0.45); z-index:200; opacity:0; pointer-events:none; transition:opacity 0.25s ease; }
+        #archSheetOverlay.open { opacity:1; pointer-events:all; }
+        #archSheet { position:fixed; left:0; right:0; bottom:0; z-index:201; background:#fff; border-radius:1.25rem 1.25rem 0 0; padding:1.5rem 1.25rem 2rem; transform:translateY(100%); transition:transform 0.32s cubic-bezier(0.32,0.72,0,1); max-height:85vh; overflow-y:auto; }
+        #archSheet.open { transform:translateY(0); }
+        #customSheetOverlay { position:fixed; inset:0; background:rgba(15,23,42,0.45); z-index:200; opacity:0; pointer-events:none; transition:opacity 0.25s ease; }
+        #customSheetOverlay.open { opacity:1; pointer-events:all; }
+        #customSheet { position:fixed; left:0; right:0; bottom:0; z-index:201; background:#fff; border-radius:1.25rem 1.25rem 0 0; padding:1.5rem 1.25rem 2rem; transform:translateY(100%); transition:transform 0.32s cubic-bezier(0.32,0.72,0,1); max-height:85vh; overflow-y:auto; }
+        #customSheet.open { transform:translateY(0); }
+        /* === Superficie unica elevada (#1 + radar): glow radial indigo->violeta cobrindo TODO o bloco uniformemente. Fundo transparente nos cards internos. SEM borda. Robusta em qualquer largura. === */
+        .leader-surface {
+            background:
+                radial-gradient(ellipse 85% 65% at 28% 18%, rgba(129,140,248,0.32) 0%, rgba(129,140,248,0) 64%),
+                linear-gradient(135deg, #1e1b4b 0%, #4f46e5 50%, #7c3aed 100%);
+            border-radius: 1rem;
+            box-shadow: 0 12px 36px -8px rgba(30,10,80,0.55), 0 4px 14px -4px rgba(30,10,80,0.35);
+        }
+        .leader-surface { position: relative; }
+        /* Supressão de transições/animações durante o carregamento inicial: evita que o
+           subtítulo do header mobile (e outros elementos com transition) "animem" no primeiro
+           paint, aparecendo cortados por um instante. A classe é removida logo após o layout
+           inicial assentar (ver fim de init()). */
+        body.preload *, body.preload *::before, body.preload *::after {
+            transition: none !important;
+            animation: none !important;
+        }
+    </style>
+</head>
+
+<body class="preload h-screen w-screen flex flex-col md:flex-row overflow-hidden bg-slate-50">
+
+    <!-- === MOBILE TOP BAR === -->
+    <header id="mobileTopBar" class="md:hidden flex-shrink-0 bg-slate-900 border-b border-slate-800 z-50 px-4 shadow-md">
+        <div class="flex items-center justify-between h-14">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-black text-xs shadow-lg shadow-indigo-900/50 flex-shrink-0">AI</div>
+                <h1 class="font-black text-white text-[32px] tracking-tight leading-tight">STRATEGY <span class="text-indigo-500">HUB</span></h1>
+            </div>
+            <button onclick="toggleHelpModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center font-bold hover:bg-indigo-600 hover:text-white transition-all border border-slate-700">?</button>
+        </div>
+        <p id="mobileSubtitle" class="text-slate-300 text-sm font-medium leading-snug" data-i18n="header.subtitle" data-i18n-pt="Encontre a melhor IA para o seu perfil profissional">Encontre a melhor IA para o seu perfil profissional</p>
+    </header>
+
+    <!-- === DESKTOP SIDEBAR === -->
+    <nav class="hidden md:flex flex-col w-20 lg:w-64 bg-slate-900 text-white flex-shrink-0 z-50 shadow-xl relative transition-all duration-300">
+        <div class="h-24 flex items-center justify-center lg:justify-start lg:px-6 border-b border-slate-800">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-black text-xl shadow-lg shadow-indigo-500/30"6l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
                 <span class="hidden lg:block font-bold text-sm" data-i18n="nav.conhecimento" data-i18n-pt="Conhecimento">Conhecimento</span>
             </button>
             <button onclick="switchTab('tab-decision')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-decision">
