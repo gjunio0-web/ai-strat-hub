@@ -1,0 +1,1674 @@
+{
+  "cases.A.name": {
+    "text": "A. Kuratierung und Integration",
+    "sourceHash": "aee968d6"
+  },
+  "cases.A.desc": {
+    "text": "Abgleich widersprüchlicher Quellen und Vereinheitlichung des Vokabulars.",
+    "sourceHash": "e85d946d"
+  },
+  "cases.B.name": {
+    "text": "B. Logische Validierung",
+    "sourceHash": "dda9f032"
+  },
+  "cases.B.desc": {
+    "text": "Stresstests, Erkennung von Fehlschlüssen und Prüfung der Argumentation.",
+    "sourceHash": "ce89454a"
+  },
+  "cases.C.name": {
+    "text": "C. Abstraktion zwischen Ebenen",
+    "sourceHash": "94500987"
+  },
+  "cases.C.desc": {
+    "text": "Strukturelle Übersetzung: Strategie ↔ Betrieb ↔ Framework.",
+    "sourceHash": "ca9916f4"
+  },
+  "cases.D.name": {
+    "text": "D. Zwischenartefakte",
+    "sourceHash": "6df2f23f"
+  },
+  "cases.D.desc": {
+    "text": "Erzeugung von Matrizen und Entwürfen zum Denken, nicht zur Auslieferung.",
+    "sourceHash": "a8a6e0ef"
+  },
+  "cases.5.1.name": {
+    "text": "5.1 Automatisierte Folien",
+    "sourceHash": "54ff0d02"
+  },
+  "cases.5.1.desc": {
+    "text": "Erzeugung diagrammierter Präsentationen aus Text-Skripten.",
+    "sourceHash": "7e0bc923"
+  },
+  "cases.5.2.name": {
+    "text": "5.2 Visuelle Konsistenz",
+    "sourceHash": "983065b6"
+  },
+  "cases.5.2.desc": {
+    "text": "Erzeugung von Marken-Assets mit strenger Identität (Style Ref).",
+    "sourceHash": "1597dd9c"
+  },
+  "cases.5.3.name": {
+    "text": "5.3 Technische Recherche",
+    "sourceHash": "54a0de41"
+  },
+  "cases.5.3.desc": {
+    "text": "Durchsuchen von Datenbanken mit echtem Grounding und Quellenangabe.",
+    "sourceHash": "6598291d"
+  },
+  "cases.5.4.name": {
+    "text": "5.4 Massive Zusammenfassungen",
+    "sourceHash": "fbbbdf9f"
+  },
+  "cases.5.4.desc": {
+    "text": "Vollständiges Lesen von Büchern ohne Verlust an Nuancen.",
+    "sourceHash": "68ff42bb"
+  },
+  "cases.5.5.name": {
+    "text": "5.5 Multimodal",
+    "sourceHash": "5fd5ea95"
+  },
+  "cases.5.5.desc": {
+    "text": "Interpretation von Diagrammen, Videos, Audio und komplexen Grafiken.",
+    "sourceHash": "9bd2cd4"
+  },
+  "cases.5.6.name": {
+    "text": "5.6 Coding & Apps",
+    "sourceHash": "bf3715ec"
+  },
+  "cases.5.6.desc": {
+    "text": "Erzeugung von Micro-SaaS-Produkten und Automatisierungs-Skripten.",
+    "sourceHash": "5a61579"
+  },
+  "cases.6.1.name": {
+    "text": "6.1 Strategie-Synthese",
+    "sourceHash": "b9891e13"
+  },
+  "cases.6.1.desc": {
+    "text": "Verbindende Achse: Recherche + Synthese + Design + Entscheidung.",
+    "sourceHash": "8d1c269b"
+  },
+  "cases.7.1.name": {
+    "text": "7.1 Data Gravity",
+    "sourceHash": "142b3a16"
+  },
+  "cases.7.1.desc": {
+    "text": "Data Gravity: nativer Zugriff auf Daten am Ort (SharePoint, Drive, Git) ohne manuelles ETL.",
+    "sourceHash": "8918659d"
+  },
+  "cases.7.2.name": {
+    "text": "7.2 Formatkontinuität",
+    "sourceHash": "45c79454"
+  },
+  "cases.7.2.desc": {
+    "text": "Asset Handoff: Lieferung eines bearbeitbaren Endartefakts (.pptx, .docx) statt eines Rohentwurfs.",
+    "sourceHash": "29f4e20b"
+  },
+  "cases.7.3.name": {
+    "text": "7.3 Vertrauenswürdigkeit & Verifizierbarkeit",
+    "sourceHash": "1c8185f8"
+  },
+  "cases.7.3.desc": {
+    "text": "Verifizierbarkeit: jede Aussage mit einer prüfbaren Primärquelle verknüpft.",
+    "sourceHash": "345f4cde"
+  },
+  "archetypes.cirurgiao.name": {
+    "text": "Code-Chirurg",
+    "sourceHash": "f79d51ce"
+  },
+  "archetypes.cirurgiao.tagline": {
+    "text": "„Logische Präzision und reine Ausführung: Wo der Algorithmus auf die Architektur trifft.“",
+    "sourceHash": "1ac55996"
+  },
+  "archetypes.cirurgiao.desc": {
+    "text": "Konzentriert auf das Lösen komplexer Engineering-Probleme und priorisiert logische Integrität und Code-Performance über jede ästhetische Bequemlichkeit oder Datenintegration.",
+    "sourceHash": "beedc4fa"
+  },
+  "archetypes.cirurgiao.examples": {
+    "text": "Z. B.: Backend-Entwickler, Software-Ingenieure, Kryptografie-Forscher, Algorithmus-Spezialisten.",
+    "sourceHash": "f79737e2"
+  },
+  "archetypes.showrunner.name": {
+    "text": "Corporate Showrunner",
+    "sourceHash": "dc5b0f38"
+  },
+  "archetypes.showrunner.tagline": {
+    "text": "„Die Meisterschaft der multimodalen Orchestrierung: Der Architekt der Geschäftsnarrative.“",
+    "sourceHash": "7df3ea24"
+  },
+  "archetypes.showrunner.desc": {
+    "text": "Orchestrator, der strategische Visionen mit hoher Geschwindigkeit in multimodale Assets (Text, Video, Folien) verwandelt und dabei große Kontextvolumina verwaltet.",
+    "sourceHash": "46aa2b8f"
+  },
+  "archetypes.showrunner.examples": {
+    "text": "Z. B.: Product Manager, Marketing-Direktoren, Produkt-Launch-Verantwortliche, Chief of Staff.",
+    "sourceHash": "fdbd08b2"
+  },
+  "archetypes.oraculo.name": {
+    "text": "Szenario-Orakel",
+    "sourceHash": "42e25877"
+  },
+  "archetypes.oraculo.tagline": {
+    "text": "„Das strategische Gehirn am Spielbrett: Den nächsten Zug antizipieren.“",
+    "sourceHash": "734fb1d8"
+  },
+  "archetypes.oraculo.desc": {
+    "text": "Profil mit hoher Abstraktion, das die KI als dialektischen Partner nutzt, um strategische Szenarien zu simulieren, M&A-Risiken zu analysieren und eigenständige Standpunkte zu entwickeln.",
+    "sourceHash": "1c2ecf9"
+  },
+  "archetypes.oraculo.examples": {
+    "text": "Z. B.: Strategieberater, M&A-Analysten, Szenario-Planer, Executive Advisors.",
+    "sourceHash": "7e442def"
+  },
+  "archetypes.burocrata.name": {
+    "text": "Elite-Bürokrat",
+    "sourceHash": "65b7db84"
+  },
+  "archetypes.burocrata.tagline": {
+    "text": "„Die Diktatur von Effizienz und Compliance: Wo der Workflow das Produkt ist.“",
+    "sourceHash": "978e7617"
+  },
+  "archetypes.burocrata.desc": {
+    "text": "Fachkraft, die auf der letzten Meile der Unternehmensauslieferung arbeitet. Verlangt, dass die KI innerhalb der Schienen der Standardwerkzeuge (Office/Google) operiert – mit null Formatfehlern und voller Compliance.",
+    "sourceHash": "b1087154"
+  },
+  "archetypes.burocrata.examples": {
+    "text": "Z. B.: Projektmanager, Compliance-Spezialisten, Unternehmensjuristen, Prozessanalysten.",
+    "sourceHash": "b438023b"
+  },
+  "archetypes.cacador.name": {
+    "text": "Signal-Jäger",
+    "sourceHash": "8d91bc86"
+  },
+  "archetypes.cacador.tagline": {
+    "text": "„Die unerbittliche Suche nach prüfbarer Wahrheit: Wo Beweise über Meinung siegen.“",
+    "sourceHash": "fbc18367"
+  },
+  "archetypes.cacador.desc": {
+    "text": "Ermittler, der darauf fokussiert ist, informationelle Wahrheit aus Meeren von Rohdaten und Webseiten zu ziehen. Verlangt volle Nachvollziehbarkeit und lehnt jede synthetische Aussage ohne klare Verbindung zu einer echten Quelle ab.",
+    "sourceHash": "bd731f16"
+  },
+  "archetypes.cacador.examples": {
+    "text": "Z. B.: Datenjournalisten, Due-Diligence-Analysten, Risiko-Auditoren, Ermittler für Finanzbetrug.",
+    "sourceHash": "1e1f5347"
+  },
+  "archetypes.prototipador.name": {
+    "text": "Agiler Prototyper",
+    "sourceHash": "5a29e8c9"
+  },
+  "archetypes.prototipador.tagline": {
+    "text": "„Vom Konzept zum Artefakt in Echtzeit: Die Demokratisierung des Bauens.“",
+    "sourceHash": "23a70847"
+  },
+  "archetypes.prototipador.desc": {
+    "text": "Fachkraft, die synthetische Rechenleistung nutzt, um abstrakte Ideen mit hoher Geschwindigkeit in funktionale, iterative Prototypen zu verwandeln und Markthypothesen unmittelbar zu validieren.",
+    "sourceHash": "be70f4e6"
+  },
+  "archetypes.prototipador.examples": {
+    "text": "Z. B.: bauende UX/UI-Designer, Indie-Hacker, Solopreneure, Gründer von Tech-Startups.",
+    "sourceHash": "a65620e5"
+  },
+  "archetypes.legado.name": {
+    "text": "Legacy-Analyst",
+    "sourceHash": "a96f6567"
+  },
+  "archetypes.legado.tagline": {
+    "text": "„Die Komplexität historischer Volumina navigieren: Intelligenz über dem schlafenden Riesen.“",
+    "sourceHash": "35e19f2c"
+  },
+  "archetypes.legado.desc": {
+    "text": "Spezialist mit der Aufgabe, massive Altsysteme und übermäßig lange Dokumentationsarchitekturen zu lesen, zu diagnostizieren und in sie einzugreifen. Verlangt kolossale Kontextfenster, um mikrostrukturelle Abhängigkeiten nicht zu verlieren.",
+    "sourceHash": "707d4288"
+  },
+  "archetypes.legado.examples": {
+    "text": "Z. B.: SAP/Oracle-Berater, Ingenieure für Bankensysteme, Spezialisten für kritische IT-Infrastruktur.",
+    "sourceHash": "f63ed418"
+  },
+  "ecosystem.gemini.sp": {
+    "text": "Breiter nativer Kontext (~1 Mio. Tokens) und massive Aufnahme vieler Formate direkt aus Drive.",
+    "sourceHash": "bfb9379e"
+  },
+  "ecosystem.gemini.kr": {
+    "text": "Kein direkter .pptx-Export aus Canvas – erfordert einen Zwischenschritt über Google Slides.",
+    "sourceHash": "ae872474"
+  },
+  "ecosystem.gemini.role": {
+    "text": "Der Generalist für hohes Volumen und kompetitives Reasoning, für monolithisches Lesen und die Aufnahme großer Dokumentbasen.",
+    "sourceHash": "e17428ef"
+  },
+  "ecosystem.claude.sp": {
+    "text": "Makellose Logik, überlegenes dialektisches Reasoning und Artifacts-Umgebungen für sauberen Code.",
+    "sourceHash": "2aa5ef53"
+  },
+  "ecosystem.claude.kr": {
+    "text": "Agentisches Verhalten in langen Sitzungen noch inkonsistent – Anthropic selbst dokumentiert vorzeitige Abbrüche und übermäßiges Löschen von Dateien als bekannte Schwächen von Opus 4.8.",
+    "sourceHash": "88b9a74d"
+  },
+  "ecosystem.claude.role": {
+    "text": "Der Spezialist für logische Präzision, Refactoring und ausgefeilte strategische Synthese.",
+    "sourceHash": "d215ddfd"
+  },
+  "ecosystem.chatgpt.sp": {
+    "text": "Einheitliche multimodale Vielseitigkeit (nativ omnimodal) und tiefes deliberatives Reasoning, mit freundlicher Oberfläche.",
+    "sourceHash": "20a6f63d"
+  },
+  "ecosystem.chatgpt.kr": {
+    "text": "Kontext-Ermüdung im Produkt (32k–256k Tokens je nach Plan und Modus) und Schwankungen in der Grounding-Qualität, mit der höchsten Halluzinationsrate unter den Frontier-Modellen ohne Tool-Zugriff.",
+    "sourceHash": "275315bb"
+  },
+  "ecosystem.chatgpt.role": {
+    "text": "Der multimodale Generalist mit tiefem Reasoning und flüssiger Interaktion.",
+    "sourceHash": "4985535f"
+  },
+  "ecosystem.copilot.sp": {
+    "text": "Native Integration in das Microsoft-365-Ökosystem unter Anwendung der Sicherheitsrichtlinien des Unternehmens.",
+    "sourceHash": "50defad0"
+  },
+  "ecosystem.copilot.kr": {
+    "text": "Zurückhaltendere Antworten durch strenge Inhaltsfilter und die Orchestrierungsschicht über mehrere Modelle – nicht wegen eines von Natur aus schwächeren Basismodells.",
+    "sourceHash": "67c09f1e"
+  },
+  "ecosystem.copilot.role": {
+    "text": "Der operative Bürokrat für Compliance auf der letzten Meile der Dokumentformatierung.",
+    "sourceHash": "28d52997"
+  },
+  "ecosystem.perplex.sp": {
+    "text": "Web-Recherche in Echtzeit mit automatisierter granularer Indexierung von Primärquellen.",
+    "sourceHash": "89f3de8"
+  },
+  "ecosystem.perplex.kr": {
+    "text": "Begrenzte Fähigkeit im Code-Engineering und im fortgeschrittenen visuellen Design.",
+    "sourceHash": "dfd28e61"
+  },
+  "ecosystem.perplex.role": {
+    "text": "Der Ermittler mit aktivem Grounding in Echtzeit und Faktenprüfung im offenen Web.",
+    "sourceHash": "8037acc3"
+  },
+  "ecosystem.deepseek.sp": {
+    "text": "Logisch-mathematisches Reasoning zu extrem niedrigen Kosten über den nativen Thinking-Modus, mit offenen Gewichten unter der MIT-Lizenz.",
+    "sourceHash": "d8326c5e"
+  },
+  "ecosystem.deepseek.kr": {
+    "text": "Keine native Multimodalität und keine fertigen Unternehmensformate – der Fokus bleibt auf Text, Code und Reasoning.",
+    "sourceHash": "97dab242"
+  },
+  "ecosystem.deepseek.role": {
+    "text": "Der Analyst für tiefes, kostengünstiges Rechen-Reasoning, für reine Logik und Algorithmus-Validierung.",
+    "sourceHash": "5748a47b"
+  },
+  "ecosystem.manus.sp": {
+    "text": "Autonome Ausführung komplexer End-to-End-Workflows auf dedizierten virtuellen Maschinen.",
+    "sourceHash": "e7daf5f8"
+  },
+  "ecosystem.manus.kr": {
+    "text": "Hohe Abhängigkeit von der Workflow-Stabilität und Risiko eines Kontextbruchs bei langen Aufgaben.",
+    "sourceHash": "a0c4443f"
+  },
+  "ecosystem.manus.role": {
+    "text": "Der autonom ausführende Agent für komplexe Web-Navigation und Automatisierungsaufgaben.",
+    "sourceHash": "a3cd1f50"
+  },
+  "ecosystem.badge.insumo": {
+    "text": "Input",
+    "sourceHash": "ba2f31e0"
+  },
+  "ecosystem.badge.entrega": {
+    "text": "Lieferung",
+    "sourceHash": "cc3ccb8b"
+  },
+  "ecosystem.badge.raciocinio": {
+    "text": "Reasoning",
+    "sourceHash": "9ebf5ac9"
+  },
+  "ecosystem.label.superpower": {
+    "text": "Superpower",
+    "sourceHash": "8f9762e1"
+  },
+  "ecosystem.label.kryptonite": {
+    "text": "Kryptonite",
+    "sourceHash": "b37611be"
+  },
+  "nav.conhecimento": {
+    "text": "Wissen",
+    "sourceHash": "238eaa1"
+  },
+  "nav.decisao": {
+    "text": "Entscheidung",
+    "sourceHash": "690bdcbf"
+  },
+  "nav.auditoria": {
+    "text": "Audit",
+    "sourceHash": "8eead787"
+  },
+  "nav.biblioteca": {
+    "text": "Bibliothek",
+    "sourceHash": "ef3e6373"
+  },
+  "nav.manual_ajuda": {
+    "text": "Handbuch & Hilfe",
+    "sourceHash": "e2e5c087"
+  },
+  "header.subtitle": {
+    "text": "Finden Sie die beste KI für Ihr berufliches Profil",
+    "sourceHash": "2b004ff0"
+  },
+  "footer.poweredby": {
+    "text": "Powered by",
+    "sourceHash": "3d8b5376"
+  },
+  "sec.capacidades.title": {
+    "text": "Grundlegende KI-Fähigkeiten",
+    "sourceHash": "7cef74ac"
+  },
+  "sec.pipeline.title": {
+    "text": "Produktions-Pipeline",
+    "sourceHash": "66687d27"
+  },
+  "sec.ecosystem.title": {
+    "text": "Intelligenz-Ökosystem",
+    "sourceHash": "f94bbbff"
+  },
+  "sec.ranking.title": {
+    "text": "Empfohlenes Ranking",
+    "sourceHash": "45f902d0"
+  },
+  "sec.ranking.subtitle": {
+    "text": "Basierend auf dem aktuell ausgewählten beruflichen Profil.",
+    "sourceHash": "f5a7fe97"
+  },
+  "sec.ranking.vermatriz": {
+    "text": "Technische Matrix ansehen ",
+    "sourceHash": "7e821544"
+  },
+  "sec.auditoria.title": {
+    "text": "Audit-Matrix",
+    "sourceHash": "9197ec27"
+  },
+  "sec.auditoria.subtitle": {
+    "text": "Wie jede der 7 KIs abschneidet, Fähigkeit für Fähigkeit – die Bewertung und die Begründung dahinter – damit Sie das vom Entscheidungsmotor erzeugte Ranking prüfen können.",
+    "sourceHash": "db7f5a61"
+  },
+  "sec.auditoria.origemnotas": {
+    "text": "Woher kommen die Bewertungen?",
+    "sourceHash": "5a0f2f9"
+  },
+  "sec.impacto.title": {
+    "text": "Cross-Impact-Matrix",
+    "sourceHash": "8bffd6ca"
+  },
+  "sec.impacto.subtitle": {
+    "text": "Wie das Fehlen jedes übergreifenden Enablers (Streamlining) – Data Gravity, Formatkontinuität, Vertrauenswürdigkeit & Verifizierbarkeit – jede Domäne verschlechtert.",
+    "sourceHash": "7332f443"
+  },
+  "sec.biblioteca.title": {
+    "text": "Definitions-Bibliothek",
+    "sourceHash": "e65286df"
+  },
+  "sec.biblioteca.subtitle": {
+    "text": "Technisches Glossar der Fähigkeiten.",
+    "sourceHash": "39c646a9"
+  },
+  "pipeline.insumo.title": {
+    "text": "Input",
+    "sourceHash": "ba2f31e0"
+  },
+  "pipeline.insumo.desc": {
+    "text": "Reale Informationen in den Fluss bringen: Recherche, Lesen und Datenerfassung.",
+    "sourceHash": "f0ee3dd"
+  },
+  "pipeline.processamento.title": {
+    "text": "Verarbeitung",
+    "sourceHash": "ff9d3448"
+  },
+  "pipeline.processamento.desc": {
+    "text": "Über den Input nachdenken: Logik validieren, die Argumentation strukturieren und die Entscheidung synthetisieren.",
+    "sourceHash": "40c3a95f"
+  },
+  "pipeline.entrega.title": {
+    "text": "Lieferung",
+    "sourceHash": "cc3ccb8b"
+  },
+  "pipeline.entrega.desc": {
+    "text": "Das Ergebnis in ein nutzbares Endformat verpacken: Folien, Code und fertige Artefakte.",
+    "sourceHash": "f5db4a34"
+  },
+  "archhint.hook": {
+    "text": "Sie haben die Archetypen bereits im „Wissen“ gesehen – hier wenden Sie sie an.",
+    "sourceHash": "1e5afac6"
+  },
+  "archhint.body": {
+    "text": "Die Archetypen sind die Schicht, die die Fabrik konfiguriert – jeder gewichtet die Domänen und das Streamlining anders. <b class=\"font-semibold text-slate-700\">Wichtig:</b> Es gibt keinen „richtigen“ Archetyp für Sie – nur den richtigen für die Aufgabe. Dieselbe Person kann bei einem Code-Projekt ein Code-Chirurg und bei einem Executive-Report ein Elite-Bürokrat sein. Wechseln Sie, wann immer Sie möchten: Das Ranking berechnet sich live neu.",
+    "sourceHash": "22f79c98"
+  },
+  "common.entendi": {
+    "text": "Verstanden",
+    "sourceHash": "cc35d08c"
+  },
+  "common.fechar": {
+    "text": "Schließen",
+    "sourceHash": "b283dc8e"
+  },
+  "welcome.title": {
+    "text": "Willkommen beim AI Strategy Hub",
+    "sourceHash": "84f2f0d2"
+  },
+  "welcome.p1": {
+    "text": "Es gibt nicht „die beste KI“ – es gibt die beste KI <em>für Ihre Arbeit</em>. Jedes Werkzeug ist in manchen Dingen stark und in anderen schwach; <strong>die richtige Frage</strong> lautet nicht „welche ist klüger“, sondern „welche liefert, was ich brauche, so wie ich es brauche“.",
+    "sourceHash": "313803fc"
+  },
+  "welcome.p2": {
+    "text": "Diese App existiert, um genau diese Frage zu beantworten. Wählen Sie ein <strong>berufliches Profil</strong>, das Ihrem ähnelt, oder passen Sie eines an. In Sekunden sehen Sie ein <strong>Ranking der 7 relevantesten KIs</strong> am Markt, geordnet für dieses spezifische Profil.",
+    "sourceHash": "84fc456c"
+  },
+  "welcome.p3": {
+    "text": "<strong>Rohe Leistung</strong> ist nur die halbe Geschichte. Die andere Hälfte ist <strong>Reibung</strong>: ob die KI Ihre Daten bereits liest, gebrauchsfertig liefert und ob Sie der Quelle dessen, was sie behauptet, vertrauen können. Auch das wiegt die App mit ab.",
+    "sourceHash": "2b302458"
+  },
+  "welcome.p4": {
+    "text": "Erkunden Sie die Profile, spielen Sie mit den Reglern und beobachten Sie, wie sich die Empfehlung live verändert.",
+    "sourceHash": "b8ef6c29"
+  },
+  "welcome.dontshow": {
+    "text": "Nicht erneut anzeigen",
+    "sourceHash": "3a58381a"
+  },
+  "origemnotas.title": {
+    "text": "Woher die Bewertungen kommen",
+    "sourceHash": "9390837a"
+  },
+  "origemnotas.p1": {
+    "text": "Die Fähigkeit einer KI ist nicht fest – sie ändert sich schnell, manchmal von einer Woche zur nächsten, wenn neue Modelle auf den Markt kommen. Deshalb ist dieser Hub kein eingefrorenes Ranking, sondern ein lebendiges Instrument, das regelmäßig neu bewertet wird. Wenn sich eine Bewertung verschiebt, ist es meist keine Fehlerkorrektur: Es ist die Welt, die sich verändert hat.",
+    "sourceHash": "d7e45b1"
+  },
+  "origemnotas.p2": {
+    "text": "Jede Bewertung entsteht aus der besten verfügbaren Evidenz für diese spezifische Fähigkeit – und diese Evidenz ist nicht einheitlich. Sie stammt aus drei Quellen:",
+    "sourceHash": "714fa2e0"
+  },
+  "origemnotas.medido.title": {
+    "text": "Per Benchmark gemessen",
+    "sourceHash": "afe358b3"
+  },
+  "origemnotas.medido.desc": {
+    "text": "Wo öffentliche, verlässliche Benchmarks existieren, leitet sich die Bewertung aus ihnen ab – das ist der Fall bei Code-Engineering, Diagramm- und Dokumentenanalyse, massivem Kontextlesen und Verifizierbarkeit (Grounding). Eine Bewertung, die in externen, reproduzierbaren Daten verankert ist.",
+    "sourceHash": "f8a45636"
+  },
+  "origemnotas.aproximado.title": {
+    "text": "Angenähert (Proxy)",
+    "sourceHash": "b40b140c"
+  },
+  "origemnotas.aproximado.desc": {
+    "text": "Bei einigen Fähigkeiten gibt es kein direktes Maß, doch allgemeine Benchmarks dienen als Annäherung. Logisches Reasoning etwa wird durch Tests gemessen, die nahe herankommen, ohne die berufliche Nutzung genau zu erfassen. Eine datengestützte Bewertung mit einer Interpretationsschicht.",
+    "sourceHash": "46cf56fd"
+  },
+  "origemnotas.especializada.title": {
+    "text": "Fachliche Einschätzung",
+    "sourceHash": "6297327b"
+  },
+  "origemnotas.especializada.desc": {
+    "text": "Manche Fähigkeiten haben schlicht keinen öffentlichen Benchmark – etwa das Umwandeln zwischen Abstraktionsebenen oder das Wahren einer konsistenten Markenidentität. Hier ist die Bewertung eine deklarierte fachliche Einschätzung, keine Messung.",
+    "sourceHash": "9ddc06a"
+  },
+  "origemnotas.p3": {
+    "text": "<strong>Wie wir Benchmarks auswählen.</strong> Nicht jedes Leaderboard zählt. Ein Benchmark qualifiziert sich nur, wenn er dynamisch ist (seine Fragen erneuert, damit das Ergebnis nicht altert), gegen Kontamination resistent ist (die Fragen waren nicht in den Trainingsdaten des Modells – sonst misst der Score Erinnerung, nicht Fähigkeit) und die besten Modelle noch voneinander trennen kann. Bekannte Benchmarks, die gesättigt oder kontaminiert sind, werden bewusst auf einen historischen Status herabgestuft.",
+    "sourceHash": "ea39e118"
+  },
+  "origemnotas.p4": {
+    "text": "<strong>Was die Bewertung nicht ist.</strong> Sie ist kein Urteil über eine absolute „beste KI“ – sie ist eine Momentaufnahme einer spezifischen Fähigkeit auf Basis der heute besten Evidenz. Die endgültige Entscheidung liegt bei Ihnen: Der sicherste Weg ist, die zwei oder drei Kandidaten, auf die der Hub hinweist, in echten Fällen aus Ihrer eigenen Arbeit zu testen.",
+    "sourceHash": "7fc5d3ef"
+  },
+  "canon.canon-manifesto-intro.title": {
+    "text": "Manifest: Bedingte Effizienz",
+    "sourceHash": "b27ec0ed"
+  },
+  "canon.canon-manifesto-intro.text": {
+    "text": "Der konzeptionelle Kern des Hubs: warum das mächtigste Werkzeug nicht immer das empfohlene ist. Operative Reibung (Streamlining) bestimmt, wie viel der rohen Leistung einer KI tatsächlich bei Ihrem finalen Ergebnis ankommt.",
+    "sourceHash": "d666c9ae"
+  },
+  "canon.canon-falacia.title": {
+    "text": "Der Trugschluss des synthetischen IQ",
+    "sourceHash": "a4e5c70a"
+  },
+  "canon.canon-falacia.text": {
+    "text": "Dieses Framework markiert das endgültige Abrücken von der Suche nach der „klügsten KI“ zugunsten der Suche nach der „effizientesten KI“. In der realen Welt ist Intelligenz, die nicht im richtigen Format, zur richtigen Zeit und mit den richtigen Daten geliefert werden kann, für alle praktischen Zwecke nicht existent. Der Trugschluss des synthetischen IQ tritt ein, wenn wir rohe kognitive Leistung (den „IQ“ der KI) über Interoperabilität stellen. Hier ist Intelligenz nur eine Variable; Effizienz ist der Multiplikator.",
+    "sourceHash": "a7abc529"
+  },
+  "canon.canon-fisica.title": {
+    "text": "Die neue Physik: Leistung × Effizienz",
+    "sourceHash": "110ee33b"
+  },
+  "canon.canon-fisica.text": {
+    "text": "Der Hub arbeitet unter einer neuen Physik der Systeme. Leistung (P) ist das, was die KI isoliert leisten kann – ihre rohe Verarbeitungs- und Logikkapazität, per Benchmark gemessen. Effizienz (E) ist die Fähigkeit, diese Leistung durch die Reibung menschlicher und unternehmerischer Workflows zu manifestieren. Das reale, messbare Ergebnis ist die Effektive Leistung, und das Kernprinzip lautet, dass Leistung mit Effizienz multipliziert und niemals zu ihr addiert wird. Eine Leistung von 5,0, geliefert bei einer Effizienz von 0,2, ist nicht 2,6 wert – sie ist 1,0 wert, denn Reibung mindert den Wert nicht, sie erdrosselt ihn.",
+    "sourceHash": "94f56cf1"
+  },
+  "canon.canon-meta-intro.title": {
+    "text": "I. Thinking (Kognitives Reasoning)",
+    "sourceHash": "50db4b9f"
+  },
+  "canon.canon-meta-intro.text": {
+    "text": "Der intellektuelle „Maschinenraum“. Diese Fähigkeiten erzeugen nicht das Endprodukt, aber sie sichern die Integrität der Argumentation. Hier geschehen logische Strukturierung, Hypothesenvalidierung und Gedankenarchitektur, bevor irgendetwas ausgeführt wird.",
+    "sourceHash": "84c9dfd1"
+  },
+  "canon.canon-A.title": {
+    "text": "A – Kuratierung, Normalisierung und Integration",
+    "sourceHash": "287f2b4e"
+  },
+  "canon.canon-A.text": {
+    "text": "Dieser Einsatz ist weder bloße Analyse noch bloße Synthese. Er tritt ein, wenn Sie die KI bitten, widersprüchliche Konzepte zwischen Autoren, Schulen oder Frameworks abzugleichen; Terminologie zu normalisieren (z. B. äquivalente Konzepte mit unterschiedlichen Bezeichnungen); oder mehrere Quellen zu einem einzigen kohärenten Vokabular zu integrieren. Er löst konzeptionelle Mehrdeutigkeiten, bevor irgendetwas endgültig produziert wird.",
+    "sourceHash": "1f0eb9fe"
+  },
+  "canon.canon-B.title": {
+    "text": "B – Logische Validierung und Stresstest",
+    "sourceHash": "506c0d0e"
+  },
+  "canon.canon-B.text": {
+    "text": "Hier wird die KI nicht zum Produzieren genutzt, sondern um zu prüfen, ob eine Argumentationslinie „trägt“, interne Widersprüche zu erkennen, logische Sprünge aufzuzeigen und zu testen, ob eine Erzählung unter Druck standhält. Das unterscheidet sich vom Text-Review; es ist ein Konsistenz-Audit.",
+    "sourceHash": "68337666"
+  },
+  "canon.canon-C.title": {
+    "text": "C – Umwandlung zwischen Abstraktionsebenen",
+    "sourceHash": "481d78bd"
+  },
+  "canon.canon-C.text": {
+    "text": "Sie nutzen die KI, um sich mit Präzision zwischen Abstraktionsebenen auf und ab zu bewegen: Strategie ↔ Betrieb, Framework ↔ Prozess, Architektur ↔ Umsetzung. Das ist kein generisches „Zusammenfassen“ oder „Ausweiten“ – es ist strukturelle Übersetzung.",
+    "sourceHash": "abfae3fe"
+  },
+  "canon.canon-D.title": {
+    "text": "D – Zwischenartefakte",
+    "sourceHash": "771ee245"
+  },
+  "canon.canon-D.text": {
+    "text": "Erstellung provisorischer Matrizen, Hypothesenlisten und formaler Entwürfe, die nicht zur Auslieferung, sondern zum besseren Denken bestimmt sind. Diese Artefakte sind weder kreative Entwürfe noch Endergebnisse; sie sind temporäre kognitive Instrumente.",
+    "sourceHash": "c38f02c4"
+  },
+  "canon.canon-disc-intro.title": {
+    "text": "II. Discovering (Entdeckung und Aufnahme)",
+    "sourceHash": "5ee8a010"
+  },
+  "canon.canon-disc-intro.text": {
+    "text": "Die Datenerfassungs-Frontlinie des Systems. Sie erweitert die Informationsbasis durch aktive externe Suche in Echtzeit oder tiefes Lesen komplexer Altdaten – bevor irgendeine Transformation stattfindet.",
+    "sourceHash": "61d319b9"
+  },
+  "canon.canon-5-3.title": {
+    "text": "5.3 Tiefgehende akademische und technische Recherche",
+    "sourceHash": "e916f2b8"
+  },
+  "canon.canon-5-3.text": {
+    "text": "KI-basierte Rechercheassistenten können akademische und technische Datenbanken durchsuchen, um den Stand der Technik zu einem Thema zu synthetisieren. Anders als die klassische Suche kann die KI Abstracts lesen, Schlussfolgerungen verschiedener Paper miteinander abgleichen und eine strukturierte Literaturübersicht erzeugen. Die Einführung von „Deep Research“-Modi hat die Natur dieses Anwendungsfalls verändert. Die KI kann nun Dutzende Bücher und Hunderte Artikel gleichzeitig vollständig lesen und Halluzinationen durch massives Grounding drastisch reduzieren. Suche bedeutet nicht mehr nur „den Link finden“, sondern „das im Link enthaltene Wissen synthetisieren“.",
+    "sourceHash": "bfa3cb1b"
+  },
+  "canon.canon-5-4.title": {
+    "text": "5.4 Massive, gründliche Zusammenfassungen von Büchern und komplexen Artikeln",
+    "sourceHash": "a07e0dad"
+  },
+  "canon.canon-5-4.text": {
+    "text": "Sprachmodelle mit erweiterten Kontextfenstern (wie Claude mit 100k+ Tokens oder Gemini 1.5 Pro mit 2M) erlauben das Hochladen ganzer Fachbücher, langer Verträge oder Berichte über Hunderte Seiten. Die KI kann dann die zentralen Argumente extrahieren, ohne Nuancen zu verlieren.",
+    "sourceHash": "fe4710e3"
+  },
+  "canon.canon-design-intro.title": {
+    "text": "III. Designing (Visuelle Materialisierung)",
+    "sourceHash": "c3b51517"
+  },
+  "canon.canon-design-intro.text": {
+    "text": "Der Übergang von der konzeptionellen Abstraktion zum greifbaren visuellen Artefakt. Er stellt sicher, dass die Strategie nicht kalter Text bleibt, sondern sich in überzeugende, visuell konsistente Formate materialisiert.",
+    "sourceHash": "4892771e"
+  },
+  "canon.canon-5-1.title": {
+    "text": "5.1 Automatisierte Erzeugung von Folien und Präsentationen",
+    "sourceHash": "8ad6e43e"
+  },
+  "canon.canon-5-1.text": {
+    "text": "Moderne KI-Systeme können vollständige Präsentationen aus Text-Skripten erzeugen und dabei bereitgestellte Inhalte mit konsistenten visuellen Themes verbinden. In Produktivitätssuiten eingebaute Werkzeuge wie Microsoft Copilot erlauben es, professionelle Folien direkt aus Textdokumenten zu erstellen und automatisch visuelle Elemente anzuwenden, die an der Markenidentität ausgerichtet sind. So kann Copilot in PowerPoint auf Organisationsdateien (Word, PDF usw.) verweisen, um eine Präsentation zu komponieren, sowie freigegebene Bilder aus der Bibliothek des Unternehmens einfügen, um die Konformität mit dem Leitfaden zur visuellen Identität sicherzustellen. Das vermeidet mühsame manuelle Formatierung, da die KI Text, Kernthemen, Bilder und sogar Logos analysieren und zum Thema der Präsentation passende visuelle Stile vorschlagen kann. Das Ergebnis ist eine kohärente Folienstruktur mit konsistentem Design über alle Seiten hinweg, das die Farbpalette und Typografie der Marke respektiert. Wichtig: Die KI liefert einen soliden Entwurf, den die nutzende Person verfeinern kann, und verbindet so Automatisierung mit einer menschlichen Note, um Details bei Bedarf anzupassen. Kurz gesagt beschleunigt die KI die Folienerstellung drastisch – Studien zeigen, dass Nutzer einen ersten Foliensatz 3–5-mal schneller als mit der manuellen Methode erzeugen können, bei stetig höherer visueller Qualität und geringerem Bearbeitungsaufwand.",
+    "sourceHash": "8b11abf6"
+  },
+  "canon.canon-5-2.title": {
+    "text": "5.2 Visuelle Konsistenz und Markenidentität",
+    "sourceHash": "5bf241d3"
+  },
+  "canon.canon-5-2.text": {
+    "text": "Der Einsatz generativer KI für Bilder (wie DALL-E 3, Midjourney und Adobe Firefly) ermöglicht die Erstellung visueller Assets, die strengen Stilrichtlinien folgen. Im Unternehmenskontext bedeutet das, die KI zu trainieren oder anzuweisen, Icons, Illustrationen und Diagramme zu erzeugen, die dieselbe visuelle Sprache sprechen wie die Marke – so wird sichergestellt, dass technische Berichte nicht wie ein visueller Flickenteppich aussehen. Konsistenz ist nicht nur ästhetisch, sondern semiotisch: Sie stellt sicher, dass die visuelle Botschaft die Autorität des technischen Dokuments verstärkt.",
+    "sourceHash": "836ecd78"
+  },
+  "canon.canon-5-5.title": {
+    "text": "5.5 Multimodale Analyse von Fotos, Videos und Dateien",
+    "sourceHash": "bff1087f"
+  },
+  "canon.canon-5-5.text": {
+    "text": "Die multimodale Fähigkeit (wie bei GPT-4 Vision oder Gemini) erlaubt es der KI, Bilder zu „sehen“ und zu interpretieren. Das gilt für das Lesen komplexer Diagramme in Finanzberichten, das Umwandeln von Whiteboard-Skizzen in strukturierten Code oder die Analyse von Video.",
+    "sourceHash": "8ed85e5b"
+  },
+  "canon.canon-build-intro.title": {
+    "text": "IV. Building (Engineering und Konstruktion)",
+    "sourceHash": "fafec18f"
+  },
+  "canon.canon-build-intro.text": {
+    "text": "Die konstruktive und infrastrukturelle Fähigkeit. Sie trennt die Tätigkeit des Entwerfens von der Tätigkeit des Bauens ausführbarer, funktionaler logischer Lösungen.",
+    "sourceHash": "a65f7042"
+  },
+  "canon.canon-5-6.title": {
+    "text": "5.6 Erzeugung von Webanwendungen und Coding-Automatisierung",
+    "sourceHash": "6ce36cb4"
+  },
+  "canon.canon-5-6.text": {
+    "text": "Auf Code spezialisierte KI-Agenten können nicht nur isolierte Snippets erzeugen, sondern ganze Webanwendungen, Skripte zur Datenautomatisierung und funktionale Benutzeroberflächen. Das demokratisiert die Softwareentwicklung für Profile in Datenanalyse und Management und ermöglicht die Erstellung maßgeschneiderter Werkzeuge („internes Micro-SaaS“), um spezifische Prozess-Schmerzpunkte zu lösen. Die KI agiert als erfahrener Pair-Programmer, schlägt Architektur vor, refaktorisiert Legacy-Code und schreibt Unit-Tests.",
+    "sourceHash": "8a28dc35"
+  },
+  "canon.canon-strat-intro.title": {
+    "text": "V. Integrating (Strategie und Entscheidung)",
+    "sourceHash": "db41d322"
+  },
+  "canon.canon-strat-intro.text": {
+    "text": "Das fehlende Bindeglied zwischen technischen Daten und Entscheidungen auf Führungsebene. Diese Fähigkeit integriert verstreute Inputs zu einer kohärenten Sicht und übersetzt technische Komplexität in eine geschäftliche Richtung.",
+    "sourceHash": "9fad5dd5"
+  },
+  "canon.canon-6-1.title": {
+    "text": "6.1 Anwendungsfall der strategischen Synthese",
+    "sourceHash": "9048ec2a"
+  },
+  "canon.canon-6-1.text": {
+    "text": "Einsatz von KI, um vollständige, strukturierte und gut begründete Analysen von Märkten, Branchen, Geschäftsmodellen, Wertschöpfungsketten, Fähigkeiten, Prozessen, Technologien und Frameworks zu erzeugen – mit oder ohne externe Dateien – mit dem Ziel, einen Standpunkt zu entwickeln, Entscheidungen zu stützen und technische Essays zu produzieren. In der Praxis ist es die verbindende Achse zwischen Recherche, Synthese, Design und Technologie. Es ist der Punkt, an dem KI aufhört, ein „Lesewerkzeug“ zu sein, und zu einem strukturierten Werkzeug für strategisches Denken wird. Typische Ergebnisse sind vollständige strategische Essays, Marktberichte (TAM/SAM/SOM), Vergleichsmatrizen und Executive-Narrative (Standpunkte).",
+    "sourceHash": "2d568590"
+  },
+  "canon.canon-stream-intro.title": {
+    "text": "Streamlining (Übergreifender Enabler)",
+    "sourceHash": "580af2bb"
+  },
+  "canon.canon-stream-intro.text": {
+    "text": "Die Effizienzschicht, die die Reibung zwischen maschineller Intelligenz und dem menschlichen Workflow beseitigt. Anders als die fünf Leistungsdomänen ist Streamlining übergreifend: Es erzeugt nicht das Produkt, aber es bestimmt, ob diese Leistung ohne Reibung zur Geltung kommen kann (die „Glue Work“).",
+    "sourceHash": "87b500d9"
+  },
+  "canon.canon-7-1.title": {
+    "text": "7.1 Data Gravity",
+    "sourceHash": "92767587"
+  },
+  "canon.canon-7-1.text": {
+    "text": "Data Gravity ist nicht bloß ein Upload-Komfort; es ist die Beseitigung der Daten-Engineering-Barriere (ETL) für den Endnutzer. Es definiert die Kompetenz der KI, dort zu operieren, wo die Daten bereits liegen (Data in Place). Anders als Systeme, die manuelles Verschieben von Dateien oder komplexe API-Konfiguration erfordern, indexiert die KI hier nativ SharePoint, die Graph-API oder Code-Repositorys. Es geht nicht darum, dass die KI eine isolierte Datei „ansieht“; es geht darum, dass die KI „im Server lebt“, Kontextpersistenz wahrt und die Notwendigkeit beseitigt, Daten für die Analyse zu migrieren.",
+    "sourceHash": "53dac8c1"
+  },
+  "canon.canon-7-2.title": {
+    "text": "7.2 Formatkontinuität (Asset Handoff)",
+    "sourceHash": "7b3666fb"
+  },
+  "canon.canon-7-2.text": {
+    "text": "Hier geht es nicht darum, Text zu exportieren, sondern ein Produkt zu liefern. Diese Fähigkeit misst den Grad des industriellen Feinschliffs des Ergebnisses. Die Frage lautet: Liefert die KI einen Insight in Markdown, der schwere manuelle Formatierung erfordert (hohe Reibung), oder erzeugt sie die finale bearbeitbare Datei (.pptx, .docx, .xlsx) unter strikter Beachtung von Unternehmensvorlagen und Schriften? Es ist der grundlegende Unterschied zwischen dem Erhalt eines „smarten Entwurfs“, der operative Formatierungsarbeit erzeugt, und dem Erhalt eines „fertigen Artefakts“, das unmittelbar Wert schafft und direkt an den Endkunden gesendet werden kann.",
+    "sourceHash": "1b0e5124"
+  },
+  "canon.canon-7-3.title": {
+    "text": "7.3 Vertrauenswürdigkeit & Verifizierbarkeit (Trust Architecture)",
+    "sourceHash": "318e3d8e"
+  },
+  "canon.canon-7-3.text": {
+    "text": "Hier wird die KI nicht genutzt, um kreativ zu sein, sondern um prüfbar zu sein. Es ist die Fähigkeit, eine Vertrauensarchitektur zu bauen, in der jede Aussage granular (Zeile für Zeile) mit einer verifizierbaren Primärquelle verknüpft ist. Das geht über generische „Websuche“ hinaus; es ist ein Mechanismus zur Minderung von Reputationsrisiken. Ohne ihn wird die strategische Synthese (6.1) zu einer bloß halluzinierten Meinung; mit ihm wird sie zu einer sicheren Grundlage, um Führungsentscheidungen und treuhänderische Pflichten zu verantworten, und ermöglicht die volle Nachvollziehbarkeit der Informationen.",
+    "sourceHash": "5b6ff0e9"
+  },
+  "matrix.gemini.A": {
+    "text": "Absolute Führung dank eines massiven Kontextfensters und nativer Multimodalität, wodurch es ganze Videos und Bibliotheken „lesen“ kann – für unübertroffene Gedächtnisintegration.",
+    "sourceHash": "b16e9c0"
+  },
+  "matrix.gemini.B": {
+    "text": "Der Deep-Think-Modus reduzierte logische Halluzinationen drastisch und macht es fähig zu Validierungen auf Unternehmensniveau, trotz eines leichten Nachteils bei extremen abstrakten Benchmarks.",
+    "sourceHash": "26627215"
+  },
+  "matrix.gemini.C": {
+    "text": "Einzigartige Fähigkeit, Formate umzuwandeln (z. B. ein 1-stündiges Video in ein 1-seitiges Memo) und gute Ton-Anpassung („Vibe Coding“).",
+    "sourceHash": "1992607"
+  },
+  "matrix.gemini.D": {
+    "text": "Erreichte Gleichstand mit Claude. Die multimodale Integration erlaubt es, Bilder hineinzuziehen und sofort UI-Prototypen zu erzeugen.",
+    "sourceHash": "62647f79"
+  },
+  "matrix.gemini.5.1": {
+    "text": "Schloss die Lücke. Erzeugt vollständige Decks in Slides/Canvas und nutzt Drive-Daten und Imagen-3-Bilder flüssig.",
+    "sourceHash": "fc833523"
+  },
+  "matrix.gemini.5.2": {
+    "text": "Nano Banana ermöglicht überlegene Charakter- und Stilkonsistenz über visuelle Referenz.",
+    "sourceHash": "d18c6413"
+  },
+  "matrix.gemini.5.3": {
+    "text": "Kombiniert Web-Recherche mit einem massiven Kontextfenster und gleicht aktuelle Nachrichten mit den internen PDF-Bibliotheken des Nutzers ab.",
+    "sourceHash": "1621506e"
+  },
+  "matrix.gemini.5.4": {
+    "text": "Verschlingt ganze Bibliotheken, ohne in der Mitte Details zu verlieren (Lost in the middle).",
+    "sourceHash": "aa322b5f"
+  },
+  "matrix.gemini.5.5": {
+    "text": "Nativ multimodal; analysiert Video und Audio mit einer Präzision, die isolierten Frames überlegen ist.",
+    "sourceHash": "d73d29ef"
+  },
+  "matrix.gemini.5.6": {
+    "text": "Legacy-Spezialist. Das massive Kontextfenster verändert das Spiel und erlaubt es, ganze Repositorys und Dokumentationen für massives Refactoring aufzunehmen, ohne den Kontext zu verlieren.",
+    "sourceHash": "a1554903"
+  },
+  "matrix.gemini.6.1": {
+    "text": "Der Allwissende. Unschlagbar für Strategien auf Basis unstrukturierter Big Data dank seines nahezu unendlichen Kontextfensters.",
+    "sourceHash": "d6aa8daf"
+  },
+  "matrix.gemini.7.1": {
+    "text": "Führung bei Data Gravity: native Aufnahme über Google Drive/Workspace und ein massives Kontextfenster halten den Kontext ohne manuelles ETL am Leben.",
+    "sourceHash": "221998b1"
+  },
+  "matrix.gemini.7.2": {
+    "text": "Erzeugt flüssig in Slides/Canvas, doch die Ausgabe ist kein natives Microsoft-.pptx; der Handoff zu Office erfordert weiterhin Konvertierung.",
+    "sourceHash": "48d10810"
+  },
+  "matrix.gemini.7.3": {
+    "text": "Multimodalität ermöglicht visuelle Verifikation und Deep Think reduziert Halluzinationen, kann jedoch in der Mitte massiver Kontexte Nuancen verlieren.",
+    "sourceHash": "863e9489"
+  },
+  "matrix.claude.A": {
+    "text": "Glänzt bei Nuancen und beim Abgleich widersprüchlicher Begriffe; erfasst subtil konzeptionelle Unterschiede zwischen Quellen und beherrscht lokale Dateien meisterhaft.",
+    "sourceHash": "62f20e40"
+  },
+  "matrix.claude.B": {
+    "text": "Konkurriert mit o1 über sichtbare „Thinking-Blöcke“; überlegen bei der Validierung qualitativer Argumente und ethischer Nuancen und dabei eher „sokratisch“.",
+    "sourceHash": "b5a0d26d"
+  },
+  "matrix.claude.C": {
+    "text": "Der „Universalübersetzer“. Unübertroffen darin, technische Spezifikationen in Executive-Zusammenfassungen zu überführen und dabei Ton und Absicht präzise zu wahren.",
+    "sourceHash": "6591041e"
+  },
+  "matrix.claude.D": {
+    "text": "Marktreferenz. Die Artifacts-Oberfläche lässt Sie das Denken visuell „bauen“ – mit Diagrammen und interaktiven Apps in einem eigenen Fenster.",
+    "sourceHash": "c103089"
+  },
+  "matrix.claude.5.1": {
+    "text": "Erzeugt nun native .pptx-Dateien mit überlegener logischer Struktur, jedoch ohne die visuelle Design-Engine von Manus.",
+    "sourceHash": "eb6a2263"
+  },
+  "matrix.claude.5.2": {
+    "text": "Nur Text; erzeugt keine Rasterbilder und behandelt keine grafische visuelle Identität.",
+    "sourceHash": "cabc9fd3"
+  },
+  "matrix.claude.5.3": {
+    "text": "Exzellenter Analyst, begrenzter Rechercheur. Abhängig von konfigurierten Werkzeugen, ohne robusten autonomen nativen Browser.",
+    "sourceHash": "44276e1d"
+  },
+  "matrix.claude.5.4": {
+    "text": "Der Recall über 200k Tokens ist sehr präzise, aber der volumetrischen Kapazität von Google unterlegen.",
+    "sourceHash": "971a8be5"
+  },
+  "matrix.claude.5.5": {
+    "text": "Großartig für Fotos und Dokumente, doch es fehlt native Unterstützung für Videoanalyse.",
+    "sourceHash": "c6bb828e"
+  },
+  "matrix.claude.5.6": {
+    "text": "Stand der Technik. Claude Opus 4.5 erreicht 80,9 % auf SWE-bench Verified. Unschlagbar bei architektonischem Reasoning und „Vibe Coding“. Die Marktreferenz für sichere Softwareentwicklung.",
+    "sourceHash": "8a6fc130"
+  },
+  "matrix.claude.6.1": {
+    "text": "Der vertrauenswürdige Stratege. Verbindet erstklassiges Reasoning, C-Level-Schreibnuancen und eine robuste Datenschutzhaltung.",
+    "sourceHash": "67140882"
+  },
+  "matrix.claude.7.1": {
+    "text": "Datenisolation: Der Datenschutzfokus bedeutet wenige native Konnektoren; die Leistung ist am besten bei dem, was im Kontext bereitgestellt wird.",
+    "sourceHash": "7f59bbb1"
+  },
+  "matrix.claude.7.2": {
+    "text": "Artifacts liefern gebrauchsfertigen Code/HTML, doch es gibt keine native Erzeugung von .pptx/.docx für Unternehmen; der Dokument-Handoff ist begrenzt.",
+    "sourceHash": "29cd6fd4"
+  },
+  "matrix.claude.7.3": {
+    "text": "Hohe logische Verlässlichkeit und eine ehrliche „Ich weiß es nicht“-Haltung, doch es fehlt native Suche, um Fakten in Primärquellen zu verankern.",
+    "sourceHash": "8fbe3640"
+  },
+  "matrix.chatgpt.A": {
+    "text": "Sehr kompetent, verlässt sich bei massiven Volumina jedoch auf RAG, was gelegentlich Signalverlust oder fragmentierte Verbindungen in sehr langen Dokumenten verursacht.",
+    "sourceHash": "57b659ef"
+  },
+  "matrix.chatgpt.B": {
+    "text": "Behält die Krone für reines Reasoning. Unübertroffen bei formaler Logik und Fehlschluss-Erkennung durch tiefe Verifikationsketten.",
+    "sourceHash": "55ccd8c4"
+  },
+  "matrix.chatgpt.C": {
+    "text": "Robust und kompetent, erfordert aber mehr Prompt-Engineering, um den exakten Ton für heikle Führungskommunikation zu treffen – verglichen mit Claude.",
+    "sourceHash": "58f21c26"
+  },
+  "matrix.chatgpt.D": {
+    "text": "Robust beim Schreiben und Inline-Coding, doch Integration und Flüssigkeit visueller Elemente liegen weiterhin einen Schritt hinter Anthropic.",
+    "sourceHash": "b47eb12c"
+  },
+  "matrix.chatgpt.5.1": {
+    "text": "Verlässt sich weiterhin auf das Jonglieren mit Python oder eigenständigem DALL-E; es fehlt eine native „Text-to-Deck“-Lösung.",
+    "sourceHash": "2587ddd0"
+  },
+  "matrix.chatgpt.5.2": {
+    "text": "Image 1.5 (DALL-E 3) wahrt die Treue zum Storytelling und zu komplexen Prompts.",
+    "sourceHash": "e1ea0c32"
+  },
+  "matrix.chatgpt.5.3": {
+    "text": "Mächtige agentische Fähigkeit, doch die Integration in kohäsive, zitierte Berichte liegt weiterhin unter Perplexity.",
+    "sourceHash": "9cd0ea70"
+  },
+  "matrix.chatgpt.5.4": {
+    "text": "Ein 128k-Fenster ist gut, leidet aber bei massiven Werken unter „Verlust in der Mitte“.",
+    "sourceHash": "7678b6a3"
+  },
+  "matrix.chatgpt.5.5": {
+    "text": "GPT-4o Vision glänzt bei OCR komplexer Tabellen und handschriftlicher Diagramme.",
+    "sourceHash": "51dde6f9"
+  },
+  "matrix.chatgpt.5.6": {
+    "text": "Logik-Spezialist. Das o3-Modell ist unschlagbar für komplexe mathematische Algorithmen, doch die Developer Experience (DX) insgesamt büßt gegenüber Claude/Copilot an Flüssigkeit ein.",
+    "sourceHash": "c16a595e"
+  },
+  "matrix.chatgpt.6.1": {
+    "text": "Die Logik-Engine. Unverzichtbar für Szenariomodellierung und auf das Geschäft angewandte „Spieltheorie“.",
+    "sourceHash": "39795b96"
+  },
+  "matrix.chatgpt.7.1": {
+    "text": "Keine nativen Unternehmens-Konnektoren; verlässt sich auf manuelles Hochladen. Die Recherche ist web-first und außerhalb des Unternehmens-Repositorys.",
+    "sourceHash": "ed92f16"
+  },
+  "matrix.chatgpt.7.2": {
+    "text": "Gute Erzeugung von Artefakten und Canvas mit wiederverwendbaren Strukturen, doch der finale Office-Feinschliff erfordert weiterhin manuelle Anpassung.",
+    "sourceHash": "ada9a6f"
+  },
+  "matrix.chatgpt.7.3": {
+    "text": "Mittelmäßiges Grounding: halluziniert in hochtechnischen Kontexten ohne verankerte Quellen und erfordert menschliche Verifikation.",
+    "sourceHash": "5f4c2a03"
+  },
+  "matrix.copilot.A": {
+    "text": "Großartig für „institutionelles Gedächtnis“ beim Durchsuchen von SharePoint/E-Mails, doch die Abhängigkeit von der Indexierung (Graph) erzeugt Lücken gegenüber kontinuierlichem Kontextlesen.",
+    "sourceHash": "c3e23eda"
+  },
+  "matrix.copilot.B": {
+    "text": "Übermäßige Unternehmens-Guardrails machen das Modell zu vorsichtig und vermeiden die harte Kritik, die für aggressives Stresstesten nötig ist.",
+    "sourceHash": "48ed2370"
+  },
+  "matrix.copilot.C": {
+    "text": "Erfüllt die Rolle, Dokumente in PPTs umzuwandeln, doch die Qualität ist beim Umstrukturieren von Informationen oft bürokratisch und wenig ausgefeilt.",
+    "sourceHash": "77c063f"
+  },
+  "matrix.copilot.D": {
+    "text": "Führte das Multiplayer-Paradigma ein und ermöglicht Echtzeit-Zusammenarbeit an Artefakten, was den Unternehmensnutzen erhöht.",
+    "sourceHash": "b66ce870"
+  },
+  "matrix.copilot.5.1": {
+    "text": "Unternehmensführer. Der einzige, der nativ auf die .potx-Vorlagen des Unternehmens zugreift und volle Marken-Compliance sichert.",
+    "sourceHash": "dd353187"
+  },
+  "matrix.copilot.5.2": {
+    "text": "Nutzt die in Designer integrierte OpenAI-Engine; gut, aber mit weniger agentischer Kontrolle.",
+    "sourceHash": "d8e5b66b"
+  },
+  "matrix.copilot.5.3": {
+    "text": "Bringt tiefe Recherche in eine sichere Umgebung, doch der Bing-Index kann für technische Nischen weniger umfassend sein.",
+    "sourceHash": "f2e3ae37"
+  },
+  "matrix.copilot.5.4": {
+    "text": "Schneidet lange Texte häufig ab wegen Token-Limits in der kommerziellen Oberfläche.",
+    "sourceHash": "79cd339"
+  },
+  "matrix.copilot.5.5": {
+    "text": "Nutzt integriertes GPT-4o; sehr gut für Analysten, die mit Screenshots arbeiten.",
+    "sourceHash": "874d3a52"
+  },
+  "matrix.copilot.5.6": {
+    "text": "Unternehmensstandard. Behält die Führung durch Ökosystem-Integration und eine Multi-Modell-Strategie (Zugriff auf Claude/GPT). Die sichere Wahl für Enterprise-Maßstab.",
+    "sourceHash": "c0620202"
+  },
+  "matrix.copilot.6.1": {
+    "text": "Operative Strategie. Exzellent für interne Daten (Graph), tendiert aber dazu, den konservativen „Unternehmenskonsens“ zu liefern.",
+    "sourceHash": "5df1716"
+  },
+  "matrix.copilot.7.1": {
+    "text": "Maximale Gravity innerhalb des Microsoft-365-Ökosystems über Graph (SharePoint, Teams, OneDrive): Die KI lebt im Unternehmensserver.",
+    "sourceHash": "f93c323a"
+  },
+  "matrix.copilot.7.2": {
+    "text": "Referenz für Formatkontinuität: erzeugt bearbeitbare .pptx und .docx unter Beachtung der Vorlagen und der visuellen Identität des Unternehmens.",
+    "sourceHash": "2666e66b"
+  },
+  "matrix.copilot.7.3": {
+    "text": "Unternehmens-Guardrails und Zitierung innerhalb des Tenants steigern das Vertrauen, doch übermäßige Vorsicht begrenzt manchmal die Tiefe.",
+    "sourceHash": "1f4fb322"
+  },
+  "matrix.perplex.A": {
+    "text": "Glänzt beim Kuratieren externen (Web-)Wissens mit Synthese und Zitaten, unterliegt aber reinen LLMs beim Integrieren proprietären internen Wissens.",
+    "sourceHash": "72ef567"
+  },
+  "matrix.perplex.B": {
+    "text": "Validiert Fakten (ob X geschah), tut sich aber schwer, abstrakte Logik zu validieren (ob X Y impliziert).",
+    "sourceHash": "b51be06d"
+  },
+  "matrix.perplex.C": {
+    "text": "Es ist ein Zusammenfasser, kein Übersetzer. Verdichtet Informationen mit faktischem Fokus, was oft dichten Text ergibt, der schlecht an die strategische Ebene angepasst ist.",
+    "sourceHash": "c3deaa55"
+  },
+  "matrix.perplex.D": {
+    "text": "Pages verwandelt chaotische Recherche in strukturierte visuelle Artikel, exzellent für Präsentations-Artefakte.",
+    "sourceHash": "983f9097"
+  },
+  "matrix.perplex.5.1": {
+    "text": "Erzeugt Gliederungen und exportiert über Labs nach PPT, nützlich für Struktur, aber mit rudimentärem visuellem Design.",
+    "sourceHash": "d58cbfd"
+  },
+  "matrix.perplex.5.2": {
+    "text": "Erzeugt Bilder über externe Modelle, aber ohne Konsistenzkontrolle über die Generierungen hinweg.",
+    "sourceHash": "e41c90db"
+  },
+  "matrix.perplex.5.3": {
+    "text": "Stand der Technik im Grounding. Führt Dutzende iterative Suchen aus und kompiliert dicht zitierte Berichte, ideal für Due Diligence.",
+    "sourceHash": "88a6c5f7"
+  },
+  "matrix.perplex.5.4": {
+    "text": "Auf kurzes RAG fokussiert; fragmentiert das Verständnis komplexer literarischer Werke.",
+    "sourceHash": "773d163d"
+  },
+  "matrix.perplex.5.5": {
+    "text": "Analysiert Bilder für den Kontext, aber ohne tiefe Tabellen-OCR-Fähigkeit.",
+    "sourceHash": "d6b1fe28"
+  },
+  "matrix.perplex.5.6": {
+    "text": "Recherche-Unterstützung. Exzellenter „Bibliothekar“, um aktuelle technische Dokumentation zu finden, aber unfähig, als Software-Ingenieur zu agieren oder vollständige Anwendungen zu erzeugen.",
+    "sourceHash": "527dfcdf"
+  },
+  "matrix.perplex.6.1": {
+    "text": "Der Markt-Auditor. Essenziell für Market Sensing und echte Daten, agiert aber eher als Unterstützung denn als Architekt der These.",
+    "sourceHash": "e8198cba"
+  },
+  "matrix.perplex.7.1": {
+    "text": "Strikt öffentliche Web-Recherche: kein Zugriff auf Intranets oder private Repositorys, null bei Unternehmens-Gravity.",
+    "sourceHash": "c99da01a"
+  },
+  "matrix.perplex.7.2": {
+    "text": "Pages strukturiert die Ausgabe mit Zitaten, erzeugt aber keine nativen Office-Formate; der Handoff dient dem Lesen, nicht dem Bearbeiten.",
+    "sourceHash": "3bdca641"
+  },
+  "matrix.perplex.7.3": {
+    "text": "Goldstandard für Grounding: Jede Aussage kommt mit einer in Echtzeit zitierten und verifizierbaren Primärquelle.",
+    "sourceHash": "42ef0eee"
+  },
+  "matrix.deepseek.A": {
+    "text": "Effizient für technische Volumina, doch Risiken von Verzerrungen in den Trainingsdaten und geopolitische Zensur beeinträchtigen die Verlässlichkeit der strategischen Kuratierung.",
+    "sourceHash": "b1ed5df8"
+  },
+  "matrix.deepseek.B": {
+    "text": "Der „Disruptor“, der o1 in Mathematik und Logik zu marginalen Kosten erreichte. Die Transparenz offener Gewichte erlaubt es, den Reasoning-Prozess zu prüfen.",
+    "sourceHash": "cd789e24"
+  },
+  "matrix.deepseek.C": {
+    "text": "Spezialist für die Umwandlung Technik <-> Code. Übersetzt Geschäftsanforderungen besser als die meisten in Softwarearchitektur.",
+    "sourceHash": "d606a989"
+  },
+  "matrix.deepseek.D": {
+    "text": "Auf Text und Code beschränkt; es fehlt eine reichhaltige Oberfläche zur Manipulation visueller Objekte.",
+    "sourceHash": "e2386eba"
+  },
+  "matrix.deepseek.5.1": {
+    "text": "Hat keine native Fähigkeit zur Erzeugung von Präsentationsdateien.",
+    "sourceHash": "8ab49db7"
+  },
+  "matrix.deepseek.5.2": {
+    "text": "Hat keine generativen Computer-Vision-Funktionen in der öffentlichen Oberfläche.",
+    "sourceHash": "ba2e36f3"
+  },
+  "matrix.deepseek.5.3": {
+    "text": "Verfügt über Suche, doch politische Zensur und Quellen-Verzerrung führen fatale Risiken für globale strategische Recherche ein.",
+    "sourceHash": "3a305f62"
+  },
+  "matrix.deepseek.5.4": {
+    "text": "Effizientes 128k-Fenster mit robustem technischem Recall zu niedrigen Kosten.",
+    "sourceHash": "d5c83c4"
+  },
+  "matrix.deepseek.5.5": {
+    "text": "Grundlegende Computer Vision; scheitert am Interpretieren technischer Architektur.",
+    "sourceHash": "68bae8bf"
+  },
+  "matrix.deepseek.5.6": {
+    "text": "Supply-Chain-Risiko. Die rohe Code-Performance ist auf Stufe 5, wird aber durch dokumentierte „Poisoning“-Risiken und Sicherheitslücken in Unternehmensumgebungen bestraft.",
+    "sourceHash": "194db867"
+  },
+  "matrix.deepseek.6.1": {
+    "text": "Geopolitisches Risiko. Zensur und Verzerrung bei heiklen Themen schaffen gefährliche „blinde Flecken“ für globale Strategien.",
+    "sourceHash": "37e79836"
+  },
+  "matrix.deepseek.7.1": {
+    "text": "Offene Gewichte ohne Integrations-Tooling; die gesamte Datenaufnahme fällt manuell dem Nutzer zu.",
+    "sourceHash": "b824cbf7"
+  },
+  "matrix.deepseek.7.2": {
+    "text": "Liefert rohen Text/Code in Markdown; jedes finale Format hängt von externen Werkzeugen ab.",
+    "sourceHash": "c7e5d5e3"
+  },
+  "matrix.deepseek.7.3": {
+    "text": "Transparentes mathematisches Reasoning (Chain-of-Thought) verleiht ihm hohe logische Verifizierbarkeit, mit einer niedrigen Rate faktischer Halluzination.",
+    "sourceHash": "36cadfe3"
+  },
+  "matrix.manus.A": {
+    "text": "Exzellenter Sammler, aber unterlegene Synthesefähigkeit. Die Meta-Übernahme führte Datenschutzrisiken ein, die die Governance für sensible Daten verletzen.",
+    "sourceHash": "6fe0f24"
+  },
+  "matrix.manus.B": {
+    "text": "Für Ausführung entworfen, nicht für Reflexion. Neigt dazu, sykophantisch zu sein, um Aufgaben voranzutreiben, und versagt als kritischer Auditor.",
+    "sourceHash": "89a97f54"
+  },
+  "matrix.manus.C": {
+    "text": "Glänzt beim „Absteigen“ (Strategie -> Ausführung/Produkt) und verwandelt Absichten in Code/Design, aber es fehlt Raffinesse beim strategischen „Aufstieg“.",
+    "sourceHash": "51ad63e9"
+  },
+  "matrix.manus.D": {
+    "text": "Fokussiert auf das fertige Endartefakt und ist weniger nützlich, um exploratives Zwischen-„Scaffolding“ zu erzeugen.",
+    "sourceHash": "f068ca4b"
+  },
+  "matrix.manus.5.1": {
+    "text": "Bestes eigenständiges Werkzeug. Die Integration mit Nano Banana Pro erzeugt Folien mit professionellem Design und lesbaren Infografiken und automatisiert End-to-End.",
+    "sourceHash": "aea4ef8d"
+  },
+  "matrix.manus.5.2": {
+    "text": "Nicht dafür entworfen, visuelle Marken-Assets zu erstellen.",
+    "sourceHash": "7fd3fde7"
+  },
+  "matrix.manus.5.3": {
+    "text": "Operiert als autonomer Agent, der navigiert, klickt und Captchas löst, um an tiefe Daten zu gelangen (z. B. das Herunterladen behördlicher CSVs).",
+    "sourceHash": "7450906"
+  },
+  "matrix.manus.5.4": {
+    "text": "Behandelt Zusammenfassen als operative Aufgabe; verliert die analytische Nuance dichter Werke.",
+    "sourceHash": "1f8798f9"
+  },
+  "matrix.manus.5.5": {
+    "text": "Abhängig von Sub-Modellen; die multimodale Analyse ist langsam und unzusammenhängend.",
+    "sourceHash": "2af18f42"
+  },
+  "matrix.manus.5.6": {
+    "text": "Operative Instabilität. Kritische Berichte über „Endlosschleifen“ und Fehler in der autonomen Ausführung. Die Meta-Übernahme führte inakzeptable Risiken für die Daten-Governance ein.",
+    "sourceHash": "985acb83"
+  },
+  "matrix.manus.6.1": {
+    "text": "Governance-Risiko. Technisch fähig, doch die Meta-Übernahme macht seinen Einsatz für vertrauliche Strategien (M&A, Innovation) inakzeptabel.",
+    "sourceHash": "e309aff4"
+  },
+  "matrix.manus.7.1": {
+    "text": "Der autonome Agent surft im Web und öffnet Werkzeuge, greift aber nicht auf Daten zu, die hinter Unternehmens-VPN/SSO gesichert sind.",
+    "sourceHash": "13b3a01e"
+  },
+  "matrix.manus.7.2": {
+    "text": "Die Integration mit visueller Generierung liefert Folien mit Design, doch komplexe Workflows leiden unter Instabilität.",
+    "sourceHash": "e0cb7414"
+  },
+  "matrix.manus.7.3": {
+    "text": "Die Ausführung gibt Daten weiter ohne robuste unabhängige Verifikation; das Governance-Risiko (Meta) belastet das Vertrauen.",
+    "sourceHash": "1b8afcf8"
+  },
+  "help.heading": {
+    "text": "Willkommen beim AI Strategy Hub.",
+    "sourceHash": "23510b40"
+  },
+  "help.intro": {
+    "text": "Dieses Dashboard ist nicht bloß eine Liste von Werkzeugen; es ist ein Entscheidungsmotor, kalibriert, um das beste KI-Werkzeug für Ihr berufliches Profil zu finden. Folgen Sie dem logischen Ablauf unten, um das Beste aus dieser App herauszuholen.",
+    "sourceHash": "bed337cb"
+  },
+  "help.s1.title": {
+    "text": "1. Verstehen Sie die „Was“ (FÄHIGKEITEN)",
+    "sourceHash": "1774fb23"
+  },
+  "help.s1.p": {
+    "text": "Beginnen Sie nicht mit den Werkzeugen, beginnen Sie mit Ihrem <strong>Ziel</strong>. Die KI-Fähigkeiten sind in sechs Domänen organisiert – fünf Leistungsdomänen plus ein übergreifender Enabler:",
+    "sourceHash": "273c7907"
+  },
+  "help.s1.list": {
+    "text": "<li><strong>Thinking (Reasoning):</strong> planen, kritisieren, validieren und strukturieren.</li><li><strong>Discovering (Entdeckung):</strong> recherchieren, massiv lesen und Daten aufnehmen.</li><li><strong>Designing (Materialisierung):</strong> Folien, visuelle Identität und Multimodalität.</li><li><strong>Building (Konstruktion):</strong> Code und Anwendungen erzeugen.</li><li><strong>Integrating (Strategie):</strong> alles zu einer Führungsentscheidung synthetisieren.</li><li><strong>Streamlining (Enabler):</strong> Reibung zwischen der KI und Ihrem Workflow reduzieren – Datenzugriff, Lieferformat und Vertrauenswürdigkeit.</li>",
+    "sourceHash": "f5168e27"
+  },
+  "help.s1.summary": {
+    "text": "💡 Praktisches Beispiel ansehen: Anas Reise",
+    "sourceHash": "21198f4b"
+  },
+  "help.s1.example": {
+    "text": "<strong>Szenario:</strong> Ana muss eine Launch-Strategie für eine Digitalbank erstellen. Sie sucht nicht bloß „einen Chatbot“: Sie braucht die KI-Technologie, die am besten zur Aufgabe passt. Also öffnet sie die App und schaut sich die Fähigkeiten im Abschnitt „Was eine KI liefert“ an und erkennt, dass ihr Projekt drei davon erfordert: <em>5.3 Tiefgehende akademische und technische Recherche</em> (um Bankenregularien zu lesen), <em>B – Logische Validierung, interne Konsistenz und Stresstest</em> (um ihr Preismodell zu testen) und <em>5.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</em> (für die finale Präsentation).",
+    "sourceHash": "1e051067"
+  },
+  "help.s2.title": {
+    "text": "2. Visualisieren Sie das „Wie“ (PIPELINE)",
+    "sourceHash": "e61bc93e"
+  },
+  "help.s2.p": {
+    "text": "Verstehen Sie, wo jede Fähigkeit in Ihren realen Workflow passt – vom <strong>Input</strong> (Recherche und Kuratierung) über den <strong>Prozess</strong> (logische Validierung) bis zum <strong>Output</strong> (finale Lieferung).",
+    "sourceHash": "39c0d7b6"
+  },
+  "help.s2.example": {
+    "text": "Ana betrachtet das Pipeline-Board und kartiert ihren Ablauf:<br>1. <strong>Input:</strong> Zuerst nutzt sie die Fähigkeit <strong>5.3 Tiefgehende akademische und technische Recherche</strong>, um die Regularien der Zentralbank zu durchsuchen.<br>2. <strong>Prozess:</strong> Dann nutzt sie den Metafall <strong>B – Logische Validierung, interne Konsistenz und Stresstest</strong>, um Lücken in der These zu finden.<br>3. <strong>Output:</strong> Schließlich nutzt sie die Fähigkeit <strong>5.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</strong>, um den Text in einen Foliensatz zu verwandeln.",
+    "sourceHash": "907a5e6f"
+  },
+  "help.s3.title": {
+    "text": "3. Nennen Sie das „Warum“ (Nutzungs-PROFIL)",
+    "sourceHash": "42384bd7"
+  },
+  "help.s3.p": {
+    "text": "<strong>Dies ist der wichtigste Schritt.</strong> Wählen Sie einen der sieben beruflichen Archetypen oder passen Sie die fünf Domänen-Regler (Thinking, Discovering, Designing, Building, Integrating) manuell danach an, wie relevant jeder für Ihre Arbeit ist.",
+    "sourceHash": "bbbd2d18"
+  },
+  "help.s3.list": {
+    "text": "<li>Wie stark zählt jede Domäne für Ihr Ergebnis?</li><li>Und Streamlining: Sind Sie eher ein <em>Handwerker</em> (Sie wollen rohe Leistung und setzen das Ergebnis von Hand zusammen) oder ein <em>Operator</em> (Sie wollen das Ergebnis fertig, ohne Reibung)?</li>",
+    "sourceHash": "b0298581"
+  },
+  "help.s3.note": {
+    "text": "Der Streamlining-Regler steuert, wie stark Reibung das Ranking bestraft. Das System reagiert in Echtzeit.",
+    "sourceHash": "4c04cae1"
+  },
+  "help.s3.example": {
+    "text": "Im Reiter Entscheidung hebt Ana <strong>Thinking</strong> und <strong>Discovering</strong> an (sie braucht logische Präzision und muss Regularien durchsuchen) und ebenso <strong>Designing</strong>, da das finale Ergebnis ein Foliensatz ist. Building hält sie niedrig, da sie keinen Code schreibt. Da sie das PowerPoint <em>fertig</em> für die Führung braucht, schiebt sie den <strong>Streamlining-Regler Richtung Operator</strong> – ein Signal, dass die Reibung manueller Formatierung gegen KIs zählen soll, die nur rohen Text liefern.",
+    "sourceHash": "1ca73440"
+  },
+  "help.s4.title": {
+    "text": "4. Wählen Sie die richtige KI (RANKING)",
+    "sourceHash": "1ec42e7b"
+  },
+  "help.s4.p1": {
+    "text": "Auf Basis des definierten Profils berechnet der <strong>Entscheidungsmotor</strong> den Score jeder KI und baut das Ranking. Jede KI erhält einen <strong>Effektiven Score pro Domäne</strong> – rohe Leistung multipliziert mit dem Effizienzfaktor dieser Domäne – und der finale Score ist der gewichtete Durchschnitt über Ihre Regler.",
+    "sourceHash": "43ac4a26"
+  },
+  "help.s4.p2": {
+    "text": "<strong>Leistung × Effizienz:</strong> Eine mächtige, aber reibungsstarke KI kann gegen eine weniger mächtige verlieren, die gebrauchsfertig liefert. Fahren Sie über jede Ranking-Karte, um die Aufschlüsselung zu sehen (P, F, D und E), Domäne für Domäne. Wenn zwei Spitzenreiter innerhalb von 0,001 zueinander liegen, erhalten beide das Abzeichen <strong>Technisches Unentschieden</strong>.",
+    "sourceHash": "5e416d18"
+  },
+  "help.s4.example": {
+    "text": "Der Motor verarbeitet Anas hybrides Profil (hohe Logik + hohe visuelle Lieferung + Operator-Neigung). Das Ranking spiegelt diese Kombination wider: Reine Textwerkzeuge fallen zurück, weil ihre niedrige <strong>Formatkontinuität (7.2)</strong> durch Reibung bestraft wird, während <strong>Copilot M365</strong> und <strong>Gemini 3.1 Pro</strong> aufsteigen, weil sie näher an gebrauchsfertig liefern. Beim Überfahren der Karte sieht Ana, dass <strong>GPT-5.5 Pro</strong> große Leistung hat, aber in der Domäne Designing Effektiven Score wegen des Format-Handoffs verliert.",
+    "sourceHash": "b083b07c"
+  },
+  "help.s5.title": {
+    "text": "5. Prüfen und vertiefen (MATRIX)",
+    "sourceHash": "cff0173a"
+  },
+  "help.s5.p": {
+    "text": "Vertrauen Sie dem Algorithmus nicht blind.",
+    "sourceHash": "848a8c5b"
+  },
+  "help.s5.list": {
+    "text": "<li>Gehen Sie zum <strong>Technischen Audit</strong> (Abschnitt 5), um die exakte Bewertung jedes Werkzeugs für jede seiner Fähigkeiten zu prüfen.</li><li>Sehen Sie in der <strong>Bibliothek</strong> (Abschnitt 6) nach, um die kanonischen Definitionen jeder Fähigkeit zu lesen.</li>",
+    "sourceHash": "3c81023a"
+  },
+  "help.s5.example": {
+    "text": "Ana will keine Überraschungen. Sie geht zum Technischen Audit (Abschnitt 5) und prüft gezielt die Fähigkeit zur Folienerzeugung in der Matrix. Sie bemerkt, dass <em>ChatGPT</em> visuelle Grenzen hat (ein niedriger Score bei <strong>5.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</strong>), während <em>MS Copilot</em> bei diesem Punkt an der Spitze liegt. Das bestätigt ihre Wahl eines hybriden Workflows.",
+    "sourceHash": "b2c8f6bb"
+  },
+  "help.summary_generic": {
+    "text": "💡 Praktisches Beispiel ansehen",
+    "sourceHash": "1a28359c"
+  },
+  "decidir.personalizado": {
+    "text": "Individuell",
+    "sourceHash": "f3674bc0"
+  },
+  "matrix.dominio_header": {
+    "text": "Domäne",
+    "sourceHash": "815ca518"
+  },
+  "decidir.fechar_componentes": {
+    "text": "Komponenten schließen",
+    "sourceHash": "1202d759"
+  },
+  "decidir.abrir_componentes": {
+    "text": "Komponenten öffnen",
+    "sourceHash": "987cb640"
+  },
+  "streameffect.sem_friccao": {
+    "text": "Keine Reibung angewandt – der Spitzenreiter liefert rohe Leistung.",
+    "sourceHash": "af36bd77"
+  },
+  "streameffect.com_friccao": {
+    "text": "Reibung reduziert den Score von <b>{name}</b> um <b>{pct}%</b> – von {before} auf {after}.",
+    "sourceHash": "d70a338c"
+  },
+  "insight.subtitle_dynamic": {
+    "text": "Verstehen Sie, warum {name} für Ihr Profil führt – und wann Sie es überdenken sollten.",
+    "sourceHash": "a3f941eb"
+  },
+  "ranking.empate_tecnico": {
+    "text": "Technisches Unentschieden",
+    "sourceHash": "7dbe8bea"
+  },
+  "ranking.score_ponderado": {
+    "text": "Gewichteter Score",
+    "sourceHash": "a43adbdd"
+  },
+  "ranking.score_tooltip": {
+    "text": "Score:",
+    "sourceHash": "d0b97b1b"
+  },
+  "insight.analisando": {
+    "text": "Wird analysiert…",
+    "sourceHash": "f96867c5"
+  },
+  "insight.gerar_analise": {
+    "text": "Analyse erzeugen ",
+    "sourceHash": "29a61333"
+  },
+  "insight.disclaimer": {
+    "text": "Von KI erzeugter Inhalt ({model}). Kann Ungenauigkeiten enthalten – gleichen Sie ihn mit dem Technischen Audit ab.",
+    "sourceHash": "f4c73044"
+  },
+  "insight.erro_titulo": {
+    "text": "Die Analyse konnte nicht erzeugt werden",
+    "sourceHash": "17b3a4b"
+  },
+  "insight.tentar_novamente": {
+    "text": "Erneut versuchen",
+    "sourceHash": "eb727ee0"
+  },
+  "sec.capacidades.subtitle": {
+    "text": "Verstehen Sie die grundlegenden Fähigkeiten, organisiert in sechs Domänen – Thinking, Discovering, Designing, Building, Integrating und den übergreifenden Enabler Streamlining.",
+    "sourceHash": "e841790a"
+  },
+  "diagram.factory_label": {
+    "text": "Die Fabrik · Leistung × Effizienz",
+    "sourceHash": "f0023279"
+  },
+  "diagram.disc.desc": {
+    "text": "Die Fähigkeit, die Informationsbasis des Systems durch aktive Suche und die Aufnahme großer Datenvolumina zu erweitern. Umfasst tiefe technische Recherche (5.3) und massives Lesen langer Dokumente ohne Präzisionsverlust (5.4).",
+    "sourceHash": "620e412d"
+  },
+  "diagram.ver_completas": {
+    "text": "Vollständige Fähigkeiten ansehen →",
+    "sourceHash": "f09793b4"
+  },
+  "diagram.design.desc": {
+    "text": "Die Fähigkeit, Abstraktionen in konsumierbare visuelle Artefakte zu materialisieren. Umfasst Folienerzeugung (5.1), Konsistenz der visuellen Identität (5.2) und multimodale Analyse von Bildern und Dateien (5.5).",
+    "sourceHash": "7b7d6bce"
+  },
+  "diagram.build.desc": {
+    "text": "Die Fähigkeit zu Softwarekonstruktion und -engineering. Umfasst die Erzeugung von Webanwendungen und Code-Automatisierung (5.6) – die KI agiert als erfahrene Programmiererin, von der Architektur bis zum Test.",
+    "sourceHash": "15fc12ef"
+  },
+  "diagram.integ.desc": {
+    "text": "Die Fähigkeit zur Executive-Synthese, die Spitze der Pyramide. Umfasst strategische, Branchen- und Szenario-Analyse (6.1) – bündelt Recherche, Logik, Daten und Visuelles in einer prüfbaren Empfehlung für die Geschäftsentscheidung.",
+    "sourceHash": "e853a0ac"
+  },
+  "diagram.arch.desc": {
+    "text": "Die beruflichen Profile, die eine Nutzungsidentität in eine mathematische Konfiguration übersetzen. Jeder Archetyp legt die Gewichte der fünf Domänen und die Position des Reibungsreglers fest – der Mechanismus, mit dem Sie die Fabrik auf Ihren Kontext zuschneiden.",
+    "sourceHash": "e9df9c3e"
+  },
+  "diagram.ir_diagnostico": {
+    "text": "Zur Entscheidung →",
+    "sourceHash": "24eac54"
+  },
+  "diagram.conector2": {
+    "text": "erzeugt den personalisierten effektiven Score",
+    "sourceHash": "e89f071c"
+  },
+  "diagram.score.title": {
+    "text": "Personalisierter Effektiver Score",
+    "sourceHash": "53588d4e"
+  },
+  "diagram.score.subtitle": {
+    "text": "das KI-Ranking für Ihr Profil",
+    "sourceHash": "ba1b1746"
+  },
+  "sec.pipeline.subtitle": {
+    "text": "Die oben beschriebenen Fähigkeiten, nun nach Workflow-Phase neu geordnet: Input, Verarbeitung und Lieferung.",
+    "sourceHash": "ab5b31e8"
+  },
+  "sec.ecosystem.subtitle": {
+    "text": "Das Executive-Porträt jeder KI: ihr starker Punkt (Superpower), ihr schwacher Punkt (Kryptonite) und ihre Rolle.",
+    "sourceHash": "ca0b9561"
+  },
+  "decidir.perfil_label": {
+    "text": "Profil",
+    "sourceHash": "c9dfa507"
+  },
+  "decidir.perfil_profissional": {
+    "text": "Berufliches Profil",
+    "sourceHash": "f4dc08a0"
+  },
+  "decidir.escolha_arquetipo": {
+    "text": "Wählen Sie einen Archetyp oder passen Sie die Domänen an.",
+    "sourceHash": "8964d74a"
+  },
+  "decidir.dominios_header": {
+    "text": "Domänen · wie stark jede zählt",
+    "sourceHash": "54f52dbd"
+  },
+  "decidir.domain.think": {
+    "text": "· Argumentation",
+    "sourceHash": "6b42a880"
+  },
+  "decidir.domain.disc": {
+    "text": "· Entdeckung",
+    "sourceHash": "fa83c498"
+  },
+  "decidir.domain.design": {
+    "text": "· Materialisierung",
+    "sourceHash": "21edce48"
+  },
+  "decidir.domain.build": {
+    "text": "· Konstruktion",
+    "sourceHash": "c2865a83"
+  },
+  "decidir.domain.integ": {
+    "text": "· Strategie",
+    "sourceHash": "ad2d9a09"
+  },
+  "decidir.stream_header": {
+    "text": "Streamlining · Reibung",
+    "sourceHash": "e3400766"
+  },
+  "decidir.exigencia_global": {
+    "text": "globale Anforderung",
+    "sourceHash": "d49a8b68"
+  },
+  "decidir.artesao": {
+    "text": "Handwerker (reine Leistung)",
+    "sourceHash": "3b9fd237"
+  },
+  "decidir.operador": {
+    "text": "Operator (fertige Lieferung)",
+    "sourceHash": "2e204f6c"
+  },
+  "decidir.sub71": {
+    "text": "7.1 Data Gravity",
+    "sourceHash": "142b3a16"
+  },
+  "decidir.sub72": {
+    "text": "7.2 Formatkontinuität",
+    "sourceHash": "45c79454"
+  },
+  "decidir.sub73": {
+    "text": "7.3 Grounding & Verifizierbarkeit",
+    "sourceHash": "42556d80"
+  },
+  "decidir.sub_note": {
+    "text": "Regeln Sie jeden Enabler unabhängig – z. B. fertiges Format verlangen (7.2 hoch), aber Data Gravity ignorieren (7.1 niedrig).",
+    "sourceHash": "d160f4ea"
+  },
+  "ranking.recomendacao1": {
+    "text": "Empfehlung #1",
+    "sourceHash": "3f693960"
+  },
+  "insight.title": {
+    "text": "Strategischer Insight",
+    "sourceHash": "cce35b59"
+  },
+  "insight.subtitle_default": {
+    "text": "Verstehen Sie, warum die Top-KI für Ihr Profil führt – und wann Sie es überdenken sollten.",
+    "sourceHash": "80c79d83"
+  },
+  "insight.gerado_por_ia": {
+    "text": "Erzeugt von KI · Gemini 3.1",
+    "sourceHash": "bb4ea0b4"
+  },
+  "ranking.competitivo": {
+    "text": "Wettbewerbs-Ranking",
+    "sourceHash": "7d82e1a2"
+  },
+  "impacto.critica": {
+    "text": "Kritisch",
+    "sourceHash": "442bb2c8"
+  },
+  "impacto.moderada": {
+    "text": "Moderat",
+    "sourceHash": "dca86042"
+  },
+  "impacto.neutra": {
+    "text": "Neutral",
+    "sourceHash": "c5373594"
+  },
+  "tags.title": {
+    "text": "Was die Tags bedeuten",
+    "sourceHash": "cbc353ac"
+  },
+  "tags.p2": {
+    "text": "Hier ist, was jede in der Praxis bedeutet:",
+    "sourceHash": "a2ef0812"
+  },
+  "tags.nota_final": {
+    "text": "Diese Kategorien helfen zu verdeutlichen, dass es keine absolute „beste KI“ gibt – nur die beste für die Arbeitsphase, die Sie gerade ausführen.",
+    "sourceHash": "20e21060"
+  },
+  "radar.subtitle": {
+    "text": "Passen Sie das Gewicht jeder Domäne an die Natur Ihrer Arbeit an. Das Ranking passt sich Ihrem Profil an.",
+    "sourceHash": "55cb9024"
+  },
+  "tags.p1": {
+    "text": "Im Kontext der <strong>AI-Strategy-Hub-App</strong> stellen diese Tags die primäre Natur jedes Werkzeugs dar – also in welcher Phase der „Produktions-Pipeline“ (Input → Prozess → Output) es am hellsten glänzt.",
+    "sourceHash": "78369cba"
+  },
+  "tags.card1": {
+    "text": "<h4 class=\"text-slate-700 flex items-center gap-2 mt-0\"><span class=\"w-3 h-3 rounded-full bg-slate-500\"></span> 1. Input</h4><p><strong>Was es ist:</strong> Werkzeuge, spezialisiert auf das Suchen, Filtern und Hereinbringen realer Informationen in Ihren Workflow.</p><p><strong>Fokus:</strong> Recherche (Grounding), Faktenprüfung und autonome Web-Navigation.</p><p class=\"text-xs mt-2\"><strong class=\"text-slate-500\">KIs in dieser Kategorie:</strong><br><span class=\"font-bold\">Perplexity:</span> Agiert als konversationelle Suchmaschine, perfekt, um Google zu ersetzen und zitierte Quellen zu liefern.<br><span class=\"font-bold\">Manus:</span> Ein Agent, der im Web surft, um Aufgaben auszuführen und verstreute Daten zu finden.</p>",
+    "sourceHash": "f4644d4e"
+  },
+  "tags.card2": {
+    "text": "<h4 class=\"text-emerald-800 flex items-center gap-2 mt-0\"><span class=\"w-3 h-3 rounded-full bg-emerald-500\"></span> 2. Reasoning</h4><p><strong>Was es ist:</strong> Werkzeuge mit Fokus auf die Phase „Verarbeitung“. Sie sind die dichtesten „Gehirne“, ideal für komplexe Logik, Coding, das Strukturieren von Argumenten und theoretische Validierung.</p><p><strong>Fokus:</strong> Reine Logik, Mathematik, Softwarearchitektur und komplexes/nuanciertes Schreiben.</p><p class=\"text-xs mt-2\"><strong class=\"text-emerald-700\">KIs in dieser Kategorie:</strong><br><span class=\"font-bold\">GPT:</span> Vielseitig und multimodal, mit Reasoning-Modi zur Reduktion logischer Halluzinationen.<br><span class=\"font-bold\">Claude:</span> Referenz für Logik, sauberes Coding (Artifacts) und textliche Nuance.<br><span class=\"font-bold\">DeepSeek:</span> Fokussiert auf rigoroses mathematisches und logisches Reasoning über Chain-of-Thought.</p>",
+    "sourceHash": "9493ce32"
+  },
+  "tags.card3": {
+    "text": "<h4 class=\"text-indigo-800 flex items-center gap-2 mt-0\"><span class=\"w-3 h-3 rounded-full bg-indigo-500\"></span> 3. Lieferung</h4><p><strong>Was es ist:</strong> Werkzeuge, ausgerichtet auf „Output“ und finale Produktion. Sie sind am besten darin, Inhalte in ein nutzbares Format zu verpacken (Folien, formatierte Dokumente, Bilder, E-Mail-/Office-Integration).</p><p><strong>Fokus:</strong> Multimodalität (Bilder/Video ansehen und erstellen), Integration in Ökosysteme (Google/Microsoft) und Erzeugung finaler Artefakte.</p><p class=\"text-xs mt-2\"><strong class=\"text-indigo-700\">KIs in dieser Kategorie:</strong><br><span class=\"font-bold\">Gemini:</span> Starke Integration in Google Workspace und ein nativer 1M-Token-Kontext zum Lesen von Dokumenten und Produzieren von Inhalten.<br><span class=\"font-bold\">Copilot M365:</span> Spezialisiert auf die Lieferung nativer Word-Dokumente und PowerPoint-Folien innerhalb des Microsoft-Ökosystems.</p>",
+    "sourceHash": "d1beb05"
+  },
+  "diagram.think.subtitle": {
+    "text": "A B C D · das Substrat, wie es denkt",
+    "sourceHash": "188bc0a"
+  },
+  "diagram.think.desc": {
+    "text": "Die Domäne des reinen Reasonings. Ihre vier Kernfähigkeiten sind die Metafähigkeiten: Kuratierung und Integration von Quellen (A), logische Validierung und Stresstest (B), Umwandlung zwischen Abstraktionsebenen (C) und Erzeugung von Zwischenartefakten des Denkens (D). Sie erzeugt nicht das finale Ergebnis, aber sie stellt sicher, dass die Logik dahinter solide ist.",
+    "sourceHash": "61285aab"
+  },
+  "diagram.stream.subtitle": {
+    "text": "7.1 · 7.2 · 7.3 · filtert die Reibung, übergreifend",
+    "sourceHash": "48df8bf0"
+  },
+  "diagram.stream.desc": {
+    "text": "Die übergreifende Schicht der Enabler, die bestimmt, wie viel der Leistung der Domänen beim Ergebnis ankommt, ohne sich in Reibung zu verlieren. Es ist keine Kompetenz der KI, sondern eine Lieferbedingung: Daten an der Quelle (7.1), fertiges Format (7.2) und nachvollziehbares Grounding (7.3).",
+    "sourceHash": "71a9a856"
+  },
+  "diagram.conector1": {
+    "text": "wendet Gewichte und Reibung auf Ihr Profil an",
+    "sourceHash": "85c31a3a"
+  },
+  "diagram.arch.title": {
+    "text": "Archetypen",
+    "sourceHash": "bb245a96"
+  },
+  "diagram.arch.subtitle": {
+    "text": "wendet die σ-Gewichte und den Reibungsregler S an",
+    "sourceHash": "47906e2e"
+  },
+  "conhecimento.ir_diagnostico_decisao": {
+    "text": "Zu Entscheidung & Diagnose",
+    "sourceHash": "cae7b395"
+  },
+  "insight.modal_title": {
+    "text": "Strategische Analyse",
+    "sourceHash": "a281babc"
+  },
+  "help.modal_title": {
+    "text": "Betriebshandbuch",
+    "sourceHash": "fc755b7"
+  },
+  "impacto.header.0": {
+    "text": "7.1 Data Gravity",
+    "sourceHash": "142b3a16"
+  },
+  "impacto.header.1": {
+    "text": "7.2 Formatkontinuität",
+    "sourceHash": "45c79454"
+  },
+  "impacto.header.2": {
+    "text": "7.3 Vertrauenswürdigkeit & Verifizierbarkeit",
+    "sourceHash": "1c8185f8"
+  },
+  "impacto.cell.think.0": {
+    "text": "Historischer Kontext: Glossare und Ontologien helfen, Begriffe zu normalisieren, doch das Reasoning überlebt auch ohne sie.",
+    "sourceHash": "97c25ed2"
+  },
+  "impacto.cell.think.1": {
+    "text": "Neutral: wird typischerweise als Fließtext konsumiert, ohne Anforderung an ein finales Format.",
+    "sourceHash": "afaa5f14"
+  },
+  "impacto.cell.think.2": {
+    "text": "Provenienz: ohne die Herkunft eines widersprüchlichen Konzepts zurückzuverfolgen, operiert die Kuratierung blind.",
+    "sourceHash": "63f7b907"
+  },
+  "impacto.cell.disc.0": {
+    "text": "Interne Repositorys: Recherche darf sich nicht auf das offene Web beschränken; sie muss interne Repositorys durchsuchen, sonst bleibt sie von der Organisation abgeschnitten.",
+    "sourceHash": "1f444538"
+  },
+  "impacto.cell.disc.1": {
+    "text": "Bericht: die bereits formatierte Bibliografie zu liefern spart Arbeit, schließt aber die Nutzung des Rohinhalts nicht aus.",
+    "sourceHash": "c91dadec"
+  },
+  "impacto.cell.disc.2": {
+    "text": "Prüfbarkeit: ohne eine Zeile für Zeile nachvollziehbare Primärquelle ist Entdeckung beruflich unbrauchbar.",
+    "sourceHash": "5689d480"
+  },
+  "impacto.cell.design.0": {
+    "text": "Marken-Assets: Logos und Paletten direkt von der Quelle zu beziehen vermeidet Nacharbeit, doch das Design lässt sich weiterhin manuell neu machen.",
+    "sourceHash": "6582b81b"
+  },
+  "impacto.cell.design.1": {
+    "text": "Nativ (.pptx): ein Artefakt, das nicht nativ bearbeitbar ist, verdoppelt die Arbeit für alle, die es anpassen müssen.",
+    "sourceHash": "e84e7ebb"
+  },
+  "impacto.cell.design.2": {
+    "text": "Neutral: der Fokus liegt hier auf Ästhetik und Semiotik, nicht auf Fakten.",
+    "sourceHash": "435a1fde"
+  },
+  "impacto.cell.build.0": {
+    "text": "Codebase: Code, der ohne Lesen des gesamten Repositorys entsteht, erzeugt Integrationsfehler, die erst in der Produktion auftauchen.",
+    "sourceHash": "91545e47"
+  },
+  "impacto.cell.build.1": {
+    "text": "Pull Request: verstreute Snippets statt eines review-fertigen Commits zu liefern schiebt die gesamte Integrationsarbeit auf den Entwickler.",
+    "sourceHash": "ed40748b"
+  },
+  "impacto.cell.build.2": {
+    "text": "Sicherheit: verhindert das Halluzinieren nicht existierender Bibliotheken, ist aber nicht die definierende Achse der Fähigkeit.",
+    "sourceHash": "bc67bd29"
+  },
+  "impacto.cell.integ.0": {
+    "text": "Unternehmensgedächtnis: den Vorschlag mit archivierten Entscheidungen abzugleichen bereichert die Analyse; ohne das ist die Analyse weiterhin möglich, nur flacher.",
+    "sourceHash": "d81af544"
+  },
+  "impacto.cell.integ.1": {
+    "text": "Executive-Dokument: ein gut formatiertes Memo spart Führungszeit, doch der Inhalt lässt sich weiterhin manuell umformatieren.",
+    "sourceHash": "b92afb9"
+  },
+  "impacto.cell.integ.2": {
+    "text": "Treuepflicht: eine nicht prüfbare Entscheidung stellt ein treuhänderisches und unternehmerisches Haftungsrisiko dar.",
+    "sourceHash": "7ac7a471"
+  },
+  "common.todos": {
+    "text": "Alle",
+    "sourceHash": "e2da0ae"
+  },
+  "biblioteca.manifesto": {
+    "text": "Manifest",
+    "sourceHash": "905f146b"
+  },
+  "navmobile.saber": {
+    "text": "Lernen",
+    "sourceHash": "e13d112"
+  },
+  "navmobile.decidir": {
+    "text": "Entscheiden",
+    "sourceHash": "690b8d39"
+  },
+  "navmobile.auditoria": {
+    "text": "Audit",
+    "sourceHash": "8eead787"
+  },
+  "navmobile.biblio": {
+    "text": "Bibliothek",
+    "sourceHash": "a97721b6"
+  },
+  "radarlbl.think.A": {
+    "text": "A. Kuratierung\n& Integration",
+    "sourceHash": "dcbe97c0"
+  },
+  "radarlbl.think.B": {
+    "text": "B. Logische\nValidierung",
+    "sourceHash": "4028b79c"
+  },
+  "radarlbl.think.C": {
+    "text": "C. Abstraktion\nvon Ebenen",
+    "sourceHash": "3b6790b1"
+  },
+  "radarlbl.think.D": {
+    "text": "D. Zwischen-\nartefakte",
+    "sourceHash": "65cf83a9"
+  },
+  "radarlbl.doing.51": {
+    "text": "5.1 Automatisierte\nFolien",
+    "sourceHash": "3d7a192c"
+  },
+  "radarlbl.doing.52": {
+    "text": "5.2 Visuelle\nKonsistenz",
+    "sourceHash": "faaf2d20"
+  },
+  "radarlbl.doing.53": {
+    "text": "5.3 Technische\nRecherche",
+    "sourceHash": "6f892eb"
+  },
+  "radarlbl.doing.54": {
+    "text": "5.4 Massive\nZusammenfassungen",
+    "sourceHash": "f90a2989"
+  },
+  "radarlbl.doing.55": {
+    "text": "5.5 Multimodal\n",
+    "sourceHash": "5a933d3f"
+  },
+  "radarlbl.doing.56": {
+    "text": "5.6 Coding\n& Apps",
+    "sourceHash": "21b5dd56"
+  },
+  "radarlbl.doing.61": {
+    "text": "6.1 Strategie-\nSynthese",
+    "sourceHash": "c535dcfd"
+  },
+  "radarlbl.user.think": {
+    "text": "Thinking",
+    "sourceHash": "43e67d81"
+  },
+  "radarlbl.user.disc": {
+    "text": "Discovering",
+    "sourceHash": "2ce09762"
+  },
+  "radarlbl.user.design": {
+    "text": "Designing",
+    "sourceHash": "aa007b3d"
+  },
+  "radarlbl.user.build": {
+    "text": "Building",
+    "sourceHash": "8fd293d3"
+  },
+  "radarlbl.user.integ": {
+    "text": "Integrating",
+    "sourceHash": "b7774041"
+  },
+  "radarlbl.seu_perfil": {
+    "text": "Ihr Profil",
+    "sourceHash": "203719b4"
+  },
+  "radarlbl.ia_lider": {
+    "text": "Führende KI",
+    "sourceHash": "b8cd8263"
+  },
+  "decidir.perfil_personalizado": {
+    "text": "Individuelles Profil",
+    "sourceHash": "93439002"
+  },
+  "decidir.perfil_personalizado_status": {
+    "text": "Individuelles Profil",
+    "sourceHash": "7f24c022"
+  },
+  "common.aplicar": {
+    "text": "Anwenden",
+    "sourceHash": "9c686d21"
+  },
+  "common.cancelar": {
+    "text": "Abbrechen",
+    "sourceHash": "838f2fbe"
+  },
+  "decidir.aplicar_perfil": {
+    "text": "Dieses Profil anwenden",
+    "sourceHash": "61bc04f4"
+  },
+  "ecosystem.badge.tooltip": {
+    "text": "Was bedeutet dieses Tag?",
+    "sourceHash": "6872e954"
+  },
+  "insight.loading": {
+    "text": "{model} wird konsultiert…",
+    "sourceHash": "cc4703ed"
+  }
+}
