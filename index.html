@@ -696,12 +696,26 @@
                         </div>
                     </button>
                     <div id="rankingGrid" class="mt-4">
-                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3 px-1" data-i18n="ranking.competitivo" data-i18n-pt="Ranking competitivo">Ranking competitivo</p>
+                        <div class="flex items-center justify-between mb-3 px-1">
+                            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400" data-i18n="ranking.competitivo" data-i18n-pt="Ranking competitivo">Ranking competitivo</p>
+                            <button id="shareResultBtn" onclick="openShareCard()" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="Compartilhar resultado"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342a4.5 4.5 0 100-2.684m0 2.684a4.5 4.5 0 100 2.684m0-2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a4.5 4.5 0 108.684-2.316 4.5 4.5 0 00-8.684 2.316zm0 12a4.5 4.5 0 108.684 2.316 4.5 4.5 0 00-8.684-2.316z"></path></svg><span data-i18n="share.button" data-i18n-pt="Compartilhar">Compartilhar</span></button>
+                        </div>
                         <div class="bg-white border border-slate-200 rounded-xl p-4">
                             <div style="position:relative;width:100%;height:300px;">
                                 <canvas id="rankingBarChart" role="img" aria-label="Gráfico de barras horizontais com ranking competitivo das IAs."></canvas>
                             </div>
                         </div>
+                    </div>
+
+                    <div id="bookCtaFlow" class="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-3.5 flex items-center gap-3">
+                        <div class="w-9 h-12 flex-shrink-0 bg-indigo-600 rounded flex items-center justify-center">
+                            <svg class="w-5 h-5 text-indigo-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13c-1.168-.776-2.754-1.253-4.5-1.253s-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[13px] font-bold text-slate-900" data-i18n="book.why_ranking" data-i18n-pt="Por que este ranking?">Por que este ranking?</p>
+                            <p class="text-[11px] text-slate-500 leading-snug" data-i18n="book.why_body" data-i18n-pt="A lógica de potência × fricção e os arquétipos vêm do livro Quando é Melhor com IA.">A lógica de potência × fricção e os arquétipos vêm do livro Quando é Melhor com IA.</p>
+                        </div>
+                        <a id="bookCtaLink" href="https://www.amazon.com.br/dp/B0H7QR7DZ7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[12px] font-bold text-indigo-600 hover:text-indigo-800 whitespace-nowrap transition-colors"><span data-i18n="book.cta" data-i18n-pt="Entender">Entender</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
                     </div>
                 </div>
                 
@@ -918,6 +932,12 @@
         let currentLang = 'pt';           // 'pt' | 'en' | 'de' — português é sempre a fonte embutida
         let I18N_EN = null, I18N_DE = null; // dicionários carregados via fetch, null até chegarem
         const LOCALE_MAP = { pt: 'pt-BR', en: 'en-US', de: 'de-DE' };
+        // CTA do livro: mesmo ASIN, domínio Amazon por idioma — espelha o padrão já usado no modal de Créditos.
+        const BOOK_URL = { pt: 'https://www.amazon.com.br/dp/B0H7QR7DZ7', en: 'https://www.amazon.com/dp/B0H7QR7DZ7', de: 'https://www.amazon.de/dp/B0H7QR7DZ7' };
+        function updateBookLink(){
+            const el = document.getElementById('bookCtaLink');
+            if(el) el.href = BOOK_URL[currentLang] || BOOK_URL.pt;
+        }
 
         // t(textoPT, chave): português é o literal já presente no código (nunca extraído);
         // em en/de, consulta o dicionário carregado; se a chave faltar, cai de volta pro PT.
@@ -1072,6 +1092,7 @@
             if(typeof initCharts === 'function') initCharts();
             if(typeof updateRadarDatasets === 'function') updateRadarDatasets();
             if(typeof updateAll === 'function') updateAll();
+            if(typeof updateBookLink === 'function') updateBookLink();
         }
 
         const SIGMA_SLIDERS = ['slider-think','slider-disc','slider-design','slider-build','slider-integ'];
@@ -2164,6 +2185,105 @@
             if (current) lines.push(current);
             return lines;
         }
+        // Compartilhamento do resultado (aditivo -- le currentRanked e o arquetipo ativo; nao altera o motor de scoring)
+        function getActiveArchetypeLabel(){
+            const chip = document.querySelector('.arch-chip.arch-active');
+            if(chip) return chip.textContent.trim();
+            const summary = document.getElementById('mobileProfileSummary');
+            if(summary && summary.textContent.trim()) return summary.textContent.trim();
+            return tx('Perfil personalizado', 'decidir.perfil_personalizado');
+        }
+
+        function drawShareCard(ctx, W, H, archLabel, top3, dateLabel){
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, W, H);
+
+            ctx.fillStyle = '#eef2ff';
+            ctx.fillRect(0, 0, W, 132);
+            ctx.fillStyle = '#4338ca';
+            ctx.font = '600 13px sans-serif';
+            ctx.fillText(tx('Meu arquétipo de uso de IA', 'share.card_kicker').toUpperCase(), 32, 44);
+            ctx.fillStyle = '#312e81';
+            ctx.font = '700 30px sans-serif';
+            ctx.fillText(archLabel, 32, 84);
+            ctx.fillStyle = '#4f46e5';
+            ctx.font = '400 14px sans-serif';
+            ctx.fillText(tx('Ranking gerado no AI Strategy Hub', 'share.card_subline'), 32, 112);
+
+            let y = 172;
+            ctx.font = '600 12px sans-serif';
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillText(tx('RANKING PARA ESTE PERFIL', 'share.card_ranking_label'), 32, y);
+            y += 30;
+            const maxScore = top3.length ? top3[0].scoreVal : 1;
+            top3.forEach((item, i) => {
+                ctx.fillStyle = i === 0 ? '#4f46e5' : '#94a3b8';
+                ctx.font = '700 15px sans-serif';
+                ctx.fillText(String(i+1), 32, y + 6);
+                ctx.fillStyle = i === 0 ? '#0f172a' : '#334155';
+                ctx.font = i === 0 ? '700 15px sans-serif' : '400 15px sans-serif';
+                ctx.fillText(item.name, 58, y + 6);
+                const barW = 160, barX = W - 32 - barW;
+                ctx.fillStyle = '#f1f5f9';
+                ctx.fillRect(barX, y - 10, barW, 8);
+                ctx.fillStyle = i === 0 ? '#4f46e5' : '#c7d2fe';
+                ctx.fillRect(barX, y - 10, barW * Math.max(0.08, item.scoreVal / maxScore), 8);
+                y += 44;
+            });
+
+            ctx.strokeStyle = '#eef2ff';
+            ctx.beginPath(); ctx.moveTo(32, H - 92); ctx.lineTo(W - 32, H - 92); ctx.stroke();
+            ctx.fillStyle = '#0f172a';
+            ctx.font = '700 13px sans-serif';
+            ctx.fillText('AI Strategy Hub', 32, H - 62);
+            ctx.fillStyle = '#64748b';
+            ctx.font = '400 11px sans-serif';
+            ctx.fillText(tx('Descubra o seu · GM Digital Bunker™', 'share.card_footer_tagline'), 32, H - 44);
+            ctx.textAlign = 'right';
+            ctx.fillStyle = '#64748b';
+            ctx.font = '400 10px sans-serif';
+            ctx.fillText(tx('baseado no livro', 'share.card_footer_book_prefix'), W - 32, H - 62);
+            ctx.fillStyle = '#4f46e5';
+            ctx.font = '700 11px sans-serif';
+            ctx.fillText('Quando é Melhor com IA', W - 32, H - 46);
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '400 10px sans-serif';
+            ctx.fillText(dateLabel, W - 32, H - 28);
+            ctx.textAlign = 'left';
+        }
+
+        function openShareCard(){
+            if(!Array.isArray(currentRanked) || currentRanked.length === 0) return;
+            const archLabel = getActiveArchetypeLabel();
+            const top3 = currentRanked.slice(0, 3);
+            const dateLabel = new Date().toLocaleDateString(LOCALE_MAP[currentLang] || 'pt-BR', { month: 'short', year: 'numeric' });
+
+            const W = 640, H = 520;
+            const canvas = document.createElement('canvas');
+            canvas.width = W; canvas.height = H;
+            const ctx = canvas.getContext('2d');
+            drawShareCard(ctx, W, H, archLabel, top3, dateLabel);
+
+            canvas.toBlob(blob => {
+                if(!blob) return;
+                const fileName = 'ai-strategy-hub-resultado.png';
+                const file = new File([blob], fileName, { type: 'image/png' });
+                if(navigator.share && navigator.canShare && navigator.canShare({ files: [file] })){
+                    navigator.share({
+                        files: [file],
+                        title: 'AI Strategy Hub',
+                        text: tx('Meu arquétipo de uso de IA é {arch}. Descubra o seu:', 'share.native_text').replace('{arch}', archLabel) + ' ' + window.location.href
+                    }).catch(() => {});
+                } else {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url; a.download = fileName;
+                    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                    setTimeout(() => URL.revokeObjectURL(url), 4000);
+                }
+            }, 'image/png');
+        }
+
         function renderRankingCards(ranking){
             // leaderSlot (#1): intocado em estrutura — apenas popula o card do líder
             const leaderSlot = document.getElementById('leaderSlot'); if(leaderSlot) leaderSlot.innerHTML='';

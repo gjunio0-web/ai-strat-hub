@@ -1682,5 +1682,45 @@
   "insight.loading": {
     "text": "{model} wird konsultiert…",
     "sourceHash": "cc4703ed"
+  },
+  "share.button": {
+    "text": "Teilen",
+    "sourceHash": "8d1834eb"
+  },
+  "book.why_ranking": {
+    "text": "Warum dieses Ranking?",
+    "sourceHash": "424c9edb"
+  },
+  "book.why_body": {
+    "text": "Die Logik aus Leistung × Reibung und die Archetypen stammen aus dem Buch Quando é Melhor com IA.",
+    "sourceHash": "c8037621"
+  },
+  "book.cta": {
+    "text": "Verstehen",
+    "sourceHash": "52efe1fa"
+  },
+  "share.card_kicker": {
+    "text": "Mein KI-Nutzungsarchetyp",
+    "sourceHash": "105f2c1d"
+  },
+  "share.card_subline": {
+    "text": "Ranking erstellt im AI Strategy Hub",
+    "sourceHash": "3191b7a"
+  },
+  "share.card_ranking_label": {
+    "text": "RANKING FÜR DIESES PROFIL",
+    "sourceHash": "b0dffd66"
+  },
+  "share.card_footer_tagline": {
+    "text": "Entdecken Sie Ihren · GM Digital Bunker™",
+    "sourceHash": "90853f7c"
+  },
+  "share.card_footer_book_prefix": {
+    "text": "basierend auf dem Buch",
+    "sourceHash": "626a48dd"
+  },
+  "share.native_text": {
+    "text": "Mein KI-Nutzungsarchetyp ist {arch}. Entdecken Sie Ihren:",
+    "sourceHash": "aa68eae9"
   }
 }
