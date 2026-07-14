@@ -2315,10 +2315,10 @@
                     return;
                 }
             } catch(e){
-                // Cancelar o painel de compartilhamento nativo do desktop (ex.: flyout do Windows)
-                // rejeita com AbortError — tratar isso como "desistir" deixava os botões de
-                // HTML/Imagem sem efeito algum no desktop. Qualquer falha aqui (cancelamento
-                // incluído) cai para o download direto abaixo.
+                // DIAGNÓSTICO TEMPORÁRIO: canShare() retorna true neste desktop, mas o resultado
+                // final é sempre download — precisamos ver o que navigator.share() está
+                // efetivamente lançando. Remover este log assim que a causa for confirmada.
+                console.warn('[share-debug] navigator.share falhou:', e && e.name, '|', e && e.message, e);
             }
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href=url; a.download=fileName; document.body.appendChild(a); a.click(); a.remove();
