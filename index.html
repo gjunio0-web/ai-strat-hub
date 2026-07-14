@@ -295,9 +295,13 @@
                usuário. Por isso o espaçamento real vem do padding do próprio #insight-print,
                que funciona independentemente da config de margem do navegador/impressora. */
             @page{size:A4;margin:0;}
-            body.printing-insight *{visibility:hidden !important;}
-            body.printing-insight #insight-print-wrap, body.printing-insight #insight-print-wrap *{visibility:visible !important;}
-            body.printing-insight #insight-print-wrap{display:block !important;position:absolute;left:0;top:0;width:100%;}
+            /* display:none nos irmãos (não visibility:hidden em tudo) — visibility:hidden não
+               suprime de forma confiável o #gemini-modal em todo motor de impressão (ele é
+               position:fixed com z-index alto; em pelo menos um Android/Chrome mobile testado,
+               o modal ao vivo continuou aparecendo por cima do conteúdo de impressão). Removendo
+               os irmãos da árvore de renderização por completo, não sobra nada para "vazar". */
+            body.printing-insight > *:not(#insight-print-wrap){display:none !important;}
+            body.printing-insight #insight-print-wrap{display:block !important;}
             #insight-print{font-family:Georgia,"Times New Roman",serif;color:#1e293b;line-height:1.6;font-size:11pt;padding:18mm 16mm 14mm;box-sizing:border-box;}
             #insight-print h1{font-family:Arial,sans-serif;font-size:19pt;color:#0f172a;border-bottom:2px solid #4f46e5;padding-bottom:5pt;}
             #insight-print h2,#insight-print h3{font-family:Arial,sans-serif;color:#0f172a;}
@@ -2628,7 +2632,11 @@
             const el = document.getElementById('insight-print'); el.innerHTML = inner;
             document.body.classList.add('printing-insight');
             // Sugestão de nome de arquivo no diálogo "Salvar como PDF": navegadores baseados em
-            // Chromium usam document.title como nome padrão no momento do window.print().
+            // Chromium usam document.title como nome padrão no momento do window.print(). No
+            // Android, o Chrome costuma delegar a impressão ao serviço de impressão do sistema
+            // (fora do processo da página), que em muitas versões ignora document.title e usa seu
+            // próprio esquema de nome — isso não é algo controlável por JS nesse caminho; a troca
+            // de título continua sendo aplicada porque ajuda no desktop e no iOS.
             const __prevTitle = document.title;
             document.title = __insightFilename('pdf').replace(/\.pdf$/, '');
             const done = ()=>{
@@ -2638,12 +2646,10 @@
                 window.removeEventListener('afterprint', done);
             };
             window.addEventListener('afterprint', done);
-            // rAF dá ao navegador um frame para "commitar" a troca de título antes do diálogo
-            // abrir — chamar print() no mesmo tick da troca já se mostrou não confiável em
-            // alguns navegadores/mobile. O fallback de limpeza também foi alongado: window.print()
-            // é bloqueante no desktop mas não no mobile, então um timeout curto podia reverter o
-            // título enquanto o usuário ainda estava decidindo onde salvar.
-            requestAnimationFrame(() => { window.print(); });
+            window.print();
+            // Fallback de limpeza alongado: window.print() é bloqueante no desktop mas não no
+            // mobile, então um timeout curto podia reverter o título enquanto o usuário ainda
+            // estava decidindo onde salvar.
             setTimeout(done, 10000);
         }
         function __ipRound(x,ax,ay,w,ht,r){ if(x.roundRect){ x.beginPath(); x.roundRect(ax,ay,w,ht,r); return; } x.beginPath(); x.moveTo(ax+r,ay); x.arcTo(ax+w,ay,ax+w,ay+ht,r); x.arcTo(ax+w,ay+ht,ax,ay+ht,r); x.arcTo(ax,ay+ht,ax,ay,r); x.arcTo(ax,ay,ax+w,ay,r); x.closePath(); }
