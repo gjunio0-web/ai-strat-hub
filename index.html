@@ -314,7 +314,10 @@
             #insight-print .book-body a{color:#4f46e5;text-decoration:none;font-weight:700;}
             /* Links não são clicáveis no papel — o próprio PDF/impresso escreve o endereço por
                extenso logo depois do texto do link, sem duplicar HTML entre a versão HTML e a PDF. */
-            #insight-print .cred a::after, #insight-print .book-body a::after{content:" (" attr(href) ")";color:#8a94a6;font-weight:400;font-size:0.92em;word-break:break-all;}
+            /* Só o link do livro precisa disso — o texto do link da credencial (.cred) já É
+               o domínio por extenso ("ai-strat-hub.netlify.app"), então duplicar ali seria
+               redundante. display:block empurra o endereço para a linha de baixo. */
+            #insight-print .book-body a::after{content:attr(href);display:block;color:#8a94a6;font-weight:400;font-size:0.85em;margin-top:2pt;word-break:break-all;}
         }
     </style>
 </head>
@@ -2621,7 +2624,16 @@
             const inner = full.replace(/^[\s\S]*<body>/,'').replace(/<\/body>[\s\S]*$/,'');
             const el = document.getElementById('insight-print'); el.innerHTML = inner;
             document.body.classList.add('printing-insight');
-            const done = ()=>{ document.body.classList.remove('printing-insight'); el.innerHTML=''; window.removeEventListener('afterprint', done); };
+            // Sugestão de nome de arquivo no diálogo "Salvar como PDF": navegadores baseados em
+            // Chromium usam document.title como nome padrão no momento do window.print().
+            const __prevTitle = document.title;
+            document.title = __insightFilename('pdf').replace(/\.pdf$/, '');
+            const done = ()=>{
+                document.body.classList.remove('printing-insight');
+                el.innerHTML='';
+                document.title = __prevTitle;
+                window.removeEventListener('afterprint', done);
+            };
             window.addEventListener('afterprint', done);
             window.print();
             setTimeout(done, 2500);
