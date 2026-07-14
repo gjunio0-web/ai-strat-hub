@@ -2630,6 +2630,21 @@
             const full = __insightStandaloneHTML();
             const inner = full.replace(/^[\s\S]*<body>/,'').replace(/<\/body>[\s\S]*$/,'');
             const el = document.getElementById('insight-print'); el.innerHTML = inner;
+
+            // Esconde via JS (display inline), não só via CSS de @media print. Em pelo menos um
+            // Android/Chrome testado, o serviço de impressão do sistema imprimiu o modal ao vivo
+            // (com botões e tudo) mesmo com a regra display:none em @media print — indício de que
+            // esse pipeline de captura não está de fato aplicando @media print. Escondendo os
+            // irmãos ANTES de chamar print(), o próprio estado de tela (não apenas o de impressão)
+            // já está correto, então qualquer coisa que capture a página vê o resultado certo,
+            // independente de a engine de impressão respeitar media queries ou não.
+            const wrap = document.getElementById('insight-print-wrap');
+            const hidden = Array.from(document.body.children)
+                .filter(child => child !== wrap)
+                .map(child => ({ el: child, prevDisplay: child.style.display }));
+            hidden.forEach(({el: child}) => { child.style.display = 'none'; });
+            wrap.style.display = 'block';
+
             document.body.classList.add('printing-insight');
             // Sugestão de nome de arquivo no diálogo "Salvar como PDF": navegadores baseados em
             // Chromium usam document.title como nome padrão no momento do window.print(). No
@@ -2643,12 +2658,14 @@
                 document.body.classList.remove('printing-insight');
                 el.innerHTML='';
                 document.title = __prevTitle;
+                wrap.style.display = '';
+                hidden.forEach(({el: child, prevDisplay}) => { child.style.display = prevDisplay; });
                 window.removeEventListener('afterprint', done);
             };
             window.addEventListener('afterprint', done);
             window.print();
             // Fallback de limpeza alongado: window.print() é bloqueante no desktop mas não no
-            // mobile, então um timeout curto podia reverter o título enquanto o usuário ainda
+            // mobile, então um timeout curto podia reverter o título/DOM enquanto o usuário ainda
             // estava decidindo onde salvar.
             setTimeout(done, 10000);
         }
