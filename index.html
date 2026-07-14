@@ -2608,11 +2608,19 @@
 
             iframe.onload = ()=>{
                 const win = iframe.contentWindow;
-                // Nome sugerido = título do documento do iframe. No Android o serviço de impressão
-                // do sistema pode ignorar isso e usar seu próprio esquema — limitação da plataforma,
-                // não controlável por JS; no desktop/iOS ajuda.
+                // Nome sugerido no diálogo "Salvar como PDF": ao imprimir iframe.contentWindow, o
+                // Chrome desktop usa o document.title do documento PRINCIPAL (não o do iframe) como
+                // nome padrão. Então trocamos o title da página; também setamos o do iframe, que
+                // ajuda em alguns navegadores/iOS. (No Android o serviço de impressão do sistema
+                // ignora o title de qualquer forma — limitação da plataforma.)
+                const prevTitle = document.title;
+                document.title = fnameTitle;
                 try { win.document.title = fnameTitle; } catch(e){}
                 try { win.focus(); win.print(); } catch(e){}
+                // Desktop: print() bloqueia até o diálogo fechar, então o nome já foi lido aqui e
+                // restaurar em seguida não o afeta. Mobile: print() não bloqueia, mas o title da
+                // página principal não é o que importa lá, então restaurar já é seguro.
+                document.title = prevTitle;
                 setTimeout(cleanup, 10000); // print() não bloqueia no mobile
             };
 
