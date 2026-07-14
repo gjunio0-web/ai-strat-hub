@@ -2312,7 +2312,14 @@
                             await navigator.share({files:[file], title: shareTitle, text: shareText || undefined});
                             resolve(); return;
                         }
-                    } catch(e){ if(e && e.name==='AbortError'){ resolve(); return; } }
+                    } catch(e){
+                        // Cancelar o painel de compartilhamento nativo do desktop (ex.: flyout do
+                        // Windows) rejeita com AbortError — tratar isso como "desistir" (return
+                        // antecipado, sem baixar nada) deixava os botões de HTML/Imagem sem efeito
+                        // algum no desktop, já que ali é comum não haver alvo de compartilhamento
+                        // útil e o usuário simplesmente fechar o painel. Qualquer falha aqui
+                        // (cancelamento incluído) deve cair para o download direto abaixo.
+                    }
                     const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=fileName; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
                     resolve();
                 }, 'image/png');
@@ -2581,7 +2588,10 @@
                 if(navigator.canShare && navigator.canShare({files:[file]})){
                     await navigator.share({files:[file], title: tx('Análise Estratégica IA','insight.modal_title')}); return;
                 }
-            } catch(e){ if(e && e.name==='AbortError') return; }
+            } catch(e){
+                // Ver comentário equivalente em __exportResultCardImage(): cancelar o
+                // compartilhamento nativo não deve abortar a exportação, só cair para o download.
+            }
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href=url; a.download=fname; document.body.appendChild(a); a.click(); a.remove();
             setTimeout(()=>URL.revokeObjectURL(url), 1000);
