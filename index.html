@@ -2693,8 +2693,13 @@
             const activeChip = document.querySelector('.arch-chip.arch-active');
             const archName = activeChip ? activeChip.textContent.trim() : tx('Perfil personalizado', 'decidir.perfil_personalizado_status');
             const top3 = currentRanked.slice(0,3).map(t => `${t.name} (${t.scoreStr})`).join(", ");
+            const topBreakdown = currentRanked.slice(0,2).map(t =>
+                `${t.name}: ` + t.breakdown.map(b =>
+                    `${b.label} P=${b.P.toFixed(2)} E=${b.E.toFixed(2)} Score=${b.score.toFixed(2)}`
+                ).join(', ')
+            ).join(' | ');
             const promptLangName = { pt: 'Português', en: 'English', de: 'Deutsch' }[currentLang] || 'Português';
-            const prompt = `Consultor Sênior de IA. Arquétipo selecionado: ${archName}. Sliders de domínio (0-100%): Thinking ${sg[0]}, Discovering ${sg[1]}, Designing ${sg[2]}, Building ${sg[3]}, Integrating ${sg[4]}. Streamlining (fricção): ${sStream}%. Top 3 IAs por Score Efetivo: ${top3}. 1. Confirme o arquétipo e descreva o perfil em uma frase. 2. Por que a #1 vence (trade-off potência bruta vs fricção operacional). 3. Dica Tática ("Quick Win"). Responda em ${promptLangName}, markdown.`;
+            const prompt = `Consultor Sênior de IA. Arquétipo selecionado: ${archName}. Sliders de domínio (0-100%): Thinking ${sg[0]}, Discovering ${sg[1]}, Designing ${sg[2]}, Building ${sg[3]}, Integrating ${sg[4]}. Streamlining (fricção): ${sStream}%. Top 3 IAs por Score Efetivo: ${top3}. Detalhamento por domínio das duas líderes (Potência P, Eficiência E após fricção, Score Efetivo P×E): ${topBreakdown}. 1. Confirme o arquétipo e descreva o perfil em uma frase. 2. Por que a #1 vence (trade-off potência bruta vs fricção operacional). 3. Dica Tática ("Quick Win"). Responda em ${promptLangName}, markdown.`;
 
             try {
                 const response = await fetch('/.netlify/functions/gemini', {
