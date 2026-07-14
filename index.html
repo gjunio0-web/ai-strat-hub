@@ -2209,7 +2209,13 @@
             const W=1080,P=64;
             x.font='bold 46px system-ui,Arial,sans-serif';
             const archLines = __ipWrap(x, opts.archLabel, W-2*P);
-            let H = 246 + archLines.length*54 + 14;
+            // 246 (topo do bloco) + 46 (label "ARQUÉTIPO SELECIONADO", desenhado antes do loop de
+            // archLines em drawResultCard) — faltava esse +46 aqui, então a altura total do canvas
+            // sempre ficava 46px menor que o conteúdo real desenhado. Com Math.max(H,1100) como
+            // piso, isso ficava mascarado (a folga do piso absorvia o déficit) até o card ficar alto
+            // o bastante para passar de 1100px de conteúdo real — aí o rodapé desenhava por cima da
+            // última linha do texto de configuração.
+            let H = 246 + 46 + archLines.length*54 + 14;
             H += 122+42;
             H += 38 + opts.ranked.length*46 + 18;
             let qwLines = [];
