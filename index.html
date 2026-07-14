@@ -2315,10 +2315,9 @@
                     return;
                 }
             } catch(e){
-                // DIAGNÓSTICO TEMPORÁRIO: canShare() retorna true neste desktop, mas o resultado
-                // final é sempre download — precisamos ver o que navigator.share() está
-                // efetivamente lançando. Remover este log assim que a causa for confirmada.
-                console.warn('[share-debug] navigator.share falhou:', e && e.name, '|', e && e.message, e);
+                // Compartilhamento nativo indisponível ou cancelado (inclui o SO reportar nenhum
+                // alvo de compartilhamento, ex.: AbortError "Share failed" no Windows) — cai para
+                // o download direto abaixo em vez de deixar o botão sem efeito nenhum.
             }
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href=url; a.download=fileName; document.body.appendChild(a); a.click(); a.remove();
