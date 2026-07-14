@@ -2562,7 +2562,7 @@
             const bookHeading = tx('Por que este ranking?','book.why_ranking');
             const bookBody = tx('A lógica de potência × fricção e os arquétipos vêm do livro <strong>"Quando é Melhor com IA"</strong>.','book.why_body').replace('Quando é Melhor com IA', bookTitleLink);
             const bookIconSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13c-1.168-.776-2.754-1.253-4.5-1.253s-3.332.477-4.5 1.253"/></svg>';
-            const css = "body{font-family:Georgia,'Times New Roman',serif;color:#1e293b;max-width:720px;margin:40px auto;padding:0 24px;line-height:1.6}h1,h2,h3{font-family:system-ui,Arial,sans-serif;color:#0f172a}h1{font-size:22px;border-bottom:2px solid #4f46e5;padding-bottom:8px}h2{font-size:16px;margin-top:22px}.meta{font-family:system-ui,Arial,sans-serif;font-size:12px;color:#475569;background:#f4f6fb;border:1px solid #d9dee8;border-radius:8px;padding:10px 12px;margin:14px 0}.meta b{color:#3730a3}a{color:#4f46e5}.disc{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#8a94a6;border-top:1px solid #d9dee8;margin-top:26px;padding-top:10px}.cred{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#475569;margin-top:6px}.cred a{color:#4f46e5;text-decoration:none;font-weight:700}.book-card{display:flex;align-items:center;gap:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:14px}.book-icon{flex-shrink:0;width:36px;height:48px;background:#4f46e5;border-radius:6px;display:flex;align-items:center;justify-content:center}.book-icon svg{width:20px;height:20px;color:#e0e7ff}.book-title{font-family:system-ui,Arial,sans-serif;font-size:13px;font-weight:700;color:#0f172a;margin:0 0 2px}.book-body{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#64748b;line-height:1.4;margin:0}.book-body a{color:#4f46e5;font-weight:700;text-decoration:none}.book-url{display:none}@page{margin:14mm}@media print{body{margin:0 auto;max-width:100%}.book-url{display:block;color:#8a94a6;font-weight:400;font-size:10px;margin-top:4px;word-break:break-all}}";
+            const css = "body{font-family:Georgia,'Times New Roman',serif;color:#1e293b;max-width:720px;margin:40px auto;padding:0 24px;line-height:1.6}h1,h2,h3{font-family:system-ui,Arial,sans-serif;color:#0f172a}h1{font-size:22px;border-bottom:2px solid #4f46e5;padding-bottom:8px}h2{font-size:16px;margin-top:22px}.meta{font-family:system-ui,Arial,sans-serif;font-size:12px;color:#475569;background:#f4f6fb;border:1px solid #d9dee8;border-radius:8px;padding:10px 12px;margin:14px 0}.meta b{color:#3730a3}a{color:#4f46e5}.disc{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#8a94a6;border-top:1px solid #d9dee8;margin-top:26px;padding-top:10px}.cred{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#475569;margin-top:6px}.cred a{color:#4f46e5;text-decoration:none;font-weight:700}.book-card{display:flex;align-items:center;gap:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:14px}.book-icon{flex-shrink:0;width:36px;height:48px;background:#4f46e5;border-radius:6px;display:flex;align-items:center;justify-content:center}.book-icon svg{width:20px;height:20px;color:#e0e7ff}.book-title{font-family:system-ui,Arial,sans-serif;font-size:13px;font-weight:700;color:#0f172a;margin:0 0 2px}.book-body{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#64748b;line-height:1.4;margin:0}.book-body a{color:#4f46e5;font-weight:700;text-decoration:none}.book-url{display:none}@page{margin:18mm}@media print{body{margin:0 auto;max-width:100%;padding:0}.book-url{display:block;color:#8a94a6;font-weight:400;font-size:10px;margin-top:4px;word-break:break-all}}";
             const inner = '<h1>' + title + '</h1>'
                 + '<div class="meta"><b>' + li.archName + '</b> · ' + cfgLabel + ': ' + __insightConfigLine() + '<br>' + li.model + ' · ' + __insightDateStr() + '</div>'
                 + li.analysisHtml
@@ -2614,14 +2614,20 @@
                 // ajuda em alguns navegadores/iOS. (No Android o serviço de impressão do sistema
                 // ignora o title de qualquer forma — limitação da plataforma.)
                 const prevTitle = document.title;
+                let titleRestored = false;
+                const restoreTitle = ()=>{ if(titleRestored) return; titleRestored = true; document.title = prevTitle; };
                 document.title = fnameTitle;
                 try { win.document.title = fnameTitle; } catch(e){}
+                // NÃO restaurar o title de forma síncrona logo após print(): no Chrome moderno o
+                // print PREVIEW é assíncrono e print() retorna antes de o preview ler o title, então
+                // restaurar na hora apagava o nome antes de o navegador capturá-lo (era esse o bug
+                // do nome vazio no desktop). Restauramos só no afterprint (ouvido nas duas janelas,
+                // pois qual delas dispara varia) + um fallback por timeout.
+                const onAfterPrint = ()=>{ restoreTitle(); cleanup(); };
+                window.addEventListener('afterprint', onAfterPrint, { once:true });
+                try { win.addEventListener('afterprint', onAfterPrint, { once:true }); } catch(e){}
                 try { win.focus(); win.print(); } catch(e){}
-                // Desktop: print() bloqueia até o diálogo fechar, então o nome já foi lido aqui e
-                // restaurar em seguida não o afeta. Mobile: print() não bloqueia, mas o title da
-                // página principal não é o que importa lá, então restaurar já é seguro.
-                document.title = prevTitle;
-                setTimeout(cleanup, 10000); // print() não bloqueia no mobile
+                setTimeout(()=>{ restoreTitle(); cleanup(); }, 60000); // rede de segurança
             };
 
             // srcdoc dispara onload de forma confiável para conteúdo escrito na hora.
