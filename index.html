@@ -2297,33 +2297,46 @@
             fdy += 30;
             x.font='14px system-ui,Arial,sans-serif'; x.fillStyle='#94a3b8'; x.textAlign='right'; x.fillText(opts.dateLabel, W-P, fdy); x.textAlign='left';
         }
-        async function __exportResultCardImage(opts, fileName, shareText, shareTitle){
+        function __dataURLtoBlob(dataUrl){
+            const [meta, b64] = dataUrl.split(',');
+            const mime = meta.match(/:(.*?);/)[1];
+            const bin = atob(b64);
+            const arr = new Uint8Array(bin.length);
+            for(let i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
+            return new Blob([arr], {type: mime});
+        }
+        // Tenta compartilhar via Web Share API (abre o painel nativo, como no mobile); se falhar
+        // OU o usuário cancelar o painel, cai para download direto — nunca fica "sem fazer nada".
+        async function __shareOrDownload(blob, fileName, mimeType, shareTitle, shareText){
+            try {
+                const file = new File([blob], fileName, {type: mimeType});
+                if(navigator.canShare && navigator.canShare({files:[file]})){
+                    await navigator.share({files:[file], title: shareTitle, text: shareText || undefined});
+                    return;
+                }
+            } catch(e){
+                // Cancelar o painel de compartilhamento nativo do desktop (ex.: flyout do Windows)
+                // rejeita com AbortError — tratar isso como "desistir" deixava os botões de
+                // HTML/Imagem sem efeito algum no desktop. Qualquer falha aqui (cancelamento
+                // incluído) cai para o download direto abaixo.
+            }
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href=url; a.download=fileName; document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(()=>URL.revokeObjectURL(url), 1000);
+        }
+        function __exportResultCardImage(opts, fileName, shareText, shareTitle){
             const W=1080;
             const measureCanvas=document.createElement('canvas'); const mx=measureCanvas.getContext('2d');
             const m = __measureResultCardHeight(mx, opts);
             const c=document.createElement('canvas'); c.width=W; c.height=m.H; const x=c.getContext('2d');
             drawResultCard(x, W, m.H, opts, m);
-            return new Promise(resolve => {
-                c.toBlob(async (blob)=>{
-                    if(!blob){ resolve(); return; }
-                    try {
-                        const file=new File([blob],fileName,{type:'image/png'});
-                        if(navigator.canShare && navigator.canShare({files:[file]})){
-                            await navigator.share({files:[file], title: shareTitle, text: shareText || undefined});
-                            resolve(); return;
-                        }
-                    } catch(e){
-                        // Cancelar o painel de compartilhamento nativo do desktop (ex.: flyout do
-                        // Windows) rejeita com AbortError — tratar isso como "desistir" (return
-                        // antecipado, sem baixar nada) deixava os botões de HTML/Imagem sem efeito
-                        // algum no desktop, já que ali é comum não haver alvo de compartilhamento
-                        // útil e o usuário simplesmente fechar o painel. Qualquer falha aqui
-                        // (cancelamento incluído) deve cair para o download direto abaixo.
-                    }
-                    const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=fileName; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
-                    resolve();
-                }, 'image/png');
-            });
+            // toDataURL() é síncrono — ao contrário de toBlob(), cujo resultado só chega num
+            // callback assíncrono. Isso importa porque navigator.share() exige um "gesto do
+            // usuário" ativo (o clique) para funcionar; com toBlob(), por quando o callback
+            // rodava, esse gesto já tinha expirado e share() rejeitava sem sequer abrir o painel
+            // nativo — o download acontecia (via fallback), mas o compartilhamento nunca aparecia.
+            const blob = __dataURLtoBlob(c.toDataURL('image/png'));
+            return __shareOrDownload(blob, fileName, 'image/png', shareTitle, shareText);
         }
         function openShareCard(){
             if(!Array.isArray(currentRanked) || currentRanked.length === 0) return;
@@ -2583,18 +2596,7 @@
             const html = __insightStandaloneHTML();
             const fname = __insightFilename('html');
             const blob = new Blob([html], {type:'text/html'});
-            try {
-                const file = new File([blob], fname, {type:'text/html'});
-                if(navigator.canShare && navigator.canShare({files:[file]})){
-                    await navigator.share({files:[file], title: tx('Análise Estratégica IA','insight.modal_title')}); return;
-                }
-            } catch(e){
-                // Ver comentário equivalente em __exportResultCardImage(): cancelar o
-                // compartilhamento nativo não deve abortar a exportação, só cair para o download.
-            }
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a'); a.href=url; a.download=fname; document.body.appendChild(a); a.click(); a.remove();
-            setTimeout(()=>URL.revokeObjectURL(url), 1000);
+            await __shareOrDownload(blob, fname, 'text/html', tx('Análise Estratégica IA','insight.modal_title'), null);
         }
         function exportInsightPDF(){
             if(!lastInsight) return;
