@@ -290,17 +290,23 @@
         }
         #insight-print-wrap{display:none;}
         @media print{
-            @page{size:A4;margin:16mm;}
+            /* margin:0 no @page de propósito: o dropdown "Margens" do diálogo de impressão do
+               Chrome pode ignorar/zerar a margem do @page dependendo da opção selecionada pelo
+               usuário. Por isso o espaçamento real vem do padding do próprio #insight-print,
+               que funciona independentemente da config de margem do navegador/impressora. */
+            @page{size:A4;margin:0;}
             body.printing-insight *{visibility:hidden !important;}
             body.printing-insight #insight-print-wrap, body.printing-insight #insight-print-wrap *{visibility:visible !important;}
             body.printing-insight #insight-print-wrap{display:block !important;position:absolute;left:0;top:0;width:100%;}
-            #insight-print{font-family:Georgia,"Times New Roman",serif;color:#1e293b;line-height:1.6;font-size:11pt;}
+            #insight-print{font-family:Georgia,"Times New Roman",serif;color:#1e293b;line-height:1.6;font-size:11pt;padding:18mm 16mm 14mm;box-sizing:border-box;}
             #insight-print h1{font-family:Arial,sans-serif;font-size:19pt;color:#0f172a;border-bottom:2px solid #4f46e5;padding-bottom:5pt;}
             #insight-print h2,#insight-print h3{font-family:Arial,sans-serif;color:#0f172a;}
             #insight-print .meta{font-family:Arial,sans-serif;font-size:9pt;color:#475569;background:#f4f6fb;border:1px solid #d9dee8;border-radius:6pt;padding:7pt 9pt;margin:10pt 0;}
             #insight-print .meta b{color:#3730a3;}
             #insight-print .disc{font-family:Arial,sans-serif;font-size:8pt;color:#8a94a6;border-top:1px solid #d9dee8;margin-top:16pt;padding-top:6pt;}
             #insight-print .cred{font-family:Arial,sans-serif;font-size:8pt;color:#475569;margin-top:4pt;}
+            #insight-print .book{font-family:Arial,sans-serif;font-size:8pt;color:#475569;margin-top:2pt;}
+            #insight-print .book a{color:#4f46e5;text-decoration:none;font-weight:700;}
         }
     </style>
 </head>
@@ -2518,12 +2524,15 @@
             const cfgLabel = tx('Configuração','insight.export_config');
             const disc = tx('Conteúdo gerado por IA ({model}). Pode conter imprecisões – confira contra a Auditoria Técnica.','insight.disclaimer').replace('{model}', li.model);
             const cred = tx('Desenvolvido por <strong>GM Digital Bunker™</strong>','credits.line');
-            const css = "body{font-family:Georgia,'Times New Roman',serif;color:#1e293b;max-width:720px;margin:40px auto;padding:0 24px;line-height:1.6}h1,h2,h3{font-family:system-ui,Arial,sans-serif;color:#0f172a}h1{font-size:22px;border-bottom:2px solid #4f46e5;padding-bottom:8px}h2{font-size:16px;margin-top:22px}.meta{font-family:system-ui,Arial,sans-serif;font-size:12px;color:#475569;background:#f4f6fb;border:1px solid #d9dee8;border-radius:8px;padding:10px 12px;margin:14px 0}.meta b{color:#3730a3}a{color:#4f46e5}.disc{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#8a94a6;border-top:1px solid #d9dee8;margin-top:26px;padding-top:10px}.cred{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#475569;margin-top:6px}";
+            const bookPrefix = tx('baseado no livro','share.card_footer_book_prefix');
+            const bookUrl = (typeof BOOK_URL !== 'undefined' ? (BOOK_URL[currentLang] || BOOK_URL.pt) : 'https://www.amazon.com.br/dp/B0H7QR7DZ7');
+            const css = "body{font-family:Georgia,'Times New Roman',serif;color:#1e293b;max-width:720px;margin:40px auto;padding:0 24px;line-height:1.6}h1,h2,h3{font-family:system-ui,Arial,sans-serif;color:#0f172a}h1{font-size:22px;border-bottom:2px solid #4f46e5;padding-bottom:8px}h2{font-size:16px;margin-top:22px}.meta{font-family:system-ui,Arial,sans-serif;font-size:12px;color:#475569;background:#f4f6fb;border:1px solid #d9dee8;border-radius:8px;padding:10px 12px;margin:14px 0}.meta b{color:#3730a3}a{color:#4f46e5}.disc{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#8a94a6;border-top:1px solid #d9dee8;margin-top:26px;padding-top:10px}.cred{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#475569;margin-top:6px}.book{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#475569;margin-top:4px}.book a{color:#4f46e5;text-decoration:none;font-weight:700}";
             const inner = '<h1>' + title + '</h1>'
                 + '<div class="meta"><b>' + li.archName + '</b> · ' + cfgLabel + ': ' + __insightConfigLine() + '<br>' + li.model + ' · ' + __insightDateStr() + '</div>'
                 + li.analysisHtml
                 + '<div class="disc">⚠ ' + disc + '</div>'
-                + '<div class="cred">' + cred + ' · © 2026 · ai-strat-hub.netlify.app</div>';
+                + '<div class="cred">' + cred + ' · © 2026 · ai-strat-hub.netlify.app</div>'
+                + '<div class="book">' + bookPrefix + ' <a href="' + bookUrl + '" target="_blank" rel="noopener noreferrer">Quando é Melhor com IA</a></div>';
             return '<!doctype html><html lang="' + currentLang + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>' + title + ' – ' + li.archName + '</title><style>' + css + '</style></head><body>' + inner + '</body></html>';
         }
         async function exportInsightHTML(){
