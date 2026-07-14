@@ -2570,6 +2570,20 @@
             // dinamicamente a partir deste texto, então não há necessidade de truncar aqui.
             return buf.join(' ').replace(/\s+/g,' ').trim();
         }
+        // Extrai o nome do arquétipo tal como a própria IA o confirmou no texto gerado (ex.:
+        // "**Arquétipo:** Cirurgião de Código Ativado.") em vez do rótulo genérico do perfil
+        // pré-selecionado — a IA às vezes reformula/enriquece o nome. Se a extração falhar,
+        // quem chama cai de volta para o nome do chip pré-selecionado.
+        function __extractAIArchName(raw){
+            if(!raw) return '';
+            const stripped = String(raw).replace(/\*\*/g,'');
+            const m = stripped.match(/(?:arqu[eé]tipo|archetype|archetyp)\s*:\s*/i);
+            if(!m) return '';
+            const rest = stripped.slice(m.index + m[0].length);
+            const stop = rest.search(/[.\n]/);
+            const value = (stop === -1 ? rest : rest.slice(0, stop)).replace(/[*#>_`]/g,'').trim();
+            return (value && value.length <= 80) ? value : '';
+        }
         function __insightStandaloneHTML(){
             const li = lastInsight; if(!li) return '';
             const title = tx('Análise Estratégica IA','insight.modal_title');
@@ -2694,7 +2708,8 @@
                 const __analysisHtml = marked.parse(__raw);
                 content.innerHTML = __analysisHtml
                     + '<div class="mt-6 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[10px] text-slate-400"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z"></path></svg>' + tx('Conteúdo gerado por IA ({model}). Pode conter imprecisões – confira contra a Auditoria Técnica.', 'insight.disclaimer').replace('{model}', geminiName) + '</div>';
-                lastInsight = { archName, sliders: sg.map(Number), stream: sStream, ranked: currentRanked.slice(0,3).map(t=>({name:t.name, score:t.scoreStr, val:t.scoreVal, color:t.color})), model: geminiName, date: new Date(), raw: __raw, analysisHtml: __analysisHtml };
+                const __aiArchName = __extractAIArchName(__raw);
+                lastInsight = { archName: __aiArchName || archName, sliders: sg.map(Number), stream: sStream, ranked: currentRanked.slice(0,3).map(t=>({name:t.name, score:t.scoreStr, val:t.scoreVal, color:t.color})), model: geminiName, date: new Date(), raw: __raw, analysisHtml: __analysisHtml };
                 setInsightActionsEnabled(true);
             } catch (error) {
                 content.innerHTML = `<div class="text-center py-6"><div class="text-red-500 font-bold mb-2">${tx('Não foi possível gerar a análise', 'insight.erro_titulo')}</div><p class="text-xs text-slate-500 mb-4">${error.message}</p><button onclick="generateInsight()" class="inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-4 py-2 rounded-lg transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>${tx('Tentar novamente', 'insight.tentar_novamente')}</button></div>`;
