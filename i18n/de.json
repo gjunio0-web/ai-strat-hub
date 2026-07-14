@@ -1738,5 +1738,13 @@
   "insight.export_config": {
     "text": "Konfiguration",
     "sourceHash": "1a8890bc"
+  },
+  "insight.export_arch_label": {
+    "text": "Ausgewählter Archetyp",
+    "sourceHash": "5e2a9c31"
+  },
+  "insight.export_bar_label": {
+    "text": "Diese Analyse teilen oder exportieren",
+    "sourceHash": "7d14b8e2"
   }
 }
