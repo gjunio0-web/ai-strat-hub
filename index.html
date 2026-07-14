@@ -312,12 +312,15 @@
             #insight-print .book-title{font-family:Arial,sans-serif;font-size:9pt;font-weight:700;color:#0f172a;margin:0 0 1pt;}
             #insight-print .book-body{font-family:Arial,sans-serif;font-size:8pt;color:#64748b;margin:0;}
             #insight-print .book-body a{color:#4f46e5;text-decoration:none;font-weight:700;}
-            /* Links não são clicáveis no papel — o próprio PDF/impresso escreve o endereço por
-               extenso logo depois do texto do link, sem duplicar HTML entre a versão HTML e a PDF. */
-            /* Só o link do livro precisa disso — o texto do link da credencial (.cred) já É
-               o domínio por extenso ("ai-strat-hub.netlify.app"), então duplicar ali seria
-               redundante. display:block empurra o endereço para a linha de baixo. */
-            #insight-print .book-body a::after{content:attr(href);display:block;color:#8a94a6;font-weight:400;font-size:0.85em;margin-top:2pt;word-break:break-all;}
+            /* Links não são clicáveis no papel. Usamos um elemento próprio (.book-url, oculto na
+               versão HTML) em vez de conteúdo gerado via ::after no <a> — um ::after com
+               display:block dentro de um elemento inline empurra o QUE VEM DEPOIS do link (aqui,
+               as aspas de fechamento) para a linha seguinte também, resultado inconsistente entre
+               navegadores/mobile vs desktop. Com um elemento de bloco separado, a citação
+               "Quando é Melhor com IA" fecha corretamente na mesma linha, e o endereço aparece
+               limpo, sempre na linha de baixo. Só o link do livro precisa disso — o texto do link
+               da credencial (.cred) já É o domínio por extenso ("ai-strat-hub.netlify.app"). */
+            #insight-print .book-url{display:block;color:#8a94a6;font-weight:400;font-family:Arial,sans-serif;font-size:7.5pt;margin-top:3pt;word-break:break-all;}
         }
     </style>
 </head>
@@ -2594,13 +2597,13 @@
             const bookHeading = tx('Por que este ranking?','book.why_ranking');
             const bookBody = tx('A lógica de potência × fricção e os arquétipos vêm do livro <strong>"Quando é Melhor com IA"</strong>.','book.why_body').replace('Quando é Melhor com IA', bookTitleLink);
             const bookIconSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13c-1.168-.776-2.754-1.253-4.5-1.253s-3.332.477-4.5 1.253"/></svg>';
-            const css = "body{font-family:Georgia,'Times New Roman',serif;color:#1e293b;max-width:720px;margin:40px auto;padding:0 24px;line-height:1.6}h1,h2,h3{font-family:system-ui,Arial,sans-serif;color:#0f172a}h1{font-size:22px;border-bottom:2px solid #4f46e5;padding-bottom:8px}h2{font-size:16px;margin-top:22px}.meta{font-family:system-ui,Arial,sans-serif;font-size:12px;color:#475569;background:#f4f6fb;border:1px solid #d9dee8;border-radius:8px;padding:10px 12px;margin:14px 0}.meta b{color:#3730a3}a{color:#4f46e5}.disc{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#8a94a6;border-top:1px solid #d9dee8;margin-top:26px;padding-top:10px}.cred{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#475569;margin-top:6px}.cred a{color:#4f46e5;text-decoration:none;font-weight:700}.book-card{display:flex;align-items:center;gap:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:14px}.book-icon{flex-shrink:0;width:36px;height:48px;background:#4f46e5;border-radius:6px;display:flex;align-items:center;justify-content:center}.book-icon svg{width:20px;height:20px;color:#e0e7ff}.book-title{font-family:system-ui,Arial,sans-serif;font-size:13px;font-weight:700;color:#0f172a;margin:0 0 2px}.book-body{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#64748b;line-height:1.4;margin:0}.book-body a{color:#4f46e5;font-weight:700;text-decoration:none}";
+            const css = "body{font-family:Georgia,'Times New Roman',serif;color:#1e293b;max-width:720px;margin:40px auto;padding:0 24px;line-height:1.6}h1,h2,h3{font-family:system-ui,Arial,sans-serif;color:#0f172a}h1{font-size:22px;border-bottom:2px solid #4f46e5;padding-bottom:8px}h2{font-size:16px;margin-top:22px}.meta{font-family:system-ui,Arial,sans-serif;font-size:12px;color:#475569;background:#f4f6fb;border:1px solid #d9dee8;border-radius:8px;padding:10px 12px;margin:14px 0}.meta b{color:#3730a3}a{color:#4f46e5}.disc{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#8a94a6;border-top:1px solid #d9dee8;margin-top:26px;padding-top:10px}.cred{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#475569;margin-top:6px}.cred a{color:#4f46e5;text-decoration:none;font-weight:700}.book-card{display:flex;align-items:center;gap:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:14px}.book-icon{flex-shrink:0;width:36px;height:48px;background:#4f46e5;border-radius:6px;display:flex;align-items:center;justify-content:center}.book-icon svg{width:20px;height:20px;color:#e0e7ff}.book-title{font-family:system-ui,Arial,sans-serif;font-size:13px;font-weight:700;color:#0f172a;margin:0 0 2px}.book-body{font-family:system-ui,Arial,sans-serif;font-size:11px;color:#64748b;line-height:1.4;margin:0}.book-body a{color:#4f46e5;font-weight:700;text-decoration:none}.book-url{display:none}";
             const inner = '<h1>' + title + '</h1>'
                 + '<div class="meta"><b>' + li.archName + '</b> · ' + cfgLabel + ': ' + __insightConfigLine() + '<br>' + li.model + ' · ' + __insightDateStr() + '</div>'
                 + li.analysisHtml
                 + '<div class="disc">⚠ ' + disc + '</div>'
                 + '<div class="cred">' + cred + ' · © 2026 · <a href="https://ai-strat-hub.netlify.app/" target="_blank" rel="noopener noreferrer">ai-strat-hub.netlify.app</a></div>'
-                + '<div class="book-card"><div class="book-icon">' + bookIconSvg + '</div><div><p class="book-title">' + bookHeading + '</p><p class="book-body">' + bookBody + '</p></div></div>';
+                + '<div class="book-card"><div class="book-icon">' + bookIconSvg + '</div><div><p class="book-title">' + bookHeading + '</p><p class="book-body">' + bookBody + '</p><p class="book-url">' + bookUrl + '</p></div></div>';
             return '<!doctype html><html lang="' + currentLang + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>' + title + ' – ' + li.archName + '</title><style>' + css + '</style></head><body>' + inner + '</body></html>';
         }
         async function exportInsightHTML(){
@@ -2635,8 +2638,13 @@
                 window.removeEventListener('afterprint', done);
             };
             window.addEventListener('afterprint', done);
-            window.print();
-            setTimeout(done, 2500);
+            // rAF dá ao navegador um frame para "commitar" a troca de título antes do diálogo
+            // abrir — chamar print() no mesmo tick da troca já se mostrou não confiável em
+            // alguns navegadores/mobile. O fallback de limpeza também foi alongado: window.print()
+            // é bloqueante no desktop mas não no mobile, então um timeout curto podia reverter o
+            // título enquanto o usuário ainda estava decidindo onde salvar.
+            requestAnimationFrame(() => { window.print(); });
+            setTimeout(done, 10000);
         }
         function __ipRound(x,ax,ay,w,ht,r){ if(x.roundRect){ x.beginPath(); x.roundRect(ax,ay,w,ht,r); return; } x.beginPath(); x.moveTo(ax+r,ay); x.arcTo(ax+w,ay,ax+w,ay+ht,r); x.arcTo(ax+w,ay+ht,ax,ay+ht,r); x.arcTo(ax,ay+ht,ax,ay,r); x.arcTo(ax,ay,ax+w,ay,r); x.closePath(); }
         function __ipWrap(x,text,maxW){ const words=String(text).split(' '); const lines=[]; let cur=''; for(const w of words){ const t=cur?cur+' '+w:w; if(x.measureText(t).width>maxW && cur){ lines.push(cur); cur=w; } else cur=t; } if(cur) lines.push(cur); return lines; }
