@@ -1722,5 +1722,21 @@
   "share.native_text": {
     "text": "Mein KI-Nutzungsarchetyp ist {arch}. Entdecken Sie Ihren:",
     "sourceHash": "aa68eae9"
+  },
+  "insight.export_pdf": {
+    "text": "PDF",
+    "sourceHash": "b88103f"
+  },
+  "insight.export_html": {
+    "text": "HTML",
+    "sourceHash": "7c85fa5a"
+  },
+  "insight.export_img": {
+    "text": "Bild",
+    "sourceHash": "ba12fdf5"
+  },
+  "insight.export_config": {
+    "text": "Konfiguration",
+    "sourceHash": "1a8890bc"
   }
 }
