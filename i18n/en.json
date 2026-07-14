@@ -365,7 +365,7 @@
   },
   "credits.body": {
     "text": "Developed by <strong>GM Digital Bunker</strong><sup>™</sup>, a technology-strategy consultancy focused on the advanced application of artificial intelligence – from strategic analysis to the production of technical and communication artifacts. To explore the ideas behind this platform, read \"<a href=\"https://www.amazon.com/dp/B0H7QR7DZ7\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-indigo-600 font-bold hover:text-indigo-800 underline decoration-indigo-300 decoration-1 underline-offset-2\">Quando é Melhor com IA</a>\", by Gonçalo Marques, today at the helm of GM Digital Bunker.",
-    "sourceHash": "870315e2"
+    "sourceHash": "e659a7b8"
   },
   "sec.capacidades.title": {
     "text": "Core AI Capabilities",
@@ -1693,7 +1693,7 @@
   },
   "book.why_body": {
     "text": "The power × friction logic and the archetypes come from the book <strong>\"Quando é Melhor com IA\"</strong>.",
-    "sourceHash": "c8037621"
+    "sourceHash": "1c43a38"
   },
   "book.cta": {
     "text": "Understand",
@@ -1703,17 +1703,9 @@
     "text": "My AI usage archetype",
     "sourceHash": "105f2c1d"
   },
-  "share.card_subline": {
-    "text": "Ranking generated in AI Strategy Hub",
-    "sourceHash": "3191b7a"
-  },
   "share.card_ranking_label": {
     "text": "RANKING FOR THIS PROFILE",
     "sourceHash": "b0dffd66"
-  },
-  "share.card_footer_tagline": {
-    "text": "Discover yours · GM Digital Bunker™",
-    "sourceHash": "90853f7c"
   },
   "share.card_footer_book_prefix": {
     "text": "based on the book",
@@ -1741,10 +1733,10 @@
   },
   "insight.export_arch_label": {
     "text": "Selected Archetype",
-    "sourceHash": "5e2a9c31"
+    "sourceHash": "4ca5fde9"
   },
   "insight.export_bar_label": {
     "text": "Share or export this analysis",
-    "sourceHash": "7d14b8e2"
+    "sourceHash": "af4fc92e"
   }
 }
