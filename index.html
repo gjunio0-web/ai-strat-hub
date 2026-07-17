@@ -171,7 +171,14 @@
            rolado por baixo, sinalizando que a barra está flutuando sobre o conteúdo. */
         #libFilterBar { transition: box-shadow .2s ease, border-color .2s ease; }
         #libFilterBar.lib-elevated { box-shadow: 0 6px 16px -8px rgba(15,23,42,0.18); border-color: rgb(226 232 240); }
-        
+        /* Pista de rolagem horizontal dos chips (mobile): degradês nas bordas que aparecem
+           quando há chips fora da tela e somem ao chegar no início/fim da faixa. */
+        .lib-fade { position: absolute; top: 0; bottom: 0; width: 2rem; pointer-events: none; opacity: 0; transition: opacity .2s ease; z-index: 1; }
+        .lib-fade--left  { left: 0;  background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0)); }
+        .lib-fade--right { right: 0; background: linear-gradient(to left,  rgba(255,255,255,0.95), rgba(255,255,255,0)); }
+        .lib-chips-wrap.can-left  .lib-fade--left  { opacity: 1; }
+        .lib-chips-wrap.can-right .lib-fade--right { opacity: 1; }
+
         /* Glassmorphism */
         .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         
@@ -772,26 +779,32 @@
         </section>
 
         <!-- 4. BIBLIOTECA -->
-        <section id="tab-library" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll p-4 md:p-8 lg:p-12 mobile-nav-clearance md:pb-8">
+        <section id="tab-library" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll px-4 md:px-8 lg:px-12 pt-3 md:pt-5 mobile-nav-clearance md:pb-8">
             <div class="max-w-4xl mx-auto">
-                <header class="mb-5 border-b border-slate-200 pb-5">
-                    <h2 class="section-title" data-i18n="sec.biblioteca.title" data-i18n-pt="Biblioteca de Definições">Biblioteca de Definições</h2><p class="section-subtitle" data-i18n="sec.biblioteca.subtitle" data-i18n-pt="Glossário técnico das capacidades.">Glossário técnico das capacidades.</p>
-                </header>
-                <!-- Barra de filtros fixa: os chips ficam sempre visíveis enquanto as definições
-                     rolam por baixo (visibilidade do status / reconhecer em vez de lembrar). No
-                     mobile os chips rolam na horizontal (no-scrollbar); no desktop, quebram linha. -->
-                <div id="libFilterBar" class="sticky top-0 z-20 pt-2 pb-3 mb-5 bg-white/85 backdrop-blur-md">
-                    <div class="flex md:flex-wrap gap-2 overflow-x-auto no-scrollbar">
-                        <button onclick="renderCanon('all')" id="filter-lib-all" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active" data-i18n="common.todos" data-i18n-pt="Todos">Todos</button>
-                        <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors" data-i18n="biblioteca.manifesto" data-i18n-pt="Manifesto">Manifesto</button>
-                        <button onclick="renderCanon('think')" id="filter-lib-think" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
-                        <button onclick="renderCanon('disc')" id="filter-lib-disc" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
-                        <button onclick="renderCanon('design')" id="filter-lib-design" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
-                        <button onclick="renderCanon('build')" id="filter-lib-build" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">Building</button>
-                        <button onclick="renderCanon('integ')" id="filter-lib-integ" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
-                        <button onclick="renderCanon('stream')" id="filter-lib-stream" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors">Streamlining</button>
+                <!-- Barra de filtros fixa NO TOPO da Biblioteca (logo abaixo do cabeçalho geral no
+                     mobile): os chips ficam sempre visíveis enquanto as definições rolam por baixo
+                     (visibilidade do status / reconhecer em vez de lembrar). No mobile os chips
+                     rolam na horizontal, com degradês nas bordas indicando que há mais fora da tela;
+                     no desktop, quebram linha. -->
+                <div id="libFilterBar" class="sticky top-0 z-20 pt-1 pb-3 bg-white/85 backdrop-blur-md">
+                    <div class="lib-chips-wrap relative">
+                        <div id="libChips" class="flex md:flex-wrap gap-2 overflow-x-auto no-scrollbar">
+                            <button onclick="renderCanon('all')" id="filter-lib-all" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active" data-i18n="common.todos" data-i18n-pt="Todos">Todos</button>
+                            <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors" data-i18n="biblioteca.manifesto" data-i18n-pt="Manifesto">Manifesto</button>
+                            <button onclick="renderCanon('think')" id="filter-lib-think" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
+                            <button onclick="renderCanon('disc')" id="filter-lib-disc" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
+                            <button onclick="renderCanon('design')" id="filter-lib-design" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
+                            <button onclick="renderCanon('build')" id="filter-lib-build" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">Building</button>
+                            <button onclick="renderCanon('integ')" id="filter-lib-integ" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
+                            <button onclick="renderCanon('stream')" id="filter-lib-stream" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors">Streamlining</button>
+                        </div>
+                        <div class="lib-fade lib-fade--left md:hidden" aria-hidden="true"></div>
+                        <div class="lib-fade lib-fade--right md:hidden" aria-hidden="true"></div>
                     </div>
                 </div>
+                <header class="mt-4 mb-5 border-b border-slate-200 pb-5">
+                    <h2 class="section-title" data-i18n="sec.biblioteca.title" data-i18n-pt="Biblioteca de Definições">Biblioteca de Definições</h2><p class="section-subtitle" data-i18n="sec.biblioteca.subtitle" data-i18n-pt="Glossário técnico das capacidades.">Glossário técnico das capacidades.</p>
+                </header>
                 <div class="text-sm text-slate-600 leading-relaxed text-justify" id="canonContent"></div>
             </div>
         </section>
@@ -1364,7 +1377,9 @@
             target.classList.remove('tab-inactive');
             target.classList.add('tab-active');
 
-
+            // Recalcula as pistas de rolagem dos chips da Biblioteca quando a aba fica visível
+            // (scrollWidth/clientWidth só são confiáveis com a aba exibida).
+            if(tabId === 'tab-library' && typeof window.updateLibChipFades === 'function') window.updateLibChipFades();
 
             // Update Menu States
             document.querySelectorAll('.nav-item').forEach(btn => {
@@ -1499,7 +1514,24 @@
                 if(el.closest('[id$="-modal-overlay"], [id$="-modal-content"], #welcome-modal-content, #gemini-modal')) return;
                 el.addEventListener('scroll', onScrollArea, { passive: true });
             });
-        
+
+            // Pista de rolagem horizontal dos chips de filtro da Biblioteca (mobile): mostra o
+            // degradê da direita quando há chips escondidos à frente e o da esquerda quando já se
+            // rolou — some ao chegar em cada extremo. Recalcula ao rolar a faixa, ao redimensionar
+            // e ao abrir a aba (o scrollWidth só é confiável com a aba visível).
+            const libChips = document.getElementById('libChips');
+            window.updateLibChipFades = function(){
+                if(!libChips) return;
+                const wrap = libChips.parentElement;
+                const maxLeft = libChips.scrollWidth - libChips.clientWidth;
+                wrap.classList.toggle('can-left', libChips.scrollLeft > 1);
+                wrap.classList.toggle('can-right', libChips.scrollLeft < maxLeft - 1);
+            };
+            if(libChips){
+                libChips.addEventListener('scroll', window.updateLibChipFades, { passive: true });
+                window.addEventListener('resize', window.updateLibChipFades, { passive: true });
+                window.updateLibChipFades();
+            }
 
             try {
                 if(localStorage.getItem('aistrathub_welcome_dismissed') !== '1'){
