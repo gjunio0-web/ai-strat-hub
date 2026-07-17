@@ -2622,48 +2622,39 @@
             const html = __insightStandaloneHTML();
             const fnameTitle = __insightFilename('pdf').replace(/\.pdf$/, '');
 
-            // Impressão via <iframe> isolado. Tentativas anteriores escondiam o modal ao vivo no
-            // próprio documento (via @media print e depois via display:none no DOM) e mesmo assim,
-            // em pelo menos um Android/Chrome, o serviço de impressão do sistema saía imprimindo o
-            // modal — indício de que esse pipeline rasteriza a tela/ignora o estado da página no
-            // momento da captura. Aqui renderizamos SÓ o documento independente
-            // (__insightStandaloneHTML, o mesmo do export HTML) dentro de um iframe oculto e
-            // mandamos imprimir esse iframe: não existe modal nem chrome do app lá dentro para
-            // vazar, então não importa como a engine capture a página.
-            const iframe = document.createElement('iframe');
-            iframe.setAttribute('aria-hidden', 'true');
-            iframe.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden;';
+            // Impressão via JANELA TOP-LEVEL nova (não iframe). Histórico: esconder o modal via
+            // @media print e via display:none no DOM não surtiu efeito neste Android/Chrome, e o
+            // iframe.contentWindow.print() (que funcionou por um tempo) passou a imprimir o
+            // DOCUMENTO PAI — a página com o modal —, ignorando o conteúdo do iframe (confirmado
+            // por screenshot: layout de impressão do pai, modal centralizado, fundo branco). Ou
+            // seja, esse pipeline sempre renderiza o documento atual inteiro na impressão. A única
+            // saída robusta é o conteúdo ser um documento top-level próprio: abrimos uma janela
+            // com SÓ a análise (__insightStandaloneHTML, o mesmo do export HTML) e imprimimos ela.
+            // Não há modal nem chrome do app nesse documento, então nada pode vazar.
+            const w = window.open('', '_blank');
+            if(!w){
+                // Pop-up bloqueado (raro num clique direto). Sem janela não dá pra imprimir
+                // isolado; avisa em vez de deixar o botão "sem efeito".
+                alert(tx('Permita pop-ups neste site para exportar o PDF.', 'insight.pdf_popup_blocked'));
+                return;
+            }
+            w.document.open();
+            w.document.write(html);
+            w.document.close();
+            try { w.document.title = fnameTitle; } catch(e){} // nome sugerido no diálogo Salvar como PDF
 
-            let cleaned = false;
-            const cleanup = ()=>{ if(cleaned) return; cleaned = true; if(iframe.parentNode) iframe.parentNode.removeChild(iframe); };
+            // Desktop: fecha a aba de impressão após imprimir OU cancelar (Chrome dispara
+            // afterprint nos dois casos). Mobile: afterprint pode não disparar — a aba fica e o
+            // usuário fecha; inofensivo.
+            try { w.onafterprint = ()=>{ try { w.close(); } catch(e){} }; } catch(e){}
 
-            iframe.onload = ()=>{
-                const win = iframe.contentWindow;
-                // Nome sugerido no diálogo "Salvar como PDF": ao imprimir iframe.contentWindow, o
-                // Chrome desktop usa o document.title do documento PRINCIPAL (não o do iframe) como
-                // nome padrão. Então trocamos o title da página; também setamos o do iframe, que
-                // ajuda em alguns navegadores/iOS. (No Android o serviço de impressão do sistema
-                // ignora o title de qualquer forma — limitação da plataforma.)
-                const prevTitle = document.title;
-                let titleRestored = false;
-                const restoreTitle = ()=>{ if(titleRestored) return; titleRestored = true; document.title = prevTitle; };
-                document.title = fnameTitle;
-                try { win.document.title = fnameTitle; } catch(e){}
-                // NÃO restaurar o title de forma síncrona logo após print(): no Chrome moderno o
-                // print PREVIEW é assíncrono e print() retorna antes de o preview ler o title, então
-                // restaurar na hora apagava o nome antes de o navegador capturá-lo (era esse o bug
-                // do nome vazio no desktop). Restauramos só no afterprint (ouvido nas duas janelas,
-                // pois qual delas dispara varia) + um fallback por timeout.
-                const onAfterPrint = ()=>{ restoreTitle(); cleanup(); };
-                window.addEventListener('afterprint', onAfterPrint, { once:true });
-                try { win.addEventListener('afterprint', onAfterPrint, { once:true }); } catch(e){}
-                try { win.focus(); win.print(); } catch(e){}
-                setTimeout(()=>{ restoreTitle(); cleanup(); }, 60000); // rede de segurança
-            };
-
-            // srcdoc dispara onload de forma confiável para conteúdo escrito na hora.
-            iframe.srcdoc = html;
-            document.body.appendChild(iframe);
+            let printed = false;
+            const doPrint = ()=>{ if(printed) return; printed = true; try { w.focus(); w.print(); } catch(e){} };
+            // Sem imagens externas (fontes de sistema + SVG inline), o layout assenta rápido.
+            // onload cobre o caso normal; o timeout é rede de segurança caso onload não dispare
+            // para um documento escrito via document.write.
+            if(w.document.readyState === 'complete'){ setTimeout(doPrint, 250); }
+            else { w.onload = ()=>setTimeout(doPrint, 250); setTimeout(doPrint, 1500); }
         }
         function __ipRound(x,ax,ay,w,ht,r){ if(x.roundRect){ x.beginPath(); x.roundRect(ax,ay,w,ht,r); return; } x.beginPath(); x.moveTo(ax+r,ay); x.arcTo(ax+w,ay,ax+w,ay+ht,r); x.arcTo(ax+w,ay+ht,ax,ay+ht,r); x.arcTo(ax,ay+ht,ax,ay,r); x.arcTo(ax,ay,ax+w,ay,r); x.closePath(); }
         function __ipWrap(x,text,maxW){ const words=String(text).split(' '); const lines=[]; let cur=''; for(const w of words){ const t=cur?cur+' '+w:w; if(x.measureText(t).width>maxW && cur){ lines.push(cur); cur=w; } else cur=t; } if(cur) lines.push(cur); return lines; }

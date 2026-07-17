@@ -1731,6 +1731,10 @@
     "text": "Konfiguration",
     "sourceHash": "1a8890bc"
   },
+  "insight.pdf_popup_blocked": {
+    "text": "Erlauben Sie Pop-ups auf dieser Seite, um das PDF zu exportieren.",
+    "sourceHash": "3a2b742f"
+  },
   "insight.export_arch_label": {
     "text": "Ausgewählter Archetyp",
     "sourceHash": "4ca5fde9"
