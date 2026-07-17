@@ -2617,33 +2617,58 @@
             const blob = new Blob([html], {type:'text/html'});
             await __shareOrDownload(blob, fname, 'text/html', tx('Análise Estratégica IA','insight.modal_title'), null);
         }
-        function exportInsightPDF(){
-            if(!lastInsight) return;
-            const html = __insightStandaloneHTML();
-            const fnameTitle = __insightFilename('pdf').replace(/\.pdf$/, '');
-
-            // Impressão via JANELA TOP-LEVEL nova (não iframe). Histórico: esconder o modal via
-            // @media print e via display:none no DOM não surtiu efeito neste Android/Chrome, e o
-            // iframe.contentWindow.print() (que funcionou por um tempo) passou a imprimir o
-            // DOCUMENTO PAI — a página com o modal —, ignorando o conteúdo do iframe (confirmado
-            // por screenshot: layout de impressão do pai, modal centralizado, fundo branco). Ou
-            // seja, esse pipeline sempre renderiza o documento atual inteiro na impressão. A única
-            // saída robusta é o conteúdo ser um documento top-level próprio: abrimos uma janela
-            // com SÓ a análise (__insightStandaloneHTML, o mesmo do export HTML) e imprimimos ela.
-            // Não há modal nem chrome do app nesse documento, então nada pode vazar.
-            //
-            // Fonte via URL de BLOB (não document.write): o serviço de impressão do Android relê a
-            // fonte de forma assíncrona para rasterizar o PDF; um documento about:blank montado por
-            // document.write não tem fonte re-carregável, então essa releitura falha com "Ocorreu
-            // um problema ao imprimir a página". Uma blob: URL é uma fonte real e re-carregável.
-            // Também NÃO fechamos a janela nem revogamos a URL cedo: destruir a fonte no meio da
-            // renderização do serviço de impressão causa exatamente esse mesmo erro.
+        // Heurística "é mobile?" para escolher a estratégia de impressão do PDF. Só precisa
+        // separar desktop (onde iframe.contentWindow.print() funciona, invisível e limpo) de
+        // celular/tablet (onde esse pipeline imprime o documento pai / dá erro, exigindo janela
+        // top-level). Assimetria de risco: classificar um desktop como mobile só custa uma aba
+        // visível (ainda funciona); classificar um mobile como desktop QUEBRA. Por isso, na
+        // dúvida (touch), tende para mobile.
+        function __isMobileForPrint(){
+            const ua = navigator.userAgent || '';
+            if(/Android|iPhone|iPod|IEMobile|Opera Mini|Mobile/i.test(ua)) return true;
+            // iPad em iOS 13+ se apresenta como "Macintosh"; maxTouchPoints denuncia o touch.
+            if(/iPad|Macintosh/.test(ua) && (navigator.maxTouchPoints || 0) > 1) return true;
+            return false;
+        }
+        // Desktop: imprime um <iframe> oculto (invisível, sem aba sobrando, com nome de arquivo).
+        // Nos navegadores desktop iframe.contentWindow.print() imprime só o iframe corretamente.
+        function __printInsightViaIframe(html, fnameTitle){
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('aria-hidden', 'true');
+            iframe.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden;';
+            let cleaned = false;
+            const cleanup = ()=>{ if(cleaned) return; cleaned = true; if(iframe.parentNode) iframe.parentNode.removeChild(iframe); };
+            iframe.onload = ()=>{
+                const win = iframe.contentWindow;
+                // Nome no diálogo "Salvar como PDF": no desktop o Chrome usa o document.title do
+                // documento PRINCIPAL ao imprimir iframe.contentWindow; setamos os dois. Restauramos
+                // só no afterprint (o print preview é assíncrono; restaurar síncrono apagava o nome).
+                const prevTitle = document.title;
+                let titleRestored = false;
+                const restoreTitle = ()=>{ if(titleRestored) return; titleRestored = true; document.title = prevTitle; };
+                document.title = fnameTitle;
+                try { win.document.title = fnameTitle; } catch(e){}
+                const onAfterPrint = ()=>{ restoreTitle(); cleanup(); };
+                window.addEventListener('afterprint', onAfterPrint, { once:true });
+                try { win.addEventListener('afterprint', onAfterPrint, { once:true }); } catch(e){}
+                try { win.focus(); win.print(); } catch(e){}
+                setTimeout(()=>{ restoreTitle(); cleanup(); }, 60000); // rede de segurança
+            };
+            iframe.srcdoc = html;
+            document.body.appendChild(iframe);
+        }
+        // Mobile: abre a análise numa JANELA TOP-LEVEL nova e imprime dela. Neste Android/Chrome o
+        // iframe.contentWindow.print() passou a imprimir o documento PAI (com o modal), e nenhum
+        // truque de CSS/DOM isola um subconjunto do documento atual — só um documento próprio. Fonte
+        // via blob: URL (não document.write) porque o serviço de impressão do Android relê a fonte
+        // de forma assíncrona; about:blank montado por document.write não é re-carregável e dá
+        // "Ocorreu um problema ao imprimir a página". Não fechamos a janela nem revogamos a URL cedo
+        // (destruir a fonte no meio da renderização causa o mesmo erro).
+        function __printInsightViaWindow(html, fnameTitle){
             const blob = new Blob([html], {type:'text/html'});
             const url = URL.createObjectURL(blob);
             const w = window.open(url, '_blank');
             if(!w){
-                // Pop-up bloqueado (raro num clique direto). Sem janela não dá pra imprimir
-                // isolado; avisa em vez de deixar o botão "sem efeito".
                 URL.revokeObjectURL(url);
                 alert(tx('Permita pop-ups neste site para exportar o PDF.', 'insight.pdf_popup_blocked'));
                 return;
@@ -2651,15 +2676,19 @@
             let printed = false;
             const doPrint = ()=>{
                 if(printed) return; printed = true;
-                try { w.document.title = fnameTitle; } catch(e){} // nome sugerido no diálogo Salvar como PDF
+                try { w.document.title = fnameTitle; } catch(e){}
                 try { w.focus(); w.print(); } catch(e){}
             };
-            // Imprime quando o documento blob terminar de carregar; o timeout é rede de segurança
-            // caso o onload não seja capturado a tempo (o guard `printed` evita imprimir 2x).
             try { w.onload = ()=> setTimeout(doPrint, 300); } catch(e){}
-            setTimeout(doPrint, 1500);
-            // Revoga a blob URL só bem depois, para o serviço de impressão ter tido tempo de ler.
+            setTimeout(doPrint, 1500); // rede de segurança (guard `printed` evita imprimir 2x)
             setTimeout(()=>{ try { URL.revokeObjectURL(url); } catch(e){} }, 60000);
+        }
+        function exportInsightPDF(){
+            if(!lastInsight) return;
+            const html = __insightStandaloneHTML();
+            const fnameTitle = __insightFilename('pdf').replace(/\.pdf$/, '');
+            if(__isMobileForPrint()) __printInsightViaWindow(html, fnameTitle);
+            else __printInsightViaIframe(html, fnameTitle);
         }
         function __ipRound(x,ax,ay,w,ht,r){ if(x.roundRect){ x.beginPath(); x.roundRect(ax,ay,w,ht,r); return; } x.beginPath(); x.moveTo(ax+r,ay); x.arcTo(ax+w,ay,ax+w,ay+ht,r); x.arcTo(ax+w,ay+ht,ax,ay+ht,r); x.arcTo(ax,ay+ht,ax,ay,r); x.arcTo(ax,ay,ax+w,ay,r); x.closePath(); }
         function __ipWrap(x,text,maxW){ const words=String(text).split(' '); const lines=[]; let cur=''; for(const w of words){ const t=cur?cur+' '+w:w; if(x.measureText(t).width>maxW && cur){ lines.push(cur); cur=w; } else cur=t; } if(cur) lines.push(cur); return lines; }
