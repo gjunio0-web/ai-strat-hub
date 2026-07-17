@@ -364,8 +364,8 @@
     "sourceHash": "a9d62100"
   },
   "credits.body": {
-    "text": "Developed by <strong>GM Digital Bunker</strong><sup>™</sup>, a technology-strategy consultancy focused on the advanced application of artificial intelligence – from strategic analysis to the production of technical and communication artifacts. To explore the ideas behind this platform, read \"<a href=\"https://www.amazon.com/dp/B0H7QR7DZ7\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-indigo-600 font-bold hover:text-indigo-800 underline decoration-indigo-300 decoration-1 underline-offset-2\">Quando é Melhor com IA</a>\", by Gonçalo Marques, today at the helm of GM Digital Bunker.",
-    "sourceHash": "e659a7b8"
+    "text": "Developed by <strong>GM Digital Bunker</strong><sup>™</sup>, an independent technology-strategy practice focused on the advanced application of artificial intelligence – from strategic analysis to the production of technical and communication artifacts. To explore the ideas behind this platform, read \"<a href=\"https://www.amazon.com/dp/B0H7QR7DZ7\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-indigo-600 font-bold hover:text-indigo-800 underline decoration-indigo-300 decoration-1 underline-offset-2\">Quando é Melhor com IA</a>\", by Gonçalo Marques.",
+    "sourceHash": "a389ac28"
   },
   "sec.capacidades.title": {
     "text": "Core AI Capabilities",
