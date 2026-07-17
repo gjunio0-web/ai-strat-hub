@@ -112,6 +112,23 @@
                 transition: none !important;
             }
         }
+        /* Popover de idioma da sidebar desktop (abre para cima, a partir do botão). */
+        #langMenuDesktop {
+            transform-origin: bottom left;
+            opacity: 0;
+            transform: scale(0.95) translateY(6px);
+            pointer-events: none;
+            transition: opacity 160ms ease-in, transform 160ms ease-in;
+        }
+        #langMenuDesktop.lang-menu-open {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+            transition: opacity 200ms ease-out, transform 200ms ease-out;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #langMenuDesktop, #langMenuDesktop.lang-menu-open { transition: none !important; }
+        }
 
         /* Callout de arquétipos: colapsa (não remove) + ícone para reabrir */
         .arch-hint-wrap {
@@ -354,12 +371,32 @@
             </button>
         </div>
 
-        <div class="px-4 pb-3">
-            <select id="langSelect" onchange="applyLocale(this.value)" class="w-full bg-slate-800 text-slate-300 text-xs font-bold rounded-lg px-3 py-2 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Idioma">
-                <option value="pt">PT</option>
-                <option value="en">EN</option>
-                <option value="de">DE</option>
-            </select>
+        <!-- Seletor de idioma (desktop): botão-gatilho + popover. No sidebar estreito mostra só o
+             código (ex.: EN) centralizado, consistente com o trilho de ícones; no largo mostra
+             globo + nome + chevron. Reaproveita selectLocale()/checkmarks do menu mobile. -->
+        <div class="px-4 pb-3 relative">
+            <button id="langTriggerDesktop" onclick="toggleLangMenuDesktop(event)" aria-haspopup="true" aria-expanded="false" aria-label="Idioma" class="w-full flex items-center justify-center lg:justify-between gap-2 px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <span class="flex items-center gap-2 min-w-0">
+                    <svg class="hidden lg:block w-5 h-5 shrink-0 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 010 18M12 3a15 15 0 000 18M3 12a9 9 0 1018 0 9 9 0 00-18 0z"></path></svg>
+                    <span id="langCodeDesktop" class="lg:hidden text-sm font-black tracking-wide">PT</span>
+                    <span id="langNameDesktop" class="hidden lg:block text-sm font-bold truncate">Português</span>
+                </span>
+                <svg class="hidden lg:block w-4 h-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div id="langMenuDesktop" class="hidden md:flex flex-col gap-0.5 absolute left-3 bottom-full mb-2 z-[60] w-[184px] bg-slate-900/95 backdrop-blur-md border border-indigo-300/30 rounded-xl p-1.5 shadow-xl">
+                <button onclick="selectLocale('pt')" data-lang-option="pt" class="lang-menu-item flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors">
+                    <span>Português</span>
+                    <svg class="w-4 h-4 text-indigo-300 lang-check hidden shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </button>
+                <button onclick="selectLocale('en')" data-lang-option="en" class="lang-menu-item flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors">
+                    <span>English</span>
+                    <svg class="w-4 h-4 text-indigo-300 lang-check hidden shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </button>
+                <button onclick="selectLocale('de')" data-lang-option="de" class="lang-menu-item flex items-center justify-between gap-3 px-3 py-2 rounded-lg text-sm font-bold text-white hover:bg-white/10 transition-colors">
+                    <span>Deutsch</span>
+                    <svg class="w-4 h-4 text-indigo-300 lang-check hidden shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                </button>
+            </div>
         </div>
 
         <div class="p-6 border-t border-slate-800 bg-slate-950">
@@ -986,13 +1023,17 @@
             return 'pt';
         }
 
+        const LANG_NAMES = { pt: 'Português', en: 'English', de: 'Deutsch' };
         function updateLangSelectUI(lang){
-            const sel1 = document.getElementById('langSelect');
-            if(sel1) sel1.value = lang;
+            // Sidebar desktop: código (estado estreito) + nome (estado largo).
+            const code = document.getElementById('langCodeDesktop');
+            if(code) code.textContent = lang.toUpperCase();
+            const name = document.getElementById('langNameDesktop');
+            if(name) name.textContent = LANG_NAMES[lang] || lang.toUpperCase();
             const fabLabel = document.getElementById('langFabLabel');
             if(fabLabel) fabLabel.textContent = lang.toUpperCase();
-            // Marca com um check apenas a opção ativa no menu mobile
-            document.querySelectorAll('#langMenu [data-lang-option]').forEach(btn => {
+            // Marca com um check apenas a opção ativa — nos menus mobile E desktop.
+            document.querySelectorAll('#langMenu [data-lang-option], #langMenuDesktop [data-lang-option]').forEach(btn => {
                 const check = btn.querySelector('.lang-check');
                 if(check) check.classList.toggle('hidden', btn.getAttribute('data-lang-option') !== lang);
             });
@@ -1046,7 +1087,38 @@
 
         function selectLocale(lang){
             closeLangMenu();
+            closeLangMenuDesktop();
             applyLocale(lang);
+        }
+
+        // Popover de idioma da sidebar desktop — abre/fecha com animação (escala+fade) e fecha ao
+        // clicar fora (listener no document, evitando problemas de z-index/stacking com overlay).
+        function __langDeskOutside(e){
+            const trigger = document.getElementById('langTriggerDesktop');
+            if(trigger && !trigger.parentElement.contains(e.target)) closeLangMenuDesktop();
+        }
+        function toggleLangMenuDesktop(e){
+            if(e) e.stopPropagation();
+            const menu = document.getElementById('langMenuDesktop');
+            if(!menu) return;
+            if(menu.classList.contains('lang-menu-open')){ closeLangMenuDesktop(); return; }
+            menu.classList.remove('hidden'); menu.classList.add('flex');
+            void menu.offsetHeight; // reflow p/ a transição de entrada disparar
+            requestAnimationFrame(() => menu.classList.add('lang-menu-open'));
+            const trigger = document.getElementById('langTriggerDesktop');
+            if(trigger) trigger.setAttribute('aria-expanded', 'true');
+            // adia o listener de clique-fora para não capturar o próprio clique de abertura
+            setTimeout(() => document.addEventListener('click', __langDeskOutside), 0);
+        }
+        function closeLangMenuDesktop(){
+            const menu = document.getElementById('langMenuDesktop');
+            if(!menu) return;
+            document.removeEventListener('click', __langDeskOutside);
+            const trigger = document.getElementById('langTriggerDesktop');
+            if(trigger) trigger.setAttribute('aria-expanded', 'false');
+            if(!menu.classList.contains('lang-menu-open')){ menu.classList.add('hidden'); menu.classList.remove('flex'); return; }
+            menu.classList.remove('lang-menu-open');
+            setTimeout(() => { menu.classList.add('hidden'); menu.classList.remove('flex'); }, 200);
         }
 
         // applyLocale: troca o idioma ativo. PT renderiza na hora (síncrono); en/de buscam o
