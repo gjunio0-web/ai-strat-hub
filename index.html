@@ -2631,30 +2631,35 @@
             // saída robusta é o conteúdo ser um documento top-level próprio: abrimos uma janela
             // com SÓ a análise (__insightStandaloneHTML, o mesmo do export HTML) e imprimimos ela.
             // Não há modal nem chrome do app nesse documento, então nada pode vazar.
-            const w = window.open('', '_blank');
+            //
+            // Fonte via URL de BLOB (não document.write): o serviço de impressão do Android relê a
+            // fonte de forma assíncrona para rasterizar o PDF; um documento about:blank montado por
+            // document.write não tem fonte re-carregável, então essa releitura falha com "Ocorreu
+            // um problema ao imprimir a página". Uma blob: URL é uma fonte real e re-carregável.
+            // Também NÃO fechamos a janela nem revogamos a URL cedo: destruir a fonte no meio da
+            // renderização do serviço de impressão causa exatamente esse mesmo erro.
+            const blob = new Blob([html], {type:'text/html'});
+            const url = URL.createObjectURL(blob);
+            const w = window.open(url, '_blank');
             if(!w){
                 // Pop-up bloqueado (raro num clique direto). Sem janela não dá pra imprimir
                 // isolado; avisa em vez de deixar o botão "sem efeito".
+                URL.revokeObjectURL(url);
                 alert(tx('Permita pop-ups neste site para exportar o PDF.', 'insight.pdf_popup_blocked'));
                 return;
             }
-            w.document.open();
-            w.document.write(html);
-            w.document.close();
-            try { w.document.title = fnameTitle; } catch(e){} // nome sugerido no diálogo Salvar como PDF
-
-            // Desktop: fecha a aba de impressão após imprimir OU cancelar (Chrome dispara
-            // afterprint nos dois casos). Mobile: afterprint pode não disparar — a aba fica e o
-            // usuário fecha; inofensivo.
-            try { w.onafterprint = ()=>{ try { w.close(); } catch(e){} }; } catch(e){}
-
             let printed = false;
-            const doPrint = ()=>{ if(printed) return; printed = true; try { w.focus(); w.print(); } catch(e){} };
-            // Sem imagens externas (fontes de sistema + SVG inline), o layout assenta rápido.
-            // onload cobre o caso normal; o timeout é rede de segurança caso onload não dispare
-            // para um documento escrito via document.write.
-            if(w.document.readyState === 'complete'){ setTimeout(doPrint, 250); }
-            else { w.onload = ()=>setTimeout(doPrint, 250); setTimeout(doPrint, 1500); }
+            const doPrint = ()=>{
+                if(printed) return; printed = true;
+                try { w.document.title = fnameTitle; } catch(e){} // nome sugerido no diálogo Salvar como PDF
+                try { w.focus(); w.print(); } catch(e){}
+            };
+            // Imprime quando o documento blob terminar de carregar; o timeout é rede de segurança
+            // caso o onload não seja capturado a tempo (o guard `printed` evita imprimir 2x).
+            try { w.onload = ()=> setTimeout(doPrint, 300); } catch(e){}
+            setTimeout(doPrint, 1500);
+            // Revoga a blob URL só bem depois, para o serviço de impressão ter tido tempo de ler.
+            setTimeout(()=>{ try { URL.revokeObjectURL(url); } catch(e){} }, 60000);
         }
         function __ipRound(x,ax,ay,w,ht,r){ if(x.roundRect){ x.beginPath(); x.roundRect(ax,ay,w,ht,r); return; } x.beginPath(); x.moveTo(ax+r,ay); x.arcTo(ax+w,ay,ax+w,ay+ht,r); x.arcTo(ax+w,ay+ht,ax,ay+ht,r); x.arcTo(ax,ay+ht,ax,ay,r); x.arcTo(ax,ay,ax+w,ay,r); x.closePath(); }
         function __ipWrap(x,text,maxW){ const words=String(text).split(' '); const lines=[]; let cur=''; for(const w of words){ const t=cur?cur+' '+w:w; if(x.measureText(t).width>maxW && cur){ lines.push(cur); cur=w; } else cur=t; } if(cur) lines.push(cur); return lines; }
