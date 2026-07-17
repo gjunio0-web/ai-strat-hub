@@ -164,6 +164,13 @@
         .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
         .custom-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
+        /* Faixa de chips com rolagem horizontal (mobile) sem barra visível. */
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        /* Sombra de elevação da barra de filtros da Biblioteca — só aparece quando há conteúdo
+           rolado por baixo, sinalizando que a barra está flutuando sobre o conteúdo. */
+        #libFilterBar { transition: box-shadow .2s ease, border-color .2s ease; }
+        #libFilterBar.lib-elevated { box-shadow: 0 6px 16px -8px rgba(15,23,42,0.18); border-color: rgb(226 232 240); }
         
         /* Glassmorphism */
         .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border: 1px solid rgba(226, 232, 240, 0.8); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
@@ -767,19 +774,24 @@
         <!-- 4. BIBLIOTECA -->
         <section id="tab-library" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll p-4 md:p-8 lg:p-12 mobile-nav-clearance md:pb-8">
             <div class="max-w-4xl mx-auto">
-                <header class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-slate-200 pb-6">
-                    <div><h2 class="section-title" data-i18n="sec.biblioteca.title" data-i18n-pt="Biblioteca de Definições">Biblioteca de Definições</h2><p class="section-subtitle" data-i18n="sec.biblioteca.subtitle" data-i18n-pt="Glossário técnico das capacidades.">Glossário técnico das capacidades.</p></div>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="renderCanon('all')" id="filter-lib-all" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active" data-i18n="common.todos" data-i18n-pt="Todos">Todos</button>
-                        <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors" data-i18n="biblioteca.manifesto" data-i18n-pt="Manifesto">Manifesto</button>
-                        <button onclick="renderCanon('think')" id="filter-lib-think" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
-                        <button onclick="renderCanon('disc')" id="filter-lib-disc" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
-                        <button onclick="renderCanon('design')" id="filter-lib-design" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
-                        <button onclick="renderCanon('build')" id="filter-lib-build" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">Building</button>
-                        <button onclick="renderCanon('integ')" id="filter-lib-integ" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
-                        <button onclick="renderCanon('stream')" id="filter-lib-stream" class="px-3 py-1 text-[10px] font-bold uppercase rounded border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors">Streamlining</button>
-                    </div>
+                <header class="mb-5 border-b border-slate-200 pb-5">
+                    <h2 class="section-title" data-i18n="sec.biblioteca.title" data-i18n-pt="Biblioteca de Definições">Biblioteca de Definições</h2><p class="section-subtitle" data-i18n="sec.biblioteca.subtitle" data-i18n-pt="Glossário técnico das capacidades.">Glossário técnico das capacidades.</p>
                 </header>
+                <!-- Barra de filtros fixa: os chips ficam sempre visíveis enquanto as definições
+                     rolam por baixo (visibilidade do status / reconhecer em vez de lembrar). No
+                     mobile os chips rolam na horizontal (no-scrollbar); no desktop, quebram linha. -->
+                <div id="libFilterBar" class="sticky top-0 z-20 pt-2 pb-3 mb-5 bg-white/85 backdrop-blur-md">
+                    <div class="flex md:flex-wrap gap-2 overflow-x-auto no-scrollbar">
+                        <button onclick="renderCanon('all')" id="filter-lib-all" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active" data-i18n="common.todos" data-i18n-pt="Todos">Todos</button>
+                        <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors" data-i18n="biblioteca.manifesto" data-i18n-pt="Manifesto">Manifesto</button>
+                        <button onclick="renderCanon('think')" id="filter-lib-think" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
+                        <button onclick="renderCanon('disc')" id="filter-lib-disc" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
+                        <button onclick="renderCanon('design')" id="filter-lib-design" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
+                        <button onclick="renderCanon('build')" id="filter-lib-build" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">Building</button>
+                        <button onclick="renderCanon('integ')" id="filter-lib-integ" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
+                        <button onclick="renderCanon('stream')" id="filter-lib-stream" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors">Streamlining</button>
+                    </div>
+                </div>
                 <div class="text-sm text-slate-600 leading-relaxed text-justify" id="canonContent"></div>
             </div>
         </section>
@@ -1466,7 +1478,13 @@
 
             // Subtítulo do header mobile: colapsa ao rolar qualquer área de conteúdo
             const topBar = document.getElementById('mobileTopBar');
+            const libFilterBar = document.getElementById('libFilterBar');
             const onScrollArea = (e) => {
+                // Elevação da barra de filtros fixa da Biblioteca: ganha sombra só quando há
+                // conteúdo rolado por baixo (fica "chapada" no topo, flutuante ao rolar).
+                if(libFilterBar && e.target.id === 'tab-library'){
+                    libFilterBar.classList.toggle('lib-elevated', e.target.scrollTop > 4);
+                }
                 if(!topBar) return;
                 if(e.target.scrollTop > 40){ topBar.classList.add('subtitle-hidden'); }
                 else { topBar.classList.remove('subtitle-hidden'); }
