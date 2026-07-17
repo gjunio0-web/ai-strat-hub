@@ -779,29 +779,30 @@
         </section>
 
         <!-- 4. BIBLIOTECA -->
-        <section id="tab-library" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll px-4 md:px-8 lg:px-12 pt-3 md:pt-5 mobile-nav-clearance md:pb-8">
-            <div class="max-w-4xl mx-auto">
-                <!-- Barra de filtros fixa NO TOPO da Biblioteca (logo abaixo do cabeçalho geral no
-                     mobile): os chips ficam sempre visíveis enquanto as definições rolam por baixo
-                     (visibilidade do status / reconhecer em vez de lembrar). No mobile os chips
-                     rolam na horizontal, com degradês nas bordas indicando que há mais fora da tela;
-                     no desktop, quebram linha. -->
-                <div id="libFilterBar" class="sticky top-0 z-20 pt-1 pb-3 bg-white/85 backdrop-blur-md">
-                    <div class="lib-chips-wrap relative">
-                        <div id="libChips" class="flex md:flex-wrap gap-2 overflow-x-auto no-scrollbar">
-                            <button onclick="renderCanon('all')" id="filter-lib-all" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active" data-i18n="common.todos" data-i18n-pt="Todos">Todos</button>
-                            <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors" data-i18n="biblioteca.manifesto" data-i18n-pt="Manifesto">Manifesto</button>
-                            <button onclick="renderCanon('think')" id="filter-lib-think" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
-                            <button onclick="renderCanon('disc')" id="filter-lib-disc" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
-                            <button onclick="renderCanon('design')" id="filter-lib-design" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
-                            <button onclick="renderCanon('build')" id="filter-lib-build" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">Building</button>
-                            <button onclick="renderCanon('integ')" id="filter-lib-integ" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
-                            <button onclick="renderCanon('stream')" id="filter-lib-stream" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors">Streamlining</button>
-                        </div>
-                        <div class="lib-fade lib-fade--left md:hidden" aria-hidden="true"></div>
-                        <div class="lib-fade lib-fade--right md:hidden" aria-hidden="true"></div>
+        <section id="tab-library" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll mobile-nav-clearance md:pb-8">
+            <!-- Barra de filtros fixa NO TOPO da Biblioteca (logo abaixo do cabeçalho geral no
+                 mobile). É FILHA DIRETA do container de scroll (a <section>) — padrão mais
+                 confiável de position:sticky, cola flush no topo (top:0) sem offset. Full-width,
+                 com os chips centralizados no max-w-4xl. Os chips ficam sempre visíveis enquanto
+                 as definições rolam por baixo. No mobile rolam na horizontal, com degradês nas
+                 bordas indicando que há mais fora da tela; no desktop, quebram linha. -->
+            <div id="libFilterBar" class="sticky top-0 z-20 bg-white/85 backdrop-blur-md px-4 md:px-8 lg:px-12 pt-2 pb-3">
+                <div class="max-w-4xl mx-auto lib-chips-wrap relative">
+                    <div id="libChips" class="flex md:flex-wrap gap-2 overflow-x-auto no-scrollbar">
+                        <button onclick="renderCanon('all')" id="filter-lib-all" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-200 bg-white text-slate-600 transition-colors filter-active" data-i18n="common.todos" data-i18n-pt="Todos">Todos</button>
+                        <button onclick="renderCanon('manifesto')" id="filter-lib-manifesto" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-slate-300 bg-slate-800 text-white hover:bg-slate-700 transition-colors" data-i18n="biblioteca.manifesto" data-i18n-pt="Manifesto">Manifesto</button>
+                        <button onclick="renderCanon('think')" id="filter-lib-think" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Thinking</button>
+                        <button onclick="renderCanon('disc')" id="filter-lib-disc" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors">Discovering</button>
+                        <button onclick="renderCanon('design')" id="filter-lib-design" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-pink-200 bg-pink-50 text-pink-700 hover:bg-pink-100 transition-colors">Designing</button>
+                        <button onclick="renderCanon('build')" id="filter-lib-build" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 transition-colors">Building</button>
+                        <button onclick="renderCanon('integ')" id="filter-lib-integ" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">Integrating</button>
+                        <button onclick="renderCanon('stream')" id="filter-lib-stream" class="shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors">Streamlining</button>
                     </div>
+                    <div class="lib-fade lib-fade--left md:hidden" aria-hidden="true"></div>
+                    <div class="lib-fade lib-fade--right md:hidden" aria-hidden="true"></div>
                 </div>
+            </div>
+            <div class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12">
                 <header class="mt-4 mb-5 border-b border-slate-200 pb-5">
                     <h2 class="section-title" data-i18n="sec.biblioteca.title" data-i18n-pt="Biblioteca de Definições">Biblioteca de Definições</h2><p class="section-subtitle" data-i18n="sec.biblioteca.subtitle" data-i18n-pt="Glossário técnico das capacidades.">Glossário técnico das capacidades.</p>
                 </header>
