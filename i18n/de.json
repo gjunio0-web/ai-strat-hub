@@ -32,80 +32,80 @@
     "sourceHash": "a8a6e0ef"
   },
   "cases.5.1.name": {
-    "text": "5.1 Automatisierte Folien",
-    "sourceHash": "54ff0d02"
+    "text": "1.1 Automatisierte Folien",
+    "sourceHash": "1959317e"
   },
   "cases.5.1.desc": {
     "text": "Erzeugung diagrammierter Präsentationen aus Text-Skripten.",
     "sourceHash": "7e0bc923"
   },
   "cases.5.2.name": {
-    "text": "5.2 Visuelle Konsistenz",
-    "sourceHash": "983065b6"
+    "text": "1.2 Visuelle Konsistenz",
+    "sourceHash": "7759eab2"
   },
   "cases.5.2.desc": {
     "text": "Erzeugung von Marken-Assets mit strenger Identität (Style Ref).",
     "sourceHash": "1597dd9c"
   },
   "cases.5.3.name": {
-    "text": "5.3 Technische Recherche",
-    "sourceHash": "54a0de41"
+    "text": "1.3 Technische Recherche",
+    "sourceHash": "240424bd"
   },
   "cases.5.3.desc": {
     "text": "Durchsuchen von Datenbanken mit echtem Grounding und Quellenangabe.",
     "sourceHash": "6598291d"
   },
   "cases.5.4.name": {
-    "text": "5.4 Massive Zusammenfassungen",
-    "sourceHash": "fbbbdf9f"
+    "text": "1.4 Massive Zusammenfassungen",
+    "sourceHash": "cb1f261b"
   },
   "cases.5.4.desc": {
     "text": "Vollständiges Lesen von Büchern ohne Verlust an Nuancen.",
     "sourceHash": "68ff42bb"
   },
   "cases.5.5.name": {
-    "text": "5.5 Multimodal",
-    "sourceHash": "5fd5ea95"
+    "text": "1.5 Multimodal",
+    "sourceHash": "72d50411"
   },
   "cases.5.5.desc": {
     "text": "Interpretation von Diagrammen, Videos, Audio und komplexen Grafiken.",
     "sourceHash": "9bd2cd4"
   },
   "cases.5.6.name": {
-    "text": "5.6 Coding & Apps",
-    "sourceHash": "bf3715ec"
+    "text": "1.6 Coding & Apps",
+    "sourceHash": "73cf8de8"
   },
   "cases.5.6.desc": {
     "text": "Erzeugung von Micro-SaaS-Produkten und Automatisierungs-Skripten.",
     "sourceHash": "5a61579"
   },
   "cases.6.1.name": {
-    "text": "6.1 Strategie-Synthese",
-    "sourceHash": "b9891e13"
+    "text": "2.1 Strategie-Synthese",
+    "sourceHash": "eed7f38f"
   },
   "cases.6.1.desc": {
     "text": "Verbindende Achse: Recherche + Synthese + Design + Entscheidung.",
     "sourceHash": "8d1c269b"
   },
   "cases.7.1.name": {
-    "text": "7.1 Data Gravity",
-    "sourceHash": "142b3a16"
+    "text": "3.1 Data Gravity",
+    "sourceHash": "497a0f92"
   },
   "cases.7.1.desc": {
     "text": "Data Gravity: nativer Zugriff auf Daten am Ort (SharePoint, Drive, Git) ohne manuelles ETL.",
     "sourceHash": "8918659d"
   },
   "cases.7.2.name": {
-    "text": "7.2 Formatkontinuität",
-    "sourceHash": "45c79454"
+    "text": "3.2 Formatkontinuität",
+    "sourceHash": "f7e33750"
   },
   "cases.7.2.desc": {
     "text": "Asset Handoff: Lieferung eines bearbeitbaren Endartefakts (.pptx, .docx) statt eines Rohentwurfs.",
     "sourceHash": "29f4e20b"
   },
   "cases.7.3.name": {
-    "text": "7.3 Vertrauenswürdigkeit & Verifizierbarkeit",
-    "sourceHash": "1c8185f8"
+    "text": "3.3 Vertrauenswürdigkeit & Verifizierbarkeit",
+    "sourceHash": "5e5213f4"
   },
   "cases.7.3.desc": {
     "text": "Verifizierbarkeit: jede Aussage mit einer prüfbaren Primärquelle verknüpft.",
@@ -600,16 +600,16 @@
     "sourceHash": "61d319b9"
   },
   "canon.canon-5-3.title": {
-    "text": "5.3 Tiefgehende akademische und technische Recherche",
-    "sourceHash": "e916f2b8"
+    "text": "1.3 Tiefgehende akademische und technische Recherche",
+    "sourceHash": "d3f46d34"
   },
   "canon.canon-5-3.text": {
     "text": "KI-basierte Rechercheassistenten können akademische und technische Datenbanken durchsuchen, um den Stand der Technik zu einem Thema zu synthetisieren. Anders als die klassische Suche kann die KI Abstracts lesen, Schlussfolgerungen verschiedener Paper miteinander abgleichen und eine strukturierte Literaturübersicht erzeugen. Die Einführung von „Deep Research“-Modi hat die Natur dieses Anwendungsfalls verändert. Die KI kann nun Dutzende Bücher und Hunderte Artikel gleichzeitig vollständig lesen und Halluzinationen durch massives Grounding drastisch reduzieren. Suche bedeutet nicht mehr nur „den Link finden“, sondern „das im Link enthaltene Wissen synthetisieren“.",
     "sourceHash": "bfa3cb1b"
   },
   "canon.canon-5-4.title": {
-    "text": "5.4 Massive, gründliche Zusammenfassungen von Büchern und komplexen Artikeln",
-    "sourceHash": "a07e0dad"
+    "text": "1.4 Massive, gründliche Zusammenfassungen von Büchern und komplexen Artikeln",
+    "sourceHash": "e34fbea9"
   },
   "canon.canon-5-4.text": {
     "text": "Sprachmodelle mit erweiterten Kontextfenstern (wie Claude mit 100k+ Tokens oder Gemini 1.5 Pro mit 2M) erlauben das Hochladen ganzer Fachbücher, langer Verträge oder Berichte über Hunderte Seiten. Die KI kann dann die zentralen Argumente extrahieren, ohne Nuancen zu verlieren.",
@@ -624,24 +624,24 @@
     "sourceHash": "4892771e"
   },
   "canon.canon-5-1.title": {
-    "text": "5.1 Automatisierte Erzeugung von Folien und Präsentationen",
-    "sourceHash": "8ad6e43e"
+    "text": "1.1 Automatisierte Erzeugung von Folien und Präsentationen",
+    "sourceHash": "f19d4bba"
   },
   "canon.canon-5-1.text": {
     "text": "Moderne KI-Systeme können vollständige Präsentationen aus Text-Skripten erzeugen und dabei bereitgestellte Inhalte mit konsistenten visuellen Themes verbinden. In Produktivitätssuiten eingebaute Werkzeuge wie Microsoft Copilot erlauben es, professionelle Folien direkt aus Textdokumenten zu erstellen und automatisch visuelle Elemente anzuwenden, die an der Markenidentität ausgerichtet sind. So kann Copilot in PowerPoint auf Organisationsdateien (Word, PDF usw.) verweisen, um eine Präsentation zu komponieren, sowie freigegebene Bilder aus der Bibliothek des Unternehmens einfügen, um die Konformität mit dem Leitfaden zur visuellen Identität sicherzustellen. Das vermeidet mühsame manuelle Formatierung, da die KI Text, Kernthemen, Bilder und sogar Logos analysieren und zum Thema der Präsentation passende visuelle Stile vorschlagen kann. Das Ergebnis ist eine kohärente Folienstruktur mit konsistentem Design über alle Seiten hinweg, das die Farbpalette und Typografie der Marke respektiert. Wichtig: Die KI liefert einen soliden Entwurf, den die nutzende Person verfeinern kann, und verbindet so Automatisierung mit einer menschlichen Note, um Details bei Bedarf anzupassen. Kurz gesagt beschleunigt die KI die Folienerstellung drastisch – Studien zeigen, dass Nutzer einen ersten Foliensatz 3–5-mal schneller als mit der manuellen Methode erzeugen können, bei stetig höherer visueller Qualität und geringerem Bearbeitungsaufwand.",
     "sourceHash": "8b11abf6"
   },
   "canon.canon-5-2.title": {
-    "text": "5.2 Visuelle Konsistenz und Markenidentität",
-    "sourceHash": "5bf241d3"
+    "text": "1.2 Visuelle Konsistenz und Markenidentität",
+    "sourceHash": "a27f0bcf"
   },
   "canon.canon-5-2.text": {
     "text": "Der Einsatz generativer KI für Bilder (wie DALL-E 3, Midjourney und Adobe Firefly) ermöglicht die Erstellung visueller Assets, die strengen Stilrichtlinien folgen. Im Unternehmenskontext bedeutet das, die KI zu trainieren oder anzuweisen, Icons, Illustrationen und Diagramme zu erzeugen, die dieselbe visuelle Sprache sprechen wie die Marke – so wird sichergestellt, dass technische Berichte nicht wie ein visueller Flickenteppich aussehen. Konsistenz ist nicht nur ästhetisch, sondern semiotisch: Sie stellt sicher, dass die visuelle Botschaft die Autorität des technischen Dokuments verstärkt.",
     "sourceHash": "836ecd78"
   },
   "canon.canon-5-5.title": {
-    "text": "5.5 Multimodale Analyse von Fotos, Videos und Dateien",
-    "sourceHash": "bff1087f"
+    "text": "1.5 Multimodale Analyse von Fotos, Videos und Dateien",
+    "sourceHash": "26b76ffb"
   },
   "canon.canon-5-5.text": {
     "text": "Die multimodale Fähigkeit (wie bei GPT-4 Vision oder Gemini) erlaubt es der KI, Bilder zu „sehen“ und zu interpretieren. Das gilt für das Lesen komplexer Diagramme in Finanzberichten, das Umwandeln von Whiteboard-Skizzen in strukturierten Code oder die Analyse von Video.",
@@ -656,8 +656,8 @@
     "sourceHash": "a65f7042"
   },
   "canon.canon-5-6.title": {
-    "text": "5.6 Erzeugung von Webanwendungen und Coding-Automatisierung",
-    "sourceHash": "6ce36cb4"
+    "text": "1.6 Erzeugung von Webanwendungen und Coding-Automatisierung",
+    "sourceHash": "47d08130"
   },
   "canon.canon-5-6.text": {
     "text": "Auf Code spezialisierte KI-Agenten können nicht nur isolierte Snippets erzeugen, sondern ganze Webanwendungen, Skripte zur Datenautomatisierung und funktionale Benutzeroberflächen. Das demokratisiert die Softwareentwicklung für Profile in Datenanalyse und Management und ermöglicht die Erstellung maßgeschneiderter Werkzeuge („internes Micro-SaaS“), um spezifische Prozess-Schmerzpunkte zu lösen. Die KI agiert als erfahrener Pair-Programmer, schlägt Architektur vor, refaktorisiert Legacy-Code und schreibt Unit-Tests.",
@@ -672,8 +672,8 @@
     "sourceHash": "9fad5dd5"
   },
   "canon.canon-6-1.title": {
-    "text": "6.1 Anwendungsfall der strategischen Synthese",
-    "sourceHash": "9048ec2a"
+    "text": "2.1 Anwendungsfall der strategischen Synthese",
+    "sourceHash": "9765cb26"
   },
   "canon.canon-6-1.text": {
     "text": "Einsatz von KI, um vollständige, strukturierte und gut begründete Analysen von Märkten, Branchen, Geschäftsmodellen, Wertschöpfungsketten, Fähigkeiten, Prozessen, Technologien und Frameworks zu erzeugen – mit oder ohne externe Dateien – mit dem Ziel, einen Standpunkt zu entwickeln, Entscheidungen zu stützen und technische Essays zu produzieren. In der Praxis ist es die verbindende Achse zwischen Recherche, Synthese, Design und Technologie. Es ist der Punkt, an dem KI aufhört, ein „Lesewerkzeug“ zu sein, und zu einem strukturierten Werkzeug für strategisches Denken wird. Typische Ergebnisse sind vollständige strategische Essays, Marktberichte (TAM/SAM/SOM), Vergleichsmatrizen und Executive-Narrative (Standpunkte).",
@@ -688,28 +688,28 @@
     "sourceHash": "87b500d9"
   },
   "canon.canon-7-1.title": {
-    "text": "7.1 Data Gravity",
-    "sourceHash": "92767587"
+    "text": "3.1 Data Gravity",
+    "sourceHash": "d4470383"
   },
   "canon.canon-7-1.text": {
     "text": "Data Gravity ist nicht bloß ein Upload-Komfort; es ist die Beseitigung der Daten-Engineering-Barriere (ETL) für den Endnutzer. Es definiert die Kompetenz der KI, dort zu operieren, wo die Daten bereits liegen (Data in Place). Anders als Systeme, die manuelles Verschieben von Dateien oder komplexe API-Konfiguration erfordern, indexiert die KI hier nativ SharePoint, die Graph-API oder Code-Repositorys. Es geht nicht darum, dass die KI eine isolierte Datei „ansieht“; es geht darum, dass die KI „im Server lebt“, Kontextpersistenz wahrt und die Notwendigkeit beseitigt, Daten für die Analyse zu migrieren.",
     "sourceHash": "53dac8c1"
   },
   "canon.canon-7-2.title": {
-    "text": "7.2 Formatkontinuität (Asset Handoff)",
-    "sourceHash": "7b3666fb"
+    "text": "3.2 Formatkontinuität (Asset Handoff)",
+    "sourceHash": "72d081f7"
   },
   "canon.canon-7-2.text": {
     "text": "Hier geht es nicht darum, Text zu exportieren, sondern ein Produkt zu liefern. Diese Fähigkeit misst den Grad des industriellen Feinschliffs des Ergebnisses. Die Frage lautet: Liefert die KI einen Insight in Markdown, der schwere manuelle Formatierung erfordert (hohe Reibung), oder erzeugt sie die finale bearbeitbare Datei (.pptx, .docx, .xlsx) unter strikter Beachtung von Unternehmensvorlagen und Schriften? Es ist der grundlegende Unterschied zwischen dem Erhalt eines „smarten Entwurfs“, der operative Formatierungsarbeit erzeugt, und dem Erhalt eines „fertigen Artefakts“, das unmittelbar Wert schafft und direkt an den Endkunden gesendet werden kann.",
     "sourceHash": "1b0e5124"
   },
   "canon.canon-7-3.title": {
-    "text": "7.3 Vertrauenswürdigkeit & Verifizierbarkeit (Trust Architecture)",
-    "sourceHash": "318e3d8e"
+    "text": "3.3 Vertrauenswürdigkeit & Verifizierbarkeit (Trust Architecture)",
+    "sourceHash": "7c12610a"
   },
   "canon.canon-7-3.text": {
-    "text": "Hier wird die KI nicht genutzt, um kreativ zu sein, sondern um prüfbar zu sein. Es ist die Fähigkeit, eine Vertrauensarchitektur zu bauen, in der jede Aussage granular (Zeile für Zeile) mit einer verifizierbaren Primärquelle verknüpft ist. Das geht über generische „Websuche“ hinaus; es ist ein Mechanismus zur Minderung von Reputationsrisiken. Ohne ihn wird die strategische Synthese (6.1) zu einer bloß halluzinierten Meinung; mit ihm wird sie zu einer sicheren Grundlage, um Führungsentscheidungen und treuhänderische Pflichten zu verantworten, und ermöglicht die volle Nachvollziehbarkeit der Informationen.",
-    "sourceHash": "5b6ff0e9"
+    "text": "Hier wird die KI nicht genutzt, um kreativ zu sein, sondern um prüfbar zu sein. Es ist die Fähigkeit, eine Vertrauensarchitektur zu bauen, in der jede Aussage granular (Zeile für Zeile) mit einer verifizierbaren Primärquelle verknüpft ist. Das geht über generische „Websuche“ hinaus; es ist ein Mechanismus zur Minderung von Reputationsrisiken. Ohne ihn wird die strategische Synthese (2.1) zu einer bloß halluzinierten Meinung; mit ihm wird sie zu einer sicheren Grundlage, um Führungsentscheidungen und treuhänderische Pflichten zu verantworten, und ermöglicht die volle Nachvollziehbarkeit der Informationen.",
+    "sourceHash": "4a5d7fe5"
   },
   "matrix.gemini.A": {
     "text": "Absolute Führung dank eines massiven Kontextfensters und nativer Multimodalität, wodurch es ganze Videos und Bibliotheken „lesen“ kann – für unübertroffene Gedächtnisintegration.",
@@ -1128,8 +1128,8 @@
     "sourceHash": "21198f4b"
   },
   "help.s1.example": {
-    "text": "<strong>Szenario:</strong> Ana muss eine Launch-Strategie für eine Digitalbank erstellen. Sie sucht nicht bloß „einen Chatbot“: Sie braucht die KI-Technologie, die am besten zur Aufgabe passt. Also öffnet sie die App und schaut sich die Fähigkeiten im Abschnitt „Was eine KI liefert“ an und erkennt, dass ihr Projekt drei davon erfordert: <em>5.3 Tiefgehende akademische und technische Recherche</em> (um Bankenregularien zu lesen), <em>B – Logische Validierung, interne Konsistenz und Stresstest</em> (um ihr Preismodell zu testen) und <em>5.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</em> (für die finale Präsentation).",
-    "sourceHash": "1e051067"
+    "text": "<strong>Szenario:</strong> Ana muss eine Launch-Strategie für eine Digitalbank erstellen. Sie sucht nicht bloß „einen Chatbot“: Sie braucht die KI-Technologie, die am besten zur Aufgabe passt. Also öffnet sie die App und schaut sich die Fähigkeiten im Abschnitt „Was eine KI liefert“ an und erkennt, dass ihr Projekt drei davon erfordert: <em>1.3 Tiefgehende akademische und technische Recherche</em> (um Bankenregularien zu lesen), <em>B – Logische Validierung, interne Konsistenz und Stresstest</em> (um ihr Preismodell zu testen) und <em>1.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</em> (für die finale Präsentation).",
+    "sourceHash": "71d765f"
   },
   "help.s2.title": {
     "text": "2. Visualisieren Sie das „Wie“ (PIPELINE)",
@@ -1140,8 +1140,8 @@
     "sourceHash": "39c0d7b6"
   },
   "help.s2.example": {
-    "text": "Ana betrachtet das Pipeline-Board und kartiert ihren Ablauf:<br>1. <strong>Input:</strong> Zuerst nutzt sie die Fähigkeit <strong>5.3 Tiefgehende akademische und technische Recherche</strong>, um die Regularien der Zentralbank zu durchsuchen.<br>2. <strong>Prozess:</strong> Dann nutzt sie den Metafall <strong>B – Logische Validierung, interne Konsistenz und Stresstest</strong>, um Lücken in der These zu finden.<br>3. <strong>Output:</strong> Schließlich nutzt sie die Fähigkeit <strong>5.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</strong>, um den Text in einen Foliensatz zu verwandeln.",
-    "sourceHash": "907a5e6f"
+    "text": "Ana betrachtet das Pipeline-Board und kartiert ihren Ablauf:<br>1. <strong>Input:</strong> Zuerst nutzt sie die Fähigkeit <strong>1.3 Tiefgehende akademische und technische Recherche</strong>, um die Regularien der Zentralbank zu durchsuchen.<br>2. <strong>Prozess:</strong> Dann nutzt sie den Metafall <strong>B – Logische Validierung, interne Konsistenz und Stresstest</strong>, um Lücken in der These zu finden.<br>3. <strong>Output:</strong> Schließlich nutzt sie die Fähigkeit <strong>1.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</strong>, um den Text in einen Foliensatz zu verwandeln.",
+    "sourceHash": "300c31e7"
   },
   "help.s3.title": {
     "text": "3. Nennen Sie das „Warum“ (Nutzungs-PROFIL)",
@@ -1176,8 +1176,8 @@
     "sourceHash": "5e416d18"
   },
   "help.s4.example": {
-    "text": "Der Motor verarbeitet Anas hybrides Profil (hohe Logik + hohe visuelle Lieferung + Operator-Neigung). Das Ranking spiegelt diese Kombination wider: Reine Textwerkzeuge fallen zurück, weil ihre niedrige <strong>Formatkontinuität (7.2)</strong> durch Reibung bestraft wird, während <strong>Copilot M365</strong> und <strong>Gemini 3.1 Pro</strong> aufsteigen, weil sie näher an gebrauchsfertig liefern. Beim Überfahren der Karte sieht Ana, dass <strong>GPT-5.5 Pro</strong> große Leistung hat, aber in der Domäne Designing Effektiven Score wegen des Format-Handoffs verliert.",
-    "sourceHash": "b083b07c"
+    "text": "Der Motor verarbeitet Anas hybrides Profil (hohe Logik + hohe visuelle Lieferung + Operator-Neigung). Das Ranking spiegelt diese Kombination wider: Reine Textwerkzeuge fallen zurück, weil ihre niedrige <strong>Formatkontinuität (3.2)</strong> durch Reibung bestraft wird, während <strong>Copilot M365</strong> und <strong>Gemini 3.1 Pro</strong> aufsteigen, weil sie näher an gebrauchsfertig liefern. Beim Überfahren der Karte sieht Ana, dass <strong>GPT-5.5 Pro</strong> große Leistung hat, aber in der Domäne Designing Effektiven Score wegen des Format-Handoffs verliert.",
+    "sourceHash": "f0146df8"
   },
   "help.s5.title": {
     "text": "5. Prüfen und vertiefen (MATRIX)",
@@ -1192,8 +1192,8 @@
     "sourceHash": "3c81023a"
   },
   "help.s5.example": {
-    "text": "Ana will keine Überraschungen. Sie geht zum Technischen Audit (Abschnitt 5) und prüft gezielt die Fähigkeit zur Folienerzeugung in der Matrix. Sie bemerkt, dass <em>ChatGPT</em> visuelle Grenzen hat (ein niedriger Score bei <strong>5.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</strong>), während <em>MS Copilot</em> bei diesem Punkt an der Spitze liegt. Das bestätigt ihre Wahl eines hybriden Workflows.",
-    "sourceHash": "b2c8f6bb"
+    "text": "Ana will keine Überraschungen. Sie geht zum Technischen Audit (Abschnitt 5) und prüft gezielt die Fähigkeit zur Folienerzeugung in der Matrix. Sie bemerkt, dass <em>ChatGPT</em> visuelle Grenzen hat (ein niedriger Score bei <strong>1.1 Automatisierte Erzeugung von PowerPoint-Präsentationen</strong>), während <em>MS Copilot</em> bei diesem Punkt an der Spitze liegt. Das bestätigt ihre Wahl eines hybriden Workflows.",
+    "sourceHash": "9d0ac037"
   },
   "help.summary_generic": {
     "text": "💡 Praktisches Beispiel ansehen",
@@ -1268,24 +1268,24 @@
     "sourceHash": "f0023279"
   },
   "diagram.disc.desc": {
-    "text": "Die Fähigkeit, die Informationsbasis des Systems durch aktive Suche und die Aufnahme großer Datenvolumina zu erweitern. Umfasst tiefe technische Recherche (5.3) und massives Lesen langer Dokumente ohne Präzisionsverlust (5.4).",
-    "sourceHash": "620e412d"
+    "text": "Die Fähigkeit, die Informationsbasis des Systems durch aktive Suche und die Aufnahme großer Datenvolumina zu erweitern. Umfasst tiefe technische Recherche (1.3) und massives Lesen langer Dokumente ohne Präzisionsverlust (1.4).",
+    "sourceHash": "9de46ba5"
   },
   "diagram.ver_completas": {
     "text": "Vollständige Fähigkeiten ansehen →",
     "sourceHash": "f09793b4"
   },
   "diagram.design.desc": {
-    "text": "Die Fähigkeit, Abstraktionen in konsumierbare visuelle Artefakte zu materialisieren. Umfasst Folienerzeugung (5.1), Konsistenz der visuellen Identität (5.2) und multimodale Analyse von Bildern und Dateien (5.5).",
-    "sourceHash": "7b7d6bce"
+    "text": "Die Fähigkeit, Abstraktionen in konsumierbare visuelle Artefakte zu materialisieren. Umfasst Folienerzeugung (1.1), Konsistenz der visuellen Identität (1.2) und multimodale Analyse von Bildern und Dateien (1.5).",
+    "sourceHash": "b6117042"
   },
   "diagram.build.desc": {
-    "text": "Die Fähigkeit zu Softwarekonstruktion und -engineering. Umfasst die Erzeugung von Webanwendungen und Code-Automatisierung (5.6) – die KI agiert als erfahrene Programmiererin, von der Architektur bis zum Test.",
-    "sourceHash": "15fc12ef"
+    "text": "Die Fähigkeit zu Softwarekonstruktion und -engineering. Umfasst die Erzeugung von Webanwendungen und Code-Automatisierung (1.6) – die KI agiert als erfahrene Programmiererin, von der Architektur bis zum Test.",
+    "sourceHash": "b6d5506b"
   },
   "diagram.integ.desc": {
-    "text": "Die Fähigkeit zur Executive-Synthese, die Spitze der Pyramide. Umfasst strategische, Branchen- und Szenario-Analyse (6.1) – bündelt Recherche, Logik, Daten und Visuelles in einer prüfbaren Empfehlung für die Geschäftsentscheidung.",
-    "sourceHash": "e853a0ac"
+    "text": "Die Fähigkeit zur Executive-Synthese, die Spitze der Pyramide. Umfasst strategische, Branchen- und Szenario-Analyse (2.1) – bündelt Recherche, Logik, Daten und Visuelles in einer prüfbaren Empfehlung für die Geschäftsentscheidung.",
+    "sourceHash": "24ea5fa8"
   },
   "diagram.arch.desc": {
     "text": "Die beruflichen Profile, die eine Nutzungsidentität in eine mathematische Konfiguration übersetzen. Jeder Archetyp legt die Gewichte der fünf Domänen und die Position des Reibungsreglers fest – der Mechanismus, mit dem Sie die Fabrik auf Ihren Kontext zuschneiden.",
@@ -1368,20 +1368,20 @@
     "sourceHash": "2e204f6c"
   },
   "decidir.sub71": {
-    "text": "7.1 Data Gravity",
-    "sourceHash": "142b3a16"
+    "text": "3.1 Data Gravity",
+    "sourceHash": "497a0f92"
   },
   "decidir.sub72": {
-    "text": "7.2 Formatkontinuität",
-    "sourceHash": "45c79454"
+    "text": "3.2 Formatkontinuität",
+    "sourceHash": "f7e33750"
   },
   "decidir.sub73": {
-    "text": "7.3 Grounding & Verifizierbarkeit",
-    "sourceHash": "42556d80"
+    "text": "3.3 Grounding & Verifizierbarkeit",
+    "sourceHash": "2d0e2bfc"
   },
   "decidir.sub_note": {
-    "text": "Regeln Sie jeden Enabler unabhängig – z. B. fertiges Format verlangen (7.2 hoch), aber Data Gravity ignorieren (7.1 niedrig).",
-    "sourceHash": "d160f4ea"
+    "text": "Regeln Sie jeden Enabler unabhängig – z. B. fertiges Format verlangen (3.2 hoch), aber Data Gravity ignorieren (3.1 niedrig).",
+    "sourceHash": "edec5662"
   },
   "ranking.recomendacao1": {
     "text": "Empfehlung #1",
@@ -1456,12 +1456,12 @@
     "sourceHash": "61285aab"
   },
   "diagram.stream.subtitle": {
-    "text": "7.1 · 7.2 · 7.3 · filtert die Reibung, übergreifend",
-    "sourceHash": "48df8bf0"
+    "text": "3.1 · 3.2 · 3.3 · filtert die Reibung, übergreifend",
+    "sourceHash": "2002cfe4"
   },
   "diagram.stream.desc": {
-    "text": "Die übergreifende Schicht der Enabler, die bestimmt, wie viel der Leistung der Domänen beim Ergebnis ankommt, ohne sich in Reibung zu verlieren. Es ist keine Kompetenz der KI, sondern eine Lieferbedingung: Daten an der Quelle (7.1), fertiges Format (7.2) und nachvollziehbares Grounding (7.3).",
-    "sourceHash": "71a9a856"
+    "text": "Die übergreifende Schicht der Enabler, die bestimmt, wie viel der Leistung der Domänen beim Ergebnis ankommt, ohne sich in Reibung zu verlieren. Es ist keine Kompetenz der KI, sondern eine Lieferbedingung: Daten an der Quelle (3.1), fertiges Format (3.2) und nachvollziehbares Grounding (3.3).",
+    "sourceHash": "6b8d4a4a"
   },
   "diagram.conector1": {
     "text": "wendet Gewichte und Reibung auf Ihr Profil an",
@@ -1488,16 +1488,16 @@
     "sourceHash": "fc755b7"
   },
   "impacto.header.0": {
-    "text": "7.1 Data Gravity",
-    "sourceHash": "142b3a16"
+    "text": "3.1 Data Gravity",
+    "sourceHash": "497a0f92"
   },
   "impacto.header.1": {
-    "text": "7.2 Formatkontinuität",
-    "sourceHash": "45c79454"
+    "text": "3.2 Formatkontinuität",
+    "sourceHash": "f7e33750"
   },
   "impacto.header.2": {
-    "text": "7.3 Vertrauenswürdigkeit & Verifizierbarkeit",
-    "sourceHash": "1c8185f8"
+    "text": "3.3 Vertrauenswürdigkeit & Verifizierbarkeit",
+    "sourceHash": "5e5213f4"
   },
   "impacto.cell.think.0": {
     "text": "Historischer Kontext: Glossare und Ontologien helfen, Begriffe zu normalisieren, doch das Reasoning überlebt auch ohne sie.",
@@ -1600,32 +1600,32 @@
     "sourceHash": "65cf83a9"
   },
   "radarlbl.doing.51": {
-    "text": "5.1 Automatisierte\nFolien",
-    "sourceHash": "3d7a192c"
+    "text": "1.1 Automatisierte\nFolien",
+    "sourceHash": "1d43da8"
   },
   "radarlbl.doing.52": {
-    "text": "5.2 Visuelle\nKonsistenz",
-    "sourceHash": "faaf2d20"
+    "text": "1.2 Visuelle\nKonsistenz",
+    "sourceHash": "d9d8b21c"
   },
   "radarlbl.doing.53": {
-    "text": "5.3 Technische\nRecherche",
-    "sourceHash": "6f892eb"
+    "text": "1.3 Technische\nRecherche",
+    "sourceHash": "d65bd967"
   },
   "radarlbl.doing.54": {
-    "text": "5.4 Massive\nZusammenfassungen",
-    "sourceHash": "f90a2989"
+    "text": "1.4 Massive\nZusammenfassungen",
+    "sourceHash": "c86d7005"
   },
   "radarlbl.doing.55": {
-    "text": "5.5 Multimodal\n",
-    "sourceHash": "5a933d3f"
+    "text": "1.5 Multimodal\n",
+    "sourceHash": "cd75863b"
   },
   "radarlbl.doing.56": {
-    "text": "5.6 Coding\n& Apps",
-    "sourceHash": "21b5dd56"
+    "text": "1.6 Coding\n& Apps",
+    "sourceHash": "d64e5552"
   },
   "radarlbl.doing.61": {
-    "text": "6.1 Strategie-\nSynthese",
-    "sourceHash": "c535dcfd"
+    "text": "2.1 Strategie-\nSynthese",
+    "sourceHash": "a45f61f9"
   },
   "radarlbl.user.think": {
     "text": "Thinking",

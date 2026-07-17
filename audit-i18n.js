@@ -305,4 +305,33 @@ function audit() {
     process.exit(totalIssues === 0 ? 0 : 1);
 }
 
-audit();
+// Modo --fix: reescreve os sourceHash desatualizados para casar com o texto-fonte PT atual.
+// Substituição pontual no texto bruto do JSON (não reserializa), preservando formatação/ordem.
+function fixHashes() {
+    const html = fs.readFileSync(HTML_PATH, 'utf8');
+    const ptMap = { ...extractDataStrings(html), ...extractLiteralStrings(html) };
+    let total = 0;
+    for (const [lang, relPath] of Object.entries(LOCALES)) {
+        const full = path.join(__dirname, relPath);
+        let raw = fs.readFileSync(full, 'utf8');
+        const dict = JSON.parse(raw);
+        let fixed = 0;
+        for (const key of Object.keys(dict)) {
+            if (!(key in ptMap)) continue;
+            const correct = hash(ptMap[key]);
+            if (dict[key].sourceHash === correct) continue;
+            const keyEsc = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const re = new RegExp('("' + keyEsc + '"\\s*:\\s*\\{[^{}]*?"sourceHash"\\s*:\\s*")([0-9a-f]+)(")');
+            const before = raw;
+            raw = raw.replace(re, (m, p1, p2, p3) => p1 + correct + p3);
+            if (raw !== before) fixed++;
+        }
+        if (fixed) fs.writeFileSync(full, raw);
+        console.log(`${lang}: ${fixed} sourceHash atualizados`);
+        total += fixed;
+    }
+    console.log(`Total: ${total} hashes corrigidos.`);
+}
+
+if (process.argv.includes('--fix')) fixHashes();
+else audit();
