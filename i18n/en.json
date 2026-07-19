@@ -548,8 +548,8 @@
     "sourceHash": "110ee33b"
   },
   "canon.canon-fisica.text": {
-    "text": "The Hub operates under a new physics of systems. Power (P) is what the AI can do in isolation — its raw processing and logic capacity, measured by benchmark. Efficiency (E) is the capacity to manifest that power through the friction of human and corporate workflow. The real, measurable result is Effective Power, and the core principle is that power is multiplied by efficiency, never added to it. A Power of 5.0 delivered at an Efficiency of 0.2 isn't worth 2.6 — it's worth 1.0, because friction doesn't discount the value, it strangles it.",
-    "sourceHash": "94f56cf1"
+    "text": "The Hub operates under a new physics of systems. Power (P) is what the AI can do in isolation — its raw processing and logic capacity, measured by benchmark. Efficiency (E) is the capacity to manifest that power through the friction of human and corporate workflow. The real, measurable result is Effective Power, and the core principle is that power is multiplied by efficiency, never aggregated linearly with it — whether by sum, average, or weighting. A Power of 5.0 delivered at an Efficiency of 0.2 isn't worth 2.6 — the average of the two — it's worth 1.0, because friction doesn't discount the value, it strangles it.",
+    "sourceHash": "fbcce8"
   },
   "canon.canon-meta-intro.title": {
     "text": "I. Thinking (Cognitive Reasoning)",

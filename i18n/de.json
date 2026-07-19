@@ -548,8 +548,8 @@
     "sourceHash": "110ee33b"
   },
   "canon.canon-fisica.text": {
-    "text": "Der Hub arbeitet unter einer neuen Physik der Systeme. Leistung (P) ist das, was die KI isoliert leisten kann – ihre rohe Verarbeitungs- und Logikkapazität, per Benchmark gemessen. Effizienz (E) ist die Fähigkeit, diese Leistung durch die Reibung menschlicher und unternehmerischer Workflows zu manifestieren. Das reale, messbare Ergebnis ist die Effektive Leistung, und das Kernprinzip lautet, dass Leistung mit Effizienz multipliziert und niemals zu ihr addiert wird. Eine Leistung von 5,0, geliefert bei einer Effizienz von 0,2, ist nicht 2,6 wert – sie ist 1,0 wert, denn Reibung mindert den Wert nicht, sie erdrosselt ihn.",
-    "sourceHash": "94f56cf1"
+    "text": "Der Hub arbeitet unter einer neuen Physik der Systeme. Leistung (P) ist das, was die KI isoliert leisten kann – ihre rohe Verarbeitungs- und Logikkapazität, per Benchmark gemessen. Effizienz (E) ist die Fähigkeit, diese Leistung durch die Reibung menschlicher und unternehmerischer Workflows zu manifestieren. Das reale, messbare Ergebnis ist die Effektive Leistung, und das Kernprinzip lautet, dass Leistung mit Effizienz multipliziert und niemals linear mit ihr aggregiert wird – weder durch Summe, Durchschnitt noch Gewichtung. Eine Leistung von 5,0, geliefert bei einer Effizienz von 0,2, ist nicht 2,6 wert – der Durchschnitt der beiden –, sie ist 1,0 wert, denn Reibung mindert den Wert nicht, sie erdrosselt ihn.",
+    "sourceHash": "fbcce8"
   },
   "canon.canon-meta-intro.title": {
     "text": "I. Thinking (Kognitives Reasoning)",
