@@ -32,40 +32,40 @@
     "sourceHash": "a8a6e0ef"
   },
   "cases.5.1.name": {
-    "text": "1.1 Automatisierte Folien",
-    "sourceHash": "1959317e"
+    "text": "1.4 Automatisierte Folien",
+    "sourceHash": "715e1161"
   },
   "cases.5.1.desc": {
     "text": "Erzeugung diagrammierter Präsentationen aus Text-Skripten.",
     "sourceHash": "7e0bc923"
   },
   "cases.5.2.name": {
-    "text": "1.2 Visuelle Konsistenz",
-    "sourceHash": "7759eab2"
+    "text": "1.5 Visuelle Konsistenz",
+    "sourceHash": "6a80da35"
   },
   "cases.5.2.desc": {
     "text": "Erzeugung von Marken-Assets mit strenger Identität (Style Ref).",
     "sourceHash": "1597dd9c"
   },
   "cases.5.3.name": {
-    "text": "1.3 Technische Recherche",
-    "sourceHash": "240424bd"
+    "text": "1.1 Technische Recherche",
+    "sourceHash": "47d7e07b"
   },
   "cases.5.3.desc": {
     "text": "Durchsuchen von Datenbanken mit echtem Grounding und Quellenangabe.",
     "sourceHash": "6598291d"
   },
   "cases.5.4.name": {
-    "text": "1.4 Massive Zusammenfassungen",
-    "sourceHash": "cb1f261b"
+    "text": "1.2 Massive Zusammenfassungen",
+    "sourceHash": "eef2e1d9"
   },
   "cases.5.4.desc": {
     "text": "Vollständiges Lesen von Büchern ohne Verlust an Nuancen.",
     "sourceHash": "68ff42bb"
   },
   "cases.5.5.name": {
-    "text": "1.5 Multimodal",
-    "sourceHash": "72d50411"
+    "text": "1.3 Multimodal",
+    "sourceHash": "10ee494f"
   },
   "cases.5.5.desc": {
     "text": "Interpretation von Diagrammen, Videos, Audio und komplexen Grafiken.",
@@ -600,16 +600,16 @@
     "sourceHash": "61d319b9"
   },
   "canon.canon-5-3.title": {
-    "text": "1.3 Tiefgehende akademische und technische Recherche",
-    "sourceHash": "d3f46d34"
+    "text": "1.1 Tiefgehende akademische und technische Recherche",
+    "sourceHash": "df76c2f2"
   },
   "canon.canon-5-3.text": {
     "text": "KI-basierte Rechercheassistenten können akademische und technische Datenbanken durchsuchen, um den Stand der Technik zu einem Thema zu synthetisieren. Anders als die klassische Suche kann die KI Abstracts lesen, Schlussfolgerungen verschiedener Paper miteinander abgleichen und eine strukturierte Literaturübersicht erzeugen. Die Einführung von „Deep Research“-Modi hat die Natur dieses Anwendungsfalls verändert. Die KI kann nun Dutzende Bücher und Hunderte Artikel gleichzeitig vollständig lesen und Halluzinationen durch massives Grounding drastisch reduzieren. Suche bedeutet nicht mehr nur „den Link finden“, sondern „das im Link enthaltene Wissen synthetisieren“.",
     "sourceHash": "bfa3cb1b"
   },
   "canon.canon-5-4.title": {
-    "text": "1.4 Massive, gründliche Zusammenfassungen von Büchern und komplexen Artikeln",
-    "sourceHash": "e34fbea9"
+    "text": "1.2 Massive, gründliche Zusammenfassungen von Büchern und komplexen Artikeln",
+    "sourceHash": "230c5fa7"
   },
   "canon.canon-5-4.text": {
     "text": "Sprachmodelle mit erweiterten Kontextfenstern (wie Claude mit 100k+ Tokens oder Gemini 1.5 Pro mit 2M) erlauben das Hochladen ganzer Fachbücher, langer Verträge oder Berichte über Hunderte Seiten. Die KI kann dann die zentralen Argumente extrahieren, ohne Nuancen zu verlieren.",
@@ -624,24 +624,24 @@
     "sourceHash": "4892771e"
   },
   "canon.canon-5-1.title": {
-    "text": "1.1 Automatisierte Erzeugung von Folien und Präsentationen",
-    "sourceHash": "f19d4bba"
+    "text": "1.4 Automatisierte Erzeugung von Folien und Präsentationen",
+    "sourceHash": "6642895d"
   },
   "canon.canon-5-1.text": {
     "text": "Moderne KI-Systeme können vollständige Präsentationen aus Text-Skripten erzeugen und dabei bereitgestellte Inhalte mit konsistenten visuellen Themes verbinden. In Produktivitätssuiten eingebaute Werkzeuge wie Microsoft Copilot erlauben es, professionelle Folien direkt aus Textdokumenten zu erstellen und automatisch visuelle Elemente anzuwenden, die an der Markenidentität ausgerichtet sind. So kann Copilot in PowerPoint auf Organisationsdateien (Word, PDF usw.) verweisen, um eine Präsentation zu komponieren, sowie freigegebene Bilder aus der Bibliothek des Unternehmens einfügen, um die Konformität mit dem Leitfaden zur visuellen Identität sicherzustellen. Das vermeidet mühsame manuelle Formatierung, da die KI Text, Kernthemen, Bilder und sogar Logos analysieren und zum Thema der Präsentation passende visuelle Stile vorschlagen kann. Das Ergebnis ist eine kohärente Folienstruktur mit konsistentem Design über alle Seiten hinweg, das die Farbpalette und Typografie der Marke respektiert. Wichtig: Die KI liefert einen soliden Entwurf, den die nutzende Person verfeinern kann, und verbindet so Automatisierung mit einer menschlichen Note, um Details bei Bedarf anzupassen. Kurz gesagt beschleunigt die KI die Folienerstellung drastisch – Studien zeigen, dass Nutzer einen ersten Foliensatz 3–5-mal schneller als mit der manuellen Methode erzeugen können, bei stetig höherer visueller Qualität und geringerem Bearbeitungsaufwand.",
     "sourceHash": "8b11abf6"
   },
   "canon.canon-5-2.title": {
-    "text": "1.2 Visuelle Konsistenz und Markenidentität",
-    "sourceHash": "a27f0bcf"
+    "text": "1.5 Visuelle Konsistenz und Markenidentität",
+    "sourceHash": "e8cb7792"
   },
   "canon.canon-5-2.text": {
     "text": "Der Einsatz generativer KI für Bilder (wie DALL-E 3, Midjourney und Adobe Firefly) ermöglicht die Erstellung visueller Assets, die strengen Stilrichtlinien folgen. Im Unternehmenskontext bedeutet das, die KI zu trainieren oder anzuweisen, Icons, Illustrationen und Diagramme zu erzeugen, die dieselbe visuelle Sprache sprechen wie die Marke – so wird sichergestellt, dass technische Berichte nicht wie ein visueller Flickenteppich aussehen. Konsistenz ist nicht nur ästhetisch, sondern semiotisch: Sie stellt sicher, dass die visuelle Botschaft die Autorität des technischen Dokuments verstärkt.",
     "sourceHash": "836ecd78"
   },
   "canon.canon-5-5.title": {
-    "text": "1.5 Multimodale Analyse von Fotos, Videos und Dateien",
-    "sourceHash": "26b76ffb"
+    "text": "1.3 Multimodale Analyse von Fotos, Videos und Dateien",
+    "sourceHash": "839e9c39"
   },
   "canon.canon-5-5.text": {
     "text": "Die multimodale Fähigkeit (wie bei GPT-4 Vision oder Gemini) erlaubt es der KI, Bilder zu „sehen“ und zu interpretieren. Das gilt für das Lesen komplexer Diagramme in Finanzberichten, das Umwandeln von Whiteboard-Skizzen in strukturierten Code oder die Analyse von Video.",
@@ -1268,16 +1268,16 @@
     "sourceHash": "f0023279"
   },
   "diagram.disc.desc": {
-    "text": "Die Fähigkeit, die Informationsbasis des Systems durch aktive Suche und die Aufnahme großer Datenvolumina zu erweitern. Umfasst tiefe technische Recherche (1.3) und massives Lesen langer Dokumente ohne Präzisionsverlust (1.4).",
-    "sourceHash": "9de46ba5"
+    "text": "Die Fähigkeit, die Informationsbasis des Systems durch aktive Suche und die Aufnahme großer Datenvolumina zu erweitern. Umfasst tiefe technische Recherche (1.1) und massives Lesen langer Dokumente ohne Präzisionsverlust (1.2).",
+    "sourceHash": "ee5101e1"
   },
   "diagram.ver_completas": {
     "text": "Vollständige Fähigkeiten ansehen →",
     "sourceHash": "f09793b4"
   },
   "diagram.design.desc": {
-    "text": "Die Fähigkeit, Abstraktionen in konsumierbare visuelle Artefakte zu materialisieren. Umfasst Folienerzeugung (1.1), Konsistenz der visuellen Identität (1.2) und multimodale Analyse von Bildern und Dateien (1.5).",
-    "sourceHash": "b6117042"
+    "text": "Die Fähigkeit, Abstraktionen in konsumierbare visuelle Artefakte zu materialisieren. Umfasst Folienerzeugung (1.4), Konsistenz der visuellen Identität (1.5) und multimodale Analyse von Bildern und Dateien (1.3).",
+    "sourceHash": "a1391966"
   },
   "diagram.build.desc": {
     "text": "Die Fähigkeit zu Softwarekonstruktion und -engineering. Umfasst die Erzeugung von Webanwendungen und Code-Automatisierung (1.6) – die KI agiert als erfahrene Programmiererin, von der Architektur bis zum Test.",

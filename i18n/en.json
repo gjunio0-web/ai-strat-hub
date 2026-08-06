@@ -32,40 +32,40 @@
     "sourceHash": "a8a6e0ef"
   },
   "cases.5.1.name": {
-    "text": "1.1 Automated Slides",
-    "sourceHash": "1959317e"
+    "text": "1.4 Automated Slides",
+    "sourceHash": "715e1161"
   },
   "cases.5.1.desc": {
     "text": "Generation of diagrammed presentations from text scripts.",
     "sourceHash": "7e0bc923"
   },
   "cases.5.2.name": {
-    "text": "1.2 Visual Consistency",
-    "sourceHash": "7759eab2"
+    "text": "1.5 Visual Consistency",
+    "sourceHash": "6a80da35"
   },
   "cases.5.2.desc": {
     "text": "Generation of brand assets with strict identity (Style Ref).",
     "sourceHash": "1597dd9c"
   },
   "cases.5.3.name": {
-    "text": "1.3 Technical Research",
-    "sourceHash": "240424bd"
+    "text": "1.1 Technical Research",
+    "sourceHash": "47d7e07b"
   },
   "cases.5.3.desc": {
     "text": "Scanning of databases with real grounding and source citation.",
     "sourceHash": "6598291d"
   },
   "cases.5.4.name": {
-    "text": "1.4 Massive Summaries",
-    "sourceHash": "cb1f261b"
+    "text": "1.2 Massive Summaries",
+    "sourceHash": "eef2e1d9"
   },
   "cases.5.4.desc": {
     "text": "Full reading of books without loss of nuance.",
     "sourceHash": "68ff42bb"
   },
   "cases.5.5.name": {
-    "text": "1.5 Multimodal",
-    "sourceHash": "72d50411"
+    "text": "1.3 Multimodal",
+    "sourceHash": "10ee494f"
   },
   "cases.5.5.desc": {
     "text": "Interpretation of charts, videos, audio, and complex diagrams.",
@@ -600,16 +600,16 @@
     "sourceHash": "61d319b9"
   },
   "canon.canon-5-3.title": {
-    "text": "1.3 In-Depth Academic and Technical Research",
-    "sourceHash": "d3f46d34"
+    "text": "1.1 In-Depth Academic and Technical Research",
+    "sourceHash": "df76c2f2"
   },
   "canon.canon-5-3.text": {
     "text": "AI-based research assistants can scan academic and technical databases to synthesize the state of the art on a given topic. Unlike traditional search, the AI can read abstracts, cross-reference conclusions from different papers, and generate a structured literature review. The introduction of ‘Deep Research’ modes changed the nature of this use case. The AI can now fully read dozens of books and hundreds of articles simultaneously, drastically reducing hallucination through massive Grounding. Search has stopped being just about ‘finding the link’ and become about ‘synthesizing the knowledge contained in the link.’",
     "sourceHash": "bfa3cb1b"
   },
   "canon.canon-5-4.title": {
-    "text": "1.4 Massive, Thorough Summaries of Books and Complex Articles",
-    "sourceHash": "e34fbea9"
+    "text": "1.2 Massive, Thorough Summaries of Books and Complex Articles",
+    "sourceHash": "230c5fa7"
   },
   "canon.canon-5-4.text": {
     "text": "Language models with expanded context windows (like Claude with 100k+ tokens or Gemini 1.5 Pro with 2M) allow the upload of entire technical books, long contracts, or hundred-page reports. The AI can then extract central arguments without losing nuance.",
@@ -624,24 +624,24 @@
     "sourceHash": "4892771e"
   },
   "canon.canon-5-1.title": {
-    "text": "1.1 Automated Generation of Slides and Presentations",
-    "sourceHash": "f19d4bba"
+    "text": "1.4 Automated Generation of Slides and Presentations",
+    "sourceHash": "6642895d"
   },
   "canon.canon-5-1.text": {
     "text": "Modern AI systems can generate complete presentations from text scripts, combining provided content with consistent visual themes. Tools built into productivity suites, like Microsoft Copilot, allow professional slides to be created directly from text documents and automatically apply visual elements aligned with brand identity. For example, Copilot in PowerPoint can reference organizational files (Word, PDF, etc.) to compose a presentation, as well as insert approved images from the company's library to ensure compliance with the visual identity guide. This avoids laborious manual formatting, since the AI can analyze text, key topics, images, and even logos, suggesting visual styles compatible with the presentation's theme. The result is a coherent slide structure, with consistent design across all pages, respecting the brand's color palette and typography. Importantly, the AI delivers a solid draft that can be refined by the user, combining automation with a human touch to adjust details when needed. In short, the AI drastically speeds up slide creation — studies show users can generate an initial deck 3–5 times faster than the manual method, with ever-higher visual quality and reduced need for editing.",
     "sourceHash": "8b11abf6"
   },
   "canon.canon-5-2.title": {
-    "text": "1.2 Visual Consistency and Brand Identity",
-    "sourceHash": "a27f0bcf"
+    "text": "1.5 Visual Consistency and Brand Identity",
+    "sourceHash": "e8cb7792"
   },
   "canon.canon-5-2.text": {
     "text": "The use of generative AI for images (such as DALL-E 3, Midjourney, and Adobe Firefly) enables the creation of visual assets that follow strict style guidelines. In the corporate context, this means training or instructing the AI to generate icons, illustrations, and diagrams that speak the same visual language as the brand, ensuring technical reports don't look like a visual patchwork. Consistency isn't just aesthetic; it's semiotic, ensuring the visual message reinforces the authority of the technical document.",
     "sourceHash": "836ecd78"
   },
   "canon.canon-5-5.title": {
-    "text": "1.5 Multimodal Analysis of Photos, Videos, and Files",
-    "sourceHash": "26b76ffb"
+    "text": "1.3 Multimodal Analysis of Photos, Videos, and Files",
+    "sourceHash": "839e9c39"
   },
   "canon.canon-5-5.text": {
     "text": "Multimodal capability (as in GPT-4 Vision or Gemini) allows the AI to ‘see’ and interpret images. This applies to reading complex charts in financial reports, converting whiteboard sketches into structured code, or analyzing video.",
@@ -1268,16 +1268,16 @@
     "sourceHash": "f0023279"
   },
   "diagram.disc.desc": {
-    "text": "The capacity to expand the system's information base through active search and ingestion of large volumes of data. Covers deep technical research (1.3) and massive reading of long documents without losing precision (1.4).",
-    "sourceHash": "9de46ba5"
+    "text": "The capacity to expand the system's information base through active search and ingestion of large volumes of data. Covers deep technical research (1.1) and massive reading of long documents without losing precision (1.2).",
+    "sourceHash": "ee5101e1"
   },
   "diagram.ver_completas": {
     "text": "See full capabilities →",
     "sourceHash": "f09793b4"
   },
   "diagram.design.desc": {
-    "text": "The capacity to turn abstractions into consumable visual artifacts. Covers slide generation (1.1), visual identity consistency (1.2), and multimodal analysis of images and files (1.5).",
-    "sourceHash": "b6117042"
+    "text": "The capacity to turn abstractions into consumable visual artifacts. Covers slide generation (1.4), visual identity consistency (1.5), and multimodal analysis of images and files (1.3).",
+    "sourceHash": "a1391966"
   },
   "diagram.build.desc": {
     "text": "The capacity for software construction and engineering. Covers web application generation and code automation (1.6) — the AI acting as a senior programmer, from architecture to testing.",
