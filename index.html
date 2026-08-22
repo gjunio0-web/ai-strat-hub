@@ -367,7 +367,7 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg>
                 <span class="hidden lg:block font-bold text-sm" data-i18n="nav.biblioteca" data-i18n-pt="Biblioteca">Biblioteca</span>
             </button>
-            <button onclick="switchTab('tab-articles')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-articles">
+            <button onclick="openArticlesTab()" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-articles">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m0 0h2a2 2 0 012 2v9a2 2 0 01-2 2h-2m0-13v13M7 8h6M7 12h4"></path></svg>
                 <span class="hidden lg:block font-bold text-sm" data-i18n="nav.artigos" data-i18n-pt="Artigos">Artigos</span>
             </button>
@@ -910,7 +910,7 @@
         <button onclick="switchTab('tab-decision')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-decision"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.decidir" data-i18n-pt="Decidir">Decidir</span></button>
         <button onclick="switchTab('tab-details')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-details"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.auditoria" data-i18n-pt="Auditoria">Auditoria</span></button>
         <button onclick="switchTab('tab-library')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-library"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.biblio" data-i18n-pt="Biblio">Biblio</span></button>
-        <button onclick="switchTab('tab-articles')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-articles"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m0 0h2a2 2 0 012 2v9a2 2 0 01-2 2h-2m0-13v13M7 8h6M7 12h4"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.artigos" data-i18n-pt="Artigos">Artigos</span></button>
+        <button onclick="openArticlesTab()" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-articles"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m0 0h2a2 2 0 012 2v9a2 2 0 01-2 2h-2m0-13v13M7 8h6M7 12h4"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.artigos" data-i18n-pt="Artigos">Artigos</span></button>
     </nav>
 
     <!-- MODAIS E OVERLAYS -->
@@ -2717,6 +2717,14 @@
             const sc = document.getElementById('tab-articles');
             if(sc) sc.scrollTo({ top: 0, behavior: 'instant' });
             if(push !== false) __artPush(null);
+        }
+
+        // Botão "Artigos" do menu: switchTab() só troca qual .tab-content fica visível,
+        // ignorando o estado interno da aba (índice vs. leitor). Sem isto, reclicar em
+        // "Artigos" com um artigo aberto mantém o leitor em vez de voltar ao índice.
+        function openArticlesTab(){
+            switchTab('tab-articles');
+            if(__artOpen) closeArticle();
         }
 
         function renderArticleNext(meta){
