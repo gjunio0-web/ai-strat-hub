@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="artigos/artigo.css">
     
     <!-- Estilos -->
     <style>
@@ -364,6 +366,10 @@
             <button onclick="switchTab('tab-library')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-library">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg>
                 <span class="hidden lg:block font-bold text-sm" data-i18n="nav.biblioteca" data-i18n-pt="Biblioteca">Biblioteca</span>
+            </button>
+            <button onclick="switchTab('tab-articles')" class="nav-item w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all hover:bg-slate-800 text-slate-400 hover:text-white group focus:outline-none" id="btn-desktop-articles">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m0 0h2a2 2 0 012 2v9a2 2 0 01-2 2h-2m0-13v13M7 8h6M7 12h4"></path></svg>
+                <span class="hidden lg:block font-bold text-sm" data-i18n="nav.artigos" data-i18n-pt="Artigos">Artigos</span>
             </button>
         </div>
 
@@ -850,6 +856,30 @@
             </div>
         </section>
 
+        <!-- 5. ARTIGOS -->
+        <section id="tab-articles" class="tab-content tab-inactive w-full h-full overflow-y-auto custom-scroll mobile-nav-clearance md:pb-8">
+            <div id="articlesIndex" class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12">
+                <header class="mt-4 mb-5 border-b border-slate-200 pb-5">
+                    <h2 class="section-title" data-i18n="sec.artigos.title" data-i18n-pt="Artigos">Artigos</h2>
+                    <p class="section-subtitle" data-i18n="sec.artigos.subtitle" data-i18n-pt="Artigos e outros textos para quem quer saber “Quando é melhor com IA”">Artigos e outros textos para quem quer saber “Quando é melhor com IA”</p>
+                </header>
+                <div id="articlesChips" class="flex md:flex-wrap gap-2 overflow-x-auto no-scrollbar mb-5"></div>
+                <div id="articlesList" class="grid gap-4"></div>
+            </div>
+            <div id="articleReader" class="hidden">
+                <div class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200 px-4 md:px-8 lg:px-12 py-2.5 flex items-center gap-3">
+                    <button onclick="closeArticle()" class="flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors focus:outline-none">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        <span data-i18n="artigos.voltar" data-i18n-pt="Artigos">Artigos</span>
+                    </button>
+                    <span class="text-slate-300">/</span>
+                    <span id="articleCrumb" class="text-xs font-medium text-slate-500 truncate"></span>
+                </div>
+                <div id="articleBody"></div>
+                <div id="articleNext" class="max-w-4xl mx-auto px-4 md:px-8 lg:px-12 pb-16"></div>
+            </div>
+        </section>
+
     </main>
 
     <!-- === BOTÃO FLUTUANTE DE IDIOMA (mobile) === -->
@@ -880,6 +910,7 @@
         <button onclick="switchTab('tab-decision')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-decision"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.decidir" data-i18n-pt="Decidir">Decidir</span></button>
         <button onclick="switchTab('tab-details')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-details"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.auditoria" data-i18n-pt="Auditoria">Auditoria</span></button>
         <button onclick="switchTab('tab-library')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-library"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.biblio" data-i18n-pt="Biblio">Biblio</span></button>
+        <button onclick="switchTab('tab-articles')" class="nav-item flex flex-col items-center gap-1 p-2 rounded-lg text-slate-400 focus:text-indigo-600 transition-colors" id="btn-mobile-articles"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m0 0h2a2 2 0 012 2v9a2 2 0 01-2 2h-2m0-13v13M7 8h6M7 12h4"></path></svg><span class="text-[9px] font-bold uppercase" data-i18n="navmobile.artigos" data-i18n-pt="Artigos">Artigos</span></button>
     </nav>
 
     <!-- MODAIS E OVERLAYS -->
@@ -1185,6 +1216,14 @@
             if(typeof renderPipeline === 'function') renderPipeline();
             if(typeof renderEcosystem === 'function') renderEcosystem();
             if(typeof renderCanon === 'function') renderCanon('all');
+            if(typeof renderArticles === 'function') renderArticles();
+            // O corpo do artigo já foi retraduzido por applyStaticI18nNode (está no mesmo
+            // documento); o trilho precisa ser refeito porque as alturas mudam com o idioma.
+            if(typeof buildArticleRail === 'function' && __artOpen){
+                const __m = ARTICLES.find(a => a.slug === __artOpen);
+                if(__m) document.getElementById('articleCrumb').textContent = tx(__m.title, 'articles.' + __m.id + '.title');
+                requestAnimationFrame(buildArticleRail);
+            }
             if(typeof renderMatrix === 'function') renderMatrix();
             if(typeof renderMobileMatrix === 'function') renderMobileMatrix();
             if(typeof renderImpactMatrix === 'function') renderImpactMatrix();
@@ -1531,6 +1570,7 @@
             initDragToClose('archSheetHandle', 'archSheet', closeArchSheet);
             renderEcosystem();
             renderCanon('all');
+            renderArticles();
             
             // SYSTEM INIT
             applyArchetype('cirurgiao'); // Inicia sempre com perfil Cirurgião
@@ -1551,7 +1591,17 @@
             });
             // Dispara a troca para en/de (assíncrona) só depois que a tela já pintou em PT.
             if(initialLang !== 'pt') applyLocale(initialLang);
-            switchTab('tab-knowledge');
+            // Rota de entrada: ?tab=articles[&artigo=slug] abre a seção Artigos direto,
+            // para que cada artigo tenha endereço próprio divulgável. Sem os parâmetros,
+            // o comportamento permanece exatamente o anterior.
+            const __p = new URLSearchParams(window.location.search);
+            if(__p.get('tab') === 'articles'){
+                switchTab('tab-articles');
+                const __slug = __p.get('artigo');
+                if(__slug) openArticle(__slug, false);
+            } else {
+                switchTab('tab-knowledge');
+            }
             
             // ATTACH LISTENERS FOR TOAST (CLEAN SLATE)
             ['slider-think','slider-disc','slider-design','slider-build','slider-integ','slider-stream','slider-stream-71','slider-stream-72','slider-stream-73'].forEach(id => {
@@ -2556,6 +2606,276 @@
                 }]
             });
         }
+
+        // ============================================================
+        // ARTIGOS — índice, leitor e trilho do argumento
+        // ============================================================
+        // Cada artigo é um FRAGMENTO em artigos/<slug>.html (sem <html>/<head>),
+        // buscado sob demanda e injetado no documento do Hub. Por estar no mesmo
+        // documento, applyStaticI18nNode alcança seus nós data-i18n nativamente —
+        // o seletor de idioma da barra lateral governa também o corpo do artigo.
+        const ARTICLES = [
+            // min: medido sobre 1.511 palavras a 190 palavras/min (leitura atenta).
+            { id:'fio', slug:'fio-do-argumento', cat:'metodo', min:8,
+              title:"O advogado brilhante que não entrega a petição.",
+              dek:"O fio do argumento de \"Quando é Melhor com IA\": por que potência e eficiência são eixos independentes, e não dois pontos da mesma régua." }
+        ];
+        const __artCache = {};
+        let __artOpen = null;
+
+        // Rótulo de categoria: chamadas tx() literais, para que o auditor de traduções
+        // as reconheça como texto-fonte. É a MESMA função que alimenta a etiqueta do
+        // cartão e o filtro — a faixa não pode divergir do que o cartão exibe.
+        function articleCatLabel(cat){
+            if(cat === 'metodo')     return tx('Método', 'artigos.cat.metodo');
+            if(cat === 'arquetipos') return tx('Arquétipos', 'artigos.cat.arquetipos');
+            if(cat === 'ferramentas')return tx('Ferramentas', 'artigos.cat.ferramentas');
+            if(cat === 'bastidores') return tx('Bastidores', 'artigos.cat.bastidores');
+            return cat;
+        }
+        let __artFiltro = 'all';
+
+        function renderArticleChips(){
+            const bar = document.getElementById('articlesChips');
+            if(!bar) return;
+            // Só entram na faixa as categorias que existem de fato entre os artigos.
+            const cats = [];
+            ARTICLES.forEach(a => { if(cats.indexOf(a.cat) === -1) cats.push(a.cat); });
+            bar.innerHTML = '';
+            const mk = (valor, rotulo) => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.onclick = () => { __artFiltro = valor; renderArticles(); };
+                b.className = 'shrink-0 px-3 py-1 text-[10px] font-bold uppercase rounded border transition-colors '
+                    + (__artFiltro === valor
+                        ? 'border-indigo-300 bg-indigo-600 text-white'
+                        : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50');
+                b.textContent = rotulo;
+                bar.appendChild(b);
+            };
+            mk('all', tx('Todos', 'common.todos'));
+            cats.forEach(c => mk(c, articleCatLabel(c)));
+        }
+
+        function renderArticles(){
+            const box = document.getElementById('articlesList');
+            if(!box) return;
+            renderArticleChips();
+            box.innerHTML = '';
+            ARTICLES.filter(a => __artFiltro === 'all' || a.cat === __artFiltro).forEach(a => {
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.onclick = () => openArticle(a.slug);
+                card.className = 'text-left bg-white border border-slate-200 rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md hover:border-indigo-200 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500';
+                card.innerHTML =
+                    '<span class="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded bg-indigo-50 text-indigo-700 border border-indigo-100">'
+                    + articleCatLabel(a.cat) + '</span>'
+                    + '<h3 class="mt-3 text-lg md:text-xl font-bold text-slate-900 leading-snug">'
+                    + tx(a.title, 'articles.' + a.id + '.title') + '</h3>'
+                    + '<p class="mt-2 text-sm text-slate-600 leading-relaxed">'
+                    + tx(a.dek, 'articles.' + a.id + '.dek') + '</p>'
+                    + '<span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-indigo-600">'
+                    + tx('Ler', 'artigos.ler') + ' · ' + a.min + ' ' + tx('min', 'artigos.min') + '</span>';
+                box.appendChild(card);
+            });
+        }
+
+        function openArticle(slug, push){
+            const meta = ARTICLES.find(a => a.slug === slug);
+            if(!meta) return;
+            const show = () => {
+                document.getElementById('articlesIndex').classList.add('hidden');
+                document.getElementById('articleReader').classList.remove('hidden');
+                document.getElementById('articleCrumb').textContent = tx(meta.title, 'articles.' + meta.id + '.title');
+                document.getElementById('articleBody').innerHTML = __artCache[slug];
+                // i18n: os nós recém-injetados ainda não passaram por applyStaticI18nNode.
+                document.querySelectorAll('#articleBody [data-i18n]').forEach(applyStaticI18nNode);
+                renderArticleNext(meta);
+                __artOpen = slug;
+                const sc = document.getElementById('tab-articles');
+                // scrollTop direto seria animado agora que scroll-behavior:smooth vale na seção;
+                // ao abrir e ao fechar o reposicionamento tem de ser imediato.
+                if(sc) sc.scrollTo({ top: 0, behavior: 'instant' });
+                buildArticleRail();
+                armArticleReveal();
+                if(push !== false) __artPush(slug);
+            };
+            if(__artCache[slug]) { show(); return; }
+            fetch('artigos/' + slug + '.html')
+                .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+                .then(html => { __artCache[slug] = html; show(); })
+                .catch(err => {
+                    console.warn('[artigos] falha ao carregar ' + slug, err);
+                    document.getElementById('articlesIndex').classList.remove('hidden');
+                });
+        }
+
+        function closeArticle(push){
+            document.getElementById('articleReader').classList.add('hidden');
+            document.getElementById('articlesIndex').classList.remove('hidden');
+            __artOpen = null;
+            const sc = document.getElementById('tab-articles');
+            if(sc) sc.scrollTo({ top: 0, behavior: 'instant' });
+            if(push !== false) __artPush(null);
+        }
+
+        function renderArticleNext(meta){
+            const box = document.getElementById('articleNext');
+            if(!box) return;
+            const i = ARTICLES.indexOf(meta), prox = ARTICLES[i + 1];
+            if(!prox){
+                box.innerHTML = '<div class="border-t border-slate-200 pt-6 text-sm text-slate-500">'
+                    + tx('Este é o artigo mais recente da série.', 'artigos.ultimo') + '</div>';
+                return;
+            }
+            box.innerHTML = '<div class="border-t border-slate-200 pt-6">'
+                + '<p class="text-[11px] font-bold uppercase tracking-wide text-slate-400 mb-2">'
+                + tx('Próximo artigo', 'artigos.proximo') + '</p>'
+                + '<button type="button" data-next="' + prox.slug + '" class="text-left w-full bg-white border border-slate-200 rounded-2xl p-5 hover:border-indigo-200 hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500">'
+                + '<h3 class="text-base font-bold text-slate-900 leading-snug">'
+                + tx(prox.title, 'articles.' + prox.id + '.title') + '</h3></button></div>';
+            const b = box.querySelector('[data-next]');
+            if(b) b.onclick = () => openArticle(b.getAttribute('data-next'));
+        }
+
+        // Endereço direto: ?tab=articles[&artigo=slug]. Escrito com params.set para
+        // preservar ?lang= e qualquer outro parâmetro já presente.
+        function __artPush(slug){
+            const params = new URLSearchParams(window.location.search);
+            params.set('tab', 'articles');
+            if(slug) params.set('artigo', slug); else params.delete('artigo');
+            try { history.pushState({ tab:'articles', artigo: slug || null }, '', '?' + params.toString()); } catch(e){}
+        }
+        window.addEventListener('popstate', () => {
+            const params = new URLSearchParams(window.location.search);
+            const slug = (params.get('tab') === 'articles') ? params.get('artigo') : null;
+            // Voltar para uma entrada SEM ?tab=articles também precisa fechar o leitor:
+            // sem isso, o botão físico de voltar do celular parece não responder.
+            if(slug){
+                if(slug !== __artOpen) openArticle(slug, false);
+            } else if(__artOpen){
+                closeArticle(false);
+            }
+        });
+
+        // --- Trilho do argumento (SVG) -------------------------------------
+        // Portado da página autônoma. Diferença única e necessária: a rolagem do Hub
+        // acontece DENTRO da seção (#tab-articles), não em window — a posição é lida
+        // por getBoundingClientRect, independente de offsetParent e de window.scrollY.
+        const __artReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+        function __artEls(){
+            const sc = document.getElementById('tab-articles');
+            const wrap = document.querySelector('#articleBody .wrap');
+            const rail = document.getElementById('rail');
+            return (sc && wrap && rail) ? { sc, wrap, rail } : null;
+        }
+        function __artLane(el){
+            if(el.querySelector('.tag.p')) return 'p';
+            if(el.querySelector('.tag.e')) return 'e';
+            return 'b';
+        }
+        function buildArticleRail(){
+            const E = __artEls(); if(!E) return;
+            const { wrap, rail } = E;
+            const hero = wrap.querySelector('header.hero');
+            const nodes = [].slice.call(wrap.querySelectorAll('section.node'));
+            if(!hero || !nodes.length) return;
+            const W = parseFloat(getComputedStyle(wrap).getPropertyValue('--rail')) || 132,
+                  H = wrap.offsetHeight, narrow = W < 80,
+                  cx = narrow ? W - 16 : W - 46, gap = narrow ? 10 : 28,
+                  lx = cx - gap, rx = cx + gap;
+            rail.setAttribute('width', W); rail.setAttribute('height', H);
+            rail.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+            const y = (el, f) => el.offsetTop + el.offsetHeight * f;
+            const forkEl = wrap.querySelector('#n2'), mergeEl = wrap.querySelector('#n10');
+            if(!forkEl || !mergeEl) return;
+            const yStart = hero.offsetTop + 40, yFork = y(forkEl, .42), yMerge = y(mergeEl, .30),
+                  yEnd = mergeEl.offsetTop + mergeEl.offsetHeight - 30;
+            const P = '#818cf8', Ef = '#7c3aed', B = '#4f46e5';
+            let svg = '';
+            const add = (d, c) => { svg += '<path d="' + d + '" stroke="' + c + '"/>'; };
+            add('M' + cx + ' ' + yStart + ' L' + cx + ' ' + (yFork - 46), B);
+            add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + lx + ' ' + (yFork - 16) + ' ' + lx + ' ' + yFork, P);
+            add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + rx + ' ' + (yFork - 16) + ' ' + rx + ' ' + yFork, Ef);
+            add('M' + lx + ' ' + yFork + ' L' + lx + ' ' + (yMerge - 46), P);
+            add('M' + rx + ' ' + yFork + ' L' + rx + ' ' + (yMerge - 46), Ef);
+            add('M' + lx + ' ' + (yMerge - 46) + ' C' + lx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, P);
+            add('M' + rx + ' ' + (yMerge - 46) + ' C' + rx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, Ef);
+            add('M' + cx + ' ' + yMerge + ' L' + cx + ' ' + yEnd, B);
+            nodes.forEach(n => {
+                const ny = y(n, .16), L = __artLane(n);
+                let x, col;
+                if(ny < yFork){ x = cx; col = B; }
+                else if(L === 'p'){ x = lx; col = P; }
+                else if(L === 'e'){ x = rx; col = Ef; }
+                else { svg += '<circle cx="' + lx + '" cy="' + ny + '" r="6" fill="' + P + '"/>'
+                            + '<circle cx="' + rx + '" cy="' + ny + '" r="6" fill="' + Ef + '"/>'; return; }
+                svg += '<circle cx="' + x + '" cy="' + ny + '" r="6" fill="' + col + '"/>';
+            });
+            svg += '<circle cx="' + cx + '" cy="' + yStart + '" r="6" fill="' + B + '"/>';
+            svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
+            rail.innerHTML = svg;
+            if(!__artReduce){
+                rail.querySelectorAll('path').forEach(pt => {
+                    const len = pt.getTotalLength(), bb = pt.getBBox();
+                    pt.style.strokeDasharray = len; pt.style.strokeDashoffset = len;
+                    pt.dataset.len = len; pt.dataset.top = bb.y; pt.dataset.bot = bb.y + bb.height;
+                });
+                rail.querySelectorAll('circle').forEach(c => {
+                    c.style.opacity = 0; c.style.transition = 'opacity .45s';
+                });
+                drawArticleRail();
+            }
+        }
+        function drawArticleRail(){
+            const E = __artEls(); if(!E) return;
+            const { sc, wrap, rail } = E;
+            const scR = sc.getBoundingClientRect(), wR = wrap.getBoundingClientRect();
+            const edge = (scR.top - wR.top) + sc.clientHeight * 0.82;
+            rail.querySelectorAll('path').forEach(pt => {
+                const t = +pt.dataset.top, b = +pt.dataset.bot, len = +pt.dataset.len,
+                      k = Math.max(0, Math.min(1, (edge - t) / Math.max(1, b - t)));
+                pt.style.strokeDashoffset = len * (1 - k);
+            });
+            rail.querySelectorAll('circle').forEach(c => {
+                c.style.opacity = (+c.getAttribute('cy') < edge) ? 1 : 0;
+            });
+            const legend = wrap.querySelector('#legend'),
+                  f = wrap.querySelector('#n2'), m = wrap.querySelector('#n10');
+            if(legend && f && m){
+                const top = scR.top - wR.top;
+                legend.classList.toggle('on', top + sc.clientHeight * 0.6 > f.offsetTop && top < m.offsetTop);
+            }
+        }
+        let __artRaf, __artIo;
+        function armArticleReveal(){
+            const E = __artEls(); if(!E) return;
+            const { sc, wrap } = E;
+            const nodes = [].slice.call(wrap.querySelectorAll('section.node'));
+            const hero = wrap.querySelector('header.hero');
+            if(__artIo) __artIo.disconnect();
+            if(!__artReduce && 'IntersectionObserver' in window){
+                __artIo = new IntersectionObserver(es => {
+                    es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('seen'); __artIo.unobserve(e.target); } });
+                }, { root: sc, rootMargin: '0px 0px -12% 0px' });
+                nodes.forEach(n => __artIo.observe(n));
+                if(hero) [].forEach.call(hero.children, (c, i) => setTimeout(() => c.classList.add('seen'), 90 + i * 130));
+            } else {
+                nodes.forEach(n => n.classList.add('seen'));
+                if(hero) [].forEach.call(hero.children, c => c.classList.add('seen'));
+            }
+            if(!sc.__artScrollBound){
+                sc.addEventListener('scroll', () => {
+                    if(__artReduce) return;
+                    cancelAnimationFrame(__artRaf);
+                    __artRaf = requestAnimationFrame(drawArticleRail);
+                }, { passive: true });
+                sc.__artScrollBound = true;
+            }
+            if(document.fonts && document.fonts.ready) document.fonts.ready.then(buildArticleRail);
+        }
+        window.addEventListener('resize', () => { if(__artOpen) buildArticleRail(); });
 
         function renderCanon(filter){
             const container=document.getElementById('canonContent'); container.innerHTML='';

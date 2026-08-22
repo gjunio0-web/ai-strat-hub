@@ -1,0 +1,142 @@
+/* Artigo "O fio do argumento" — estilos escopados sob #tab-articles.
+   Derivado da página autônoma; nenhum seletor global permanece. */
+#tab-articles{--ink:#0f172a; --ink-body:#334155; --muted:#64748b; --faint:#94a3b8;
+  --line:#e2e8f0; --paper:#f1f5f9; --surface:#ffffff;
+  --brand:#4f46e5; --brand-700:#4338ca; --brand-900:#312e81;
+  --i50:#eef2ff; --i100:#e0e7ff; --i200:#c7d2fe; --i400:#818cf8;
+  --potencia:#818cf8; --eficiencia:#7c3aed;
+  --serif:'Source Serif 4',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --rail:132px;}
+#tab-articles *{box-sizing:border-box}
+#tab-articles{margin:0;background:var(--paper);color:var(--ink-body);font-family:var(--serif);
+  font-size:19px;line-height:1.65;-webkit-font-smoothing:antialiased}
+#tab-articles .wrap{max-width:1080px;margin:0 auto;padding:0 28px;position:relative}
+#tab-articles #rail{position:absolute;left:0;top:0;width:var(--rail);pointer-events:none;z-index:0}
+#tab-articles #rail path{fill:none;stroke-width:3;stroke-linecap:round}
+#tab-articles .col{position:relative;z-index:1;margin-left:var(--rail);max-width:660px}
+#tab-articles h1, #tab-articles h2, #tab-articles h3{font-family:var(--serif);color:var(--ink);font-weight:600;letter-spacing:-.01em}
+#tab-articles h1{font-size:clamp(38px,6.2vw,62px);line-height:1.08;margin:0 0 24px}
+#tab-articles h2{font-size:clamp(27px,3.6vw,36px);line-height:1.22;margin:0 0 18px}
+#tab-articles h3{font-size:20px;margin:0 0 8px}
+#tab-articles p{margin:0 0 20px}
+#tab-articles strong{font-weight:600;color:var(--ink)}
+#tab-articles .lede{font-size:22px;color:var(--ink);line-height:1.55}
+#tab-articles .eyebrow{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brand-700);margin:0 0 10px;display:block}
+#tab-articles .quiet{color:var(--muted);font-size:17px}
+#tab-articles header.hero{padding:120px 0 96px}
+#tab-articles .hero .kicker{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);margin-bottom:34px}
+#tab-articles .hero .bridge{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--brand-700);
+  margin:30px 0 0;display:flex;align-items:center;gap:12px}
+#tab-articles .hero .bridge::before{content:"";width:26px;height:2px;background:var(--brand);border-radius:2px;flex:none}
+#tab-articles .hero blockquote{margin:34px 0 0;padding:0 0 0 24px;border-left:3px solid var(--eficiencia);
+  font-size:21px;color:var(--ink);line-height:1.55}
+#tab-articles section.node{padding:76px 0;scroll-margin-top:40px}
+#tab-articles .tag{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;
+  padding:5px 12px;border-radius:100px;margin-bottom:16px}
+#tab-articles .tag::before{content:"";width:8px;height:8px;border-radius:50%}
+#tab-articles .tag.p{background:var(--i50);color:var(--brand-900)}
+#tab-articles .tag.p::before{background:var(--potencia)}
+#tab-articles .tag.e{background:#f5f0ff;color:#5b21b6}
+#tab-articles .tag.e::before{background:var(--eficiencia)}
+#tab-articles .tag.b{background:var(--i100);color:var(--brand-900)}
+#tab-articles .tag.b::before{background:linear-gradient(90deg,var(--potencia) 50%,var(--eficiencia) 50%)}
+#tab-articles .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 14px}
+#tab-articles .card h3{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--brand-900)}
+#tab-articles .card p{font-size:17px;margin:0;color:var(--ink-body)}
+#tab-articles .card .idx{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.1em}
+#tab-articles .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#tab-articles .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 26px}
+#tab-articles .pair > div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;border-top:4px solid}
+#tab-articles .pair .pp{border-top-color:var(--potencia)}
+#tab-articles .pair .pe{border-top-color:var(--eficiencia)}
+#tab-articles .pair h3{font-family:var(--sans);font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+#tab-articles .pair .pp h3{color:var(--brand-700)}
+#tab-articles .pair .pe h3{color:#6d28d9}
+#tab-articles .pair p{font-size:17px;margin:6px 0 0}
+#tab-articles .axis{border-left:3px solid var(--eficiencia);padding:2px 0 2px 20px;margin:0 0 22px}
+#tab-articles .axis h3{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--ink)}
+#tab-articles .axis p{font-size:17px;margin:4px 0 0}
+#tab-articles .arch{border-top:1px solid var(--line);padding:20px 0}
+#tab-articles .arch:last-of-type{border-bottom:1px solid var(--line)}
+#tab-articles .arch h3{font-family:var(--sans);font-size:18px;font-weight:700;color:var(--brand-900);margin-bottom:2px}
+#tab-articles .arch .who{font-family:var(--sans);font-size:14px;color:var(--muted);margin:0 0 8px}
+#tab-articles .arch p{font-size:17px;margin:0}
+#tab-articles .spec{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;margin:6px 0 22px}
+#tab-articles .spec .bar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--potencia),var(--eficiencia));margin:20px 0 10px}
+#tab-articles .spec .ends{display:flex;justify-content:space-between;font-family:var(--sans);font-size:13px;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+#tab-articles .spec .ends span:first-child{color:var(--brand-700)}
+#tab-articles .spec .ends span:last-child{color:#6d28d9}
+#tab-articles .close{background:var(--brand-900);color:#e0e7ff;border-radius:22px;padding:48px;margin:34px 0 0;
+  display:grid;grid-template-columns:184px 1fr;gap:36px;align-items:center}
+#tab-articles .close .cover{width:184px;border-radius:8px;box-shadow:0 18px 40px -12px rgba(0,0,0,.6)}
+#tab-articles .close h2{color:#fff;font-size:31px;margin-bottom:14px}
+#tab-articles .close p{color:var(--i200);font-size:18px}
+#tab-articles .buy{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--brand-900);
+  font-family:var(--sans);font-size:16px;font-weight:700;text-decoration:none;
+  padding:14px 24px;border-radius:100px;margin-top:6px;transition:transform .15s,box-shadow .15s}
+#tab-articles .buy:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(0,0,0,.5)}
+#tab-articles .buy:focus-visible{outline:3px solid var(--i400);outline-offset:3px}
+#tab-articles .buy svg{width:16px;height:16px;flex:none}
+#tab-articles .close .fine{font-family:var(--sans);font-size:14px;color:#a5b4fc;margin:14px 0 0}
+#tab-articles .intro{background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:28px;margin:6px 0 26px;display:grid;grid-template-columns:132px 1fr;gap:28px;align-items:center}
+#tab-articles .cover{background-image:url(assets/capa-quando-e-melhor-com-ia.jpg);background-size:cover;background-position:center;background-repeat:no-repeat;aspect-ratio:520/834;flex:none}
+#tab-articles .intro .cover{width:132px;border-radius:6px;box-shadow:0 14px 30px -14px rgba(15,23,42,.55)}
+#tab-articles .intro .t{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink);line-height:1.25;margin:0 0 6px}
+#tab-articles .intro .s{font-family:var(--sans);font-size:15px;color:var(--muted);line-height:1.5;margin:0 0 14px}
+#tab-articles .intro dl{margin:0;font-family:var(--sans);font-size:14px;display:grid;grid-template-columns:auto 1fr;gap:5px 14px}
+#tab-articles .intro dt{color:var(--faint);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:11px;padding-top:2px}
+#tab-articles .intro dd{margin:0;color:var(--ink-body)}
+#tab-articles .intro .src{color:var(--brand);text-decoration:none;font-weight:600;
+  display:inline-flex;align-items:center;gap:5px;border-bottom:1px solid transparent}
+#tab-articles .intro .src:hover{border-bottom-color:var(--brand)}
+#tab-articles .intro .src:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:3px}
+#tab-articles .intro .src svg{width:13px;height:13px;flex:none}
+#tab-articles footer{padding:60px 0 90px;font-family:var(--sans);font-size:14px;color:var(--faint)}
+#tab-articles /* seletor de idioma */
+
+
+
+
+
+#legend{position:fixed;left:24px;bottom:24px;z-index:5;background:rgba(255,255,255,.94);
+  border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-family:var(--sans);
+  font-size:12px;line-height:1.5;box-shadow:0 6px 20px -8px rgba(15,23,42,.2);
+  opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s;max-width:190px}
+#tab-articles #legend.on{opacity:1;transform:none}
+#tab-articles #legend b{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);margin:0 0 4px}
+#tab-articles #legend b i{width:16px;height:3px;border-radius:2px;display:block}
+#tab-articles #legend span{color:var(--muted);display:block;margin:0 0 10px}
+#tab-articles #legend span:last-child{margin:0}
+#tab-articles .node, #tab-articles .hero>*{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+#tab-articles .node.seen, #tab-articles .hero>.seen{opacity:1;transform:none}
+@media (max-width:860px){
+#tab-articles{--rail:44px}
+#tab-articles{font-size:18px}
+#tab-articles .wrap{padding:0 20px}
+#tab-articles .pair, #tab-articles .grid2{grid-template-columns:1fr}
+#tab-articles .close{grid-template-columns:1fr;padding:32px}
+#tab-articles .intro{grid-template-columns:1fr;gap:20px;padding:24px}
+#tab-articles .close .cover{width:150px}
+#tab-articles #legend{display:none}
+#tab-articles header.hero{padding:86px 0 56px}
+#tab-articles section.node{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){
+#tab-articles *{transition:none!important;animation:none!important}
+#tab-articles .node, #tab-articles .hero>*{opacity:1;transform:none}
+}
+
+/* Rolagem suave: no artigo autônomo era declarada em <html>; aqui o elemento que
+   de fato rola é a própria seção, então é nela que a propriedade precisa estar. */
+#tab-articles{ scroll-behavior:smooth }
+@media (prefers-reduced-motion:reduce){ #tab-articles{ scroll-behavior:auto } }
+
+/* A legenda flutuante é position:fixed; dentro do Hub precisa começar
+   depois da barra lateral, que mede 5rem (md) e 16rem (lg). */
+@media (min-width:768px){ #tab-articles #legend{ left:calc(5rem + 24px) } }
+@media (min-width:1024px){ #tab-articles #legend{ left:calc(16rem + 24px) } }

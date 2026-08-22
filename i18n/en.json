@@ -1742,5 +1742,473 @@
   "insight.export_bar_label": {
     "text": "Share or export this analysis",
     "sourceHash": "af4fc92e"
+  },
+  "art.fio.legenda.p1": {
+    "text": "Power",
+    "sourceHash": "d024fb9d"
+  },
+  "art.fio.legenda.p2": {
+    "text": "What the AI can do",
+    "sourceHash": "55fbda5d"
+  },
+  "art.fio.legenda.e1": {
+    "text": "Efficiency",
+    "sourceHash": "6797e72a"
+  },
+  "art.fio.legenda.e2": {
+    "text": "What reaches you",
+    "sourceHash": "f11f7427"
+  },
+  "art.fio.tag.p": {
+    "text": "Power thread",
+    "sourceHash": "2117dc00"
+  },
+  "art.fio.tag.e": {
+    "text": "Efficiency thread",
+    "sourceHash": "c0c46c4d"
+  },
+  "art.fio.tag.b": {
+    "text": "Both threads",
+    "sourceHash": "703c8f67"
+  },
+  "art.fio.hero.kick": {
+    "text": "Quando é Melhor com IA · Gonçalo Marques",
+    "sourceHash": "f794cbe2"
+  },
+  "art.fio.hero.title": {
+    "text": "The brilliant lawyer who never files the brief.",
+    "sourceHash": "5ef8f8bd"
+  },
+  "art.fio.hero.lede": {
+    "text": "Picture a lawyer of exceptional intelligence who refuses to file briefs in the format the court accepts, requiring the client to transcribe every idea by hand. The competence is real and measurable. And completely irrelevant to whoever needs the result.",
+    "sourceHash": "35de8ee4"
+  },
+  "art.fio.hero.quote": {
+    "text": "This is what happens when you use a state-of-the-art AI and still end the day redoing what it produced.",
+    "sourceHash": "6f1b7dde"
+  },
+  "art.fio.hero.bridge": {
+    "text": "This discomfort has a name and a cause. And someone has confronted it with method.",
+    "sourceHash": "207306b7"
+  },
+  "art.fio.livro.eye": {
+    "text": "The book",
+    "sourceHash": "177b6060"
+  },
+  "art.fio.livro.h": {
+    "text": "The book that describes this problem",
+    "sourceHash": "c7c6225e"
+  },
+  "art.fio.livro.p0": {
+    "text": "<strong><em>Quando é Melhor com IA</em></strong> gives this discomfort a name, explains its cause and proposes a method for working around it. Everything on this page comes from the book.",
+    "sourceHash": "4db07def"
+  },
+  "art.fio.livro.t": {
+    "text": "Quando é Melhor com IA",
+    "sourceHash": "8f93e486"
+  },
+  "art.fio.livro.s": {
+    "text": "Professional augmentation through AI use. From Strategic Analysis to Technical Production.",
+    "sourceHash": "90f74e2e"
+  },
+  "art.fio.livro.k1": {
+    "text": "Author",
+    "sourceHash": "cd95d70"
+  },
+  "art.fio.livro.v1": {
+    "text": "Gonçalo Marques",
+    "sourceHash": "31da054a"
+  },
+  "art.fio.livro.k2": {
+    "text": "Written for",
+    "sourceHash": "a27fd41"
+  },
+  "art.fio.livro.v2": {
+    "text": "Anyone who produces analysis, decisions or technical deliverables",
+    "sourceHash": "d4976d5e"
+  },
+  "art.fio.livro.k3": {
+    "text": "Reading",
+    "sourceHash": "d15057db"
+  },
+  "art.fio.livro.v3": {
+    "text": "Three tracks: executive, technical, consultative",
+    "sourceHash": "4baa7ddb"
+  },
+  "art.fio.livro.k4": {
+    "text": "Where",
+    "sourceHash": "7c8a42ab"
+  },
+  "art.fio.livro.v4": {
+    "text": "Amazon · Kindle edition",
+    "sourceHash": "671ec384"
+  },
+  "art.fio.livro.p1": {
+    "text": "Its stated purpose is to guide the professional in applying AI with rigour, accountability and method to the work of producing and applying knowledge. The focus is on raising the quality of technical output, of complex information analysis and of strategic decision support – advanced use, not casual or purely theoretical uses.",
+    "sourceHash": "f6d1a944"
+  },
+  "art.fio.livro.p2": {
+    "text": "To that end it separates three things usually bundled together: the AI's <strong>technical capabilities</strong>, the <strong>use cases</strong> that mobilise them, and the <strong>cross-cutting functions</strong> running through any task. Everything that follows grows out of that separation.",
+    "sourceHash": "e0075385"
+  },
+  "art.fio.livro.p3": {
+    "text": "The sections below walk through the book's central argument, from the problem it names to the method it proposes.",
+    "sourceHash": "1e2af489"
+  },
+  "art.fio.falacia.eye": {
+    "text": "Chapter 5",
+    "sourceHash": "1f28bebf"
+  },
+  "art.fio.falacia.h": {
+    "text": "The synthetic IQ fallacy",
+    "sourceHash": "3b27bf4a"
+  },
+  "art.fio.falacia.p1": {
+    "text": "The book names the discomfort: believing that a high score on reasoning tests translates automatically into delivered productivity. It does not.",
+    "sourceHash": "b2b1cc4a"
+  },
+  "art.fio.falacia.p2": {
+    "text": "An engineer who can solve arbitrarily complex algorithms but cannot read his own company's repository has real intellectual power. And irrelevant power. <strong>Power that does not show up as delivery is, for the user, non-existent.</strong>",
+    "sourceHash": "b8a16a98"
+  },
+  "art.fio.grandezas.eye": {
+    "text": "Here the argument splits in two",
+    "sourceHash": "749ba504"
+  },
+  "art.fio.grandezas.h": {
+    "text": "Two quantities, not one",
+    "sourceHash": "24e37260"
+  },
+  "art.fio.grandezas.p1": {
+    "text": "Power and efficiency are not two points on the same scale. They are independent axes. An AI can have plenty of power and little efficiency – the lawyer who never files – or the reverse: everything delivered ready, with little to say.",
+    "sourceHash": "4958da9a"
+  },
+  "art.fio.grandezas.c1h": {
+    "text": "Power",
+    "sourceHash": "d024fb9d"
+  },
+  "art.fio.grandezas.c1p": {
+    "text": "What the AI can do: reason, synthesise, analyse. This is what public benchmarks measure.",
+    "sourceHash": "f4ac2b6"
+  },
+  "art.fio.grandezas.c2h": {
+    "text": "Efficiency",
+    "sourceHash": "6797e72a"
+  },
+  "art.fio.grandezas.c2p": {
+    "text": "How much of that power reaches you without being lost on the way. No benchmark measures this.",
+    "sourceHash": "710510a4"
+  },
+  "art.fio.grandezas.p2": {
+    "text": "From here on, every concept in the book belongs to one of the two threads. They only meet again at the end.",
+    "sourceHash": "1afe683"
+  },
+  "art.fio.metacasos.h": {
+    "text": "The four metacases",
+    "sourceHash": "3e5dffa3"
+  },
+  "art.fio.metacasos.p": {
+    "text": "Functions the AI performs backstage in almost any task, and which until recently had no name. Recognising them lets you break a task down before you start.",
+    "sourceHash": "a35eac92"
+  },
+  "art.fio.metacasos.ah": {
+    "text": "Curation, normalisation and integration",
+    "sourceHash": "3abf5ad9"
+  },
+  "art.fio.metacasos.ap": {
+    "text": "Comparing the sources, choosing equivalent terms and assembling a common frame. It is pre-analytical: it prepares the conceptual ground everything else will be built on.",
+    "sourceHash": "4940346e"
+  },
+  "art.fio.metacasos.bh": {
+    "text": "Logical validation",
+    "sourceHash": "f703e7a2"
+  },
+  "art.fio.metacasos.bp": {
+    "text": "Auditing a line of reasoning: internal contradictions, unjustified leaps. It does not produce content, it audits it.",
+    "sourceHash": "6a927342"
+  },
+  "art.fio.metacasos.ch": {
+    "text": "Abstraction conversion",
+    "sourceHash": "6695f576"
+  },
+  "art.fio.metacasos.cp": {
+    "text": "Translating between the strategic, tactical and operational levels (processes and implementation). This is what lets one analysis serve both the board and the technical team.",
+    "sourceHash": "73cb7c3c"
+  },
+  "art.fio.metacasos.dh": {
+    "text": "Intermediate artefacts",
+    "sourceHash": "b0d32b2d"
+  },
+  "art.fio.metacasos.dp": {
+    "text": "Provisional matrices, tables, sketches and the like that never reach the final deliverable, but exist to think better during the process.",
+    "sourceHash": "ecc3130"
+  },
+  "art.fio.analise.h": {
+    "text": "Strategic analysis as method",
+    "sourceHash": "9d89672d"
+  },
+  "art.fio.analise.p1": {
+    "text": "Chapter 7 of the book covers strategic-synthesis use and lists the components you must ask for, precisely so the analysis does not come back incomplete through the asker's omission: market, benchmark, value chain, capabilities, processes, technologies, frameworks.",
+    "sourceHash": "3c0e352b"
+  },
+  "art.fio.analise.p2": {
+    "text": "The flow described is an AI operating as a <strong>junior consultant</strong>, with you as the senior consultant who directs and reviews.",
+    "sourceHash": "4ecbc392"
+  },
+  "art.fio.cola.h": {
+    "text": "Glue work",
+    "sourceHash": "c3f50d09"
+  },
+  "art.fio.cola.p1": {
+    "text": "Copying a model's output into an editor. Reformatting a table for the company spreadsheet. Re-uploading a file the AI should have reached on its own. Each of these bridges is lost energy, and each loss brings delay and risk of error.",
+    "sourceHash": "164b0704"
+  },
+  "art.fio.cola.p2": {
+    "text": "The chapter's thesis is that this friction is not an implementation detail. It is a <strong>first-order economic variable</strong> – with consequences for return on investment, for vendor lock-in, and for opacity, when excessive fluidity erodes the very traceability it should protect.",
+    "sourceHash": "c238202b"
+  },
+  "art.fio.eixos.h": {
+    "text": "The three axes of enablement",
+    "sourceHash": "722fd0ce"
+  },
+  "art.fio.eixos.p": {
+    "text": "Efficiency is not a single number. It breaks down into three independent dimensions, each answering a distinct question about how the AI meets real work.",
+    "sourceHash": "36821a0b"
+  },
+  "art.fio.eixos.a1h": {
+    "text": "Data Gravity",
+    "sourceHash": "c19aeb20"
+  },
+  "art.fio.eixos.a1p": {
+    "text": "Does the AI operate where the data already lives, or does it require you to extract and carry it manually?",
+    "sourceHash": "fddaf087"
+  },
+  "art.fio.eixos.a2h": {
+    "text": "Format Continuity",
+    "sourceHash": "fce9289d"
+  },
+  "art.fio.eixos.a2p": {
+    "text": "Is the output a draft to be rebuilt, or a finished artefact in the format it will be consumed in?",
+    "sourceHash": "3d6f95f4"
+  },
+  "art.fio.eixos.a3h": {
+    "text": "Reliability &amp; Verifiability",
+    "sourceHash": "c9da5732"
+  },
+  "art.fio.eixos.a3p": {
+    "text": "Is every factual claim traceable to a source? A synthesis without auditability is merely an opinion.",
+    "sourceHash": "6203cfa7"
+  },
+  "art.fio.alucinacao.h": {
+    "text": "Zero Hallucination",
+    "sourceHash": "84fe8b3b"
+  },
+  "art.fio.alucinacao.p1": {
+    "text": "The book's founding principle, and the most uncomfortable for being so direct: <strong>every factual claim the AI makes is suspect until proven otherwise.</strong> A human expert enjoys presumed credibility; the AI gets no such benefit of the doubt on matters of fact.",
+    "sourceHash": "c54fa242"
+  },
+  "art.fio.alucinacao.p2": {
+    "text": "The book likens this to zero defect in quality management. Absolute zero may be unreachable, but the value lies in never accepting an error without having confronted it. That is where casual use parts ways with professional use: the first settles for most things being right.",
+    "sourceHash": "362bbf57"
+  },
+  "art.fio.alucinacao.ch": {
+    "text": "And accountability is not diluted",
+    "sourceHash": "d4b93273"
+  },
+  "art.fio.alucinacao.cp": {
+    "text": "If a deliverable goes out with an error, the fault is not the AI's – it belongs to whoever reviewed and approved it. The AI carries no legal liability. Whoever signs, does.",
+    "sourceHash": "c595dde1"
+  },
+  "art.fio.arquetipos.h": {
+    "text": "Where you fit",
+    "sourceHash": "c517ca4f"
+  },
+  "art.fio.arquetipos.p": {
+    "text": "No professional uses every capability in the same proportion, nor demands the same fluidity for every task. Hence the gallery of archetypes – and some will probably sound familiar.",
+    "sourceHash": "d537674e"
+  },
+  "art.fio.arquetipos.a1.h": {
+    "text": "Scenario Oracle",
+    "sourceHash": "42e25877"
+  },
+  "art.fio.arquetipos.a1.w": {
+    "text": "Strategy consultants, M&amp;A analysts, scenario planners, executive advisors",
+    "sourceHash": "e87f5321"
+  },
+  "art.fio.arquetipos.a1.p": {
+    "text": "Uses the AI as a dialectical partner. What matters is the quality of the reasoning delivered in running text; polished formatting is irrelevant next to the robustness of the argument.",
+    "sourceHash": "359cfaea"
+  },
+  "art.fio.arquetipos.a2.h": {
+    "text": "Elite Bureaucrat",
+    "sourceHash": "65b7db84"
+  },
+  "art.fio.arquetipos.a2.w": {
+    "text": "Regulatory compliance, corporate lawyers, project managers, process analysts",
+    "sourceHash": "1eb37f4d"
+  },
+  "art.fio.arquetipos.a2.p": {
+    "text": "The last-mile professional, for whom zero formatting error is not a luxury but a requirement. Any residual copy-and-paste is a failure of the system.",
+    "sourceHash": "99877fc4"
+  },
+  "art.fio.arquetipos.a3.h": {
+    "text": "Signal Hunter",
+    "sourceHash": "8d91bc86"
+  },
+  "art.fio.arquetipos.a3.w": {
+    "text": "Journalists, <em>due diligence</em> analysts, risk auditors, fraud investigators",
+    "sourceHash": "fba6c8d5"
+  },
+  "art.fio.arquetipos.a3.p": {
+    "text": "Extracts truth from oceans of raw data and rejects any claim without a link to a real source. This is where Zero Hallucination shows up most literally.",
+    "sourceHash": "fef60345"
+  },
+  "art.fio.arquetipos.a4.h": {
+    "text": "Corporate Showrunner",
+    "sourceHash": "dc5b0f38"
+  },
+  "art.fio.arquetipos.a4.w": {
+    "text": "Product managers, marketing directors, launch leads, PMO managers",
+    "sourceHash": "db8161b0"
+  },
+  "art.fio.arquetipos.a4.p": {
+    "text": "Turns abstract business visions into decks, visual reports and video. High input volume, output that has to be flawless.",
+    "sourceHash": "5c23206f"
+  },
+  "art.fio.arquetipos.a5.h": {
+    "text": "Legacy Analyst",
+    "sourceHash": "a96f6567"
+  },
+  "art.fio.arquetipos.a5.w": {
+    "text": "Large-systems consultants, banking systems engineers, critical infrastructure",
+    "sourceHash": "9b593771"
+  },
+  "art.fio.arquetipos.a5.p": {
+    "text": "Reads and diagnoses massive systems and sprawling documentation – work that demands colossal context windows, on pain of losing critical dependencies.",
+    "sourceHash": "b202138d"
+  },
+  "art.fio.arquetipos.q": {
+    "text": "The profiles are not sealed compartments: the same professional moves between identities depending on the day's task.",
+    "sourceHash": "48e5ec57"
+  },
+  "art.fio.artesao.h": {
+    "text": "Artisan or Operator",
+    "sourceHash": "ad7cbdf6"
+  },
+  "art.fio.artesao.q": {
+    "text": "Which side does this piece of work benefit from?",
+    "sourceHash": "95195f2c"
+  },
+  "art.fio.artesao.e1": {
+    "text": "Artisan",
+    "sourceHash": "a1a1a5b6"
+  },
+  "art.fio.artesao.e2": {
+    "text": "Operator",
+    "sourceHash": "55d69c1"
+  },
+  "art.fio.artesao.p1": {
+    "text": "On the left, you value the process and demand full control: the AI supplies the raw intellectual material and final assembly stays deliberately manual. On the right, you want the finished product, and any manual step registers as a system failure.",
+    "sourceHash": "c48292dd"
+  },
+  "art.fio.artesao.p2": {
+    "text": "The right position depends on the nature of the task, not on a generic preference for more or less automation. <strong>Maturity is not choosing a side once and for all, but recognising, for each piece of work, which side or point on the spectrum it benefits from.</strong>",
+    "sourceHash": "1048ef3c"
+  },
+  "art.fio.mapa.eye": {
+    "text": "The threads meet again",
+    "sourceHash": "a0ab4aae"
+  },
+  "art.fio.mapa.h": {
+    "text": "A map, not a catalogue",
+    "sourceHash": "f844ccde"
+  },
+  "art.fio.mapa.p1": {
+    "text": "What sets the book apart, in its own preface's words: rather than cataloguing tools, it builds a map that separates the AI's technical capabilities from the use cases that mobilise them, and both from the cross-cutting functions running through any task.",
+    "sourceHash": "329cda68"
+  },
+  "art.fio.mapa.p2": {
+    "text": "It is not a book about programming, and it demands no technical background – there are three reading tracks: executive, technical and consultative. Nor is it a book about the future of AI: it does not speculate, does not warn of existential risk, does not catalogue tools that will be obsolete within a year.",
+    "sourceHash": "c17af462"
+  },
+  "art.fio.cta.h": {
+    "text": "Quando é melhor com IA",
+    "sourceHash": "7b7514a6"
+  },
+  "art.fio.cta.p": {
+    "text": "A vocabulary and a method for deciding, task by task, when it is better with AI – and how to do it without giving up what is non-negotiable: the quality, reliability, ethics and coherence of what you sign.",
+    "sourceHash": "7852640b"
+  },
+  "art.fio.cta.buy": {
+    "text": "Buy on Amazon",
+    "sourceHash": "3d30326e"
+  },
+  "art.fio.cta.fine": {
+    "text": "Professional augmentation through AI use.<br>From Strategic Analysis to Technical Production.",
+    "sourceHash": "6661a43f"
+  },
+  "art.fio.rodape": {
+    "text": "Every concept and quotation on this page comes from the book. The book is written in Portuguese.",
+    "sourceHash": "7981589d"
+  },
+  "nav.artigos": {
+    "text": "Articles",
+    "sourceHash": "a1a3953e"
+  },
+  "navmobile.artigos": {
+    "text": "Articles",
+    "sourceHash": "a1a3953e"
+  },
+  "sec.artigos.title": {
+    "text": "Articles",
+    "sourceHash": "a1a3953e"
+  },
+  "sec.artigos.subtitle": {
+    "text": "Articles and other texts for anyone who wants to know “Quando é melhor com IA”",
+    "sourceHash": "80e1a5b6"
+  },
+  "artigos.voltar": {
+    "text": "Articles",
+    "sourceHash": "a1a3953e"
+  },
+  "artigos.ler": {
+    "text": "Read",
+    "sourceHash": "b8803a8"
+  },
+  "artigos.min": {
+    "text": "min",
+    "sourceHash": "b889089"
+  },
+  "artigos.proximo": {
+    "text": "Next article",
+    "sourceHash": "1efa117d"
+  },
+  "artigos.ultimo": {
+    "text": "This is the latest piece in the series.",
+    "sourceHash": "4227c773"
+  },
+  "artigos.cat.metodo": {
+    "text": "Method",
+    "sourceHash": "cc360c11"
+  },
+  "artigos.cat.arquetipos": {
+    "text": "Archetypes",
+    "sourceHash": "bb245a96"
+  },
+  "artigos.cat.ferramentas": {
+    "text": "Tools",
+    "sourceHash": "401f00fd"
+  },
+  "artigos.cat.bastidores": {
+    "text": "Behind the scenes",
+    "sourceHash": "62c25095"
+  },
+  "articles.fio.title": {
+    "text": "The brilliant lawyer who never files the brief.",
+    "sourceHash": "5ef8f8bd"
+  },
+  "articles.fio.dek": {
+    "text": "The thread of the argument in \"Quando é Melhor com IA\": why power and efficiency are independent axes, not two points on the same ruler.",
+    "sourceHash": "d848d391"
   }
 }

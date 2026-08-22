@@ -1742,5 +1742,473 @@
   "insight.export_bar_label": {
     "text": "Diese Analyse teilen oder exportieren",
     "sourceHash": "af4fc92e"
+  },
+  "art.fio.legenda.p1": {
+    "text": "Leistung",
+    "sourceHash": "d024fb9d"
+  },
+  "art.fio.legenda.p2": {
+    "text": "Was die KI kann",
+    "sourceHash": "55fbda5d"
+  },
+  "art.fio.legenda.e1": {
+    "text": "Effizienz",
+    "sourceHash": "6797e72a"
+  },
+  "art.fio.legenda.e2": {
+    "text": "Was bei Ihnen ankommt",
+    "sourceHash": "f11f7427"
+  },
+  "art.fio.tag.p": {
+    "text": "Leistungsfaden",
+    "sourceHash": "2117dc00"
+  },
+  "art.fio.tag.e": {
+    "text": "Effizienzfaden",
+    "sourceHash": "c0c46c4d"
+  },
+  "art.fio.tag.b": {
+    "text": "Beide Fäden",
+    "sourceHash": "703c8f67"
+  },
+  "art.fio.hero.kick": {
+    "text": "Quando é Melhor com IA · Gonçalo Marques",
+    "sourceHash": "f794cbe2"
+  },
+  "art.fio.hero.title": {
+    "text": "Der brillante Anwalt, der den Schriftsatz nie einreicht.",
+    "sourceHash": "5ef8f8bd"
+  },
+  "art.fio.hero.lede": {
+    "text": "Stellen Sie sich einen Anwalt von außergewöhnlicher Intelligenz vor, der sich weigert, Schriftsätze in dem vom Gericht akzeptierten Format einzureichen, und vom Mandanten verlangt, jeden Gedanken von Hand abzuschreiben. Die Kompetenz ist real und messbar. Und völlig belanglos für den, der das Ergebnis braucht.",
+    "sourceHash": "35de8ee4"
+  },
+  "art.fio.hero.quote": {
+    "text": "Genau das passiert, wenn Sie eine hochmoderne KI einsetzen und den Tag trotzdem damit beenden, ihr Ergebnis neu zu machen.",
+    "sourceHash": "6f1b7dde"
+  },
+  "art.fio.hero.bridge": {
+    "text": "Dieses Unbehagen hat einen Namen und eine Ursache. Und jemand ist ihm mit Methode begegnet.",
+    "sourceHash": "207306b7"
+  },
+  "art.fio.livro.eye": {
+    "text": "Das Buch",
+    "sourceHash": "177b6060"
+  },
+  "art.fio.livro.h": {
+    "text": "Das Buch, das dieses Problem beschreibt",
+    "sourceHash": "c7c6225e"
+  },
+  "art.fio.livro.p0": {
+    "text": "<strong><em>Quando é Melhor com IA</em></strong> gibt diesem Unbehagen einen Namen, erklärt seine Ursache und schlägt eine Methode vor, es zu umgehen. Alles auf dieser Seite stammt aus dem Buch.",
+    "sourceHash": "4db07def"
+  },
+  "art.fio.livro.t": {
+    "text": "Quando é Melhor com IA",
+    "sourceHash": "8f93e486"
+  },
+  "art.fio.livro.s": {
+    "text": "Berufliche Augmentierung durch KI-Einsatz. Von der strategischen Analyse zur technischen Produktion.",
+    "sourceHash": "90f74e2e"
+  },
+  "art.fio.livro.k1": {
+    "text": "Autor",
+    "sourceHash": "cd95d70"
+  },
+  "art.fio.livro.v1": {
+    "text": "Gonçalo Marques",
+    "sourceHash": "31da054a"
+  },
+  "art.fio.livro.k2": {
+    "text": "Für wen",
+    "sourceHash": "a27fd41"
+  },
+  "art.fio.livro.v2": {
+    "text": "Wer Analysen, Entscheidungen oder fachliche Ergebnisse erzeugt",
+    "sourceHash": "d4976d5e"
+  },
+  "art.fio.livro.k3": {
+    "text": "Lektüre",
+    "sourceHash": "d15057db"
+  },
+  "art.fio.livro.v3": {
+    "text": "Drei Pfade: strategisch, technisch, beratend",
+    "sourceHash": "4baa7ddb"
+  },
+  "art.fio.livro.k4": {
+    "text": "Wo",
+    "sourceHash": "7c8a42ab"
+  },
+  "art.fio.livro.v4": {
+    "text": "Amazon · Kindle-Ausgabe",
+    "sourceHash": "671ec384"
+  },
+  "art.fio.livro.p1": {
+    "text": "Der erklärte Zweck ist es, Fachleute dabei anzuleiten, KI mit Strenge, Verantwortung und Methode auf die Erzeugung und Anwendung von Wissen anzuwenden. Im Mittelpunkt steht die Qualität der fachlichen Produktion, der Analyse komplexer Informationen und der Entscheidungsunterstützung – der fortgeschrittene Einsatz, nicht der beiläufige oder rein theoretische.",
+    "sourceHash": "f6d1a944"
+  },
+  "art.fio.livro.p2": {
+    "text": "Dafür trennt das Buch drei Dinge, die sonst im Bündel auftreten: die <strong>technischen Fähigkeiten</strong> der KI, die <strong>Anwendungsfälle</strong>, die sie in Bewegung setzen, und die <strong>Querschnittsfunktionen</strong>, die jede Aufgabe durchziehen. Aus dieser Trennung ergibt sich alles Weitere.",
+    "sourceHash": "e0075385"
+  },
+  "art.fio.livro.p3": {
+    "text": "Die folgenden Abschnitte durchlaufen das zentrale Argument des Buches, vom Problem, das es benennt, bis zur Methode, die es vorschlägt.",
+    "sourceHash": "1e2af489"
+  },
+  "art.fio.falacia.eye": {
+    "text": "Kapitel 5",
+    "sourceHash": "1f28bebf"
+  },
+  "art.fio.falacia.h": {
+    "text": "Der Trugschluss vom synthetischen IQ",
+    "sourceHash": "3b27bf4a"
+  },
+  "art.fio.falacia.p1": {
+    "text": "Das Buch benennt das Unbehagen: der Glaube, ein hoher Wert in Denkaufgaben übersetze sich automatisch in gelieferte Produktivität. Er tut es nicht.",
+    "sourceHash": "b2b1cc4a"
+  },
+  "art.fio.falacia.p2": {
+    "text": "Ein Ingenieur, der beliebig komplexe Algorithmen löst, aber das Repository des eigenen Unternehmens nicht lesen kann, besitzt echte intellektuelle Leistung. Und belanglose. <strong>Leistung, die sich nicht in Lieferung zeigt, ist für den Nutzer nicht vorhanden.</strong>",
+    "sourceHash": "b8a16a98"
+  },
+  "art.fio.grandezas.eye": {
+    "text": "Hier teilt sich das Argument in zwei",
+    "sourceHash": "749ba504"
+  },
+  "art.fio.grandezas.h": {
+    "text": "Zwei Größen, nicht eine",
+    "sourceHash": "24e37260"
+  },
+  "art.fio.grandezas.p1": {
+    "text": "Leistung und Effizienz sind nicht zwei Punkte auf derselben Skala. Es sind unabhängige Achsen. Eine KI kann viel Leistung und wenig Effizienz haben – der Anwalt, der nie einreicht – oder umgekehrt: alles fertig liefern und wenig zu sagen haben.",
+    "sourceHash": "4958da9a"
+  },
+  "art.fio.grandezas.c1h": {
+    "text": "Leistung",
+    "sourceHash": "d024fb9d"
+  },
+  "art.fio.grandezas.c1p": {
+    "text": "Was die KI kann: schlussfolgern, synthetisieren, analysieren. Das messen die öffentlichen Benchmarks.",
+    "sourceHash": "f4ac2b6"
+  },
+  "art.fio.grandezas.c2h": {
+    "text": "Effizienz",
+    "sourceHash": "6797e72a"
+  },
+  "art.fio.grandezas.c2p": {
+    "text": "Wie viel dieser Leistung bei Ihnen ankommt, ohne unterwegs verloren zu gehen. Das misst kein Benchmark.",
+    "sourceHash": "710510a4"
+  },
+  "art.fio.grandezas.p2": {
+    "text": "Von hier an gehört jedes Konzept des Buches zu einem der beiden Fäden. Sie treffen sich erst am Ende wieder.",
+    "sourceHash": "1afe683"
+  },
+  "art.fio.metacasos.h": {
+    "text": "Die vier Metafälle",
+    "sourceHash": "3e5dffa3"
+  },
+  "art.fio.metacasos.p": {
+    "text": "Funktionen, die die KI im Hintergrund fast jeder Aufgabe ausführt und für die es bis vor Kurzem keinen Namen gab. Wer sie erkennt, kann eine Aufgabe zerlegen, bevor er beginnt.",
+    "sourceHash": "a35eac92"
+  },
+  "art.fio.metacasos.ah": {
+    "text": "Kuratierung, Normalisierung und Integration",
+    "sourceHash": "3abf5ad9"
+  },
+  "art.fio.metacasos.ap": {
+    "text": "Die Quellen vergleichen, gleichwertige Begriffe wählen und einen gemeinsamen Rahmen bauen. Es ist vor-analytisch: Es bereitet den begrifflichen Boden, auf dem alles Weitere entsteht.",
+    "sourceHash": "4940346e"
+  },
+  "art.fio.metacasos.bh": {
+    "text": "Logische Validierung",
+    "sourceHash": "f703e7a2"
+  },
+  "art.fio.metacasos.bp": {
+    "text": "Eine Argumentation prüfen: innere Widersprüche, unbegründete Sprünge. Sie erzeugt keine Inhalte, sie prüft sie.",
+    "sourceHash": "6a927342"
+  },
+  "art.fio.metacasos.ch": {
+    "text": "Abstraktionsumwandlung",
+    "sourceHash": "6695f576"
+  },
+  "art.fio.metacasos.cp": {
+    "text": "Übersetzen zwischen strategischer, taktischer und operativer Ebene (Prozesse und Umsetzung). Das lässt eine Analyse sowohl der Geschäftsleitung als auch dem Fachteam dienen.",
+    "sourceHash": "73cb7c3c"
+  },
+  "art.fio.metacasos.dh": {
+    "text": "Zwischenartefakte",
+    "sourceHash": "b0d32b2d"
+  },
+  "art.fio.metacasos.dp": {
+    "text": "Vorläufige Matrizen, Tabellen, Skizzen und Ähnliches, die nie in die Endfassung gelangen, aber dazu dienen, während des Prozesses besser zu denken.",
+    "sourceHash": "ecc3130"
+  },
+  "art.fio.analise.h": {
+    "text": "Strategische Analyse als Methode",
+    "sourceHash": "9d89672d"
+  },
+  "art.fio.analise.p1": {
+    "text": "Kapitel 7 des Buches behandelt den strategisch-synthetischen Einsatz und zählt die Bestandteile auf, die man anfordern muss, damit die Analyse nicht durch das Versäumnis des Fragenden unvollständig zurückkommt: Markt, Benchmark, Wertschöpfungskette, Fähigkeiten, Prozesse, Technologien, Frameworks.",
+    "sourceHash": "3c0e352b"
+  },
+  "art.fio.analise.p2": {
+    "text": "Beschrieben wird eine KI in der Rolle eines <strong>Junior-Beraters</strong>, während Sie als Senior-Berater anleiten und prüfen.",
+    "sourceHash": "4ecbc392"
+  },
+  "art.fio.cola.h": {
+    "text": "Die Klebearbeit",
+    "sourceHash": "c3f50d09"
+  },
+  "art.fio.cola.p1": {
+    "text": "Die Ausgabe eines Modells in einen Editor kopieren. Eine Tabelle für die Firmenvorlage neu formatieren. Eine Datei erneut hochladen, die die KI selbst hätte erreichen sollen. Jede dieser Brücken ist verlorene Energie, und jeder Verlust bringt Verzögerung und Fehlerrisiko.",
+    "sourceHash": "164b0704"
+  },
+  "art.fio.cola.p2": {
+    "text": "Die These des Kapitels lautet: Diese Reibung ist kein Umsetzungsdetail. Sie ist eine <strong>ökonomische Größe erster Ordnung</strong> – mit Folgen für die Investitionsrendite, für die Abhängigkeit von einem Anbieter und für die Intransparenz, wenn übermäßige Reibungslosigkeit gerade die Nachvollziehbarkeit untergräbt, die sie schützen sollte.",
+    "sourceHash": "c238202b"
+  },
+  "art.fio.eixos.h": {
+    "text": "Die drei Achsen der Befähigung",
+    "sourceHash": "722fd0ce"
+  },
+  "art.fio.eixos.p": {
+    "text": "Effizienz ist keine einzelne Zahl. Sie zerfällt in drei unabhängige Dimensionen, von denen jede eine eigene Frage danach beantwortet, wie die KI auf die tatsächliche Arbeit trifft.",
+    "sourceHash": "36821a0b"
+  },
+  "art.fio.eixos.a1h": {
+    "text": "Datengravitation",
+    "sourceHash": "c19aeb20"
+  },
+  "art.fio.eixos.a1p": {
+    "text": "Arbeitet die KI dort, wo die Daten bereits liegen, oder verlangt sie, dass Sie sie herausziehen und von Hand bringen?",
+    "sourceHash": "fddaf087"
+  },
+  "art.fio.eixos.a2h": {
+    "text": "Formatkontinuität",
+    "sourceHash": "fce9289d"
+  },
+  "art.fio.eixos.a2p": {
+    "text": "Ist das Ergebnis ein neu zusammenzusetzender Entwurf oder ein fertiges Artefakt in dem Format, in dem es genutzt wird?",
+    "sourceHash": "3d6f95f4"
+  },
+  "art.fio.eixos.a3h": {
+    "text": "Verlässlichkeit &amp; Überprüfbarkeit",
+    "sourceHash": "c9da5732"
+  },
+  "art.fio.eixos.a3p": {
+    "text": "Ist jede Tatsachenbehauptung auf eine Quelle zurückführbar? Eine Synthese ohne Prüfbarkeit ist bloß eine Meinung.",
+    "sourceHash": "6203cfa7"
+  },
+  "art.fio.alucinacao.h": {
+    "text": "Null Halluzination",
+    "sourceHash": "84fe8b3b"
+  },
+  "art.fio.alucinacao.p1": {
+    "text": "Das Gründungsprinzip des Buches, und das unbequemste, weil es so unmittelbar ist: <strong>Jede Tatsachenbehauptung der KI ist verdächtig, bis das Gegenteil bewiesen ist.</strong> Ein menschlicher Fachmann genießt vermutete Glaubwürdigkeit; die KI erhält diesen Vertrauensvorschuss in Tatsachenfragen nicht.",
+    "sourceHash": "c54fa242"
+  },
+  "art.fio.alucinacao.p2": {
+    "text": "Das Buch vergleicht dies mit der Null-Fehler-Maxime im Qualitätsmanagement. Die absolute Null mag unerreichbar sein, doch der Wert liegt darin, keinen Fehler hinzunehmen, ohne ihn gestellt zu haben. Genau dort trennen sich beiläufiger und beruflicher Einsatz: Der erste gibt sich damit zufrieden, dass das meiste stimmt.",
+    "sourceHash": "362bbf57"
+  },
+  "art.fio.alucinacao.ch": {
+    "text": "Und die Verantwortung verdünnt sich nicht",
+    "sourceHash": "d4b93273"
+  },
+  "art.fio.alucinacao.cp": {
+    "text": "Geht ein Ergebnis fehlerhaft hinaus, liegt die Schuld nicht bei der KI – sie liegt bei dem, der geprüft und freigegeben hat. Die KI trägt keine rechtliche Verantwortung. Wer unterschreibt, trägt sie.",
+    "sourceHash": "c595dde1"
+  },
+  "art.fio.arquetipos.h": {
+    "text": "Wo Sie sich wiederfinden",
+    "sourceHash": "c517ca4f"
+  },
+  "art.fio.arquetipos.p": {
+    "text": "Kein Fachmensch nutzt alle Fähigkeiten im gleichen Verhältnis und verlangt für jede Aufgabe denselben Grad an Reibungslosigkeit. Daher die Galerie der Archetypen – und einige werden Ihnen vertraut vorkommen.",
+    "sourceHash": "d537674e"
+  },
+  "art.fio.arquetipos.a1.h": {
+    "text": "Szenarien-Orakel",
+    "sourceHash": "42e25877"
+  },
+  "art.fio.arquetipos.a1.w": {
+    "text": "Strategieberatende, M&amp;A-Analysten, Szenarienplaner, Beirat der Geschäftsleitung",
+    "sourceHash": "e87f5321"
+  },
+  "art.fio.arquetipos.a1.p": {
+    "text": "Nutzt die KI als dialektischen Partner. Es zählt die Qualität der Argumentation im Fließtext; polierte Formatierung ist neben der Belastbarkeit des Arguments belanglos.",
+    "sourceHash": "359cfaea"
+  },
+  "art.fio.arquetipos.a2.h": {
+    "text": "Elite-Bürokrat",
+    "sourceHash": "65b7db84"
+  },
+  "art.fio.arquetipos.a2.w": {
+    "text": "Regulatorische Compliance, Unternehmensjuristen, Projektleitende, Prozessanalysten",
+    "sourceHash": "1eb37f4d"
+  },
+  "art.fio.arquetipos.a2.p": {
+    "text": "Der Fachmensch der letzten Meile, für den null Formatierungsfehler kein Luxus ist, sondern Bedingung. Jedes verbliebene Kopieren und Einfügen ist ein Systemversagen.",
+    "sourceHash": "99877fc4"
+  },
+  "art.fio.arquetipos.a3.h": {
+    "text": "Signaljäger",
+    "sourceHash": "8d91bc86"
+  },
+  "art.fio.arquetipos.a3.w": {
+    "text": "Journalisten, <em>Due-Diligence</em>-Analysten, Risikoprüfer, Betrugsermittler",
+    "sourceHash": "fba6c8d5"
+  },
+  "art.fio.arquetipos.a3.p": {
+    "text": "Gewinnt Wahrheit aus Meeren von Rohdaten und weist jede Behauptung ohne Verbindung zu einer echten Quelle zurück. Hier zeigt sich Null Halluzination am wörtlichsten.",
+    "sourceHash": "fef60345"
+  },
+  "art.fio.arquetipos.a4.h": {
+    "text": "Corporate Showrunner",
+    "sourceHash": "dc5b0f38"
+  },
+  "art.fio.arquetipos.a4.w": {
+    "text": "Produktmanagement, Marketingleitung, Launch-Verantwortliche, PMO-Leitung",
+    "sourceHash": "db8161b0"
+  },
+  "art.fio.arquetipos.a4.p": {
+    "text": "Verwandelt abstrakte Geschäftsvisionen in Präsentationen, visuelle Berichte und Video. Hohes Eingabevolumen, Ergebnis, das makellos sein muss.",
+    "sourceHash": "5c23206f"
+  },
+  "art.fio.arquetipos.a5.h": {
+    "text": "Legacy-Analyst",
+    "sourceHash": "a96f6567"
+  },
+  "art.fio.arquetipos.a5.w": {
+    "text": "Beratende für Großsysteme, Bankensystem-Ingenieure, kritische Infrastruktur",
+    "sourceHash": "9b593771"
+  },
+  "art.fio.arquetipos.a5.p": {
+    "text": "Liest und diagnostiziert massive Systeme und ausufernde Dokumentation – Arbeit, die kolossale Kontextfenster verlangt, sonst gehen kritische Abhängigkeiten verloren.",
+    "sourceHash": "b202138d"
+  },
+  "art.fio.arquetipos.q": {
+    "text": "Die Profile sind keine abgeschlossenen Fächer: Dieselbe Person wechselt je nach Aufgabe des Tages zwischen Identitäten.",
+    "sourceHash": "48e5ec57"
+  },
+  "art.fio.artesao.h": {
+    "text": "Handwerker oder Operator",
+    "sourceHash": "ad7cbdf6"
+  },
+  "art.fio.artesao.q": {
+    "text": "Von welcher Seite profitiert diese Arbeit?",
+    "sourceHash": "95195f2c"
+  },
+  "art.fio.artesao.e1": {
+    "text": "Handwerker",
+    "sourceHash": "a1a1a5b6"
+  },
+  "art.fio.artesao.e2": {
+    "text": "Operator",
+    "sourceHash": "55d69c1"
+  },
+  "art.fio.artesao.p1": {
+    "text": "Links schätzen Sie den Prozess und verlangen volle Kontrolle: Die KI liefert das geistige Rohmaterial, die Endmontage bleibt bewusst manuell. Rechts wollen Sie das fertige Produkt, und jeder manuelle Eingriff gilt als Systemversagen.",
+    "sourceHash": "c48292dd"
+  },
+  "art.fio.artesao.p2": {
+    "text": "Die richtige Position hängt von der Art der Aufgabe ab, nicht von einer allgemeinen Vorliebe für mehr oder weniger Automatisierung. <strong>Reife besteht nicht darin, sich ein für alle Mal für eine Seite zu entscheiden, sondern darin, bei jeder Arbeit zu erkennen, von welcher Seite oder welchem Punkt des Spektrums sie profitiert.</strong>",
+    "sourceHash": "1048ef3c"
+  },
+  "art.fio.mapa.eye": {
+    "text": "Die Fäden treffen sich wieder",
+    "sourceHash": "a0ab4aae"
+  },
+  "art.fio.mapa.h": {
+    "text": "Eine Karte, kein Katalog",
+    "sourceHash": "f844ccde"
+  },
+  "art.fio.mapa.p1": {
+    "text": "Was das Buch nach dem eigenen Vorwort auszeichnet: Statt Werkzeuge zu katalogisieren, zeichnet es eine Karte, die die technischen Fähigkeiten der KI von den Anwendungsfällen trennt, die sie in Bewegung setzen, und beide von den Querschnittsfunktionen, die jede Aufgabe durchziehen.",
+    "sourceHash": "329cda68"
+  },
+  "art.fio.mapa.p2": {
+    "text": "Es ist kein Buch über Programmierung und verlangt keine technische Ausbildung – es gibt drei Lesepfade: strategisch, technisch und beratend. Es ist auch kein Buch über die Zukunft der KI: Es spekuliert nicht, warnt nicht vor existenziellem Risiko, katalogisiert keine Werkzeuge, die in einem Jahr veraltet sind.",
+    "sourceHash": "c17af462"
+  },
+  "art.fio.cta.h": {
+    "text": "Quando é melhor com IA",
+    "sourceHash": "7b7514a6"
+  },
+  "art.fio.cta.p": {
+    "text": "Ein Vokabular und eine Methode, um Arbeit für Arbeit zu entscheiden, wann es mit KI besser ist – und wie man das tut, ohne das Unverhandelbare aufzugeben: die Qualität, die Verlässlichkeit, die Ethik und die Kohärenz dessen, was Sie unterschreiben.",
+    "sourceHash": "7852640b"
+  },
+  "art.fio.cta.buy": {
+    "text": "Bei Amazon kaufen",
+    "sourceHash": "3d30326e"
+  },
+  "art.fio.cta.fine": {
+    "text": "Berufliche Augmentierung durch KI-Einsatz.<br>Von der strategischen Analyse zur technischen Produktion.",
+    "sourceHash": "6661a43f"
+  },
+  "art.fio.rodape": {
+    "text": "Alle Konzepte und Zitate auf dieser Seite stammen aus dem Buch. Das Buch ist auf Portugiesisch geschrieben.",
+    "sourceHash": "7981589d"
+  },
+  "nav.artigos": {
+    "text": "Artikel",
+    "sourceHash": "a1a3953e"
+  },
+  "navmobile.artigos": {
+    "text": "Artikel",
+    "sourceHash": "a1a3953e"
+  },
+  "sec.artigos.title": {
+    "text": "Artikel",
+    "sourceHash": "a1a3953e"
+  },
+  "sec.artigos.subtitle": {
+    "text": "Artikel und weitere Texte für alle, die wissen wollen: “Quando é melhor com IA”",
+    "sourceHash": "80e1a5b6"
+  },
+  "artigos.voltar": {
+    "text": "Artikel",
+    "sourceHash": "a1a3953e"
+  },
+  "artigos.ler": {
+    "text": "Lesen",
+    "sourceHash": "b8803a8"
+  },
+  "artigos.min": {
+    "text": "Min.",
+    "sourceHash": "b889089"
+  },
+  "artigos.proximo": {
+    "text": "Nächster Artikel",
+    "sourceHash": "1efa117d"
+  },
+  "artigos.ultimo": {
+    "text": "Dies ist der neueste Beitrag der Reihe.",
+    "sourceHash": "4227c773"
+  },
+  "artigos.cat.metodo": {
+    "text": "Methode",
+    "sourceHash": "cc360c11"
+  },
+  "artigos.cat.arquetipos": {
+    "text": "Archetypen",
+    "sourceHash": "bb245a96"
+  },
+  "artigos.cat.ferramentas": {
+    "text": "Werkzeuge",
+    "sourceHash": "401f00fd"
+  },
+  "artigos.cat.bastidores": {
+    "text": "Hinter den Kulissen",
+    "sourceHash": "62c25095"
+  },
+  "articles.fio.title": {
+    "text": "Der brillante Anwalt, der den Schriftsatz nie einreicht.",
+    "sourceHash": "5ef8f8bd"
+  },
+  "articles.fio.dek": {
+    "text": "Der Faden des Arguments in \"Quando é Melhor com IA\": warum Leistung und Effizienz unabhängige Achsen sind und nicht zwei Punkte auf derselben Skala.",
+    "sourceHash": "d848d391"
   }
 }

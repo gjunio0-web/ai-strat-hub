@@ -31,6 +31,12 @@ const path = require('path');
 const vm = require('vm');
 
 const HTML_PATH = path.join(__dirname, 'index.html');
+// Fragmentos de artigo: mesma convenção data-i18n/data-i18n-pt, arquivos separados.
+const ARTICLE_DIR = path.join(__dirname, 'artigos');
+function articleFiles() {
+    if (!fs.existsSync(ARTICLE_DIR)) return [];
+    return fs.readdirSync(ARTICLE_DIR).filter(f => f.endsWith('.html')).map(f => path.join(ARTICLE_DIR, f));
+}
 const LOCALES = { en: 'i18n/en.json', de: 'i18n/de.json' };
 
 // Hash simples e determinístico (djb2) — impressão digital do conteúdo em PT, não criptográfico.
@@ -112,6 +118,7 @@ function extractDataStrings(html) {
     vm.runInContext(appScript + `
 ;globalThis.__cases = (typeof cases !== 'undefined') ? cases : null;
 globalThis.__canonBlocks = (typeof canonBlocks !== 'undefined') ? canonBlocks : null;
+globalThis.__ARTICLES = (typeof ARTICLES !== 'undefined') ? ARTICLES : null;
 globalThis.__archetypeInfo = (typeof archetypeInfo !== 'undefined') ? archetypeInfo : null;
 globalThis.__ARCH_SHORT = (typeof ARCH_SHORT !== 'undefined') ? ARCH_SHORT : null;
 globalThis.__ECOSYSTEM = (typeof ECOSYSTEM !== 'undefined') ? ECOSYSTEM : null;
@@ -126,6 +133,12 @@ globalThis.__IMPACT_MATRIX = (typeof IMPACT_MATRIX !== 'undefined') ? IMPACT_MAT
         sandbox.__cases.forEach(c => {
             map['cases.' + c.id + '.name'] = c.name;
             map['cases.' + c.id + '.desc'] = c.desc;
+        });
+    }
+    if (sandbox.__ARTICLES) {
+        sandbox.__ARTICLES.forEach(a => {
+            map['articles.' + a.id + '.title'] = a.title;
+            map['articles.' + a.id + '.dek'] = a.dek;
         });
     }
     if (sandbox.__canonBlocks) {
@@ -250,6 +263,7 @@ function audit() {
 
     const html = fs.readFileSync(HTML_PATH, 'utf8');
     const ptMap = { ...extractDataStrings(html), ...extractLiteralStrings(html) };
+    for (const f of articleFiles()) Object.assign(ptMap, extractLiteralStrings(fs.readFileSync(f, 'utf8')));
     const ptKeys = Object.keys(ptMap);
 
     console.log(`\nChaves de texto-fonte encontradas (dados + literais): ${ptKeys.length}`);
@@ -310,6 +324,7 @@ function audit() {
 function fixHashes() {
     const html = fs.readFileSync(HTML_PATH, 'utf8');
     const ptMap = { ...extractDataStrings(html), ...extractLiteralStrings(html) };
+    for (const f of articleFiles()) Object.assign(ptMap, extractLiteralStrings(fs.readFileSync(f, 'utf8')));
     let total = 0;
     for (const [lang, relPath] of Object.entries(LOCALES)) {
         const full = path.join(__dirname, relPath);
