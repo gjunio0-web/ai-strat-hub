@@ -62,7 +62,10 @@
 #articleBody.art-cem .stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:0 0 14px;border-left:4px solid var(--brand)}
 #articleBody.art-cem .stat .n{font-family:var(--sans);font-size:34px;font-weight:700;color:var(--brand-700);display:block;margin-bottom:6px}
 #articleBody.art-cem .stat p{font-size:16px;color:var(--ink-body);margin:0 0 8px}
-#articleBody.art-cem .stat .src{font-family:var(--sans);font-size:12px;color:var(--faint)}
+#articleBody.art-cem .stat .src{font-family:var(--sans);font-size:12px;color:var(--faint);
+  text-decoration:none;border-bottom:1px dotted var(--faint);padding-bottom:1px}
+#articleBody.art-cem .stat .src:hover{color:var(--brand-700);border-bottom-style:solid;border-bottom-color:var(--brand-700)}
+#articleBody.art-cem .stat .src:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:2px}
 
 #articleBody.art-cem .punch{font-family:var(--serif);font-size:clamp(30px,4vw,42px);font-weight:600;color:#fff;line-height:1.2;margin:0}
 
