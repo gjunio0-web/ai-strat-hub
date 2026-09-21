@@ -1,0 +1,125 @@
+/* Artigo "Cem livros, três levantamentos, uma pergunta" — estilos escopados sob
+   #articleBody.art-cem (não #articleBody puro: cada artigo leva sua própria classe
+   marcadora em #articleBody, para .tag e outras classes semânticas não colidirem
+   entre artigos que reusam os mesmos nomes com significados diferentes). */
+#articleBody.art-cem{--ink:#0f172a; --ink-body:#334155; --muted:#64748b; --faint:#94a3b8;
+  --line:#e2e8f0; --paper:#f1f5f9; --surface:#ffffff;
+  --brand:#4f46e5; --brand-700:#4338ca; --brand-900:#312e81;
+  --i50:#eef2ff; --i100:#e0e7ff; --i200:#c7d2fe; --i400:#818cf8;
+  --claude:#d97757; --perplexity:#1FB8CD; --deepseek:#4D6BFE;
+  --serif:'Source Serif 4',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --rail:132px;}
+#articleBody.art-cem *{box-sizing:border-box}
+#articleBody.art-cem{margin:0;background:var(--paper);color:var(--ink-body);font-family:var(--serif);
+  font-size:19px;line-height:1.65;-webkit-font-smoothing:antialiased}
+#articleBody.art-cem .wrap{max-width:1080px;margin:0 auto;padding:0 28px;position:relative}
+#articleBody.art-cem #rail{position:absolute;left:0;top:0;width:var(--rail);pointer-events:none;z-index:0}
+#articleBody.art-cem #rail path{fill:none;stroke-width:3;stroke-linecap:round}
+#articleBody.art-cem .col{position:relative;z-index:1;margin-left:var(--rail);max-width:660px}
+#articleBody.art-cem h1, #articleBody.art-cem h2, #articleBody.art-cem h3{font-family:var(--serif);color:var(--ink);font-weight:600;letter-spacing:-.01em}
+#articleBody.art-cem h1{font-size:clamp(38px,6.2vw,62px);line-height:1.08;margin:0 0 24px}
+#articleBody.art-cem h2{font-size:clamp(27px,3.6vw,36px);line-height:1.22;margin:0 0 18px}
+#articleBody.art-cem h3{font-size:20px;margin:0 0 8px}
+#articleBody.art-cem p{margin:0 0 20px}
+#articleBody.art-cem strong{font-weight:600;color:var(--ink)}
+#articleBody.art-cem .lede{font-size:22px;color:var(--ink);line-height:1.55}
+#articleBody.art-cem .eyebrow{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brand-700);margin:0 0 10px;display:block}
+#articleBody.art-cem .quiet{color:var(--muted);font-size:17px}
+
+#articleBody.art-cem header.hero{padding:120px 0 96px}
+#articleBody.art-cem .hero .kicker{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);margin-bottom:34px}
+#articleBody.art-cem .hero .bridge{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--brand-700);
+  margin:30px 0 0;display:flex;align-items:center;gap:12px}
+#articleBody.art-cem .hero .bridge::before{content:"";width:26px;height:2px;background:var(--brand);border-radius:2px;flex:none}
+#articleBody.art-cem .hero blockquote{margin:34px 0 0;padding:0 0 0 24px;border-left:3px solid var(--brand);
+  font-size:21px;color:var(--ink);line-height:1.55}
+
+#articleBody.art-cem section.node{padding:76px 0;scroll-margin-top:40px}
+#articleBody.art-cem .tag{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;
+  padding:5px 12px;border-radius:100px;margin-bottom:16px}
+#articleBody.art-cem .tag::before{content:"";width:8px;height:8px;border-radius:50%}
+#articleBody.art-cem .tag.claude{background:#fdf2ee;color:#9a4a2e} #articleBody.art-cem .tag.claude::before{background:var(--claude)}
+#articleBody.art-cem .tag.perplexity{background:#e8fafb;color:#0d6e78} #articleBody.art-cem .tag.perplexity::before{background:var(--perplexity)}
+#articleBody.art-cem .tag.deepseek{background:#eef1ff;color:#2f3ea3} #articleBody.art-cem .tag.deepseek::before{background:var(--deepseek)}
+#articleBody.art-cem .tag.b{background:var(--i100);color:var(--brand-900)}
+#articleBody.art-cem .tag.b::before{background:linear-gradient(90deg,var(--claude) 0%,var(--perplexity) 50%,var(--deepseek) 100%)}
+
+#articleBody.art-cem .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 14px}
+#articleBody.art-cem .card h3{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--brand-900)}
+#articleBody.art-cem .card p{font-size:17px;margin:0;color:var(--ink-body)}
+#articleBody.art-cem .card .idx{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.1em}
+#articleBody.art-cem .card .src{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.06em;
+  display:inline-flex;align-items:center;gap:6px;margin-bottom:8px}
+#articleBody.art-cem .card .src::before{content:"";width:7px;height:7px;border-radius:50%}
+#articleBody.art-cem .card.claude .src{color:#9a4a2e} #articleBody.art-cem .card.claude .src::before{background:var(--claude)}
+#articleBody.art-cem .card.perplexity .src{color:#0d6e78} #articleBody.art-cem .card.perplexity .src::before{background:var(--perplexity)}
+#articleBody.art-cem .card.deepseek .src{color:#2f3ea3} #articleBody.art-cem .card.deepseek .src::before{background:var(--deepseek)}
+#articleBody.art-cem .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+#articleBody.art-cem .stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin:0 0 14px;border-left:4px solid var(--brand)}
+#articleBody.art-cem .stat .n{font-family:var(--sans);font-size:34px;font-weight:700;color:var(--brand-700);display:block;margin-bottom:6px}
+#articleBody.art-cem .stat p{font-size:16px;color:var(--ink-body);margin:0 0 8px}
+#articleBody.art-cem .stat .src{font-family:var(--sans);font-size:12px;color:var(--faint)}
+
+#articleBody.art-cem .punch{font-family:var(--serif);font-size:clamp(30px,4vw,42px);font-weight:600;color:#fff;line-height:1.2;margin:0}
+
+#articleBody.art-cem .list{margin:0 0 0;padding:0}
+#articleBody.art-cem .list li{list-style:none;position:relative;padding-left:22px;margin-bottom:10px;font-size:17px}
+#articleBody.art-cem .list li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--brand)}
+
+#articleBody.art-cem .close{background:var(--brand-900);color:#e0e7ff;border-radius:22px;padding:48px;margin:34px 0 0;
+  display:grid;grid-template-columns:184px 1fr;gap:36px;align-items:center}
+#articleBody.art-cem .close .cover{width:184px;border-radius:8px;box-shadow:0 18px 40px -12px rgba(0,0,0,.6)}
+#articleBody.art-cem .close h2{color:#fff;font-size:31px;margin-bottom:14px}
+#articleBody.art-cem .close p{color:var(--i200);font-size:18px}
+#articleBody.art-cem .buy{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--brand-900);
+  font-family:var(--sans);font-size:16px;font-weight:700;text-decoration:none;
+  padding:14px 24px;border-radius:100px;margin-top:6px;margin-right:10px;transition:transform .15s,box-shadow .15s}
+#articleBody.art-cem .buy:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(0,0,0,.5)}
+#articleBody.art-cem .buy:focus-visible{outline:3px solid var(--i400);outline-offset:3px}
+#articleBody.art-cem .buy.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+#articleBody.art-cem .buy svg{width:16px;height:16px;flex:none}
+#articleBody.art-cem .close .fine{font-family:var(--sans);font-size:14px;color:#a5b4fc;margin:14px 0 0}
+
+#articleBody.art-cem .cover{background-image:url(assets/capa-quando-e-melhor-com-ia.jpg);background-size:cover;background-position:center;background-repeat:no-repeat;
+  aspect-ratio:520/834;flex:none}
+
+#articleBody.art-cem footer{padding:60px 0 90px;font-family:var(--sans);font-size:14px;color:var(--faint)}
+
+#articleBody.art-cem #legend{position:fixed;left:24px;bottom:24px;z-index:5;background:rgba(255,255,255,.94);
+  border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-family:var(--sans);
+  font-size:12px;line-height:1.5;box-shadow:0 6px 20px -8px rgba(15,23,42,.2);
+  opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s;max-width:200px}
+#articleBody.art-cem #legend.on{opacity:1;transform:none}
+#articleBody.art-cem #legend b{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);margin:0 0 4px}
+#articleBody.art-cem #legend b i{width:10px;height:10px;border-radius:50%;display:block}
+#articleBody.art-cem #legend span{color:var(--muted);display:block;margin:0 0 10px}
+#articleBody.art-cem #legend span:last-child{margin:0}
+
+#articleBody.art-cem .node, #articleBody.art-cem .hero>*{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+#articleBody.art-cem .node.seen, #articleBody.art-cem .hero>.seen{opacity:1;transform:none}
+
+@media (max-width:860px){
+#articleBody.art-cem{--rail:44px}
+#articleBody.art-cem{font-size:18px}
+#articleBody.art-cem .wrap{padding:0 20px}
+#articleBody.art-cem .grid2{grid-template-columns:1fr}
+#articleBody.art-cem .close{grid-template-columns:1fr;padding:32px}
+#articleBody.art-cem .close .cover{width:150px}
+#articleBody.art-cem #legend{display:none}
+#articleBody.art-cem header.hero{padding:86px 0 56px}
+#articleBody.art-cem section.node{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){
+#articleBody.art-cem *{transition:none!important;animation:none!important}
+#articleBody.art-cem .node, #articleBody.art-cem .hero>*{opacity:1;transform:none}
+}
+
+/* A legenda flutuante é position:fixed; dentro do Hub precisa começar
+   depois da barra lateral, que mede 5rem (md) e 16rem (lg). Mesmo ajuste
+   aplicado em artigo.css para o primeiro artigo. */
+@media (min-width:768px){ #articleBody.art-cem #legend{ left:calc(5rem + 24px) } }
+@media (min-width:1024px){ #articleBody.art-cem #legend{ left:calc(16rem + 24px) } }

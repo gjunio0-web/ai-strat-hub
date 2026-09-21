@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="artigos/artigo.css">
+    <link rel="stylesheet" href="artigos/carrossel-cem-livros.css">
     
     <!-- Estilos -->
     <style>
@@ -2618,7 +2619,78 @@
             // min: medido sobre 1.511 palavras a 190 palavras/min (leitura atenta).
             { id:'fio', slug:'fio-do-argumento', cat:'metodo', min:8,
               title:"O advogado brilhante que não entrega a petição.",
-              dek:"O fio do argumento de \"Quando é Melhor com IA\": por que potência e eficiência são eixos independentes, e não dois pontos da mesma régua." }
+              dek:"O fio do argumento de \"Quando é Melhor com IA\": por que potência e eficiência são eixos independentes, e não dois pontos da mesma régua.",
+              rail:{
+                  // Legenda visível entre a bifurcação (#n2) e a fusão (#n10) das duas pistas.
+                  legendFrom:'n2', legendTo:'n10', legendToBuffer:0,
+                  draw(ctx){
+                      const { wrap, hero, nodes, y, W, narrow } = ctx;
+                      const cx = narrow ? W - 16 : W - 46, gap = narrow ? 10 : 28, lx = cx - gap, rx = cx + gap;
+                      const forkEl = wrap.querySelector('#n2'), mergeEl = wrap.querySelector('#n10');
+                      if(!forkEl || !mergeEl) return '';
+                      const yStart = hero.offsetTop + 40, yFork = y(forkEl, .42), yMerge = y(mergeEl, .30),
+                            yEnd = mergeEl.offsetTop + mergeEl.offsetHeight - 30;
+                      const P = '#818cf8', Ef = '#7c3aed', B = '#4f46e5';
+                      let svg = '';
+                      const add = (d, c) => { svg += '<path d="' + d + '" stroke="' + c + '"/>'; };
+                      add('M' + cx + ' ' + yStart + ' L' + cx + ' ' + (yFork - 46), B);
+                      add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + lx + ' ' + (yFork - 16) + ' ' + lx + ' ' + yFork, P);
+                      add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + rx + ' ' + (yFork - 16) + ' ' + rx + ' ' + yFork, Ef);
+                      add('M' + lx + ' ' + yFork + ' L' + lx + ' ' + (yMerge - 46), P);
+                      add('M' + rx + ' ' + yFork + ' L' + rx + ' ' + (yMerge - 46), Ef);
+                      add('M' + lx + ' ' + (yMerge - 46) + ' C' + lx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, P);
+                      add('M' + rx + ' ' + (yMerge - 46) + ' C' + rx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, Ef);
+                      add('M' + cx + ' ' + yMerge + ' L' + cx + ' ' + yEnd, B);
+                      const laneOf = (el) => { if(el.querySelector('.tag.p')) return 'p'; if(el.querySelector('.tag.e')) return 'e'; return 'b'; };
+                      nodes.forEach(n => {
+                          const ny = y(n, .16), L = laneOf(n);
+                          let x, col;
+                          if(ny < yFork){ x = cx; col = B; }
+                          else if(L === 'p'){ x = lx; col = P; }
+                          else if(L === 'e'){ x = rx; col = Ef; }
+                          else { svg += '<circle cx="' + lx + '" cy="' + ny + '" r="6" fill="' + P + '"/>'
+                                      + '<circle cx="' + rx + '" cy="' + ny + '" r="6" fill="' + Ef + '"/>'; return; }
+                          svg += '<circle cx="' + x + '" cy="' + ny + '" r="6" fill="' + col + '"/>';
+                      });
+                      svg += '<circle cx="' + cx + '" cy="' + yStart + '" r="6" fill="' + B + '"/>';
+                      svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
+                      return svg;
+                  }
+              } },
+            { id:'cem', slug:'cem-livros-tres-levantamentos', cat:'bastidores', min:3,
+              title:"Cem livros, três levantamentos, uma pergunta.",
+              dek:"Pedi a três IAs que levantassem, cada uma por conta própria, tudo o que já se publicou sobre IA. Elas divergiram — e foi na divergência que apareceu a pergunta que nenhum livro responde.",
+              rail:{
+                  // Legenda (cores Claude/Perplexity/DeepSeek) visível da abertura (#n1) até
+                  // um pouco depois da fusão das três pistas (#n4 + 400px de tolerância).
+                  legendFrom:'n1', legendTo:'n4', legendToBuffer:400,
+                  draw(ctx){
+                      const { wrap, hero, nodes, y, W, narrow } = ctx;
+                      const cx = narrow ? W - 16 : W - 46, gap = narrow ? 9 : 22, x1 = cx - gap, x2 = cx, x3 = cx + gap;
+                      const mergeEl = wrap.querySelector('#n4'), endEl = wrap.querySelector('#n8');
+                      if(!mergeEl || !endEl) return '';
+                      const yStart = hero.offsetTop + 40, yMerge = y(mergeEl, .5), yEnd = endEl.offsetTop + 40;
+                      const CLAUDE = '#d97757', PERPLEXITY = '#1FB8CD', DEEPSEEK = '#4D6BFE', B = '#4f46e5';
+                      let svg = '';
+                      const add = (d, c) => { svg += '<path d="' + d + '" stroke="' + c + '"/>'; };
+                      add('M' + x1 + ' ' + yStart + ' L' + x1 + ' ' + (yMerge - 40), PERPLEXITY);
+                      add('M' + x2 + ' ' + yStart + ' L' + x2 + ' ' + (yMerge - 40), CLAUDE);
+                      add('M' + x3 + ' ' + yStart + ' L' + x3 + ' ' + (yMerge - 40), DEEPSEEK);
+                      add('M' + x1 + ' ' + (yMerge - 40) + ' C' + x1 + ' ' + (yMerge - 14) + ' ' + cx + ' ' + (yMerge - 14) + ' ' + cx + ' ' + yMerge, PERPLEXITY);
+                      add('M' + x2 + ' ' + (yMerge - 40) + ' L' + x2 + ' ' + yMerge, CLAUDE);
+                      add('M' + x3 + ' ' + (yMerge - 40) + ' C' + x3 + ' ' + (yMerge - 14) + ' ' + cx + ' ' + (yMerge - 14) + ' ' + cx + ' ' + yMerge, DEEPSEEK);
+                      add('M' + cx + ' ' + yMerge + ' L' + cx + ' ' + yEnd, B);
+                      nodes.forEach(n => {
+                          const ny = y(n, .16);
+                          svg += '<circle cx="' + cx + '" cy="' + ny + '" r="6" fill="' + B + '"/>';
+                      });
+                      svg += '<circle cx="' + x1 + '" cy="' + yStart + '" r="6" fill="' + PERPLEXITY + '"/>';
+                      svg += '<circle cx="' + x2 + '" cy="' + yStart + '" r="6" fill="' + CLAUDE + '"/>';
+                      svg += '<circle cx="' + x3 + '" cy="' + yStart + '" r="6" fill="' + DEEPSEEK + '"/>';
+                      svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
+                      return svg;
+                  }
+              } }
         ];
         const __artCache = {};
         let __artOpen = null;
@@ -2687,6 +2759,10 @@
                 document.getElementById('articlesIndex').classList.add('hidden');
                 document.getElementById('articleReader').classList.remove('hidden');
                 document.getElementById('articleCrumb').textContent = tx(meta.title, 'articles.' + meta.id + '.title');
+                // Classe marcadora: cada artigo escopa seu próprio CSS sob #articleBody.art-<id>
+                // (ver artigos/artigo.css e artigos/carrossel-cem-livros.css), para que classes
+                // semânticas como .tag não colidam entre artigos com significados diferentes.
+                document.getElementById('articleBody').className = 'art-' + meta.id;
                 document.getElementById('articleBody').innerHTML = __artCache[slug];
                 // i18n: os nós recém-injetados ainda não passaram por applyStaticI18nNode.
                 document.querySelectorAll('#articleBody [data-i18n]').forEach(applyStaticI18nNode);
@@ -2778,51 +2854,25 @@
             const rail = document.getElementById('rail');
             return (sc && wrap && rail) ? { sc, wrap, rail } : null;
         }
-        function __artLane(el){
-            if(el.querySelector('.tag.p')) return 'p';
-            if(el.querySelector('.tag.e')) return 'e';
-            return 'b';
-        }
+        // A geometria (viewBox, dash-array de revelação, progresso de leitura, legenda)
+        // é igual para qualquer artigo; só o DESENHO dos caminhos muda. Cada artigo traz
+        // seu próprio rail.draw(ctx) em ARTICLES — ver os dois exemplos já cadastrados.
         function buildArticleRail(){
             const E = __artEls(); if(!E) return;
             const { wrap, rail } = E;
+            const meta = ARTICLES.find(a => a.slug === __artOpen);
+            const railCfg = meta && meta.rail;
+            if(!railCfg) return;
             const hero = wrap.querySelector('header.hero');
             const nodes = [].slice.call(wrap.querySelectorAll('section.node'));
             if(!hero || !nodes.length) return;
             const W = parseFloat(getComputedStyle(wrap).getPropertyValue('--rail')) || 132,
-                  H = wrap.offsetHeight, narrow = W < 80,
-                  cx = narrow ? W - 16 : W - 46, gap = narrow ? 10 : 28,
-                  lx = cx - gap, rx = cx + gap;
+                  H = wrap.offsetHeight, narrow = W < 80;
             rail.setAttribute('width', W); rail.setAttribute('height', H);
             rail.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
             const y = (el, f) => el.offsetTop + el.offsetHeight * f;
-            const forkEl = wrap.querySelector('#n2'), mergeEl = wrap.querySelector('#n10');
-            if(!forkEl || !mergeEl) return;
-            const yStart = hero.offsetTop + 40, yFork = y(forkEl, .42), yMerge = y(mergeEl, .30),
-                  yEnd = mergeEl.offsetTop + mergeEl.offsetHeight - 30;
-            const P = '#818cf8', Ef = '#7c3aed', B = '#4f46e5';
-            let svg = '';
-            const add = (d, c) => { svg += '<path d="' + d + '" stroke="' + c + '"/>'; };
-            add('M' + cx + ' ' + yStart + ' L' + cx + ' ' + (yFork - 46), B);
-            add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + lx + ' ' + (yFork - 16) + ' ' + lx + ' ' + yFork, P);
-            add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + rx + ' ' + (yFork - 16) + ' ' + rx + ' ' + yFork, Ef);
-            add('M' + lx + ' ' + yFork + ' L' + lx + ' ' + (yMerge - 46), P);
-            add('M' + rx + ' ' + yFork + ' L' + rx + ' ' + (yMerge - 46), Ef);
-            add('M' + lx + ' ' + (yMerge - 46) + ' C' + lx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, P);
-            add('M' + rx + ' ' + (yMerge - 46) + ' C' + rx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, Ef);
-            add('M' + cx + ' ' + yMerge + ' L' + cx + ' ' + yEnd, B);
-            nodes.forEach(n => {
-                const ny = y(n, .16), L = __artLane(n);
-                let x, col;
-                if(ny < yFork){ x = cx; col = B; }
-                else if(L === 'p'){ x = lx; col = P; }
-                else if(L === 'e'){ x = rx; col = Ef; }
-                else { svg += '<circle cx="' + lx + '" cy="' + ny + '" r="6" fill="' + P + '"/>'
-                            + '<circle cx="' + rx + '" cy="' + ny + '" r="6" fill="' + Ef + '"/>'; return; }
-                svg += '<circle cx="' + x + '" cy="' + ny + '" r="6" fill="' + col + '"/>';
-            });
-            svg += '<circle cx="' + cx + '" cy="' + yStart + '" r="6" fill="' + B + '"/>';
-            svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
+            const svg = railCfg.draw({ wrap, hero, nodes, y, W, H, narrow });
+            if(!svg) return;
             rail.innerHTML = svg;
             if(!__artReduce){
                 rail.querySelectorAll('path').forEach(pt => {
@@ -2849,11 +2899,15 @@
             rail.querySelectorAll('circle').forEach(c => {
                 c.style.opacity = (+c.getAttribute('cy') < edge) ? 1 : 0;
             });
-            const legend = wrap.querySelector('#legend'),
-                  f = wrap.querySelector('#n2'), m = wrap.querySelector('#n10');
-            if(legend && f && m){
-                const top = scR.top - wR.top;
-                legend.classList.toggle('on', top + sc.clientHeight * 0.6 > f.offsetTop && top < m.offsetTop);
+            const meta = ARTICLES.find(a => a.slug === __artOpen);
+            const railCfg = meta && meta.rail;
+            const legend = wrap.querySelector('#legend');
+            if(legend && railCfg){
+                const f = wrap.querySelector('#' + railCfg.legendFrom), m = wrap.querySelector('#' + railCfg.legendTo);
+                if(f && m){
+                    const top = scR.top - wR.top;
+                    legend.classList.toggle('on', top + sc.clientHeight * 0.6 > f.offsetTop && top < m.offsetTop + (railCfg.legendToBuffer || 0));
+                }
             }
         }
         let __artRaf, __artIo;

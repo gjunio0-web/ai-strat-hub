@@ -1801,7 +1801,7 @@
   },
   "art.fio.livro.p0": {
     "text": "<strong><em>Quando é Melhor com IA</em></strong> gibt diesem Unbehagen einen Namen, erklärt seine Ursache und schlägt eine Methode vor, es zu umgehen. Alles auf dieser Seite stammt aus dem Buch.",
-    "sourceHash": "4db07def"
+    "sourceHash": "4d8bcac"
   },
   "art.fio.livro.t": {
     "text": "Quando é Melhor com IA",
@@ -1849,7 +1849,7 @@
   },
   "art.fio.livro.p2": {
     "text": "Dafür trennt das Buch drei Dinge, die sonst im Bündel auftreten: die <strong>technischen Fähigkeiten</strong> der KI, die <strong>Anwendungsfälle</strong>, die sie in Bewegung setzen, und die <strong>Querschnittsfunktionen</strong>, die jede Aufgabe durchziehen. Aus dieser Trennung ergibt sich alles Weitere.",
-    "sourceHash": "e0075385"
+    "sourceHash": "b4353e94"
   },
   "art.fio.livro.p3": {
     "text": "Die folgenden Abschnitte durchlaufen das zentrale Argument des Buches, vom Problem, das es benennt, bis zur Methode, die es vorschlägt.",
@@ -1869,7 +1869,7 @@
   },
   "art.fio.falacia.p2": {
     "text": "Ein Ingenieur, der beliebig komplexe Algorithmen löst, aber das Repository des eigenen Unternehmens nicht lesen kann, besitzt echte intellektuelle Leistung. Und belanglose. <strong>Leistung, die sich nicht in Lieferung zeigt, ist für den Nutzer nicht vorhanden.</strong>",
-    "sourceHash": "b8a16a98"
+    "sourceHash": "af3aebb"
   },
   "art.fio.grandezas.eye": {
     "text": "Hier teilt sich das Argument in zwei",
@@ -1953,7 +1953,7 @@
   },
   "art.fio.analise.p2": {
     "text": "Beschrieben wird eine KI in der Rolle eines <strong>Junior-Beraters</strong>, während Sie als Senior-Berater anleiten und prüfen.",
-    "sourceHash": "4ecbc392"
+    "sourceHash": "1392a4e2"
   },
   "art.fio.cola.h": {
     "text": "Die Klebearbeit",
@@ -1965,7 +1965,7 @@
   },
   "art.fio.cola.p2": {
     "text": "Die These des Kapitels lautet: Diese Reibung ist kein Umsetzungsdetail. Sie ist eine <strong>ökonomische Größe erster Ordnung</strong> – mit Folgen für die Investitionsrendite, für die Abhängigkeit von einem Anbieter und für die Intransparenz, wenn übermäßige Reibungslosigkeit gerade die Nachvollziehbarkeit untergräbt, die sie schützen sollte.",
-    "sourceHash": "c238202b"
+    "sourceHash": "feff439f"
   },
   "art.fio.eixos.h": {
     "text": "Die drei Achsen der Befähigung",
@@ -2005,7 +2005,7 @@
   },
   "art.fio.alucinacao.p1": {
     "text": "Das Gründungsprinzip des Buches, und das unbequemste, weil es so unmittelbar ist: <strong>Jede Tatsachenbehauptung der KI ist verdächtig, bis das Gegenteil bewiesen ist.</strong> Ein menschlicher Fachmann genießt vermutete Glaubwürdigkeit; die KI erhält diesen Vertrauensvorschuss in Tatsachenfragen nicht.",
-    "sourceHash": "c54fa242"
+    "sourceHash": "6ba3a4c4"
   },
   "art.fio.alucinacao.p2": {
     "text": "Das Buch vergleicht dies mit der Null-Fehler-Maxime im Qualitätsmanagement. Die absolute Null mag unerreichbar sein, doch der Wert liegt darin, keinen Fehler hinzunehmen, ohne ihn gestellt zu haben. Genau dort trennen sich beiläufiger und beruflicher Einsatz: Der erste gibt sich damit zufrieden, dass das meiste stimmt.",
@@ -2057,7 +2057,7 @@
   },
   "art.fio.arquetipos.a3.w": {
     "text": "Journalisten, <em>Due-Diligence</em>-Analysten, Risikoprüfer, Betrugsermittler",
-    "sourceHash": "fba6c8d5"
+    "sourceHash": "64d0a865"
   },
   "art.fio.arquetipos.a3.p": {
     "text": "Gewinnt Wahrheit aus Meeren von Rohdaten und weist jede Behauptung ohne Verbindung zu einer echten Quelle zurück. Hier zeigt sich Null Halluzination am wörtlichsten.",
@@ -2113,7 +2113,7 @@
   },
   "art.fio.artesao.p2": {
     "text": "Die richtige Position hängt von der Art der Aufgabe ab, nicht von einer allgemeinen Vorliebe für mehr oder weniger Automatisierung. <strong>Reife besteht nicht darin, sich ein für alle Mal für eine Seite zu entscheiden, sondern darin, bei jeder Arbeit zu erkennen, von welcher Seite oder welchem Punkt des Spektrums sie profitiert.</strong>",
-    "sourceHash": "1048ef3c"
+    "sourceHash": "30d79eff"
   },
   "art.fio.mapa.eye": {
     "text": "Die Fäden treffen sich wieder",
@@ -2210,5 +2210,63 @@
   "articles.fio.dek": {
     "text": "Der Faden des Arguments in \"Quando é Melhor com IA\": warum Leistung und Effizienz unabhängige Achsen sind und nicht zwei Punkte auf derselben Skala.",
     "sourceHash": "d848d391"
-  }
+  },
+  "articles.cem.title": {
+    "text": "Hundert Bücher, drei Erhebungen, eine Frage.",
+    "sourceHash": "bc240c8c"
+  },
+  "articles.cem.dek": {
+    "text": "Ich bat drei KIs, jede für sich, alles zu erheben, was über KI veröffentlicht wurde. Sie widersprachen sich — und genau darin zeigte sich die Frage, die kein Buch beantwortet.",
+    "sourceHash": "46aa67b3"
+  },
+  "art.cem.legend.claude": { "text": "Claude", "sourceHash": "ac022d13" },
+  "art.cem.legend.perplexity": { "text": "Perplexity", "sourceHash": "543399fb" },
+  "art.cem.legend.deepseek": { "text": "DeepSeek", "sourceHash": "8f9ccc6b" },
+  "art.cem.legend.sub": { "text": "Drei unabhängige Erhebungen", "sourceHash": "8f5fc26f" },
+  "art.cem.hero.kick": { "text": "Quando é Melhor com IA · Gonçalo Marques", "sourceHash": "f794cbe2" },
+  "art.cem.hero.title": { "text": "Hundert Bücher, drei Erhebungen, eine Frage.", "sourceHash": "bc240c8c" },
+  "art.cem.hero.lede": { "text": "Ich bat drei künstliche Intelligenzen, jede ganz für sich, alles zu erheben, was über KI veröffentlicht wurde. Referenzen aus Oxford, IWF-Berichte, McKinsey-Listen, Amazon-Bestseller, die brasilianische Verlagspresse. Rund hundert Werke.", "sourceHash": "96eff3c2" },
+  "art.cem.hero.quote": { "text": "Sie widersprachen sich. Und gerade in diesem Widerspruch zeigte sich, wonach ich suchte.", "sourceHash": "37882cc0" },
+  "art.cem.hero.bridge": { "text": "Dieses Unbehagen hat einen Namen und eine Ursache. Und jemand ist ihm mit Methode begegnet.", "sourceHash": "207306b7" },
+  "art.cem.experimento.eye": { "text": "Das Experiment", "sourceHash": "fcf753e4" },
+  "art.cem.experimento.h": { "text": "Ich bat nicht um eine Meinung. Ich bat um eine Erhebung.", "sourceHash": "5d3fd964" },
+  "art.cem.experimento.p": { "text": "Was existiert, wo es veröffentlicht ist, und welches Thema am häufigsten vorkommt. Jedes System erhielt dieselbe Aufgabe und suchte die Antwort ganz allein.", "sourceHash": "23a0c0bb" },
+  "art.cem.experimento.card": { "text": "Konsultierte Quellen", "sourceHash": "fc47b407" },
+  "art.cem.experimento.l1": { "text": "Referenzen aus Oxford und MIT Press", "sourceHash": "3a164e88" },
+  "art.cem.experimento.l2": { "text": "IWF-Berichte und McKinsey-Listen", "sourceHash": "84ec5e79" },
+  "art.cem.experimento.l3": { "text": "Amazon-Bestseller", "sourceHash": "b4a95058" },
+  "art.cem.experimento.l4": { "text": "Brasilianische Verlagspresse", "sourceHash": "1bded1df" },
+  "art.cem.divergencia.eye": { "text": "Der Widerspruch", "sourceHash": "a2e4a38c" },
+  "art.cem.divergencia.h": { "text": "Jedes System nannte ein anderes Thema als das häufigste auf dem Markt.", "sourceHash": "bcd91a28" },
+  "art.cem.divergencia.c1": { "text": "Praktischer Einsatz und Produktivität", "sourceHash": "66d68dc7" },
+  "art.cem.divergencia.c2": { "text": "Die Zukunft der Arbeit", "sourceHash": "5043eaca" },
+  "art.cem.divergencia.c3": { "text": "Unternehmensstrategie", "sourceHash": "e5455de7" },
+  "art.cem.porque.eye": { "text": "Warum sie sich widersprachen", "sourceHash": "65b3762b" },
+  "art.cem.porque.h": { "text": "Keines lag falsch.", "sourceHash": "e2ce1092" },
+  "art.cem.porque.p1": { "text": "Jedes hatte ein anderes Regal derselben Buchhandlung betrachtet. Die Wissenschaft wählt aus, was Politik informiert. Die Bestsellerliste erfasst, was die Fachperson am Montag kauft, um es zu nutzen. Die Wirtschaftspresse erfasst, was die Führungskraft liest, um über das Budget zu entscheiden.", "sourceHash": "6e4dc0c8" },
+  "art.cem.porque.p2": { "text": "Drei Ausschnitte, drei Antworten. Da änderte sich die Frage: nicht mehr zu suchen, worin sich die drei einig waren, sondern zu suchen, was keines von ihnen fand.", "sourceHash": "e844ed72" },
+  "art.cem.ponto.p": { "text": "Zwei von ihnen kamen, obwohl ihre Quellenbestände sich kaum überschneiden, unabhängig zum selben Ergebnis: Es gibt eine Frage, die kein Buch beantwortet.", "sourceHash": "985a01e7" },
+  "art.cem.problema.eye": { "text": "Der Name des Problems", "sourceHash": "fd76eee8" },
+  "art.cem.problema.h": { "text": "Warum liefert die KI, die Sie gewählt haben, immer noch Stunden an Nacharbeit?", "sourceHash": "7e0193dc" },
+  "art.cem.problema.p": { "text": "Die KI, die alle Bestenlisten anführt, liefert noch immer Rohmaterial, das Stunden braucht, um vorzeigbar zu werden. Die Antwort lautet: <strong>Wissen und Liefern sind zwei unabhängige Skalen</strong>. Öffentliche Benchmarks messen nur die erste. Die zweite bestimmt Ihren Tag – und verlangt einen Tribut, der in keinem Produktivitätsbericht auftaucht.", "sourceHash": "9e7385a9" },
+  "art.cem.evidencia.eye": { "text": "Der externe Beleg", "sourceHash": "779c364" },
+  "art.cem.evidencia.h": { "text": "Das ist nicht nur mein Eindruck.", "sourceHash": "dfb7fe" },
+  "art.cem.evidencia.p0": { "text": "Die Zahlen gibt es bereits, und sie zeigen alle in dieselbe Richtung.", "sourceHash": "22027b26" },
+  "art.cem.evidencia.s1n": { "text": "5%", "sourceHash": "59713f" },
+  "art.cem.evidencia.s1p": { "text": "der betrieblichen generativen-KI-Pilotprojekte erzielen einen messbaren finanziellen Effekt.", "sourceHash": "f22e134a" },
+  "art.cem.evidencia.s1src": { "text": "Projekt NANDA, MIT Media Lab · Juli 2025", "sourceHash": "bfc0113a" },
+  "art.cem.evidencia.s2n": { "text": "25.000", "sourceHash": "805370ae" },
+  "art.cem.evidencia.s2p": { "text": "Beschäftigte, erfasst an 7.000 Arbeitsstätten, zeigten keinen signifikanten Effekt auf Löhne oder Arbeitszeit.", "sourceHash": "88866bb4" },
+  "art.cem.evidencia.s2src": { "text": "Anders Humlum und Emilie Vestergaard, National Bureau of Economic Research · April 2025", "sourceHash": "fafa8514" },
+  "art.cem.evidencia.q": { "text": "Die Daten beschrieben das Phänomen. Es fehlte noch der Name dafür.", "sourceHash": "ccf87b21" },
+  "art.cem.livro.eye": { "text": "Was das Buch leistet", "sourceHash": "d21dca7b" },
+  "art.cem.livro.h": { "text": "Geschrieben in diesem Zwischenraum zwischen Wissen und Liefern.", "sourceHash": "4dac01e6" },
+  "art.cem.livro.p1": { "text": "<strong><em>Quando é Melhor com IA</em></strong> ist weder eine Warnung vor der Zukunft noch ein Werkzeugkatalog – KI-Fähigkeiten ändern sich dafür zu schnell, und das Buch behandelt sie bewusst abstrakt. Es teilt den KI-Einsatz in vier Kategorien ein – operativ, analytisch, kreativ und strategisch-synthetisch – und zeigt, für jeden Typ von Eingabe und Ausgabe (Text, Tabelle, Code, Bild), was vor dem Vertrauen ins Ergebnis zu prüfen ist. Es beschreibt außerdem sieben Berufsprofile, von der Person, die Code schreibt und prüft, bis zu der, die Dokumente ohne jede Fehlertoleranz formatiert braucht, jeweils mit der Kombination an Fähigkeiten, die das Profil verlangt.", "sourceHash": "18c33156" },
+  "art.cem.livro.p2": { "text": "Genau diese Landkarte der Profile nutzt der AI Strategy Hub, ein vom Buch unabhängiges, kostenloses Werkzeug, um zu empfehlen, welche konkrete KI zu Ihrem Profil passt.", "sourceHash": "9d1d8b28" },
+  "art.cem.cta.h": { "text": "Quando é melhor com IA", "sourceHash": "7b7514a6" },
+  "art.cem.cta.p": { "text": "Sie haben die KI schon gewechselt, und die Nacharbeit blieb dieselbe. Der Wechsel war nie die Antwort.", "sourceHash": "6ff2db38" },
+  "art.cem.cta.buy": { "text": "Bei Amazon kaufen", "sourceHash": "3d30326e" },
+  "art.cem.cta.hub": { "text": "Das Werkzeug ist frei zugänglich", "sourceHash": "3ac87cc3" },
+  "art.cem.cta.fine": { "text": "Berufliche Augmentierung durch KI-Einsatz.<br>Von der strategischen Analyse zur technischen Produktion.", "sourceHash": "aa3aa23c" },
+  "art.cem.rodape": { "text": "Alle Konzepte und Zitate auf dieser Seite stammen aus drei unabhängigen Erhebungen mit Claude, Perplexity und DeepSeek. Das Buch ist auf Portugiesisch geschrieben.", "sourceHash": "d2fb62d9" }
 }

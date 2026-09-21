@@ -1801,7 +1801,7 @@
   },
   "art.fio.livro.p0": {
     "text": "<strong><em>Quando é Melhor com IA</em></strong> gives this discomfort a name, explains its cause and proposes a method for working around it. Everything on this page comes from the book.",
-    "sourceHash": "4db07def"
+    "sourceHash": "4d8bcac"
   },
   "art.fio.livro.t": {
     "text": "Quando é Melhor com IA",
@@ -1849,7 +1849,7 @@
   },
   "art.fio.livro.p2": {
     "text": "To that end it separates three things usually bundled together: the AI's <strong>technical capabilities</strong>, the <strong>use cases</strong> that mobilise them, and the <strong>cross-cutting functions</strong> running through any task. Everything that follows grows out of that separation.",
-    "sourceHash": "e0075385"
+    "sourceHash": "b4353e94"
   },
   "art.fio.livro.p3": {
     "text": "The sections below walk through the book's central argument, from the problem it names to the method it proposes.",
@@ -1869,7 +1869,7 @@
   },
   "art.fio.falacia.p2": {
     "text": "An engineer who can solve arbitrarily complex algorithms but cannot read his own company's repository has real intellectual power. And irrelevant power. <strong>Power that does not show up as delivery is, for the user, non-existent.</strong>",
-    "sourceHash": "b8a16a98"
+    "sourceHash": "af3aebb"
   },
   "art.fio.grandezas.eye": {
     "text": "Here the argument splits in two",
@@ -1953,7 +1953,7 @@
   },
   "art.fio.analise.p2": {
     "text": "The flow described is an AI operating as a <strong>junior consultant</strong>, with you as the senior consultant who directs and reviews.",
-    "sourceHash": "4ecbc392"
+    "sourceHash": "1392a4e2"
   },
   "art.fio.cola.h": {
     "text": "Glue work",
@@ -1965,7 +1965,7 @@
   },
   "art.fio.cola.p2": {
     "text": "The chapter's thesis is that this friction is not an implementation detail. It is a <strong>first-order economic variable</strong> – with consequences for return on investment, for vendor lock-in, and for opacity, when excessive fluidity erodes the very traceability it should protect.",
-    "sourceHash": "c238202b"
+    "sourceHash": "feff439f"
   },
   "art.fio.eixos.h": {
     "text": "The three axes of enablement",
@@ -2005,7 +2005,7 @@
   },
   "art.fio.alucinacao.p1": {
     "text": "The book's founding principle, and the most uncomfortable for being so direct: <strong>every factual claim the AI makes is suspect until proven otherwise.</strong> A human expert enjoys presumed credibility; the AI gets no such benefit of the doubt on matters of fact.",
-    "sourceHash": "c54fa242"
+    "sourceHash": "6ba3a4c4"
   },
   "art.fio.alucinacao.p2": {
     "text": "The book likens this to zero defect in quality management. Absolute zero may be unreachable, but the value lies in never accepting an error without having confronted it. That is where casual use parts ways with professional use: the first settles for most things being right.",
@@ -2057,7 +2057,7 @@
   },
   "art.fio.arquetipos.a3.w": {
     "text": "Journalists, <em>due diligence</em> analysts, risk auditors, fraud investigators",
-    "sourceHash": "fba6c8d5"
+    "sourceHash": "64d0a865"
   },
   "art.fio.arquetipos.a3.p": {
     "text": "Extracts truth from oceans of raw data and rejects any claim without a link to a real source. This is where Zero Hallucination shows up most literally.",
@@ -2113,7 +2113,7 @@
   },
   "art.fio.artesao.p2": {
     "text": "The right position depends on the nature of the task, not on a generic preference for more or less automation. <strong>Maturity is not choosing a side once and for all, but recognising, for each piece of work, which side or point on the spectrum it benefits from.</strong>",
-    "sourceHash": "1048ef3c"
+    "sourceHash": "30d79eff"
   },
   "art.fio.mapa.eye": {
     "text": "The threads meet again",
@@ -2210,5 +2210,63 @@
   "articles.fio.dek": {
     "text": "The thread of the argument in \"Quando é Melhor com IA\": why power and efficiency are independent axes, not two points on the same ruler.",
     "sourceHash": "d848d391"
-  }
+  },
+  "articles.cem.title": {
+    "text": "A hundred books, three surveys, one question.",
+    "sourceHash": "bc240c8c"
+  },
+  "articles.cem.dek": {
+    "text": "I asked three AIs to survey, each on its own, everything published about AI. They disagreed — and it was in the disagreement that the question no book answers showed up.",
+    "sourceHash": "46aa67b3"
+  },
+  "art.cem.legend.claude": { "text": "Claude", "sourceHash": "ac022d13" },
+  "art.cem.legend.perplexity": { "text": "Perplexity", "sourceHash": "543399fb" },
+  "art.cem.legend.deepseek": { "text": "DeepSeek", "sourceHash": "8f9ccc6b" },
+  "art.cem.legend.sub": { "text": "Three independent surveys", "sourceHash": "8f5fc26f" },
+  "art.cem.hero.kick": { "text": "Quando é Melhor com IA · Gonçalo Marques", "sourceHash": "f794cbe2" },
+  "art.cem.hero.title": { "text": "A hundred books, three surveys, one question.", "sourceHash": "bc240c8c" },
+  "art.cem.hero.lede": { "text": "I asked three artificial intelligences to survey, each entirely on its own, everything published about AI. Oxford references, IMF reports, McKinsey lists, Amazon bestsellers, the Brazilian editorial press. About a hundred works.", "sourceHash": "96eff3c2" },
+  "art.cem.hero.quote": { "text": "They disagreed. And it was in the disagreement that what I was looking for showed up.", "sourceHash": "37882cc0" },
+  "art.cem.hero.bridge": { "text": "This discomfort has a name and a cause. And someone has confronted it with method.", "sourceHash": "207306b7" },
+  "art.cem.experimento.eye": { "text": "The experiment", "sourceHash": "fcf753e4" },
+  "art.cem.experimento.h": { "text": "I didn't ask for opinion. I asked for a survey.", "sourceHash": "5d3fd964" },
+  "art.cem.experimento.p": { "text": "What exists, where it's published, and which theme comes up most often. Each system received the same request and ran the search on its own.", "sourceHash": "23a0c0bb" },
+  "art.cem.experimento.card": { "text": "Sources consulted", "sourceHash": "fc47b407" },
+  "art.cem.experimento.l1": { "text": "Oxford and MIT Press references", "sourceHash": "3a164e88" },
+  "art.cem.experimento.l2": { "text": "IMF reports and McKinsey lists", "sourceHash": "84ec5e79" },
+  "art.cem.experimento.l3": { "text": "Amazon bestsellers", "sourceHash": "b4a95058" },
+  "art.cem.experimento.l4": { "text": "Brazilian editorial press", "sourceHash": "1bded1df" },
+  "art.cem.divergencia.eye": { "text": "The disagreement", "sourceHash": "a2e4a38c" },
+  "art.cem.divergencia.h": { "text": "Each one pointed to a different theme as the most frequent in the market.", "sourceHash": "bcd91a28" },
+  "art.cem.divergencia.c1": { "text": "Practical use and productivity", "sourceHash": "66d68dc7" },
+  "art.cem.divergencia.c2": { "text": "The future of work", "sourceHash": "5043eaca" },
+  "art.cem.divergencia.c3": { "text": "Corporate strategy", "sourceHash": "e5455de7" },
+  "art.cem.porque.eye": { "text": "Why they disagreed", "sourceHash": "65b3762b" },
+  "art.cem.porque.h": { "text": "None of them was wrong.", "sourceHash": "e2ce1092" },
+  "art.cem.porque.p1": { "text": "Each had looked at a different shelf of the same bookstore. Academia selects what informs public policy. The bestseller list records what the professional buys to use on Monday. The business press records what the executive reads to decide on a budget.", "sourceHash": "6e4dc0c8" },
+  "art.cem.porque.p2": { "text": "Three cuts, three answers. That's when the question changed: instead of looking for what the three agreed on, I started looking for what none of them found.", "sourceHash": "e844ed72" },
+  "art.cem.ponto.p": { "text": "Two of them, working over collections that barely overlap, arrived on their own at the same result: there's a question no book answers.", "sourceHash": "985a01e7" },
+  "art.cem.problema.eye": { "text": "Naming the problem", "sourceHash": "fd76eee8" },
+  "art.cem.problema.h": { "text": "Why does the AI you chose still hand back hours of rework?", "sourceHash": "7e0193dc" },
+  "art.cem.problema.p": { "text": "The AI that tops every best-model list still returns raw material that takes hours to turn into something presentable. The answer is that <strong>knowing and delivering are two independent scales</strong>. Public benchmarks measure only the first. The second decides your day — and charges a tax that shows up in no productivity report.", "sourceHash": "9e7385a9" },
+  "art.cem.evidencia.eye": { "text": "The outside evidence", "sourceHash": "779c364" },
+  "art.cem.evidencia.h": { "text": "It's not just my impression.", "sourceHash": "dfb7fe" },
+  "art.cem.evidencia.p0": { "text": "The numbers already exist, and they all point to the same place.", "sourceHash": "22027b26" },
+  "art.cem.evidencia.s1n": { "text": "5%", "sourceHash": "59713f" },
+  "art.cem.evidencia.s1p": { "text": "of corporate generative-AI pilots produce measurable financial impact.", "sourceHash": "f22e134a" },
+  "art.cem.evidencia.s1src": { "text": "Project NANDA, MIT Media Lab · July 2025", "sourceHash": "bfc0113a" },
+  "art.cem.evidencia.s2n": { "text": "25,000", "sourceHash": "805370ae" },
+  "art.cem.evidencia.s2p": { "text": "workers tracked across 7,000 workplaces showed no significant effect on wages or hours.", "sourceHash": "88866bb4" },
+  "art.cem.evidencia.s2src": { "text": "Anders Humlum and Emilie Vestergaard, National Bureau of Economic Research · April 2025", "sourceHash": "fafa8514" },
+  "art.cem.evidencia.q": { "text": "The data described the phenomenon. It still needed a name.", "sourceHash": "ccf87b21" },
+  "art.cem.livro.eye": { "text": "What the book does", "sourceHash": "d21dca7b" },
+  "art.cem.livro.h": { "text": "Written in that gap between knowing and delivering.", "sourceHash": "4dac01e6" },
+  "art.cem.livro.p1": { "text": "<strong><em>Quando é Melhor com IA</em></strong> is not a warning about the future or a catalogue of tools — AI capabilities change too fast for that, and the book treats them deliberately in the abstract. It classifies AI use into four categories — operational, analytical, creative and strategic-synthetic — and shows, for each type of input and output (text, spreadsheet, code, image), what to check before trusting the result. It also describes seven professional profiles, from the one who codes and audits software to the one who needs documents formatted with zero margin for error, with the combination of capabilities each one requires.", "sourceHash": "18c33156" },
+  "art.cem.livro.p2": { "text": "It's this map of profiles that the AI Strategy Hub, a free tool separate from the book, uses to recommend which specific AI applies to yours.", "sourceHash": "9d1d8b28" },
+  "art.cem.cta.h": { "text": "Quando é melhor com IA", "sourceHash": "7b7514a6" },
+  "art.cem.cta.p": { "text": "You've already switched AIs, and the rework stayed the same. Switching was never the answer.", "sourceHash": "6ff2db38" },
+  "art.cem.cta.buy": { "text": "Buy on Amazon", "sourceHash": "3d30326e" },
+  "art.cem.cta.hub": { "text": "The tool is open", "sourceHash": "3ac87cc3" },
+  "art.cem.cta.fine": { "text": "Professional augmentation through AI use.<br>From Strategic Analysis to Technical Production.", "sourceHash": "aa3aa23c" },
+  "art.cem.rodape": { "text": "Every concept and quotation on this page comes from three independent surveys, conducted with Claude, Perplexity and DeepSeek. The book is written in Portuguese.", "sourceHash": "d2fb62d9" }
 }
