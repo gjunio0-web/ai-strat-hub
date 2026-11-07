@@ -3030,7 +3030,7 @@
             });
             const meta = ARTICLES.find(a => a.slug === __artOpen);
             const railCfg = meta && meta.rail;
-            const legend = wrap.querySelector('#legend');
+            const legend = document.querySelector('#articleBody #legend'); // #legend sits beside .wrap (position:fixed), not inside it
             if(legend && railCfg){
                 const f = wrap.querySelector('#' + railCfg.legendFrom), m = wrap.querySelector('#' + railCfg.legendTo);
                 if(f && m){
