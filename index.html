@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="artigos/artigo.css">
     <link rel="stylesheet" href="artigos/carrossel-cem-livros.css">
+    <link rel="stylesheet" href="artigos/antes-e-depois.css">
     <link rel="stylesheet" href="artigos/dez-passos.css">
     
     <!-- Estilos -->
@@ -1597,10 +1598,15 @@
             // para que cada artigo tenha endereço próprio divulgável. Sem os parâmetros,
             // o comportamento permanece exatamente o anterior.
             const __p = new URLSearchParams(window.location.search);
-            if(__p.get('tab') === 'articles'){
+            const __tab = __p.get('tab');
+            const __tabEl = __tab ? document.getElementById('tab-' + __tab) : null;
+            if(__tab === 'articles'){
                 switchTab('tab-articles');
                 const __slug = __p.get('artigo');
                 if(__slug) openArticle(__slug, false);
+            } else if(__tabEl && __tabEl.classList.contains('tab-content')){
+                // Links internos dos artigos (ex.: ?tab=decision) abrem a aba pedida.
+                switchTab(__tabEl.id);
             } else {
                 switchTab('tab-knowledge');
             }
@@ -2689,6 +2695,42 @@
                       svg += '<circle cx="' + x2 + '" cy="' + yStart + '" r="6" fill="' + CLAUDE + '"/>';
                       svg += '<circle cx="' + x3 + '" cy="' + yStart + '" r="6" fill="' + DEEPSEEK + '"/>';
                       svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
+                      return svg;
+                  }
+              } },
+            // min: medido sobre 1.333 palavras visíveis a 190 palavras/min (leitura atenta).
+            { id:'rod', slug:'antes-e-depois', cat:'arquetipos', min:7,
+              title:"Antes e depois: a IA certa para o seu tipo de trabalho.",
+              dek:"Galeria de Arquétipos, 1 de 7. Rodrigo usa inteligência artificial há dois anos e diria que usa bem. Um dia de trabalho antes e depois de descobrir que era outro arquétipo.",
+              rail:{
+                  // Legenda (as três marcas que a série colore) visível da seção das fichas (#n8)
+                  // ao fecho (#n10): é onde o fio único se desdobra em três, como na lâmina 10 da peça.
+                  legendFrom:'n8', legendTo:'n10', legendToBuffer:400,
+                  draw(ctx){
+                      const { wrap, hero, nodes, y, W, narrow } = ctx;
+                      const cx = narrow ? W - 16 : W - 46, gap = narrow ? 9 : 22, x1 = cx - gap, x2 = cx, x3 = cx + gap;
+                      const forkEl = wrap.querySelector('#n8'), endEl = wrap.querySelector('#n10');
+                      if(!forkEl || !endEl) return '';
+                      const yStart = hero.offsetTop + 40, yFork = forkEl.offsetTop + 20,
+                            yEnd = endEl.offsetTop + endEl.offsetHeight - 30;
+                      const CHATGPT = '#00A67E', GEMINI = '#4285F4', CLAUDE = '#d97757', B = '#4f46e5';
+                      let svg = '';
+                      const add = (d, c) => { svg += '<path d="' + d + '" stroke="' + c + '"/>'; };
+                      add('M' + cx + ' ' + yStart + ' L' + cx + ' ' + (yFork - 40), B);
+                      add('M' + cx + ' ' + (yFork - 40) + ' C' + cx + ' ' + (yFork - 14) + ' ' + x1 + ' ' + (yFork - 14) + ' ' + x1 + ' ' + yFork, CHATGPT);
+                      add('M' + cx + ' ' + (yFork - 40) + ' L' + x2 + ' ' + yFork, GEMINI);
+                      add('M' + cx + ' ' + (yFork - 40) + ' C' + cx + ' ' + (yFork - 14) + ' ' + x3 + ' ' + (yFork - 14) + ' ' + x3 + ' ' + yFork, CLAUDE);
+                      add('M' + x1 + ' ' + yFork + ' L' + x1 + ' ' + yEnd, CHATGPT);
+                      add('M' + x2 + ' ' + yFork + ' L' + x2 + ' ' + yEnd, GEMINI);
+                      add('M' + x3 + ' ' + yFork + ' L' + x3 + ' ' + yEnd, CLAUDE);
+                      nodes.forEach(n => {
+                          const ny = y(n, .16);
+                          if(ny < yFork) svg += '<circle cx="' + cx + '" cy="' + ny + '" r="6" fill="' + B + '"/>';
+                      });
+                      svg += '<circle cx="' + cx + '" cy="' + yStart + '" r="6" fill="' + B + '"/>';
+                      svg += '<circle cx="' + x1 + '" cy="' + yEnd + '" r="6" fill="' + CHATGPT + '"/>';
+                      svg += '<circle cx="' + x2 + '" cy="' + yEnd + '" r="6" fill="' + GEMINI + '"/>';
+                      svg += '<circle cx="' + x3 + '" cy="' + yEnd + '" r="6" fill="' + CLAUDE + '"/>';
                       return svg;
                   }
               } },
