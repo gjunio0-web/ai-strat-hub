@@ -1,0 +1,166 @@
+/* Artigo "Achar é metade: a IA certa quando tudo precisa de fonte" — estilos escopados sob #articleBody.art-mar.
+   Tokens e componentes base herdados de artigos/artigo.css; acréscimos desta peça ao fim.
+   A classe .art-mar é definida por openArticle() em index.html. */
+/* ─────────────────────────────────────────────────────────────────────
+   Tokens e componentes transcritos de artigos/artigo.css (quality_env).
+   O escopo #articleBody.art-mar é preservado para que este documento possa ser
+   servido como fragmento da seção Artigos sem qualquer ajuste de CSS.
+   ───────────────────────────────────────────────────────────────────── */
+
+#articleBody.art-mar{--ink:#0f172a; --ink-body:#334155; --muted:#64748b; --faint:#94a3b8;
+  --line:#e2e8f0; --paper:#f1f5f9; --surface:#ffffff;
+  --brand:#4f46e5; --brand-700:#4338ca; --brand-900:#312e81;
+  --i50:#eef2ff; --i100:#e0e7ff; --i200:#c7d2fe; --i400:#818cf8;
+  --potencia:#818cf8; --eficiencia:#7c3aed;
+  --serif:'Source Serif 4',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --rail:132px;}
+#articleBody.art-mar *{box-sizing:border-box}
+#articleBody.art-mar{margin:0;background:var(--paper);color:var(--ink-body);font-family:var(--serif);
+  font-size:19px;line-height:1.65;-webkit-font-smoothing:antialiased}
+#articleBody.art-mar .wrap{max-width:1080px;margin:0 auto;padding:0 28px;position:relative}
+#articleBody.art-mar #rail{position:absolute;left:0;top:0;width:var(--rail);pointer-events:none;z-index:0}
+#articleBody.art-mar #rail path{fill:none;stroke-width:3;stroke-linecap:round}
+#articleBody.art-mar .col{position:relative;z-index:1;margin-left:var(--rail);max-width:660px}
+#articleBody.art-mar h1, #articleBody.art-mar h2, #articleBody.art-mar h3{font-family:var(--serif);color:var(--ink);font-weight:600;letter-spacing:-.01em}
+#articleBody.art-mar h1{font-size:clamp(38px,6.2vw,62px);line-height:1.08;margin:0 0 24px}
+#articleBody.art-mar h2{font-size:clamp(27px,3.6vw,36px);line-height:1.22;margin:0 0 18px}
+#articleBody.art-mar h3{font-size:20px;margin:0 0 8px}
+#articleBody.art-mar p{margin:0 0 20px}
+#articleBody.art-mar strong{font-weight:600;color:var(--ink)}
+#articleBody.art-mar .lede{font-size:22px;color:var(--ink);line-height:1.55}
+#articleBody.art-mar .eyebrow{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brand-700);margin:0 0 10px;display:block}
+#articleBody.art-mar .quiet{color:var(--muted);font-size:17px}
+#articleBody.art-mar header.hero{padding:120px 0 96px}
+#articleBody.art-mar .hero .kicker{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);margin-bottom:34px}
+#articleBody.art-mar .hero .bridge{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--brand-700);
+  margin:30px 0 0;display:flex;align-items:center;gap:12px}
+#articleBody.art-mar .hero .bridge::before{content:"";width:26px;height:2px;background:var(--brand);border-radius:2px;flex:none}
+#articleBody.art-mar .hero blockquote{margin:34px 0 0;padding:0 0 0 24px;border-left:3px solid var(--eficiencia);
+  font-size:21px;color:var(--ink);line-height:1.55}
+#articleBody.art-mar section.node{padding:76px 0;scroll-margin-top:40px}
+#articleBody.art-mar .tag{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;
+  padding:5px 12px;border-radius:100px;margin-bottom:16px}
+#articleBody.art-mar .tag::before{content:"";width:8px;height:8px;border-radius:50%}
+#articleBody.art-mar .tag.p{background:var(--i50);color:var(--brand-900)}
+#articleBody.art-mar .tag.p::before{background:var(--potencia)}
+#articleBody.art-mar .tag.e{background:#f5f0ff;color:#5b21b6}
+#articleBody.art-mar .tag.e::before{background:var(--eficiencia)}
+#articleBody.art-mar .tag.b{background:var(--i100);color:var(--brand-900)}
+#articleBody.art-mar .tag.b::before{background:linear-gradient(90deg,var(--potencia) 50%,var(--eficiencia) 50%)}
+#articleBody.art-mar .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 14px}
+#articleBody.art-mar .card h3{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--brand-900)}
+#articleBody.art-mar .card p{font-size:17px;margin:0;color:var(--ink-body)}
+#articleBody.art-mar .card .idx{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.1em}
+#articleBody.art-mar .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#articleBody.art-mar .axis{border-left:3px solid var(--eficiencia);padding:2px 0 2px 20px;margin:0 0 22px}
+#articleBody.art-mar .axis h3{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--ink)}
+#articleBody.art-mar .axis p{font-size:17px;margin:4px 0 0}
+#articleBody.art-mar .arch{border-top:1px solid var(--line);padding:20px 0}
+#articleBody.art-mar .arch:last-of-type{border-bottom:1px solid var(--line)}
+#articleBody.art-mar .arch h3{font-family:var(--sans);font-size:18px;font-weight:700;color:var(--brand-900);margin-bottom:2px}
+#articleBody.art-mar .arch .who{font-family:var(--sans);font-size:14px;color:var(--muted);margin:0 0 8px}
+#articleBody.art-mar .arch p{font-size:17px;margin:0}
+#articleBody.art-mar .spec{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;margin:6px 0 22px}
+#articleBody.art-mar .spec .bar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--potencia),var(--eficiencia));margin:20px 0 10px}
+#articleBody.art-mar .spec .ends{display:flex;justify-content:space-between;font-family:var(--sans);font-size:13px;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+#articleBody.art-mar .spec .ends span:first-child{color:var(--brand-700)}
+#articleBody.art-mar .spec .ends span:last-child{color:#6d28d9}
+#articleBody.art-mar .close{background:var(--brand-900);color:#e0e7ff;border-radius:22px;padding:48px;margin:34px 0 0;
+  display:grid;grid-template-columns:184px 1fr;gap:36px;align-items:center}
+#articleBody.art-mar .close .cover{width:184px;border-radius:8px;box-shadow:0 18px 40px -12px rgba(0,0,0,.6)}
+#articleBody.art-mar .close h2{color:#fff;font-size:31px;margin-bottom:14px}
+#articleBody.art-mar .close p{color:var(--i200);font-size:18px}
+#articleBody.art-mar .buy{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--brand-900);
+  font-family:var(--sans);font-size:16px;font-weight:700;text-decoration:none;
+  padding:14px 24px;border-radius:100px;margin-top:6px;transition:transform .15s,box-shadow .15s}
+#articleBody.art-mar .buy:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(0,0,0,.5)}
+#articleBody.art-mar .buy:focus-visible{outline:3px solid var(--i400);outline-offset:3px}
+#articleBody.art-mar .buy svg{width:16px;height:16px;flex:none}
+#articleBody.art-mar .close .fine{font-family:var(--sans);font-size:14px;color:#a5b4fc;margin:14px 0 0}
+#articleBody.art-mar .intro{background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:28px;margin:6px 0 26px;display:grid;grid-template-columns:132px 1fr;gap:28px;align-items:center}
+#articleBody.art-mar .intro .cover{width:132px;border-radius:6px;box-shadow:0 14px 30px -14px rgba(15,23,42,.55)}
+#articleBody.art-mar .intro .t{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink);line-height:1.25;margin:0 0 6px}
+#articleBody.art-mar .intro .s{font-family:var(--sans);font-size:15px;color:var(--muted);line-height:1.5;margin:0 0 14px}
+#articleBody.art-mar .intro dl{margin:0;font-family:var(--sans);font-size:14px;display:grid;grid-template-columns:auto 1fr;gap:5px 14px}
+#articleBody.art-mar .intro dt{color:var(--faint);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:11px;padding-top:2px}
+#articleBody.art-mar .intro dd{margin:0;color:var(--ink-body)}
+#articleBody.art-mar .intro .src{color:var(--brand);text-decoration:none;font-weight:600;
+  display:inline-flex;align-items:center;gap:5px;border-bottom:1px solid transparent}
+#articleBody.art-mar .intro .src:hover{border-bottom-color:var(--brand)}
+#articleBody.art-mar .intro .src:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:3px}
+#articleBody.art-mar .intro .src svg{width:13px;height:13px;flex:none}
+#articleBody.art-mar footer{padding:60px 0 90px;font-family:var(--sans);font-size:14px;color:var(--faint)}
+#articleBody.art-mar .node, #articleBody.art-mar .hero>*{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+#articleBody.art-mar .node.seen, #articleBody.art-mar .hero>.seen{opacity:1;transform:none}
+
+#articleBody.art-mar .cover{display:block;background-image:url(assets/capa-quando-e-melhor-com-ia.jpg);
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  aspect-ratio:520/834;flex:none;border-radius:6px;flex-shrink:0;
+  transition:transform .15s,box-shadow .15s}
+#articleBody.art-mar a.cover:hover{transform:translateY(-3px)}
+#articleBody.art-mar a.cover:focus-visible{outline:3px solid var(--i400);outline-offset:4px}
+@media (max-width:860px){
+#articleBody.art-mar{--rail:44px}
+#articleBody.art-mar{font-size:18px}
+#articleBody.art-mar .wrap{padding:0 20px}
+#articleBody.art-mar .grid2{grid-template-columns:1fr}
+#articleBody.art-mar .close{grid-template-columns:1fr;padding:32px}
+#articleBody.art-mar .close .cover{width:150px}
+#articleBody.art-mar .intro{grid-template-columns:1fr;gap:20px;padding:24px}
+#articleBody.art-mar header.hero{padding:86px 0 56px}
+#articleBody.art-mar section.node{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){
+#articleBody.art-mar *{transition:none!important;animation:none!important}
+#articleBody.art-mar .node, #articleBody.art-mar .hero>*{opacity:1;transform:none}
+}
+
+/* Legenda flutuante do fio (mesma regra do artigo "O fio do argumento"). */
+#articleBody.art-mar #legend{position:fixed;left:24px;bottom:24px;z-index:5;background:rgba(255,255,255,.94);
+  border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-family:var(--sans);font-size:13px;
+  box-shadow:0 10px 30px -12px rgba(15,23,42,.35);opacity:0;transform:translateY(8px);
+  transition:opacity .35s,transform .35s;pointer-events:none}
+#articleBody.art-mar #legend.on{opacity:1;transform:none}
+#articleBody.art-mar #legend b{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);margin:0 0 4px}
+#articleBody.art-mar #legend b i{width:16px;height:3px;border-radius:2px;display:block}
+#articleBody.art-mar #legend span{color:var(--muted);display:block;margin:0 0 10px}
+#articleBody.art-mar #legend span:last-child{margin:0}
+@media (max-width:860px){ #articleBody.art-mar #legend{display:none} }
+/* Dentro do Hub a legenda precisa começar à direita da barra lateral. */
+@media (min-width:768px){ #articleBody.art-mar #legend{ left:calc(5rem + 24px) } }
+@media (min-width:1024px){ #articleBody.art-mar #legend{ left:calc(16rem + 24px) } }
+
+/* ── Componentes desta peça ─────────────────────────────────────────────────────────
+   Narrativa longa em atos; as tabelas do texto (fases do projeto, mapa de passagens) e a
+   nota de proveniência do motor. Cores do fio: Gemini e Claude, como no carrossel 02. */
+#articleBody.art-mar{--gemini:#4285F4; --claude:#d97757}
+#articleBody.art-mar .badges{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 22px}
+#articleBody.art-mar .badge{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:6px 14px;border-radius:100px;background:var(--i100);color:var(--brand-900)}
+#articleBody.art-mar section.node ul{margin:0 0 20px;padding-left:22px}
+#articleBody.art-mar section.node li{margin:0 0 10px}
+#articleBody.art-mar table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:14px;line-height:1.45;margin:6px 0 26px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+#articleBody.art-mar th,#articleBody.art-mar td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+#articleBody.art-mar th{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-700);background:var(--i50)}
+#articleBody.art-mar tr:last-child td{border-bottom:0}
+#articleBody.art-mar td strong{color:var(--brand-900)}
+#articleBody.art-mar .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 6px}
+#articleBody.art-mar .prov{font-family:var(--sans);font-size:13px;color:var(--muted);line-height:1.5;margin:8px 0 0;border-top:1px solid var(--line);padding-top:12px}
+#articleBody.art-mar .close a.cover{display:block}
+@media (max-width:860px){
+/* Phones: each row stacks into a card; the header row is dropped (first cell carries the key). */
+#articleBody.art-mar table,#articleBody.art-mar tbody,#articleBody.art-mar tr,#articleBody.art-mar td{display:block}
+#articleBody.art-mar thead{display:none}
+#articleBody.art-mar table{font-size:14px}
+#articleBody.art-mar tr{padding:10px 0;border-bottom:1px solid var(--line)}
+#articleBody.art-mar tr:last-child{border-bottom:0}
+#articleBody.art-mar td{padding:3px 14px;border-bottom:0}
+#articleBody.art-mar td:first-child{font-weight:600;color:var(--brand-900);padding-top:6px}
+#articleBody.art-mar td:last-child{padding-bottom:8px}
+#articleBody.art-mar #n2 td:nth-child(2){font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-700)}
+}

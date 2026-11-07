@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="artigos/artigo.css">
     <link rel="stylesheet" href="artigos/carrossel-cem-livros.css">
     <link rel="stylesheet" href="artigos/antes-e-depois.css">
+    <link rel="stylesheet" href="artigos/achar-e-metade.css">
     <link rel="stylesheet" href="artigos/dez-passos.css">
     
     <!-- Estilos -->
@@ -2731,6 +2732,46 @@
                       svg += '<circle cx="' + x1 + '" cy="' + yEnd + '" r="6" fill="' + CHATGPT + '"/>';
                       svg += '<circle cx="' + x2 + '" cy="' + yEnd + '" r="6" fill="' + GEMINI + '"/>';
                       svg += '<circle cx="' + x3 + '" cy="' + yEnd + '" r="6" fill="' + CLAUDE + '"/>';
+                      return svg;
+                  }
+              } },
+            // min: medido sobre 3.250 palavras visíveis a 190 palavras/min (leitura atenta).
+            { id:'mar', slug:'achar-e-metade', cat:'arquetipos', min:17,
+              title:"Achar é metade: a IA certa quando tudo precisa de fonte.",
+              dek:"Galeria de Arquétipos, 2 de 7. Marina tinha onze semanas, um conselho à espera e trezentos e quarenta documentos que ninguém tinha lido. A narrativa completa do Dossiê de Decisão, passagem a passagem do livro.",
+              rail:{
+                  // Legenda (quem lê / quem confere) visível da ingestão (#n3) ao epílogo (#n7):
+                  // o fio único abre em dois, Gemini e Claude, como na lâmina 7 do carrossel.
+                  legendFrom:'n3', legendTo:'n7', legendToBuffer:0,
+                  draw(ctx){
+                      const { wrap, hero, nodes, y, W, narrow } = ctx;
+                      const cx = narrow ? W - 16 : W - 46, gap = narrow ? 10 : 28, lx = cx - gap, rx = cx + gap;
+                      const forkEl = wrap.querySelector('#n3'), mergeEl = wrap.querySelector('#n7'), endEl = wrap.querySelector('#n9');
+                      if(!forkEl || !mergeEl || !endEl) return '';
+                      const yStart = hero.offsetTop + 40, yFork = forkEl.offsetTop + 20, yMerge = mergeEl.offsetTop + 20,
+                            yEnd = endEl.offsetTop + 40;
+                      const G = '#4285F4', C = '#d97757', B = '#4f46e5';
+                      let svg = '';
+                      const add = (d, c) => { svg += '<path d="' + d + '" stroke="' + c + '"/>'; };
+                      add('M' + cx + ' ' + yStart + ' L' + cx + ' ' + (yFork - 46), B);
+                      add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + lx + ' ' + (yFork - 16) + ' ' + lx + ' ' + yFork, G);
+                      add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + rx + ' ' + (yFork - 16) + ' ' + rx + ' ' + yFork, C);
+                      add('M' + lx + ' ' + yFork + ' L' + lx + ' ' + (yMerge - 46), G);
+                      add('M' + rx + ' ' + yFork + ' L' + rx + ' ' + (yMerge - 46), C);
+                      add('M' + lx + ' ' + (yMerge - 46) + ' C' + lx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, G);
+                      add('M' + rx + ' ' + (yMerge - 46) + ' C' + rx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, C);
+                      add('M' + cx + ' ' + yMerge + ' L' + cx + ' ' + yEnd, B);
+                      nodes.forEach(n => {
+                          const ny = y(n, .16);
+                          if(ny > yFork && ny < yMerge){
+                              svg += '<circle cx="' + lx + '" cy="' + ny + '" r="6" fill="' + G + '"/>'
+                                   + '<circle cx="' + rx + '" cy="' + ny + '" r="6" fill="' + C + '"/>';
+                          } else {
+                              svg += '<circle cx="' + cx + '" cy="' + ny + '" r="6" fill="' + B + '"/>';
+                          }
+                      });
+                      svg += '<circle cx="' + cx + '" cy="' + yStart + '" r="6" fill="' + B + '"/>';
+                      svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
                       return svg;
                   }
               } },
