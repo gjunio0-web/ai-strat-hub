@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="artigos/artigo.css">
     <link rel="stylesheet" href="artigos/carrossel-cem-livros.css">
+    <link rel="stylesheet" href="artigos/dez-passos.css">
     
     <!-- Estilos -->
     <style>
@@ -2687,6 +2688,51 @@
                       svg += '<circle cx="' + x1 + '" cy="' + yStart + '" r="6" fill="' + PERPLEXITY + '"/>';
                       svg += '<circle cx="' + x2 + '" cy="' + yStart + '" r="6" fill="' + CLAUDE + '"/>';
                       svg += '<circle cx="' + x3 + '" cy="' + yStart + '" r="6" fill="' + DEEPSEEK + '"/>';
+                      svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
+                      return svg;
+                  }
+              } },
+            // min: medido sobre 2.475 palavras visíveis a 190 palavras/min (leitura atenta).
+            { id:'dez', slug:'dez-passos', cat:'metodo', min:13,
+              title:"Dez passos: quando é melhor com IA.",
+              dek:"Dez passos para usar IA no trabalho, cada um ancorado num capítulo do livro \"Quando é Melhor com IA\", com o excerto que lhe serve de base.",
+              rail:{
+                  // Legenda (potência/eficiência) visível só em torno do Passo 7 (#n7), onde o
+                  // fio se abre em duas pistas; ele volta a ser um só antes do Passo 8 (#n8).
+                  legendFrom:'n7', legendTo:'n8', legendToBuffer:0,
+                  draw(ctx){
+                      const { wrap, hero, nodes, y, W, narrow } = ctx;
+                      const cx = narrow ? W - 16 : W - 46, gap = narrow ? 10 : 28, lx = cx - gap, rx = cx + gap;
+                      const forkEl = wrap.querySelector('#n7'), mergeEl = wrap.querySelector('#n8'),
+                            endEl = wrap.querySelector('#n11');
+                      if(!forkEl || !mergeEl || !endEl) return '';
+                      // A bifurcação abre no alto do Passo 7 e fecha no alto do Passo 8: é o único
+                      // passo em que potência e eficiência são o assunto, como no carrossel da peça.
+                      const yStart = hero.offsetTop + 40, yFork = forkEl.offsetTop + 20, yMerge = mergeEl.offsetTop + 20,
+                            yEnd = endEl.offsetTop + 40;
+                      const P = '#818cf8', Ef = '#7c3aed', B = '#4f46e5';
+                      let svg = '';
+                      const add = (d, c) => { svg += '<path d="' + d + '" stroke="' + c + '"/>'; };
+                      add('M' + cx + ' ' + yStart + ' L' + cx + ' ' + (yFork - 46), B);
+                      add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + lx + ' ' + (yFork - 16) + ' ' + lx + ' ' + yFork, P);
+                      add('M' + cx + ' ' + (yFork - 46) + ' C' + cx + ' ' + (yFork - 16) + ' ' + rx + ' ' + (yFork - 16) + ' ' + rx + ' ' + yFork, Ef);
+                      add('M' + lx + ' ' + yFork + ' L' + lx + ' ' + (yMerge - 46), P);
+                      add('M' + rx + ' ' + yFork + ' L' + rx + ' ' + (yMerge - 46), Ef);
+                      add('M' + lx + ' ' + (yMerge - 46) + ' C' + lx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, P);
+                      add('M' + rx + ' ' + (yMerge - 46) + ' C' + rx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + (yMerge - 16) + ' ' + cx + ' ' + yMerge, Ef);
+                      add('M' + cx + ' ' + yMerge + ' L' + cx + ' ' + yEnd, B);
+                      // Um marco por passo (seções com .step); a ficha do livro e a síntese não têm marco.
+                      nodes.forEach(n => {
+                          if(!n.querySelector('.step')) return;
+                          const ny = y(n, .16);
+                          if(ny > yFork && ny < yMerge){
+                              svg += '<circle cx="' + lx + '" cy="' + ny + '" r="6" fill="' + P + '"/>'
+                                   + '<circle cx="' + rx + '" cy="' + ny + '" r="6" fill="' + Ef + '"/>';
+                          } else {
+                              svg += '<circle cx="' + cx + '" cy="' + ny + '" r="6" fill="' + B + '"/>';
+                          }
+                      });
+                      svg += '<circle cx="' + cx + '" cy="' + yStart + '" r="6" fill="' + B + '"/>';
                       svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
                       return svg;
                   }

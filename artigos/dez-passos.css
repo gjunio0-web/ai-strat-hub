@@ -1,0 +1,148 @@
+/* Artigo "Dez passos: quando é melhor com IA" — estilos escopados sob #articleBody.art-dez.
+   Tokens e componentes herdados de artigos/artigo.css; acréscimos desta peça: .excerpt e .step.
+   A classe .art-dez é definida por openArticle() em index.html. */
+/* ─────────────────────────────────────────────────────────────────────
+   Tokens e componentes transcritos de artigos/artigo.css (quality_env).
+   O escopo #articleBody.art-dez é preservado para que este documento possa ser
+   servido como fragmento da seção Artigos sem qualquer ajuste de CSS.
+   ───────────────────────────────────────────────────────────────────── */
+
+#articleBody.art-dez{--ink:#0f172a; --ink-body:#334155; --muted:#64748b; --faint:#94a3b8;
+  --line:#e2e8f0; --paper:#f1f5f9; --surface:#ffffff;
+  --brand:#4f46e5; --brand-700:#4338ca; --brand-900:#312e81;
+  --i50:#eef2ff; --i100:#e0e7ff; --i200:#c7d2fe; --i400:#818cf8;
+  --potencia:#818cf8; --eficiencia:#7c3aed;
+  --serif:'Source Serif 4',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --rail:132px;}
+#articleBody.art-dez *{box-sizing:border-box}
+#articleBody.art-dez{margin:0;background:var(--paper);color:var(--ink-body);font-family:var(--serif);
+  font-size:19px;line-height:1.65;-webkit-font-smoothing:antialiased}
+#articleBody.art-dez .wrap{max-width:1080px;margin:0 auto;padding:0 28px;position:relative}
+#articleBody.art-dez #rail{position:absolute;left:0;top:0;width:var(--rail);pointer-events:none;z-index:0}
+#articleBody.art-dez #rail path{fill:none;stroke-width:3;stroke-linecap:round}
+#articleBody.art-dez .col{position:relative;z-index:1;margin-left:var(--rail);max-width:660px}
+#articleBody.art-dez h1, #articleBody.art-dez h2, #articleBody.art-dez h3{font-family:var(--serif);color:var(--ink);font-weight:600;letter-spacing:-.01em}
+#articleBody.art-dez h1{font-size:clamp(38px,6.2vw,62px);line-height:1.08;margin:0 0 24px}
+#articleBody.art-dez h2{font-size:clamp(27px,3.6vw,36px);line-height:1.22;margin:0 0 18px}
+#articleBody.art-dez h3{font-size:20px;margin:0 0 8px}
+#articleBody.art-dez p{margin:0 0 20px}
+#articleBody.art-dez strong{font-weight:600;color:var(--ink)}
+#articleBody.art-dez .lede{font-size:22px;color:var(--ink);line-height:1.55}
+#articleBody.art-dez .eyebrow{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brand-700);margin:0 0 10px;display:block}
+#articleBody.art-dez .quiet{color:var(--muted);font-size:17px}
+#articleBody.art-dez header.hero{padding:120px 0 96px}
+#articleBody.art-dez .hero .kicker{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);margin-bottom:34px}
+#articleBody.art-dez .hero .bridge{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--brand-700);
+  margin:30px 0 0;display:flex;align-items:center;gap:12px}
+#articleBody.art-dez .hero .bridge::before{content:"";width:26px;height:2px;background:var(--brand);border-radius:2px;flex:none}
+#articleBody.art-dez .hero blockquote{margin:34px 0 0;padding:0 0 0 24px;border-left:3px solid var(--eficiencia);
+  font-size:21px;color:var(--ink);line-height:1.55}
+#articleBody.art-dez section.node{padding:76px 0;scroll-margin-top:40px}
+#articleBody.art-dez .tag{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;
+  padding:5px 12px;border-radius:100px;margin-bottom:16px}
+#articleBody.art-dez .tag::before{content:"";width:8px;height:8px;border-radius:50%}
+#articleBody.art-dez .tag.p{background:var(--i50);color:var(--brand-900)}
+#articleBody.art-dez .tag.p::before{background:var(--potencia)}
+#articleBody.art-dez .tag.e{background:#f5f0ff;color:#5b21b6}
+#articleBody.art-dez .tag.e::before{background:var(--eficiencia)}
+#articleBody.art-dez .tag.b{background:var(--i100);color:var(--brand-900)}
+#articleBody.art-dez .tag.b::before{background:linear-gradient(90deg,var(--potencia) 50%,var(--eficiencia) 50%)}
+#articleBody.art-dez .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 14px}
+#articleBody.art-dez .card h3{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--brand-900)}
+#articleBody.art-dez .card p{font-size:17px;margin:0;color:var(--ink-body)}
+#articleBody.art-dez .card .idx{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.1em}
+#articleBody.art-dez .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#articleBody.art-dez .axis{border-left:3px solid var(--eficiencia);padding:2px 0 2px 20px;margin:0 0 22px}
+#articleBody.art-dez .axis h3{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--ink)}
+#articleBody.art-dez .axis p{font-size:17px;margin:4px 0 0}
+#articleBody.art-dez .arch{border-top:1px solid var(--line);padding:20px 0}
+#articleBody.art-dez .arch:last-of-type{border-bottom:1px solid var(--line)}
+#articleBody.art-dez .arch h3{font-family:var(--sans);font-size:18px;font-weight:700;color:var(--brand-900);margin-bottom:2px}
+#articleBody.art-dez .arch .who{font-family:var(--sans);font-size:14px;color:var(--muted);margin:0 0 8px}
+#articleBody.art-dez .arch p{font-size:17px;margin:0}
+#articleBody.art-dez .spec{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;margin:6px 0 22px}
+#articleBody.art-dez .spec .bar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--potencia),var(--eficiencia));margin:20px 0 10px}
+#articleBody.art-dez .spec .ends{display:flex;justify-content:space-between;font-family:var(--sans);font-size:13px;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+#articleBody.art-dez .spec .ends span:first-child{color:var(--brand-700)}
+#articleBody.art-dez .spec .ends span:last-child{color:#6d28d9}
+#articleBody.art-dez .close{background:var(--brand-900);color:#e0e7ff;border-radius:22px;padding:48px;margin:34px 0 0;
+  display:grid;grid-template-columns:184px 1fr;gap:36px;align-items:center}
+#articleBody.art-dez .close .cover{width:184px;border-radius:8px;box-shadow:0 18px 40px -12px rgba(0,0,0,.6)}
+#articleBody.art-dez .close h2{color:#fff;font-size:31px;margin-bottom:14px}
+#articleBody.art-dez .close p{color:var(--i200);font-size:18px}
+#articleBody.art-dez .buy{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--brand-900);
+  font-family:var(--sans);font-size:16px;font-weight:700;text-decoration:none;
+  padding:14px 24px;border-radius:100px;margin-top:6px;transition:transform .15s,box-shadow .15s}
+#articleBody.art-dez .buy:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(0,0,0,.5)}
+#articleBody.art-dez .buy:focus-visible{outline:3px solid var(--i400);outline-offset:3px}
+#articleBody.art-dez .buy svg{width:16px;height:16px;flex:none}
+#articleBody.art-dez .close .fine{font-family:var(--sans);font-size:14px;color:#a5b4fc;margin:14px 0 0}
+#articleBody.art-dez .intro{background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:28px;margin:6px 0 26px;display:grid;grid-template-columns:132px 1fr;gap:28px;align-items:center}
+#articleBody.art-dez .intro .cover{width:132px;border-radius:6px;box-shadow:0 14px 30px -14px rgba(15,23,42,.55)}
+#articleBody.art-dez .intro .t{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--ink);line-height:1.25;margin:0 0 6px}
+#articleBody.art-dez .intro .s{font-family:var(--sans);font-size:15px;color:var(--muted);line-height:1.5;margin:0 0 14px}
+#articleBody.art-dez .intro dl{margin:0;font-family:var(--sans);font-size:14px;display:grid;grid-template-columns:auto 1fr;gap:5px 14px}
+#articleBody.art-dez .intro dt{color:var(--faint);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:11px;padding-top:2px}
+#articleBody.art-dez .intro dd{margin:0;color:var(--ink-body)}
+#articleBody.art-dez .intro .src{color:var(--brand);text-decoration:none;font-weight:600;
+  display:inline-flex;align-items:center;gap:5px;border-bottom:1px solid transparent}
+#articleBody.art-dez .intro .src:hover{border-bottom-color:var(--brand)}
+#articleBody.art-dez .intro .src:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:3px}
+#articleBody.art-dez .intro .src svg{width:13px;height:13px;flex:none}
+#articleBody.art-dez footer{padding:60px 0 90px;font-family:var(--sans);font-size:14px;color:var(--faint)}
+#articleBody.art-dez .node, #articleBody.art-dez .hero>*{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+#articleBody.art-dez .node.seen, #articleBody.art-dez .hero>.seen{opacity:1;transform:none}
+
+#articleBody.art-dez .cover{display:block;background-image:url(assets/capa-quando-e-melhor-com-ia.jpg);
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  aspect-ratio:520/834;flex:none;border-radius:6px;flex-shrink:0;
+  transition:transform .15s,box-shadow .15s}
+#articleBody.art-dez a.cover:hover{transform:translateY(-3px)}
+#articleBody.art-dez a.cover:focus-visible{outline:3px solid var(--i400);outline-offset:4px}
+/* ── Acréscimos desta peça, construídos sobre os mesmos tokens ───────── */
+/* Excerto do livro: mantém a marcação de citação já usada no herói. */
+#articleBody.art-dez .excerpt{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--eficiencia);
+  border-radius:0 16px 16px 0;padding:20px 24px;margin:0 0 14px}
+#articleBody.art-dez .excerpt p{font-size:18px;color:var(--ink);margin:0 0 12px}
+#articleBody.art-dez .excerpt p:last-child{margin:0}
+#articleBody.art-dez .excerpt cite{font-family:var(--sans);font-style:normal;font-size:13px;font-weight:700;
+  letter-spacing:.06em;color:var(--brand-700);display:block;margin:0 0 10px}
+/* Numeração do passo, alojada no trilho quando há espaço para ele. */
+#articleBody.art-dez .step{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 10px}
+
+@media (max-width:860px){
+#articleBody.art-dez{--rail:44px}
+#articleBody.art-dez{font-size:18px}
+#articleBody.art-dez .wrap{padding:0 20px}
+#articleBody.art-dez .grid2{grid-template-columns:1fr}
+#articleBody.art-dez .close{grid-template-columns:1fr;padding:32px}
+#articleBody.art-dez .close .cover{width:150px}
+#articleBody.art-dez .intro{grid-template-columns:1fr;gap:20px;padding:24px}
+#articleBody.art-dez header.hero{padding:86px 0 56px}
+#articleBody.art-dez section.node{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){
+#articleBody.art-dez *{transition:none!important;animation:none!important}
+#articleBody.art-dez .node, #articleBody.art-dez .hero>*{opacity:1;transform:none}
+}
+
+/* Legenda flutuante do fio (mesma regra do artigo "O fio do argumento"). */
+#articleBody.art-dez #legend{position:fixed;left:24px;bottom:24px;z-index:5;background:rgba(255,255,255,.94);
+  border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-family:var(--sans);font-size:13px;
+  box-shadow:0 10px 30px -12px rgba(15,23,42,.35);opacity:0;transform:translateY(8px);
+  transition:opacity .35s,transform .35s;pointer-events:none}
+#articleBody.art-dez #legend.on{opacity:1;transform:none}
+#articleBody.art-dez #legend b{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);margin:0 0 4px}
+#articleBody.art-dez #legend b i{width:16px;height:3px;border-radius:2px;display:block}
+#articleBody.art-dez #legend span{color:var(--muted);display:block;margin:0 0 10px}
+#articleBody.art-dez #legend span:last-child{margin:0}
+@media (max-width:860px){ #articleBody.art-dez #legend{display:none} }
+/* Dentro do Hub a legenda precisa começar à direita da barra lateral. */
+@media (min-width:768px){ #articleBody.art-dez #legend{ left:calc(5rem + 24px) } }
+@media (min-width:1024px){ #articleBody.art-dez #legend{ left:calc(16rem + 24px) } }
