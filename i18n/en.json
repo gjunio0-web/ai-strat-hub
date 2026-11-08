@@ -2752,5 +2752,6 @@
   "art.mar.cta.fine": { "text": "Professional augmentation through AI use.<br>From Strategic Analysis to Technical Production.", "sourceHash": "6661a43f" },
   "art.mar.rodape": { "text": "Marina is a composite. The case is illustrative. All quoted passages come from the book.", "sourceHash": "dc3073f4" },
   "articles.mar.title": { "text": "Finding is half the work: the right AI when everything needs a source.", "sourceHash": "ed9f81af" },
-  "articles.mar.dek": { "text": "Archetype Gallery, 2 of 7. Marina had eleven weeks, a board waiting and three hundred and forty documents nobody had read. The complete narrative of the Decision Dossier, passage by passage from the book.", "sourceHash": "98d4addb" }
+  "articles.mar.dek": { "text": "Archetype Gallery, 2 of 7. Marina had eleven weeks, a board waiting and three hundred and forty documents nobody had read. The complete narrative of the Decision Dossier, passage by passage from the book.", "sourceHash": "98d4addb" },
+  "artigos.indisponivel": { "text": "Articles unavailable at the moment.", "sourceHash": "e6a92ef0" }
 }

@@ -38,6 +38,12 @@ function articleFiles() {
     return fs.readdirSync(ARTICLE_DIR).filter(f => f.endsWith('.html')).map(f => path.join(ARTICLE_DIR, f));
 }
 const LOCALES = { en: 'i18n/en.json', de: 'i18n/de.json' };
+// Article manifest: single source of article metadata, read by the Hub and by the GM Digital Bunker site.
+const MANIFEST_PATH = path.join(ARTICLE_DIR, 'index.json');
+function loadManifest() {
+    if (!fs.existsSync(MANIFEST_PATH)) return null;
+    return JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
+}
 
 // Hash simples e determinístico (djb2) — impressão digital do conteúdo em PT, não criptográfico.
 // Nota para quem gerar hashes fora do Node (ex.: Python): esta função itera por UNIDADES
@@ -118,7 +124,7 @@ function extractDataStrings(html) {
     vm.runInContext(appScript + `
 ;globalThis.__cases = (typeof cases !== 'undefined') ? cases : null;
 globalThis.__canonBlocks = (typeof canonBlocks !== 'undefined') ? canonBlocks : null;
-globalThis.__ARTICLES = (typeof ARTICLES !== 'undefined') ? ARTICLES : null;
+globalThis.__ARTICLE_RAILS = (typeof ARTICLE_RAILS !== 'undefined') ? ARTICLE_RAILS : null;
 globalThis.__archetypeInfo = (typeof archetypeInfo !== 'undefined') ? archetypeInfo : null;
 globalThis.__ARCH_SHORT = (typeof ARCH_SHORT !== 'undefined') ? ARCH_SHORT : null;
 globalThis.__ECOSYSTEM = (typeof ECOSYSTEM !== 'undefined') ? ECOSYSTEM : null;
@@ -135,8 +141,10 @@ globalThis.__IMPACT_MATRIX = (typeof IMPACT_MATRIX !== 'undefined') ? IMPACT_MAT
             map['cases.' + c.id + '.desc'] = c.desc;
         });
     }
-    if (sandbox.__ARTICLES) {
-        sandbox.__ARTICLES.forEach(a => {
+    // Article titles/summaries come from the manifest, not from the app script.
+    const manifest = loadManifest();
+    if (manifest && Array.isArray(manifest.artigos)) {
+        manifest.artigos.forEach(a => {
             map['articles.' + a.id + '.title'] = a.title;
             map['articles.' + a.id + '.dek'] = a.dek;
         });
@@ -299,6 +307,13 @@ function audit() {
         if (orphan.length) { console.log(`\n  Órfãs:`); orphan.forEach(k => console.log(`    - ${k}`)); }
     }
 
+    // Article manifest: every entry must have a fragment, a rail and a valid date; every rail an entry.
+    const manifestIssues = checkManifest(html);
+    console.log(`\n=== MANIFESTO  (artigos/index.json) ===`);
+    console.log(`  Problemas: ${manifestIssues.length}`);
+    manifestIssues.forEach(m => console.log(`    - ${m}`));
+    totalIssues += manifestIssues.length;
+
     console.log(`\n${'─'.repeat(50)}`);
     console.log(totalIssues === 0
         ? 'Nenhuma divergência encontrada nas chaves marcadas. ✅'
@@ -317,6 +332,27 @@ function audit() {
     console.log('');
 
     process.exit(totalIssues === 0 ? 0 : 1);
+}
+
+function checkManifest(html) {
+    const issues = [];
+    let manifest;
+    try { manifest = loadManifest(); } catch (e) { return ['index.json inválido: ' + e.message]; }
+    if (!manifest || !Array.isArray(manifest.artigos)) return ['artigos/index.json ausente ou sem a lista "artigos"'];
+    const m = html.match(/const ARTICLE_RAILS = \{([\s\S]*?)\n        \};/);
+    const railIds = m ? [...m[1].matchAll(/^ {12}(\w+): \{$/gm)].map(x => x[1]) : [];
+    const ids = new Set(), slugs = new Set();
+    manifest.artigos.forEach((a, i) => {
+        const tag = a.id || ('#' + i);
+        ['id', 'slug', 'cat', 'min', 'data', 'title', 'dek'].forEach(k => { if (a[k] === undefined || a[k] === '') issues.push(`${tag}: campo "${k}" ausente`); });
+        if (ids.has(a.id)) issues.push(`${tag}: id repetido`); ids.add(a.id);
+        if (slugs.has(a.slug)) issues.push(`${tag}: slug repetido`); slugs.add(a.slug);
+        if (a.data !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(a.data)) issues.push(`${tag}: data fora do formato AAAA-MM-DD`);
+        if (a.slug && !fs.existsSync(path.join(ARTICLE_DIR, a.slug + '.html'))) issues.push(`${tag}: artigos/${a.slug}.html não existe`);
+        if (railIds.indexOf(a.id) === -1) issues.push(`${tag}: sem fio em ARTICLE_RAILS`);
+    });
+    railIds.forEach(r => { if (!ids.has(r)) issues.push(`${r}: fio em ARTICLE_RAILS sem artigo no manifesto`); });
+    return issues;
 }
 
 // Modo --fix: reescreve os sourceHash desatualizados para casar com o texto-fonte PT atual.

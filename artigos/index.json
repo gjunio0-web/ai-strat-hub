@@ -1,0 +1,50 @@
+{
+  "versao": 1,
+  "artigos": [
+    {
+      "id": "fio",
+      "slug": "fio-do-argumento",
+      "cat": "metodo",
+      "min": 8,
+      "data": "2026-08-22",
+      "title": "O advogado brilhante que não entrega a petição.",
+      "dek": "O fio do argumento de \"Quando é Melhor com IA\": por que potência e eficiência são eixos independentes, e não dois pontos da mesma régua."
+    },
+    {
+      "id": "cem",
+      "slug": "cem-livros",
+      "cat": "bastidores",
+      "min": 3,
+      "data": "2026-09-21",
+      "title": "Cem livros, três levantamentos, uma pergunta.",
+      "dek": "Pedi a três IAs que levantassem, cada uma por conta própria, tudo o que já se publicou sobre IA. Elas divergiram — e foi na divergência que apareceu a pergunta que nenhum livro responde."
+    },
+    {
+      "id": "rod",
+      "slug": "antes-e-depois",
+      "cat": "arquetipos",
+      "min": 7,
+      "data": "2026-11-07",
+      "title": "Antes e depois: a IA certa para o seu tipo de trabalho.",
+      "dek": "Galeria de Arquétipos, 1 de 7. Rodrigo usa inteligência artificial há dois anos e diria que usa bem. Um dia de trabalho antes e depois de descobrir que era outro arquétipo."
+    },
+    {
+      "id": "mar",
+      "slug": "achar-e-metade",
+      "cat": "arquetipos",
+      "min": 17,
+      "data": "2026-11-07",
+      "title": "Achar é metade: a IA certa quando tudo precisa de fonte.",
+      "dek": "Galeria de Arquétipos, 2 de 7. Marina tinha onze semanas, um conselho à espera e trezentos e quarenta documentos que ninguém tinha lido. A narrativa completa do Dossiê de Decisão, passagem a passagem do livro."
+    },
+    {
+      "id": "dez",
+      "slug": "dez-passos",
+      "cat": "metodo",
+      "min": 13,
+      "data": "2026-11-07",
+      "title": "Dez passos: quando é melhor com IA.",
+      "dek": "Dez passos para usar IA no trabalho, cada um ancorado num capítulo do livro \"Quando é Melhor com IA\", com o excerto que lhe serve de base."
+    }
+  ]
+}

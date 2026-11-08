@@ -2752,5 +2752,6 @@
   "art.mar.cta.fine": { "text": "Berufliche Augmentierung durch KI-Einsatz.<br>Von der strategischen Analyse zur technischen Produktion.", "sourceHash": "6661a43f" },
   "art.mar.rodape": { "text": "Marina ist eine Komposition. Der Fall ist illustrativ. Alle zitierten Passagen stammen aus dem Buch.", "sourceHash": "dc3073f4" },
   "articles.mar.title": { "text": "Finden ist die halbe Arbeit: die richtige KI, wenn alles eine Quelle braucht.", "sourceHash": "ed9f81af" },
-  "articles.mar.dek": { "text": "Archetypen-Galerie, 2 von 7. Marina hatte elf Wochen, einen wartenden Verwaltungsrat und dreihundertvierzig Dokumente, die niemand gelesen hatte. Die vollständige Erzählung des Entscheidungsdossiers, Passage für Passage aus dem Buch.", "sourceHash": "98d4addb" }
+  "articles.mar.dek": { "text": "Archetypen-Galerie, 2 von 7. Marina hatte elf Wochen, einen wartenden Verwaltungsrat und dreihundertvierzig Dokumente, die niemand gelesen hatte. Die vollständige Erzählung des Entscheidungsdossiers, Passage für Passage aus dem Buch.", "sourceHash": "98d4addb" },
+  "artigos.indisponivel": { "text": "Artikel derzeit nicht verfügbar.", "sourceHash": "e6a92ef0" }
 }

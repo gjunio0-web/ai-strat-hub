@@ -2623,12 +2623,9 @@
         // buscado sob demanda e injetado no documento do Hub. Por estar no mesmo
         // documento, applyStaticI18nNode alcança seus nós data-i18n nativamente —
         // o seletor de idioma da barra lateral governa também o corpo do artigo.
-        const ARTICLES = [
+        const ARTICLE_RAILS = {
             // min: medido sobre 1.511 palavras a 190 palavras/min (leitura atenta).
-            { id:'fio', slug:'fio-do-argumento', cat:'metodo', min:8,
-              title:"O advogado brilhante que não entrega a petição.",
-              dek:"O fio do argumento de \"Quando é Melhor com IA\": por que potência e eficiência são eixos independentes, e não dois pontos da mesma régua.",
-              rail:{
+            fio: {
                   // Legenda visível entre a bifurcação (#n2) e a fusão (#n10) das duas pistas.
                   legendFrom:'n2', legendTo:'n10', legendToBuffer:0,
                   draw(ctx){
@@ -2664,11 +2661,8 @@
                       svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
                       return svg;
                   }
-              } },
-            { id:'cem', slug:'cem-livros', cat:'bastidores', min:3,
-              title:"Cem livros, três levantamentos, uma pergunta.",
-              dek:"Pedi a três IAs que levantassem, cada uma por conta própria, tudo o que já se publicou sobre IA. Elas divergiram — e foi na divergência que apareceu a pergunta que nenhum livro responde.",
-              rail:{
+              },
+            cem: {
                   // Legenda (cores Claude/Perplexity/DeepSeek) visível da abertura (#n1) até
                   // um pouco depois da fusão das três pistas (#n4 + 400px de tolerância).
                   legendFrom:'n1', legendTo:'n4', legendToBuffer:400,
@@ -2698,12 +2692,9 @@
                       svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
                       return svg;
                   }
-              } },
+              },
             // min: medido sobre 1.333 palavras visíveis a 190 palavras/min (leitura atenta).
-            { id:'rod', slug:'antes-e-depois', cat:'arquetipos', min:7,
-              title:"Antes e depois: a IA certa para o seu tipo de trabalho.",
-              dek:"Galeria de Arquétipos, 1 de 7. Rodrigo usa inteligência artificial há dois anos e diria que usa bem. Um dia de trabalho antes e depois de descobrir que era outro arquétipo.",
-              rail:{
+            rod: {
                   // Legenda (as três marcas que a série colore) visível da seção das fichas (#n8)
                   // ao fecho (#n10): é onde o fio único se desdobra em três, como na lâmina 10 da peça.
                   legendFrom:'n8', legendTo:'n10', legendToBuffer:400,
@@ -2734,12 +2725,9 @@
                       svg += '<circle cx="' + x3 + '" cy="' + yEnd + '" r="6" fill="' + CLAUDE + '"/>';
                       return svg;
                   }
-              } },
+              },
             // min: medido sobre 3.250 palavras visíveis a 190 palavras/min (leitura atenta).
-            { id:'mar', slug:'achar-e-metade', cat:'arquetipos', min:17,
-              title:"Achar é metade: a IA certa quando tudo precisa de fonte.",
-              dek:"Galeria de Arquétipos, 2 de 7. Marina tinha onze semanas, um conselho à espera e trezentos e quarenta documentos que ninguém tinha lido. A narrativa completa do Dossiê de Decisão, passagem a passagem do livro.",
-              rail:{
+            mar: {
                   // Legenda (quem lê / quem confere) visível da ingestão (#n3) ao epílogo (#n7):
                   // o fio único abre em dois, Gemini e Claude, como na lâmina 7 do carrossel.
                   legendFrom:'n3', legendTo:'n7', legendToBuffer:0,
@@ -2774,12 +2762,9 @@
                       svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
                       return svg;
                   }
-              } },
+              },
             // min: medido sobre 2.475 palavras visíveis a 190 palavras/min (leitura atenta).
-            { id:'dez', slug:'dez-passos', cat:'metodo', min:13,
-              title:"Dez passos: quando é melhor com IA.",
-              dek:"Dez passos para usar IA no trabalho, cada um ancorado num capítulo do livro \"Quando é Melhor com IA\", com o excerto que lhe serve de base.",
-              rail:{
+            dez: {
                   // Legenda (potência/eficiência) visível só em torno do Passo 7 (#n7), onde o
                   // fio se abre em duas pistas; ele volta a ser um só antes do Passo 8 (#n8).
                   legendFrom:'n7', legendTo:'n8', legendToBuffer:0,
@@ -2819,8 +2804,22 @@
                       svg += '<circle cx="' + cx + '" cy="' + yEnd + '" r="7" fill="' + B + '"/>';
                       return svg;
                   }
-              } }
-        ];
+              }
+        };
+        // Article metadata (id, slug, category, reading time, publication date, PT title and summary)
+        // lives in artigos/index.json: the single source, also read by the GM Digital Bunker site at
+        // build time. Rails stay in code, keyed by id. EN/DE titles and summaries stay in i18n/*.json
+        // under articles.<id>.title / .dek. Array order in the manifest is the index order.
+        let ARTICLES = [];
+        let __artStatus = 'loading'; // 'loading' | 'ok' | 'failed'
+        const __artReady = fetch('artigos/index.json')
+            .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+            .then(m => {
+                ARTICLES = (m.artigos || []).map(a => Object.assign({}, a, { rail: ARTICLE_RAILS[a.id] || null }));
+                __artStatus = 'ok';
+            })
+            .catch(err => { console.warn('[artigos] failed to load artigos/index.json', err); __artStatus = 'failed'; })
+            .then(() => { try { renderArticles(); } catch(e){ console.warn('[artigos] render failed', e); } });
         const __artCache = {};
         let __artOpen = null;
 
@@ -2861,6 +2860,12 @@
         function renderArticles(){
             const box = document.getElementById('articlesList');
             if(!box) return;
+            if(__artStatus === 'failed'){
+                const bar = document.getElementById('articlesChips');
+                if(bar) bar.innerHTML = '';
+                box.innerHTML = '<p class="text-sm text-slate-500">' + tx('Artigos indisponíveis no momento.', 'artigos.indisponivel') + '</p>';
+                return;
+            }
             renderArticleChips();
             box.innerHTML = '';
             ARTICLES.filter(a => __artFiltro === 'all' || a.cat === __artFiltro).forEach(a => {
@@ -2882,6 +2887,7 @@
         }
 
         function openArticle(slug, push){
+            if(__artStatus === 'loading'){ __artReady.then(() => openArticle(slug, push)); return; }
             const meta = ARTICLES.find(a => a.slug === slug);
             if(!meta) return;
             const show = () => {
@@ -2985,7 +2991,7 @@
         }
         // A geometria (viewBox, dash-array de revelação, progresso de leitura, legenda)
         // é igual para qualquer artigo; só o DESENHO dos caminhos muda. Cada artigo traz
-        // seu próprio rail.draw(ctx) em ARTICLES — ver os dois exemplos já cadastrados.
+        // seu próprio rail.draw(ctx) em ARTICLE_RAILS — ver os dois exemplos já cadastrados.
         function buildArticleRail(){
             const E = __artEls(); if(!E) return;
             const { wrap, rail } = E;
