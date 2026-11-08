@@ -2568,7 +2568,7 @@
   "art.rod.cta.fine": { "text": "Professional augmentation through AI use.<br>From Strategic Analysis to Technical Production.", "sourceHash": "6661a43f" },
   "art.rod.rodape": { "text": "First piece of the Archetype Gallery. The method is that of the book Quando é Melhor com IA; the scores in the cards come from the AI Strategy Hub engine. The book is written in Portuguese.", "sourceHash": "cd190ef1" },
   "articles.rod.title": { "text": "Before and after: the right AI for your kind of work.", "sourceHash": "cd61451d" },
-  "articles.rod.dek": { "text": "Archetype Gallery, 1 of 7. Rodrigo has used artificial intelligence for two years and would say he uses it well. One working day before and after discovering he was another archetype.", "sourceHash": "891cd7ec" },
+  "articles.rod.dek": { "text": "Rodrigo has used artificial intelligence for two years and chose the tool that tops the lists of best models. Even so, he spends his mornings copying, reformatting and resending files the AI should have read on its own. The article follows the same working day before and after he chooses the tool by the kind of work he does, not by its place in the ranking.", "sourceHash": "94443d32" },
   "art.mar.legenda.g": { "text": "Gemini", "sourceHash": "b4de86de" },
   "art.mar.legenda.g2": { "text": "Who reads", "sourceHash": "77386f33" },
   "art.mar.legenda.c": { "text": "Claude", "sourceHash": "ac022d13" },
@@ -2752,6 +2752,6 @@
   "art.mar.cta.fine": { "text": "Professional augmentation through AI use.<br>From Strategic Analysis to Technical Production.", "sourceHash": "6661a43f" },
   "art.mar.rodape": { "text": "Marina is a composite. The case is illustrative. All quoted passages come from the book.", "sourceHash": "dc3073f4" },
   "articles.mar.title": { "text": "Finding is half the work: the right AI when everything needs a source.", "sourceHash": "ed9f81af" },
-  "articles.mar.dek": { "text": "Archetype Gallery, 2 of 7. Marina had eleven weeks, a board waiting and three hundred and forty documents nobody had read. The complete narrative of the Decision Dossier, passage by passage from the book.", "sourceHash": "98d4addb" },
+  "articles.mar.dek": { "text": "Marina had eleven weeks to bring the board of a health insurer a recommendation built on 340 documents nobody had read. Finding the information was only half the work: the other half was proving where each statement came from. The narrative follows the project from start to finish and shows, at each stage, the passage of the book \"Quando é Melhor com IA\" that guided the decision.", "sourceHash": "3e5fce5e" },
   "artigos.indisponivel": { "text": "Articles unavailable at the moment.", "sourceHash": "e6a92ef0" }
 }

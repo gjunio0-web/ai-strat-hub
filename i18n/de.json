@@ -2568,7 +2568,7 @@
   "art.rod.cta.fine": { "text": "Berufliche Augmentierung durch KI-Einsatz.<br>Von der strategischen Analyse zur technischen Produktion.", "sourceHash": "6661a43f" },
   "art.rod.rodape": { "text": "Erstes Stück der Archetypen-Galerie. Die Methode ist die des Buches Quando é Melhor com IA; die Bewertungen in den Karten stammen aus der Engine des AI Strategy Hub. Das Buch ist auf Portugiesisch geschrieben.", "sourceHash": "cd190ef1" },
   "articles.rod.title": { "text": "Vorher und nachher: die richtige KI für Ihre Art von Arbeit.", "sourceHash": "cd61451d" },
-  "articles.rod.dek": { "text": "Archetypen-Galerie, 1 von 7. Rodrigo nutzt künstliche Intelligenz seit zwei Jahren und würde sagen, dass er sie gut nutzt. Ein Arbeitstag vor und nach der Entdeckung, dass er ein anderer Archetyp war.", "sourceHash": "891cd7ec" },
+  "articles.rod.dek": { "text": "Rodrigo nutzt künstliche Intelligenz seit zwei Jahren und hat das Werkzeug gewählt, das die Bestenlisten der Modelle anführt. Trotzdem verbringt er seine Vormittage damit, Dateien zu kopieren, umzuformatieren und erneut zu senden, die die KI selbst hätte lesen sollen. Der Artikel begleitet denselben Arbeitstag vor und nach dem Moment, in dem er das Werkzeug nach der Art seiner Arbeit wählt und nicht nach dem Platz im Ranking.", "sourceHash": "94443d32" },
   "art.mar.legenda.g": { "text": "Gemini", "sourceHash": "b4de86de" },
   "art.mar.legenda.g2": { "text": "Wer liest", "sourceHash": "77386f33" },
   "art.mar.legenda.c": { "text": "Claude", "sourceHash": "ac022d13" },
@@ -2752,6 +2752,6 @@
   "art.mar.cta.fine": { "text": "Berufliche Augmentierung durch KI-Einsatz.<br>Von der strategischen Analyse zur technischen Produktion.", "sourceHash": "6661a43f" },
   "art.mar.rodape": { "text": "Marina ist eine Komposition. Der Fall ist illustrativ. Alle zitierten Passagen stammen aus dem Buch.", "sourceHash": "dc3073f4" },
   "articles.mar.title": { "text": "Finden ist die halbe Arbeit: die richtige KI, wenn alles eine Quelle braucht.", "sourceHash": "ed9f81af" },
-  "articles.mar.dek": { "text": "Archetypen-Galerie, 2 von 7. Marina hatte elf Wochen, einen wartenden Verwaltungsrat und dreihundertvierzig Dokumente, die niemand gelesen hatte. Die vollständige Erzählung des Entscheidungsdossiers, Passage für Passage aus dem Buch.", "sourceHash": "98d4addb" },
+  "articles.mar.dek": { "text": "Marina hatte elf Wochen, um dem Verwaltungsrat eines Krankenversicherers eine Empfehlung vorzulegen, gestützt auf 340 Dokumente, die niemand gelesen hatte. Die Information zu finden war nur die halbe Arbeit: Die andere Hälfte bestand darin, zu belegen, woher jede Aussage stammte. Die Erzählung begleitet das Projekt von Anfang bis Ende und zeigt in jeder Etappe die Passage aus dem Buch \"Quando é Melhor com IA\", die die Entscheidung geleitet hat.", "sourceHash": "3e5fce5e" },
   "artigos.indisponivel": { "text": "Artikel derzeit nicht verfügbar.", "sourceHash": "e6a92ef0" }
 }
